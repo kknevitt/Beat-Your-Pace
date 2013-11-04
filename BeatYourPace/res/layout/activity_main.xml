@@ -1,16 +1,65 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#0298db"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        <Button
+            android:id="@+id/bSettings"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/bLetsRun"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="18dp"
+            android:text="Settings"
+            android:textColor="#ffffff"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/bLetsRun"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/bTrainingMode"
+            android:layout_centerVertical="true"
+            android:text="Let&apos;s Run!"
+            android:textColor="#ffffff"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/bTrainingMode"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="21dp"
+            android:text="Training Mode"
+            android:textColor="#ffffff"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/tLetsRun"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/bLetsRun"
+            android:layout_below="@+id/bLetsRun"
+            android:layout_marginTop="38dp"
+            android:text="Text to Explain the Mode"
+            android:textColor="#000000" />
+
+        <TextView
+            android:id="@+id/tTrainingMode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/bTrainingMode"
+            android:layout_below="@+id/bTrainingMode"
+            android:layout_marginTop="18dp"
+            android:text="Text to Explain the Mode"
+            android:textColor="#000000" />
 
 </RelativeLayout>
