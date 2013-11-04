@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0298db" >
+
+    <TextView
+        android:id="@+id/tSongName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bSongTooFast"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="31dp"
+        android:text="Song Name "
+        android:textColor="#ffffff"
+        android:textSize="28sp" />
+
+    <Button
+        android:id="@+id/bDecTarget"
+        android:layout_width="75sp"
+        android:layout_height="75sp"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="14dp"
+        android:layout_marginTop="28dp"
+        android:layout_toLeftOf="@+id/tTarget"
+        android:text="-" 
+        android:textSize="32sp"/>
+
+    <Button
+        android:id="@+id/bSongTooFast"
+        android:layout_width="100dp"
+        android:layout_height="125dp"
+        android:layout_alignBaseline="@+id/bSongTooSlow"
+        android:layout_alignBottom="@+id/bSongTooSlow"
+        android:layout_toRightOf="@+id/tPace"
+        android:text="Too Fast!"
+        android:textSize="32sp" />
+
+    <ImageButton
+        android:id="@+id/bSkipTrack"
+        android:layout_width="75sp"
+        android:layout_height="75sp"
+        android:layout_alignRight="@+id/bSongTooFast"
+        android:layout_alignTop="@+id/bPlaySong"
+        android:src="@android:drawable/ic_media_next" />
+
+    <Button
+        android:id="@+id/bIncTarget"
+        android:layout_width="75sp"
+        android:layout_height="75sp"
+        android:layout_above="@+id/bSongTooSlow"
+        android:layout_alignRight="@+id/bSongTooFast"
+        android:text="+"
+        android:textSize="32sp" />
+
+    <Button
+        android:id="@+id/bSongTooSlow"
+        android:layout_width="100dp"
+        android:layout_height="125dp"
+        android:layout_alignLeft="@+id/bDecTarget"
+        android:layout_below="@+id/bDecTarget"
+        android:layout_marginTop="51dp"
+        android:text="Too Slow"
+        android:textSize="32sp" />
+
+    <ImageButton
+        android:id="@+id/bPreviousTrack"
+        android:layout_width="75sp"
+        android:layout_height="75sp"
+        android:layout_alignLeft="@+id/bSongTooSlow"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:src="@android:drawable/ic_media_previous" />
+
+    <TextView
+        android:id="@+id/tPace"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/bDecTarget"
+        android:layout_centerHorizontal="true"
+        android:text="Pace 7mph"
+        android:textColor="#ffffff"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tTarget"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tPace"
+        android:layout_below="@+id/bIncTarget"
+        android:text="Target 8mph"
+        android:textColor="#ffffff"
+        android:textSize="18sp" />
+
+    <ImageButton
+        android:id="@+id/bPlaySong"
+        android:layout_width="75sp"
+        android:layout_height="75sp"
+        android:layout_alignTop="@+id/bPreviousTrack"
+        android:layout_toRightOf="@+id/bSongTooSlow"
+        android:src="@android:drawable/ic_media_play" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="50sp"
+        android:layout_height="50sp"
+        android:layout_below="@+id/tPace"
+        android:layout_centerHorizontal="true"
+        android:src="@android:drawable/btn_star_big_on" />
+
+</RelativeLayout>
