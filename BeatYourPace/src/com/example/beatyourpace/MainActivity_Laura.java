@@ -32,7 +32,7 @@ protected void onCreate(Bundle savedInstanceState) {
 	//creating image buttons objects and getting their setup from xml
     imagebutton1 = (ImageButton) findViewById(R.id.imageButton1); //play
     imagebutton2 = (ImageButton) findViewById(R.id.imageButton2); //pause
-    imagebutton4 = (ImageButton) findViewById(R.id.imageButton4); //next
+    imagebutton4 = (ImageButton) findViewById(R.id.bSkipTrack); //next
     imagebutton5 = (ImageButton) findViewById(R.id.imageButton5); //last
     
     //setting an event listener for each button
