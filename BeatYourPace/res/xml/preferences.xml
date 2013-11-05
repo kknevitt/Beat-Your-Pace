@@ -9,7 +9,13 @@
             android:defaultValue="1"
             android:entries="@array/listUnitArray"
             android:entryValues="@array/listUnitValues" />
-		    />
+		<EditTextPreference 
+		    android:dialogMessage="Enter your target pace" 
+		    android:dialogTitle="@string/sSetTargetPace" 
+		    android:defaultValue="6.0" 
+		    android:title="@string/sDefaultTargetPace" 
+		    android:key="set_target_pace"/>
 	</PreferenceCategory>
+	
 	
 </PreferenceScreen>

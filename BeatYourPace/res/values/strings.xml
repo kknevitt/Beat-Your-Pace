@@ -25,6 +25,7 @@
     <string name="sTargetTitle">Target</string>
     <string name="sPace">7mph</string>
     <string name="sTarget">8mph</string>
+    <string name="sSetTargetPace">Set Target Pace</string>
     <string name="sDscrPreviousTrack">Plays the Previous Track Played</string>
     <string name="sDscrPlayPause">Play or Pause the Current Track</string>
     <string name="sDscrSkipTrack">Skip To the Next Track Without Storing a Preference</string>
