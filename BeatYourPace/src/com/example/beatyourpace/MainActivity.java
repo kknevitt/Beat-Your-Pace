@@ -11,6 +11,7 @@ import android.widget.Button;
 
 public class MainActivity extends Activity implements OnClickListener{
 	
+	//creating button objects
     Button b1, b2, b3;
 
 	@Override
@@ -19,9 +20,9 @@ public class MainActivity extends Activity implements OnClickListener{
 		setContentView(R.layout.activity_main);
 		
 		//creating image buttons objects and getting their setup from xml
-        b1 = (Button) findViewById(R.id.bTrainingMode); //goes to training mode view
-        b2 = (Button) findViewById(R.id.bLetsRun); //goes to lets run view
-        b3 = (Button) findViewById(R.id.bSettings); //goes to settings view
+        b1 = (Button) findViewById(R.id.bTrainingMode); 
+        b2 = (Button) findViewById(R.id.bLetsRun); 
+        b3 = (Button) findViewById(R.id.bSettings); 
         
         //setting an event listener for each button
         b1.setOnClickListener(this);
@@ -31,18 +32,18 @@ public class MainActivity extends Activity implements OnClickListener{
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
+		// auto-generated code: Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
 	@Override
 	public void onClick(View v) {
-	            // TODO Auto-generated method stub
-	      if(v == b1){ //play function
+	            //  auto-generated code: Auto-generated method stub
+	      if(v == b1){ //onclick the user is taken to the TrainingMode view as per TrainingModeActivity class
               Intent intent = new Intent(this,TrainingModeActivity.class);
               startActivity(intent);
 				}
-	      if (v == b3) { // settings
+	      if (v == b3) { // // onclick the user is taken to the Settings view as per Settings class
 	    	  Intent intent = new Intent(this,SettingsActivity.class);
 	    	  startActivity(intent);
 	      }
