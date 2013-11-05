@@ -21,7 +21,7 @@ ImageButton imagebutton1, imagebutton2, imagebutton4, imagebutton5;
 @Override
 protected void onCreate(Bundle savedInstanceState) {
 	super.onCreate(savedInstanceState);
-	setContentView(R.layout.activity_main); 
+	setContentView(R.layout.trainingmode); 
     
     //setting tracks path
 	tracks[0] = R.raw.song;
