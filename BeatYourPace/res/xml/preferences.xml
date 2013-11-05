@@ -3,8 +3,8 @@
 	<PreferenceCategory
         android:title="Units" android:fragment="@string/action_settings">
 		<ListPreference 
-		    android:title="Default Unit of Measure"
-          	android:summary="Select whether you want pace to be shown in km/h or miles/h"
+		    android:title="@string/sSetDefaultDistanceUnits"
+          	android:summary="Select whether you want pace to be shown in km or miles per hour"
             android:key="unitType"
             android:defaultValue="1"
             android:entries="@array/listUnitArray"
@@ -13,7 +13,7 @@
 		    android:dialogMessage="Enter your target pace" 
 		    android:dialogTitle="@string/sSetTargetPace" 
 		    android:defaultValue="6.0" 
-		    android:title="@string/sDefaultTargetPace" 
+		    android:title="@string/sSetTargetPace" 
 		    android:key="set_target_pace"/>
 	</PreferenceCategory>
 	
