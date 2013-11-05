@@ -14,7 +14,6 @@ import android.view.Menu;
 @SuppressLint("NewApi")
 public class SettingsActivity extends PreferenceActivity {
 
-	SharedPreferences sp;
 	
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	@SuppressLint("NewApi")
@@ -25,7 +24,8 @@ public class SettingsActivity extends PreferenceActivity {
 		//addPreferencesFromResource(R.xml.preferences);
 		
         //calls the preferences for the first time, 'false' indicates to only call if prefs not already set
-        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+        //note may need to move this to main to get the app to work
+		PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
         
         // Display the fragment as the main content.
         	getFragmentManager().beginTransaction()
@@ -41,4 +41,5 @@ public class SettingsActivity extends PreferenceActivity {
 		return true;
 	}
 
+	
 }
