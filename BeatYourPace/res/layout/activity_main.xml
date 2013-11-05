@@ -17,9 +17,9 @@
             android:layout_alignLeft="@+id/bLetsRun"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="18dp"
-            android:text="Settings"
+            android:text="@string/sSettings"
             android:textColor="#ffffff"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/bLetsRun"
@@ -27,9 +27,9 @@
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/bTrainingMode"
             android:layout_centerVertical="true"
-            android:text="Let&apos;s Run!"
+            android:text="@string/sLetsRun"
             android:textColor="#ffffff"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/bTrainingMode"
@@ -38,9 +38,9 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="21dp"
-            android:text="Training Mode"
+            android:text="@string/sTrainingMode"
             android:textColor="#ffffff"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/tLetsRun"
@@ -49,7 +49,7 @@
             android:layout_alignLeft="@+id/bLetsRun"
             android:layout_below="@+id/bLetsRun"
             android:layout_marginTop="38dp"
-            android:text="Text to Explain the Mode"
+            android:text="@string/sLetsRunText"
             android:textColor="#000000" />
 
         <TextView
@@ -59,7 +59,7 @@
             android:layout_alignLeft="@+id/bTrainingMode"
             android:layout_below="@+id/bTrainingMode"
             android:layout_marginTop="18dp"
-            android:text="Text to Explain the Mode"
+            android:text="@string/sTrainingText"
             android:textColor="#000000" />
 
 </RelativeLayout>
