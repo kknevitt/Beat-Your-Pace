@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+	<PreferenceCategory
+        android:title="Units" android:fragment="@string/action_settings">
+        <CheckBoxPreference
+            android:title="Km"
+            android:defaultValue="true"
+            android:key="checkboxPref" 
+            android:summaryOn="Km" 
+            android:summaryOff="Miles" />
+        <CheckBoxPreference
+            android:title="Miles"
+            android:defaultValue="false"
+            android:key="checkboxPref" 
+            android:summaryOn="Miles" 
+            android:summaryOff="Km" />
+        <EditTextPreference />
+	</PreferenceCategory>
+	
+</PreferenceScreen>
