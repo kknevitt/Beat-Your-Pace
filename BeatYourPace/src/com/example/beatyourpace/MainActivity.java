@@ -4,12 +4,18 @@ package com.example.beatyourpace;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
 public class MainActivity extends Activity implements OnClickListener{
+	
+	//SN sets up the preferences, may need this as may need to call default settings
+	//for first run of app
+	SharedPreferences sPref;
 	
 	//creating button objects
     Button b1, b2, b3;
@@ -49,5 +55,17 @@ public class MainActivity extends Activity implements OnClickListener{
 	      }
 	}       
 	
+	//SN added settings option to the top action bar
+		@Override
+		public boolean onOptionsItemSelected(MenuItem item) {
+		    // code to launch the Settings Activity when settings is selected from the menu
+		    switch (item.getItemId()) {
+		        case R.id.action_settings:
+		        	startActivity(new Intent("com.example.beatyourpace.settingsactivity"));
+		            return true;
+		        default:
+		            return super.onOptionsItemSelected(item);
+		    }
+		}
 
 }
