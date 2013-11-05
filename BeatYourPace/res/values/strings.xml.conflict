@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+<<<<<<< HEAD
+<resources>
+
+    <string name="app_name">Beat Your Pace</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
+=======
 <resources>
 
     <string name="app_name">Beat Your Pace</string>
@@ -31,3 +42,4 @@
     <string name="sDscrCurrentMode">Show\'s Which Mode You are Using (Training or Running)</string>
 
 </resources>
+>>>>>>> eb11bde9a659c6cc950f8dc1afc5472eabe5ce9a
