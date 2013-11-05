@@ -19,6 +19,10 @@ import android.widget.TextView;
 @SuppressLint("NewApi")
 public class SettingsFragment extends PreferenceFragment {
 
+		public SettingsFragment() {
+			// Required empty public constructor
+		}
+	
 	    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 		@Override
 	    public void onCreate(Bundle savedInstanceState) {
@@ -27,5 +31,6 @@ public class SettingsFragment extends PreferenceFragment {
 	        // Load the preferences from an XML resource
 	        addPreferencesFromResource(R.xml.preferences);
 	    }
+	    
 	    
 }

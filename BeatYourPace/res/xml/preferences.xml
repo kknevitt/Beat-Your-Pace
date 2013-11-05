@@ -2,18 +2,20 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
 	<PreferenceCategory
         android:title="Units" android:fragment="@string/action_settings">
-        <CheckBoxPreference
-            android:title="Km"
-            android:defaultValue="true"
-            android:key="checkboxPref" 
-            android:summaryOn="Km" 
-            android:summaryOff="Miles" />
-        <CheckBoxPreference
-            android:title="Miles"
-            android:defaultValue="false"
-            android:key="checkboxPref" 
-            android:summaryOn="Miles" 
-            android:summaryOff="Km" />
+		<ListPreference 
+		    android:title="Default Unit of Measure"
+          	android:summary="Select whether you want pace to be shown in km/h or miles/h"
+            android:key="unitType"
+            android:defaultValue="1"
+            android:entries="@array/listUnitArray"
+            android:entryValues="@array/listUnitValues" />
+		<EditTextPreference 
+		    android:dialogMessage="Enter your target pace" 
+		    android:dialogTitle="@string/sSetTargetPace" 
+		    android:defaultValue="6.0" 
+		    android:title="@string/sDefaultTargetPace" 
+		    android:key="set_target_pace"/>
 	</PreferenceCategory>
+	
 	
 </PreferenceScreen>
