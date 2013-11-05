@@ -29,5 +29,8 @@
     <string name="sDscrPlayPause">Play or Pause the Current Track</string>
     <string name="sDscrSkipTrack">Skip To the Next Track Without Storing a Preference</string>
     <string name="sDscrCurrentMode">Show\'s Which Mode You are Using (Training or Running)</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    
 
 </resources>
