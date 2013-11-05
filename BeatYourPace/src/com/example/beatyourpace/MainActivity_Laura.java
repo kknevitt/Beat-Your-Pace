@@ -1,7 +1,5 @@
 package com.example.beatyourpace;
 
-import com.example.appproto.R;
-
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.app.Activity;
