@@ -30,10 +30,10 @@ protected void onCreate(Bundle savedInstanceState) {
     tracks[1] = R.raw.song1;
 	
 	//creating image buttons objects and getting their setup from xml
-    imagebutton1 = (ImageButton) findViewById(R.id.imageButton1); //play
-    imagebutton2 = (ImageButton) findViewById(R.id.imageButton2); //pause
+    imagebutton1 = (ImageButton) findViewById(R.id.bPlaySong); //play
+    //imagebutton2 = (ImageButton) findViewById(R.id.imageButton2); //pause
     imagebutton4 = (ImageButton) findViewById(R.id.bSkipTrack); //next
-    imagebutton5 = (ImageButton) findViewById(R.id.imageButton5); //last
+    imagebutton5 = (ImageButton) findViewById(R.id.bPreviousTrack); //last
     
     //setting an event listener for each button
     imagebutton1.setOnClickListener(this);
