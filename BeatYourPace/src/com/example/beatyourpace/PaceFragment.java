@@ -1,6 +1,8 @@
 package com.example.beatyourpace;
 
 import android.app.Activity;
+import android.content.Context;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -57,6 +59,12 @@ public class PaceFragment extends Fragment {
 			mParam1 = getArguments().getString(ARG_PARAM1);
 			mParam2 = getArguments().getString(ARG_PARAM2);
 		}
+		
+		/* Use the LocationManager class to obtain GPS locations */
+		//SN does this go in Main instead??
+		//LocationManager mlocManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+		//LocationListener mlocListener = new MyLocationListener();
+		//mlocManager.requestLocationUpdates( LocationManager.GPS_PROVIDER, 0, 0, mlocListener);
 	}
 
 	@Override
@@ -105,4 +113,6 @@ public class PaceFragment extends Fragment {
 		public void onFragmentInteraction(Uri uri);
 	}
 
+	
+	
 }
