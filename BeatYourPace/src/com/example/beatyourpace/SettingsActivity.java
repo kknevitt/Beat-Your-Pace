@@ -8,12 +8,14 @@ import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.view.Menu;
+import android.widget.CheckBox;
+import android.widget.TextView;
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 @SuppressLint("NewApi")
 public class SettingsActivity extends PreferenceActivity {
-
 	
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	@SuppressLint("NewApi")
@@ -27,11 +29,7 @@ public class SettingsActivity extends PreferenceActivity {
         //note may need to move this to main to get the app to work
 		PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
         
-        // Display the fragment as the main content.
-        	getFragmentManager().beginTransaction()
-                .replace(android.R.id.content, new SettingsFragment())
-                .commit();
-        
+        getFragmentManager().beginTransaction().replace(android.R.id.content, new SettingsFragment()).commit();
 	}
 	
 	@Override
@@ -40,6 +38,10 @@ public class SettingsActivity extends PreferenceActivity {
 		getMenuInflater().inflate(R.menu.settings, menu);
 		return true;
 	}
+
+	
+	
+	
 
 	
 }
