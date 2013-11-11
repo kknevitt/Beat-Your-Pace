@@ -2,10 +2,11 @@ package com.GC01.BeatYourPace.MusicPlayer;
 
 public class MusicTrackList {
 	
-	public String currentTrack;
+	String currentTrack;	
 	
 	
 	public MusicTrackList(){
+	
 		
 	}
 

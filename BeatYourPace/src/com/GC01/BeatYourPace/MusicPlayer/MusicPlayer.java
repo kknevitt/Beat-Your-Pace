@@ -16,35 +16,30 @@ public class MusicPlayer {
 	
 	//MusicRetriever List = new MusicRetriever(); // do we need an object from Music Retriever
 	
-	public MusicPlayer(){
+	Context context;
+	MusicTrackList tracklist = new MusicTrackList();
+	MediaPlayer mediaPlayer = new MediaPlayer();
 	
-
+	public MusicPlayer(){
 	
 	}
 	
-
-	
 	public void play() throws IllegalArgumentException, SecurityException, IllegalStateException, IOException {
-		Context context;
-		MusicTrackList tracklist = new MusicTrackList();
-		MediaPlayer mediaPlayer = new MediaPlayer();
+		
+		tracklist.setCurrentTrack(1);
 		mediaPlayer.setDataSource(tracklist.getCurrentTrack());
 		mediaPlayer.start();		
 	}
 	
 	public void skip() throws IllegalArgumentException, SecurityException, IllegalStateException, IOException {
-		Context context;
-		MusicTrackList tracklist = new MusicTrackList();
-		MediaPlayer mediaPlayer = new MediaPlayer();
+		
 		tracklist.setCurrentTrack(2);
 		  mediaPlayer.setDataSource(tracklist.getCurrentTrack());
 		  mediaPlayer.start();	
 	}
 	
 	public void previous() throws IllegalArgumentException, SecurityException, IllegalStateException, IOException {
-		Context context;
-		MusicTrackList tracklist = new MusicTrackList();
-		MediaPlayer mediaPlayer = new MediaPlayer();
+	
 		tracklist.setCurrentTrack(3);
 		  mediaPlayer.setDataSource(tracklist.getCurrentTrack());
 		  mediaPlayer.start();	
