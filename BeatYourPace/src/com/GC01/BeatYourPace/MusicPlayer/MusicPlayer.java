@@ -5,11 +5,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 
-
-//music player version1
-
-
-
 public class MusicPlayer {
 	
 	//MusicRetriever List = new MusicRetriever(); // do we need an object from Music Retriever
