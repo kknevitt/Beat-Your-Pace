@@ -52,7 +52,7 @@ public class PaceCalculator extends Activity {
 		    	
 		      // Called when a new location is found by the network location provider.
 		    	
-		     // makeUseOfNewLocation(location);
+		     // makeUseOfNewLocation(location);  -- results in errors.
 		      
 		      //	location.getLatitude();	needed? 
 		      
