@@ -3,6 +3,8 @@ package com.example.beatyourpace;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.media.MediaMetadataRetriever;
 import android.os.Build;
 import android.os.Bundle;
@@ -13,10 +15,12 @@ public class DataActivity extends Activity {
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_data);
 		
 		getMetaData();
+		
 	}
-	
+		
 	@SuppressLint("NewApi")
 	@TargetApi(Build.VERSION_CODES.GINGERBREAD_MR1)
 	public void getMetaData(){
