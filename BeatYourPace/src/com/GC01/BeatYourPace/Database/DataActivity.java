@@ -1,4 +1,7 @@
-package com.example.beatyourpace;
+package com.GC01.BeatYourPace.Database;
+
+import com.example.beatyourpace.R;
+import com.example.beatyourpace.R.layout;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;

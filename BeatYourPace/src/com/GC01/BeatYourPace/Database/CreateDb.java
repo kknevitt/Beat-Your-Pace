@@ -1,4 +1,4 @@
-package com.example.beatyourpace;
+package com.GC01.BeatYourPace.Database;
 
 import java.util.LinkedList;
 import java.util.List;
