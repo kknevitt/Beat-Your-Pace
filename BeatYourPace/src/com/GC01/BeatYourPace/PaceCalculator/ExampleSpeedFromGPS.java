@@ -1,4 +1,4 @@
-package com.GC01.BeatYourPace.GPS;
+package com.GC01.BeatYourPace.PaceCalculator;
 
 import com.example.beatyourpace.R;
 import com.example.beatyourpace.R.layout;
@@ -12,7 +12,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 
-public class speed extends Activity {
+public class ExampleSpeedFromGPS extends Activity {
 	Context context;
 
 	@Override

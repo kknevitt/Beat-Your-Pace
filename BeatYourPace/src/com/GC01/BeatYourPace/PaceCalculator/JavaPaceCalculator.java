@@ -1,12 +1,12 @@
-package com.GC01.BeatYourPace.GPS;
+package com.GC01.BeatYourPace.PaceCalculator;
 
-public class JavaPace {
+public class JavaPaceCalculator {
 	
 	// setting  fields
 	String pace;
 	float paceCalc;
 	
-public JavaPace(){
+public JavaPaceCalculator(){
 		
 	// setting default values, with No Movement to be different to 0.0 which will displayed if the LM is
 	// active but is not moving or currently working.

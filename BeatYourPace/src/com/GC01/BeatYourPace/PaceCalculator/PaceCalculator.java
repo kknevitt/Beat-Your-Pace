@@ -1,4 +1,4 @@
-package com.GC01.BeatYourPace.GPS;
+package com.GC01.BeatYourPace.PaceCalculator;
 
 import com.example.beatyourpace.R;
 
@@ -9,7 +9,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 
-public class Pace extends Activity {
+public class PaceCalculator extends Activity {
 	Context context;
 
 	
@@ -27,7 +27,7 @@ public class Pace extends Activity {
 
 
 	
-	public Pace(){
+	public PaceCalculator(){
 		
 		// setting default values, with No Movement to be different to 0.0 which will displayed if the LM is
 		// active but is not moving or currently working.
@@ -52,7 +52,7 @@ public class Pace extends Activity {
 		    	
 		      // Called when a new location is found by the network location provider.
 		    	
-		      makeUseOfNewLocation(location);
+		     // makeUseOfNewLocation(location);
 		      
 		      //	location.getLatitude();	needed? 
 		      
