@@ -9,6 +9,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.provider.MediaStore;
 import android.util.Log;
 
 public class CreateDb extends SQLiteOpenHelper {
@@ -17,23 +18,23 @@ public class CreateDb extends SQLiteOpenHelper {
 	private static final int DATABASE_VERSION = 1;
 	
 	//Database name
-	private static final String DATABASE_NAME = "byp";
+	private static final String DATABASE_NAME = "byp.db";
 	
 	//Android media database
 	
     
 	//Database table name
-	private static final String TABLE_NAME = "beat_pace";
+	private static final String TABLE_NAME = "TrackData";
 	
 	//Database table column names
-    private static final String KEY_ID = "ID";
-    private static final String KEY_BPM = "BPM";
-    private static final String KEY_PACE = "PACE";
-    private static final String KEY_TITLE = "TITLE";
-    private static final String KEY_ARTIST = "ARTIST";
+    private static final String ID = "_id";
+    private static final String TITLE = "TITLE";
+    private static final String ARTIST = "ARTIST";
+    private static final String BPM = "BPM";
+    private static final String PACE = "PACE";
 
     //Database column names
-    private static final String[] COLUMNS = {KEY_ID,KEY_BPM,KEY_PACE,KEY_TITLE,KEY_ARTIST};
+    private static final String[] COLUMNS = {ID,TITLE,ARTIST,BPM,PACE,};
 	
     //double targetPace to be read from the settings set_target_pace, placeholder of 6.0 for now
     double targetPace = 6.0;
@@ -44,12 +45,12 @@ public class CreateDb extends SQLiteOpenHelper {
 	}
 
 	@Override
-	public void onCreate(SQLiteDatabase byp) {
-		// SQL statement to create beat_pace table
-        String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME;
- 
-        // create byp db
-        byp.execSQL(CREATE_TABLE);
+	public void onCreate(SQLiteDatabase db) {
+		// SQL statement to create TrackData table
+        String CREATE_TABLE = "CREATE TABLE " + CreateDb.TABLE_NAME + "(" + CreateDb.ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + CreateDb.TITLE + " TEXT," + CreateDb.TITLE + " TEXT,"  + CreateDb.BPM + " INTEGER," + CreateDb.PACE + " DOUBLE)";
+        
+        // create the table
+        db.execSQL(CREATE_TABLE);
 	
 	}
 
@@ -62,7 +63,7 @@ public class CreateDb extends SQLiteOpenHelper {
 	public void addTracks(DataModel track){
 
 		//get reference to writable DB
-		SQLiteDatabase byp = this.getWritableDatabase();
+		SQLiteDatabase db = this.getWritableDatabase();
 
 		// create ContentValues to add key "column"/value
 		ContentValues values = new ContentValues();
@@ -71,9 +72,16 @@ public class CreateDb extends SQLiteOpenHelper {
 		//values.put(KEY_BPM, track.BPM);
 		//values.put(KEY_PACE, track.PACE);
 		//values.put(KEY_ARTIST, track.ARTIST);
-
-		//copy data from the mediadb into the byp db
-		byp.execSQL(INSERT INTO TABLE_NAME (value1, value2) SELECT value1, value2 FROM TABLE1
+		
+		//copy data from the mediastore db into the byp db
+		// MediaStore.getMediaScannerUri();
+		//db.execSQL(INSERT INTO TABLE_NAME (value1, value2) SELECT value1, value2 FROM TABLE1
+		
+		//query the content provider mediastore
+		String[] audioData = { MediaStore.Audio.Media._ID, MediaStore.Audio.Media.TITLE,MediaStore.Audio.Artists.ARTIST };
+		
+		Cursor c = managedQuery(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, proj, null, null, null);
+		
 		
 		//insert the values into the table
 		//db.insert(TABLE_NAME, // table
@@ -83,6 +91,21 @@ public class CreateDb extends SQLiteOpenHelper {
 		//Close the database after writing to it
 		byp.close(); 
 }
+	
+	/*
+	 * Update database method yet to be implemented
+	 */
+	public void updateTable(){
+		
+	}
+	
+	/*
+	 * delete records method yet to be implemented
+	 */
+	public void deleteTrack() {
+		
+	}
+	
 	/*
 	 * Get all tracks for a given pace
 	 */

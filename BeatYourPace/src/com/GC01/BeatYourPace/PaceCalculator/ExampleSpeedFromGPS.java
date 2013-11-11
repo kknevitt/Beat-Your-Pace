@@ -1,4 +1,4 @@
-package com.GC01.BeatYourPace.PaceCalculator;
+/* package com.GC01.BeatYourPace.PaceCalculator;
 
 import com.example.beatyourpace.R;
 import com.example.beatyourpace.R.layout;
