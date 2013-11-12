@@ -1,7 +1,9 @@
 package com.GC01.BeatYourPace.Database;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.ContentResolver;
@@ -116,8 +118,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	
 	/*
 	 * Get all tracks for a given pace
-	 * This needs to be modified to allow for the contentURI of the tracks to be returned as an array
-	 * 
+	 * This needs to be modified to allow for the contentURI of the tracks to be returned as an ArrayList
+	 * It needs to return ArrayList called appropriateSongs and in this just list the filepath to each track
 	 */
 	public List<DataModel> getAppropriateSongs(int targetPace) {
 
