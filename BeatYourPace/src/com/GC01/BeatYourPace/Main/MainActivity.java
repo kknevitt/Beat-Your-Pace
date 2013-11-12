@@ -4,6 +4,7 @@ package com.GC01.BeatYourPace.Main;
 import com.example.beatyourpace.R;
 
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,9 +16,9 @@ import android.widget.Button;
 
 public class MainActivity extends Activity implements OnClickListener{
 	
-	//SN sets up the preferences, may need this as may need to call default settings
-	//for first run of app
-	SharedPreferences sPref;
+	//SN This sets up the preferences
+	//It may be needed to call default settings for the first time the app is used
+	SharedPreferences sPref = PreferenceManager.getDefaultSharedPreferences(this);
 	
 	//creating button objects
     Button b1, b2, b3;
