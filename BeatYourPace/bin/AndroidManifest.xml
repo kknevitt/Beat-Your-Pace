@@ -8,12 +8,11 @@
         android:minSdkVersion="8"
         android:targetSdkVersion="18" />
 
-    <uses-permission 
-        android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -37,8 +36,13 @@
             android:label="@string/title_activity_settings"
             android:parentActivityName="com.example.beatyourpace.MainActivity" >
         </activity>
-        <activity android:name="TrainingModeActivity"></activity>
-        
+        <activity android:name="com.example.beatyourpace.TrainingModeActivity" >
+        </activity>
+
+        <activity
+            android:name="com.example.beatyourpace.DatabaseActivity"
+            android:label="@string/title_activity_database" >
+        </activity>
     </application>
 
 </manifest>
