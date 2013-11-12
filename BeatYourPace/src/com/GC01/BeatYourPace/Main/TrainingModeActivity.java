@@ -1,5 +1,7 @@
-package com.example.beatyourpace;
+package com.GC01.BeatYourPace.Main;
 	
+
+import com.example.beatyourpace.R;
 
 import android.app.Activity;
 import android.media.MediaPlayer;
