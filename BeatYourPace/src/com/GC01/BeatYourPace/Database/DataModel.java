@@ -2,43 +2,55 @@ package com.GC01.BeatYourPace.Database;
 
 public class DataModel {
 
-	 public static final String TABLE_NAME = "bpm_pace";
-	    /**
-	     * DEFINE THE TABLE
-	     */
-	    // Columns
-	    private static String ID = "_id";
-	    public static int BPM = 24;  //replace with actual
-	    public static double PACE = 6.0;  //replace with actual
-	    public static String TITLE = "title";
-	    public static String ARTIST = "artist";
-	    /**
-	     * DEFINE THE CONTENT TYPE AND URI
-	     */
-	    // TO BE done
-	      
-	 public DataModel(){}
-	     
-	        public DataModel(String ID, int BPM, double PACE, String TITLE, String ARTIST) {
-	            super();
-	            this.setID(ID);
-	            this.BPM = BPM;
-	            this.PACE = PACE;
-	            this.TITLE = TITLE;
-	            this.ARTIST = ARTIST;
+	//Database name
+	public static final String DATABASE_NAME = "byp.db";
+	
+	// column names for the database
+	public static final String ID = "_id";
+    public static final String MEDIASTOREID = "mediastoreID";
+    public static final String ARTIST = "artist";
+    public static final String TITLE = "title";
+    public static final String BPM = "bpm";
+    public static final String PACE = "pace";
+	    
+	 //table name
+	 public static final String TABLE_NAME = "TrackData";
+	    
+	    public DataModel(int ID, int MEDIASTOREID, String ARTIST, String TITLE, int BPM, double PACE) {
+	    	super();
+	           
 	        }
 	     
-	        //getter
-	        @Override
-	        public String toString() {
-	            return "DataModel [ID=" + getID() + ", BPM=" + BPM + ", pace=" + PACE +", title=" +TITLE +", artist=" + ARTIST +" ]";
-	        }
-
-			public static String getID() {
+	        
+			public static String getId() {
 				return ID;
 			}
-
-			public static void setID(String iD) {
-				ID = iD;
+			
+			public static String getMediastoreid() {
+				return MEDIASTOREID;
 			}
+
+
+			public static String getTitle() {
+				return TITLE;
+			}
+			
+			public static String getArtist() {
+				return ARTIST;
+			}
+			
+			public static String getBPM(){
+				return BPM;
+			}
+			
+			
+			public static String getPace(){
+				return PACE;
+			}
+
+			@Override
+			//needed for arraylist
+			 public String toString() {
+				return "DataModel [id=" + ID + ", mediastoreID=" + MEDIASTOREID + ", artist=" + ARTIST  + ", title=" + TITLE + ", bpm=" + BPM + ", pace=" + PACE + "]";
+			  }
 	   }

@@ -10,6 +10,8 @@ import android.location.LocationManager;
 import android.os.Bundle;
 
 public class PaceCalculator extends Activity {
+	Context context;
+
 	
 	// Declaring Fields.
 	String pace;
