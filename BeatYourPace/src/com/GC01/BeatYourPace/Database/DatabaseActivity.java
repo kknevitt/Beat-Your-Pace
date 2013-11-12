@@ -1,6 +1,7 @@
-package com.example.beatyourpace;
+package com.GC01.BeatYourPace.Database;
 
-import com.GC01.BeatYourPace.Database.DatabaseHelper;
+import com.example.beatyourpace.R;
+import com.example.beatyourpace.R.layout;
 
 import android.os.Bundle;
 import android.app.Activity;
