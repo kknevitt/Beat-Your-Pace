@@ -1,4 +1,4 @@
-package com.GC01.BeatYourPace.Main;
+/*package com.GC01.BeatYourPace.Main;
 	
 
 import java.io.IOException;
@@ -124,3 +124,5 @@ public class newTrainingModeActivity extends Activity implements OnClickListener
 	            }
 	      }
 	}
+	
+	*/

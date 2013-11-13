@@ -1,4 +1,4 @@
- package com.GC01.BeatYourPace.MusicPlayer;
+/* package com.GC01.BeatYourPace.MusicPlayer;
  
 import java.io.IOException;
 import android.media.MediaPlayer;
@@ -42,4 +42,6 @@ public class NewMusicPlayer {
  	}
 	
 }
+
+*/
  

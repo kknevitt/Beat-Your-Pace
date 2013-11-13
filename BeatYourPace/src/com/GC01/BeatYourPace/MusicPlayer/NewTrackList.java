@@ -2,6 +2,8 @@ package com.GC01.BeatYourPace.MusicPlayer;
 
 import java.util.ArrayList;
 
+import com.GC01.BeatYourPace.Database.DatabaseHelper;
+
 public class NewTrackList {
 	
 	private String songPath;
@@ -11,8 +13,9 @@ public class NewTrackList {
 
 	public NewTrackList(String inputPace){
 		
+		double outPutPace = Double.parseDouble(inputPace);
 		// Creating a temporary Track List based on the desired Target Pace
-		paceTrackList = Database.getAppropriateSongs(inputPace); // method needs to be implemented to create this array from the database
+		paceTrackList = DatabaseHelper.getAppropriateSongs(outPutPace); // method needs to be implemented to create this array from the database
 	 	
 		// Default songPath needed.
 		songNo = 0;
@@ -66,3 +69,5 @@ public class NewTrackList {
 					
 			}	
 }
+
+
