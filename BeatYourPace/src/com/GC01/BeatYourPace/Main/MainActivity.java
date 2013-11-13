@@ -18,7 +18,7 @@ public class MainActivity extends Activity implements OnClickListener{
 	
 	//SN This sets up the preferences
 	//It may be needed to call default settings for the first time the app is used
-	SharedPreferences sPref = PreferenceManager.getDefaultSharedPreferences(this);
+//	SharedPreferences sPref = PreferenceManager.getDefaultSharedPreferences(this);
 	
 	//creating button objects
     Button b1, b2, b3;

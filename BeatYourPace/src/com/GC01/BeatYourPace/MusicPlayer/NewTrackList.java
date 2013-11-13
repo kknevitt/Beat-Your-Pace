@@ -2,20 +2,22 @@ package com.GC01.BeatYourPace.MusicPlayer;
 
 import java.util.ArrayList;
 
+import com.GC01.BeatYourPace.Database.DataModel;
 import com.GC01.BeatYourPace.Database.DatabaseHelper;
 
 public class NewTrackList {
 	
 	private String songPath;
 	private int songNo;
-	private ArrayList<String> paceTrackList = new ArrayList(); // ArrayList containing song details and the path file for the song.	
+	private ArrayList<DataModel> paceTrackList = new ArrayList(); // ArrayList containing song details and the path file for the song.	
 	
 
 	public NewTrackList(String inputPace){
 		
 		double outPutPace = Double.parseDouble(inputPace);
-		// Creating a temporary Track List based on the desired Target Pace
-		paceTrackList = DatabaseHelper.getAppropriateSongs(outPutPace); // method needs to be implemented to create this array from the database
+		//	Creating a temporary Track List based on the desired Target Pace
+		
+	//	paceTrackList = DatabaseHelper.getAppropriateSongs(outPutPace); This is meant to 
 	 	
 		// Default songPath needed.
 		songNo = 0;
@@ -63,7 +65,10 @@ public class NewTrackList {
 		// Sends the file path by using the song index from the ArrayList.
 		public String getSongPath() {
 			
-			songPath = paceTrackList.get(getSongIndex());
+			// This will use a method to be implemented later in order to get the path for the song which
+			// is at that SongIndex from within the ArrayList.
+			
+		//	songPath = paceTrackList.(getSongIndex().getFilePath()); 
 			
 			return songPath;
 					
