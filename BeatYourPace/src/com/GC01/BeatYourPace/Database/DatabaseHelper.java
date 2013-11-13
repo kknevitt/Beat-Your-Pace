@@ -138,7 +138,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	 * Get all tracks for a given pace and return ArrayList called appropriateSongs 
 	 * This needs to be modified to allow for the contentURI or the filepath of the tracks to be returned
 	 */
-	public List<DataModel> getAppropriateSongs(int targetPace) {
+	public List<DataModel> getAppropriateSongs(double targetPace) {
 
 		ArrayList<DataModel> appropriateSongs = new ArrayList<DataModel>();
 
