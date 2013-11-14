@@ -1,4 +1,4 @@
-package com.GC01.BeatYourPace.MusicPlayer;
+/*package com.GC01.BeatYourPace.MusicPlayer;
 
 
 public class MusicRetriever {
@@ -23,6 +23,9 @@ public class MusicRetriever {
 	            c.close();
 	        }
 	        return id;
-	    }*/	
+	    }
 	   
 }
+
+*/
+

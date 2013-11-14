@@ -1,4 +1,4 @@
-package com.GC01.BeatYourPace.MusicPlayer;
+/*package com.GC01.BeatYourPace.MusicPlayer;
 
 import android.media.MediaPlayer;
 import android.app.Activity;
@@ -36,3 +36,5 @@ public class MusicPlayer {
 	}
 
 }
+
+*/

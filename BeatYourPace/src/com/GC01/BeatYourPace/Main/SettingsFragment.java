@@ -1,6 +1,8 @@
-package com.example.beatyourpace;
+package com.GC01.BeatYourPace.Main;
 
 import java.util.regex.Pattern;
+
+import com.example.beatyourpace.R;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;

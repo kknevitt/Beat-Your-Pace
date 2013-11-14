@@ -1,4 +1,4 @@
-package com.GC01.BeatYourPace.MusicPlayer;
+/*package com.GC01.BeatYourPace.MusicPlayer;
 
 public class MusicTrackList {
 
@@ -30,3 +30,5 @@ static int currentTrack = 0;
 	
 	
 }
+
+*/
