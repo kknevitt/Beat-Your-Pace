@@ -74,7 +74,7 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		
-		TrackList trackList = new TrackList("8"); // This has the Target Pace as its parameter
+		TrackList trackList = new TrackList(getTargetPace()); // This has the Target Pace as its parameter
 		MusicPlayer musicPlayer = new MusicPlayer(trackList); // This has the tracklist object as the parameter
 
 	      if(v == imagebutton1){ //onclick the first track is played
@@ -185,6 +185,13 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 			}
 				
 		}
+		
+		// retrieving the targetPace
+		public double getTargetPace(){
+			
+			return targetPace;
 	}
+		
+}
 	
 	
