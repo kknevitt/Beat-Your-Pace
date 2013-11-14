@@ -46,9 +46,9 @@
             android:id="@+id/tLetsRun"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/bLetsRun"
             android:layout_below="@+id/bLetsRun"
-            android:layout_marginTop="38dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="51dp"
             android:text="@string/sLetsRunText"
             android:textColor="#000000" />
 
@@ -56,9 +56,9 @@
             android:id="@+id/tTrainingMode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/bTrainingMode"
+            android:layout_alignLeft="@+id/tLetsRun"
             android:layout_below="@+id/bTrainingMode"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="40dp"
             android:text="@string/sTrainingText"
             android:textColor="#000000" />
 
