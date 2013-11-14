@@ -22,16 +22,13 @@ import android.annotation.TargetApi;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.CursorLoader;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Build;
-import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.util.Log;
-import android.content.ContentProvider;
 
 
 public class DatabaseHelper extends SQLiteOpenHelper {

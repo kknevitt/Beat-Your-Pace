@@ -15,7 +15,7 @@ public class DatabaseActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		DatabaseHelper dh = new DatabaseHelper(this, DataModel.DATABASE_NAME, null, DatabaseHelper.DATABASE_VERSION);
+		//DatabaseHelper dh = new DatabaseHelper(this, DataModel.DATABASE_NAME, null, DatabaseHelper.DATABASE_VERSION);
 		
 		//add method calls to create the database
 	}
