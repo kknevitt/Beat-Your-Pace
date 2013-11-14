@@ -4,7 +4,7 @@
         android:title="Default Settings" android:fragment="@string/action_settings">
 		<ListPreference 
 		    android:title="@string/sSetDefaultDistanceUnits"
-          	android:summary="Select whether you want pace to be shown in km or miles per hour"
+          	android:summary="Select whether you want pace to be shown in km or miles"
             android:key="unitType"
             android:defaultValue="1"
             android:entries="@array/listUnitArray"

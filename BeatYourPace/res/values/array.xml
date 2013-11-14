@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 <string-array name="listUnitArray">
-	<item>Km/h</item>
-	<item>M/h</item>
+	<item>Miles</item>
+	<item>Kilometres</item>
 </string-array>
 <string-array name="listUnitValues">
     <item>1</item>
