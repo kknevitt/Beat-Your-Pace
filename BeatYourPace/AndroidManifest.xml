@@ -43,7 +43,7 @@
             android:label="@string/title_activity_database" >
         </activity>
         <activity
-            android:name="com.GC01.BeatYourPace.Main.LetsRunMode"
+            android:name="com.GC01.BeatYourPace.Main.LetsRunModeActivity"
             android:label="@string/title_activity_lets_run_mode" >
         </activity>
     </application>

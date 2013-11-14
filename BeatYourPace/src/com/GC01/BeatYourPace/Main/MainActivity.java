@@ -58,7 +58,7 @@ public class MainActivity extends Activity implements OnClickListener{
               startActivity(intent);
 				}
 	      if (v == b2) {
-	    	  Intent intent = new Intent(this,LetsRunMode.class);
+	    	  Intent intent = new Intent(this,LetsRunModeActivity.class);
 	    	  startActivity(intent);
 	      }
 	      if (v == b3) { // // onclick the user is taken to the Settings view as per Settings class

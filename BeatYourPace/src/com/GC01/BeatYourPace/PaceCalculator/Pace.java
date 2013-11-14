@@ -10,18 +10,20 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 
+
+
 public class Pace extends Activity {
 	Context context;
 	
 	
 	// Declaring Fields.
-	String pace;
+	private String pace;
 	// paceCalc has to be a float as this is the variable that the getSpeed() method returns from the Location object.
-	float paceCalc;
+	private float paceCalc;
 	
 	// constants for converting from metres per seconds, to minutes per mile, or km per mile
-	final double MPS_TO_MINS_PER_MILE = 0.0372822715;
-	final double MPS_TO_PER_KILOMETRES = 0.06;
+	private final double MPS_TO_MINS_PER_MILE = 0.0372822715;
+	private final double MPS_TO_PER_KILOMETRES = 0.06;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

@@ -15,7 +15,7 @@ import com.GC01.BeatYourPace.MusicPlayer.TrackList;
 import com.GC01.BeatYourPace.MusicPlayer.MusicPlayer;
 import com.example.beatyourpace.R;
 
-public class LetsRunMode extends Activity implements OnClickListener {
+public class LetsRunModeActivity extends Activity implements OnClickListener {
 	
 	public double targetPace;
 
@@ -29,7 +29,7 @@ public class LetsRunMode extends Activity implements OnClickListener {
 	//	targetPace = DatabaseActivity.getTargetPace();
 		
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.trainingmode); 	//loading training mode layout
+		setContentView(R.layout.activity_lets_run_mode); 	//loading training mode layout
 	
 		
 		//creating image buttons objects and getting their setup from xml
