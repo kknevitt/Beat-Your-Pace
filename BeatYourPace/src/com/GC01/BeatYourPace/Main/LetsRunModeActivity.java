@@ -29,7 +29,7 @@ public class LetsRunModeActivity extends Activity implements OnClickListener {
 	//	targetPace = DatabaseActivity.getTargetPace();
 		
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_lets_run_mode); 	//loading training mode layout
+		setContentView(R.layout.activity_lets_run_mode); 	//loading lets run mode layout
 	
 		
 		//creating image buttons objects and getting their setup from xml
@@ -74,7 +74,7 @@ public class LetsRunModeActivity extends Activity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		
-		TrackList trackList = new TrackList("8"); // This has the Target Pace as its parameter
+		TrackList trackList = new TrackList(getTargetPace()); // This has the Target Pace as its parameter
 		MusicPlayer musicPlayer = new MusicPlayer(trackList); // This has the tracklist object as the parameter
 
 	      if(v == imagebutton1){ //onclick the first track is played
@@ -185,4 +185,10 @@ public class LetsRunModeActivity extends Activity implements OnClickListener {
 			}
 				
 		}
+		
+		public double getTargetPace(){
+			
+			return targetPace;
+		}
+		
 	}
