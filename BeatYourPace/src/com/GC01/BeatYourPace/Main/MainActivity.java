@@ -1,8 +1,8 @@
 package com.GC01.BeatYourPace.Main;
 
-
+import android.app.Activity;
+import com.google.analytics.tracking.android.EasyTracker;
 import com.example.beatyourpace.R;
-
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.app.Activity;
