@@ -1,5 +1,23 @@
 package com.GC01.BeatYourPace.Database;
 
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+
+/**
+ * <dl>
+ * 	<dt> Purpose:
+ * 	<dd> To provide the data model for the data that is stored in the SQL database
+ * 
+ * 	<dt> Description:
+ * 	<dd> This sets the database columns, data types, database name, table name for the database.
+ *  <dd>
+ * </dl>
+ * 
+ * @version $Date: 2013/11/14
+ * @author snichols
+ *
+ */
+
 public class DataModel {
 
 	//Database name
@@ -11,19 +29,27 @@ public class DataModel {
 	public static final String COL_ARTIST = "artist";
 	public static final String COL_TITLE = "title";
 	public static final String COL_BPM = "bpm";
-	public static final String COL_PACE = "pace";
+	//this variable is held in miles, the value in km will be calculated
+	public static final String COL_PREF_PACE = "pace";
 
 	//table names for the database
 	public static final String TABLE_NAME = "TrackData";
 
 	//data types
 	public int id;
-	public int mediastoreid;
+	public int mediaStoreId;
 	public String artist;
 	public String title;
 	public int bpm; 
-	public double pace;
+	public double preferredPace;
 
+	
+	//double targetTargetPace to be read from the settings set_target_pace, placeholder value of 6.0 for now
+	public static double defaultTargetPace = getDefaultTargetPace();
+	
+	//this needs to be moved to within settings
+	public static int unitType = getUnitType();
+	
 	public DataModel() {	
 		super();
 	}
@@ -36,12 +62,12 @@ public class DataModel {
 		this.id = id;
 	}
 
-	public int getMediastoreid() {
-		return mediastoreid;
+	public int getMediaStoreId() {
+		return mediaStoreId;
 	}
 
 	public void setMediastoreid(int mediastoreid) {
-		this.mediastoreid = mediastoreid;
+		this.mediaStoreId = mediastoreid;
 	}
 
 	public String getTitle() {
@@ -68,17 +94,31 @@ public class DataModel {
 		this.bpm = bpm;
 	}
 
-	public double getPace(){
-		return pace;
+	public double getPreferredPace(){
+		return preferredPace;
 	}
 
-	public void setPace(double pace) {
-		this.pace = pace;
+	public void setPreferredPace(double pace) {
+		this.preferredPace = pace;
 	}
 
 	@Override
 	//needed for arraylist
 	public String toString() {
-		return "DataModel [id=" + id + ", mediastoreID=" + mediastoreid + ", artist=" + artist  + ", title=" + title + ", bpm=" + bpm + ", pace=" + pace + "]";
+		return "DataModel [id=" + id + ", mediastoreID=" + mediaStoreId + ", artist=" + artist  + ", title=" + title + ", bpm=" + bpm + ", pace=" + preferredPace + "]";
 	}
+	
+	public static double getDefaultTargetPace(){
+		//The following parameter null needs to be changed to the correct context
+		SharedPreferences sPref = PreferenceManager.getDefaultSharedPreferences(null);
+		defaultTargetPace = Double.parseDouble(Float.toString(sPref.getFloat("set_target_pace", (float) 6.0)));
+		return defaultTargetPace;
+	}
+	
+	public static int getUnitType(){
+		SharedPreferences sPref = PreferenceManager.getDefaultSharedPreferences(null);
+		unitType = sPref.getInt("unitType", 1);
+		return unitType;
+	}
+
 }

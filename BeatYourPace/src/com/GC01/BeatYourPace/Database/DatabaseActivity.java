@@ -9,15 +9,13 @@ import android.content.SharedPreferences;
 
 
 public class DatabaseActivity extends Activity {
-	
-	public double targetPace = getTargetPace();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		DatabaseHelper dh = new DatabaseHelper(this, null, null, 0);
+		DatabaseHelper dh = new DatabaseHelper(this, DataModel.DATABASE_NAME, null, DatabaseHelper.DATABASE_VERSION);
 		
 		//add method calls to create the database
 	}
@@ -29,11 +27,7 @@ public class DatabaseActivity extends Activity {
 		return true;
 	}
 
-	public double getTargetPace(){
-		SharedPreferences sPref = PreferenceManager.getDefaultSharedPreferences(this);
-		double targetPace = Double.parseDouble(Float.toString(sPref.getFloat("set_target_pace", (float) 6.0)));
-		return targetPace;
-	}
+	
 	
 	/*
 	 * This method is used to add the value for the initial pace based on bpm

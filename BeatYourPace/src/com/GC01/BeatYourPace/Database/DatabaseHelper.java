@@ -1,37 +1,46 @@
 package com.GC01.BeatYourPace.Database;
 
+/**
+ * <dl>
+ * 	<dt> Purpose:
+ * 	<dd> A helper class to manage database creation and version management.
+ * 
+ * 	<dt> Description:
+ * 	<dd> This version does not yet have an associated content provider so there is code here that needs to be 
+ *  <dd> moved to another class.
+ * </dl>
+ * 
+ * @version $Date: 2013/11/14
+ * @author snichols
+ *
+ */
+
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
-import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.CursorLoader;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.database.sqlite.SQLiteQueryBuilder;
-import android.net.Uri;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.content.ContentProvider;
 
-import com.GC01.BeatYourPace.Database.DatabaseActivity;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
 	//Database version
-	private static final int DATABASE_VERSION = 1;
-
-	//double targetPace to be read from the settings set_target_pace, placeholder value of 6.0 for now
-	double targetPace = 6.0;
-
+	public static final int DATABASE_VERSION = 1;
+	
+	//Use the defaultTargetPace
+	static double defaultTargetPace = DataModel.getDefaultTargetPace();
 
 	public DatabaseHelper(Context context, String name, CursorFactory factory,int version) {
 		super(context, DataModel.DATABASE_NAME, factory, DATABASE_VERSION);
@@ -42,7 +51,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase db) {
 
 		// SQL statement to create TrackData table
-		String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS" + DataModel.TABLE_NAME + "(" + DataModel.COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + DataModel.COL_MEDIASTOREID + " INTEGER,"+ DataModel.COL_TITLE + " TEXT," + DataModel.COL_ARTIST + " TEXT,"  + DataModel.COL_BPM + " INTEGER," + DataModel.COL_PACE + " DOUBLE)"; 
+		String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS" + DataModel.TABLE_NAME + "(" + DataModel.COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + DataModel.COL_MEDIASTOREID + " INTEGER,"+ DataModel.COL_TITLE + " TEXT," + DataModel.COL_ARTIST + " TEXT,"  + DataModel.COL_BPM + " INTEGER," + DataModel.COL_PREF_PACE + " DOUBLE)"; 
 
 		// create the table
 		db.execSQL(CREATE_TABLE);
@@ -123,7 +132,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	public void addBpmPace(int bpm, double pace, int trackId){
 		// Insert the new values for BPM and pace using SQL
 		SQLiteDatabase db = this.getWritableDatabase();
-		String sql = "UPDATE " + DataModel.TABLE_NAME + "SET " + DataModel.COL_BPM + "=" + bpm + "," + DataModel.COL_PACE + "=" + pace +"WHERE " + DataModel.COL_MEDIASTOREID + "=" + trackId;
+		String sql = "UPDATE " + DataModel.TABLE_NAME + "SET " + DataModel.COL_BPM + "=" + bpm + "," + DataModel.COL_PREF_PACE + "=" + pace +"WHERE " + DataModel.COL_MEDIASTOREID + "=" + trackId;
 		db.execSQL(sql);
 	}
 
@@ -155,11 +164,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		while (!cursor.isAfterLast()) {
 			DataModel track = new DataModel();
 			track.id = cursor.getInt(0);
-			track.mediastoreid = cursor.getInt(1);
+			track.mediaStoreId = cursor.getInt(1);
 			track.artist = cursor.getString(2);
 			track.title = cursor.getString(3);
 			track.bpm = cursor.getInt(4);
-			track.pace = cursor.getDouble(5);
+			track.preferredPace = cursor.getDouble(5);
 
 			// Add track to the playlist for the pace
 			appropriateSongs.add(track);
@@ -173,14 +182,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	
 	/*
 	 * This method increases the preferred pace by 0.5
+	 * Check if the user default is km or m, default database value is in m
+	 * Convert from km to m if needed
+	 * Identify which track object is current
+	 * Then it changes the defaultPace value for that track
+	 * The new value then needs to be written back to the database
+	 * NOT YET WRITTEN
 	 */
 	public static void decPrefPace() {
 		
 	}
 	
 	/*
-	 * THis method decreses the preferred pace by 0.5
-	 * 
+	 * This method decreases the preferred pace by 0.5
+	 * It needs to identify which track object is current
+	 * Then it changes the defaultPace value for that track
+	 * The new value then needs to be written back to the database
+	 * NOT YET WRITTEN
 	 */
 	public static void incPrefPace() {
 		
