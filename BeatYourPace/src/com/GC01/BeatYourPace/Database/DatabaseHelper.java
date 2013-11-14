@@ -169,4 +169,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		// return playlist
 		return appropriateSongs;
 	}
+	
+	
+	/*
+	 * This method increases the preferred pace by 0.5
+	 */
+	public static void decPrefPace() {
+		
+	}
+	
+	/*
+	 * THis method decreses the preferred pace by 0.5
+	 * 
+	 */
+	public static void incPrefPace() {
+		
+	}
+	
 }

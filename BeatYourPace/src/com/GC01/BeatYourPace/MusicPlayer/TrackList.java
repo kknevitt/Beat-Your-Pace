@@ -5,14 +5,14 @@ import java.util.ArrayList;
 import com.GC01.BeatYourPace.Database.DataModel;
 import com.GC01.BeatYourPace.Database.DatabaseHelper;
 
-public class NewTrackList {
+public class TrackList {
 	
 	private String songPath;
 	private int songNo;
 	private ArrayList<DataModel> paceTrackList = new ArrayList(); // ArrayList containing song details and the path file for the song.	
 	
 
-	public NewTrackList(String inputPace){
+	public TrackList(String inputPace){
 		
 		double outPutPace = Double.parseDouble(inputPace);
 		//	Creating a temporary Track List based on the desired Target Pace

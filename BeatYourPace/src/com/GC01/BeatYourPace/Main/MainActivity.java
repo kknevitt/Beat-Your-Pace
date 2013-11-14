@@ -1,8 +1,11 @@
 package com.GC01.BeatYourPace.Main;
 
 import android.app.Activity;
+
 import com.google.analytics.tracking.android.EasyTracker;
+import com.GC01.BeatYourPace.ArchiveFiles.TrainingModeActivity;
 import com.example.beatyourpace.R;
+
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.app.Activity;
@@ -18,6 +21,8 @@ public class MainActivity extends Activity implements OnClickListener{
 	
 	//SN This sets up the preferences
 	//It may be needed to call default settings for the first time the app is used
+	
+	// Pass the preferences to the java class.
 //	SharedPreferences sPref = PreferenceManager.getDefaultSharedPreferences(this);
 	
 	//creating button objects
@@ -52,6 +57,10 @@ public class MainActivity extends Activity implements OnClickListener{
               Intent intent = new Intent(this,TrainingModeActivity.class);
               startActivity(intent);
 				}
+	      if (v == b2) {
+	    	  Intent intent = new Intent(this,LetsRunMode.class);
+	    	  startActivity(intent);
+	      }
 	      if (v == b3) { // // onclick the user is taken to the Settings view as per Settings class
 	    	  Intent intent = new Intent(this,SettingsActivity.class);
 	    	  startActivity(intent);

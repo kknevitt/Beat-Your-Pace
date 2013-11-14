@@ -1,4 +1,4 @@
-package com.GC01.BeatYourPace.PaceCalculator;
+package com.GC01.BeatYourPace.ArchiveFiles;
 
 public class JavaPaceCalculator {
 	

@@ -9,9 +9,9 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 
-public class PaceCalculator extends Activity {
+public class Pace extends Activity {
 	Context context;
-
+	
 	
 	// Declaring Fields.
 	String pace;
@@ -27,7 +27,7 @@ public class PaceCalculator extends Activity {
 
 
 	
-	public PaceCalculator(){
+	public Pace(){
 		
 		// setting default values, with No Movement to be different to 0.0 which will displayed if the LM is
 		// active but is not moving or currently working.
@@ -52,9 +52,9 @@ public class PaceCalculator extends Activity {
 		    	
 		      // Called when a new location is found by the network location provider.
 		    	
-		     // makeUseOfNewLocation(location);  -- results in errors.
+		     // makeUseOfNewLocation(location); 
 		      
-		      //	location.getLatitude();	needed? 
+		     // 	location.getLatitude();
 		      
 		      // Critical method for getting the speed
 				paceCalc = (location.getSpeed());

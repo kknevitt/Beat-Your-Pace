@@ -1,13 +1,14 @@
-package com.GC01.BeatYourPace.Database;
+package com.GC01.BeatYourPace.ArchiveFiles;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
-import android.util.Log;
 
-public class MediastoreContentProvider extends ContentProvider {
+public class BYPDbContentProvider extends ContentProvider {
 
+	//don't forget to add this to the manifest!
+	
 	@Override
 	public int delete(Uri uri, String selection, String[] selectionArgs) {
 		// TODO Auto-generated method stub
@@ -36,7 +37,6 @@ public class MediastoreContentProvider extends ContentProvider {
 	public Cursor query(Uri uri, String[] projection, String selection,
 			String[] selectionArgs, String sortOrder) {
 		// TODO Auto-generated method stub
-		
 		return null;
 	}
 

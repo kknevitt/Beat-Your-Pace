@@ -1,40 +1,45 @@
-/*package com.GC01.BeatYourPace.MusicPlayer;
-
+package com.GC01.BeatYourPace.MusicPlayer;
+ 
+import java.io.IOException;
 import android.media.MediaPlayer;
-import android.app.Activity;
 import android.content.Context;
-import android.os.Bundle;
 
 
-//music player version1
+ 
+public class MusicPlayer {	 
 
-
-
-public class MusicPlayer {
+	public Context context;
+	private MediaPlayer mediaPlayer = new MediaPlayer();
+	private TrackList trackList; // default TrackList made to show methods working
 	
-	//MusicRetriever List = new MusicRetriever(); // do we need an object from Music Retriever
+	// creating a music player by taking in the tracklist object as it will need it.
 	
-	private static final MediaPlayer mediaPlayer = new MediaPlayer();
-	static Context context;
-	static MusicTrackList tracklist = new MusicTrackList();
-	
-	public static void play() {
-		mediaPlayer.setDataSource(MusicTrackList.currentTrack);
-		  mediaPlayer.start();		
+	public MusicPlayer(TrackList trackListToPlay){
+		
+		trackList = trackListToPlay; // this needs to be the trackList that the Player is using.
 	}
 	
-	public static void skip() {
-		MusicTrackList.setCurrentTrack(2);
-		  MediaPlayer.create(context, tracklist.getCurrentTrack());
-		  mediaPlayer.start();	
+ 	
+	public void play() throws IllegalArgumentException, SecurityException, IllegalStateException, IOException {
+		
+		trackList.setSong("play");
+		mediaPlayer.setDataSource(trackList.getSongPath());
+		mediaPlayer.start();		
 	}
 	
-	public static void previous() {
-		MusicTrackList.setCurrentTrack(3);
-		  MediaPlayer.create(context, tracklist.getCurrentTrack());
-		  mediaPlayer.start();	
-	}
-
+	public void skip() throws IllegalArgumentException, SecurityException, IllegalStateException, IOException {
+		
+		trackList.setSong("skip");
+		mediaPlayer.setDataSource(trackList.getSongPath());
+		mediaPlayer.start();
+ 	}
+ 	
+	public void previous() throws IllegalArgumentException, SecurityException, IllegalStateException, IOException {
+	
+		trackList.setSong("previous");
+		mediaPlayer.setDataSource(trackList.getSongPath());
+		mediaPlayer.start();	
+ 	}
+	
 }
-
-*/
+ 
