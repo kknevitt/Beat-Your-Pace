@@ -6,7 +6,8 @@ package com.GC01.BeatYourPace.Database;
  * 	<dd> This class is a placeholder pending a solution to retrieving the users preferences
  * 
  * 	<dt> Description:
- * 	<dd> 
+ * 	<dd> This class does not really belong in the database class. It is here only as a temporary
+ * 	<dd> workaround to allow the other classes to call the shared preferences.
  * </dl>
  * 
  * @version $Date: 2013/11/14
@@ -35,16 +36,20 @@ public class AccessSettings extends Activity {
 		int unitType = sharedPref.getInt("unitType", 1);
 	}
 
-	/*
+	/**
+	 * Method to return the default preferred pace from settings
 	 * Investigation needed to see if there is a way to return the the default target pace for other classes to access
+	 * @return defaultTargetPace   Double with the default preferred pace
 	 */
 	public static double getDefaultTargetPace(){
 		double defaultTargetPace = 6.0;
 		return defaultTargetPace;
 	}
 	
-	/*
+	/**
+	 *  Method to return the unit (miles or kilometres) from settings
 	 * Investigation needed to see if there is a way to return the unitType for other classes to access
+	 * @return unitType   The unit (integer 1 = miles or 2 = kilometres) from settings
 	 */
 	public static int getUnitType(){
 		int unitType = 1;
