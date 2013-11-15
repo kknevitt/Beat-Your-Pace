@@ -1,29 +1,19 @@
 package com.GC01.BeatYourPace.Main;
 
-/**
- * <dl>
- * 	<dt> Purpose:
- * 	<dd> Calls the settings fragment when the user selects the settings menu.
- * 
- * 	<dt> Description:
- * 	<dd> Provides default values for the pace to run (6.0 mins per unit) at and the units to use (m)
- * 	<dd> Calls the settings fragment which allow the user to change these
- * </dl>
- * 
- * @version $Date: 2013/11/14
- * @author snichols
- *
- */
-
 import com.example.beatyourpace.R;
+
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.app.Activity;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.view.Menu;
-
+import android.widget.CheckBox;
+import android.widget.TextView;
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 @SuppressLint("NewApi")
@@ -50,6 +40,12 @@ public class SettingsActivity extends PreferenceActivity {
 		return true;
 	}
 
+	@Override
+	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
+			String key) {
+		// TODO Auto-generated method stub
+		
+	}
 
 	
 	

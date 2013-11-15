@@ -1,24 +1,28 @@
 package com.GC01.BeatYourPace.Main;
 
-import java.util.regex.Pattern;
+/**
+ * <dl>
+ * 	<dt> Purpose:
+ * 	<dd> Fragment which allows the user to set their default preferences
+ * 
+ * 	<dt> Description:
+ * 	<dd> Allows user to set for their target pace to run (e.g. 6.5 mins per unit) at and the units to use (e.g.km)
+ * </dl>
+ * 
+ * @version $Date: 2013/11/14
+ * @author sarahnicholson
+ *
+ */
 
 import com.example.beatyourpace.R;
-
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.Preference;
-import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceFragment;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 

@@ -14,7 +14,7 @@ import android.preference.PreferenceManager;
  * </dl>
  * 
  * @version $Date: 2013/11/14
- * @author snichols
+ * @author sarahnicholson
  *
  */
 
@@ -42,13 +42,6 @@ public class DataModel {
 	public String title;
 	public int bpm; 
 	public double preferredPace;
-
-	
-	//double targetTargetPace to be read from the settings set_target_pace, placeholder value of 6.0 for now
-	public static double defaultTargetPace = getDefaultTargetPace();
-	
-	//this needs to be moved to within settings
-	public static int unitType = getUnitType();
 	
 	public DataModel() {	
 		super();
@@ -106,19 +99,6 @@ public class DataModel {
 	//needed for arraylist
 	public String toString() {
 		return "DataModel [id=" + id + ", mediastoreID=" + mediaStoreId + ", artist=" + artist  + ", title=" + title + ", bpm=" + bpm + ", pace=" + preferredPace + "]";
-	}
-	
-	public static double getDefaultTargetPace(){
-		//The following parameter null needs to be changed to the correct context
-		SharedPreferences sPref = PreferenceManager.getDefaultSharedPreferences(null);
-		defaultTargetPace = Double.parseDouble(Float.toString(sPref.getFloat("set_target_pace", (float) 6.0)));
-		return defaultTargetPace;
-	}
-	
-	public static int getUnitType(){
-		SharedPreferences sPref = PreferenceManager.getDefaultSharedPreferences(null);
-		unitType = sPref.getInt("unitType", 1);
-		return unitType;
 	}
 
 }
