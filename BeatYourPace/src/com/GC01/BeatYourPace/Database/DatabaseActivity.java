@@ -7,7 +7,8 @@ package com.GC01.BeatYourPace.Database;
  * 
  * 	<dt> Description:
  * 	<dd> This may not need to be an activity class
- *  <dd> Has methods to 
+ *  <dd> Has methods that will be called from the Lets Run and Training Run modes
+ *  <dd> The methods may be moved at a later point to those activities
  * </dl>
  * 
  * @version $Date: 2013/11/14
@@ -16,10 +17,7 @@ package com.GC01.BeatYourPace.Database;
  */
 
 import java.util.ArrayList;
-
-import com.GC01.BeatYourPace.Main.SettingsActivity;
 import com.example.beatyourpace.R;
-
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -29,7 +27,6 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.view.Menu;
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.CursorLoader;
 import android.content.SharedPreferences;
 import android.database.Cursor;

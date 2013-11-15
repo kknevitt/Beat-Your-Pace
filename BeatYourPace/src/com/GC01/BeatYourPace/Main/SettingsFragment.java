@@ -15,14 +15,17 @@ package com.GC01.BeatYourPace.Main;
  */
 
 import com.example.beatyourpace.R;
+
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
+import android.preference.PreferenceManager;
 import android.widget.Toast;
 
 
@@ -41,30 +44,22 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
 
 	        // Load the preferences from an XML resource
 	        addPreferencesFromResource(R.xml.preferences);
-	   
-	        findPreference("set_target_pace").setOnPreferenceChangeListener(
-	                new Preference.OnPreferenceChangeListener() {
-
-						@Override
-						public boolean onPreferenceChange(Preference preference, Object newValue) {
-							//add code to check if the value is between 5 and 15 and only increments in 0.5
-							//enclose reading preference is try/catch NumberFormatException. If exception, I return default value
-							
-							if (newValue == null) {
-				                Toast.makeText(getActivity(), "Default pace cannot be blank",
-				                		Toast.LENGTH_SHORT).show();
-				                return false;
-				            }
-				            return true;
-						}
-	            });
 	    }
 
 		@Override
-		public void onSharedPreferenceChanged(
-				SharedPreferences sharedPreferences, String key) {
+		public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
 			// TODO Auto-generated method stub
 			
+			 /** Access the shared prefs for this app, this can only be called when an activity is created */
+			SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+			
+		     if(key.equals("set_target_pace")){
+		          double newValue = sharedPref.getFloat("set_target_pace", (float) 6.0);
+		          if (newValue < 4.0 | newValue > 30.0) {
+		                Toast.makeText(getActivity(), "Default pace must be between 4.0 and 30.0",
+		                		Toast.LENGTH_SHORT).show();
+		            }
+				}
 		}
 
 

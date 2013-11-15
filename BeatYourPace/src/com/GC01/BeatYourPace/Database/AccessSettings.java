@@ -38,14 +38,16 @@ public class AccessSettings extends Activity {
 	/*
 	 * Investigation needed to see if there is a way to return the the default target pace for other classes to access
 	 */
-	public static double getDefaultTargetPace(double defaultTargetPace){
+	public static double getDefaultTargetPace(){
+		double defaultTargetPace = 6.0;
 		return defaultTargetPace;
 	}
 	
 	/*
 	 * Investigation needed to see if there is a way to return the unitType for other classes to access
 	 */
-	public static int getUnitType(int unitType){
+	public static int getUnitType(){
+		int unitType = 1;
 		return unitType;
 	}
 }

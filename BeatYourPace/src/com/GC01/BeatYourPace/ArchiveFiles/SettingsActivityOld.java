@@ -1,3 +1,4 @@
+/*
 package com.GC01.BeatYourPace.Main;
 
 import com.example.beatyourpace.R;
@@ -46,10 +47,5 @@ public class SettingsActivity extends PreferenceActivity {
 		// TODO Auto-generated method stub
 		
 	}
-
-	
-	
-	
-
-	
 }
+*/
