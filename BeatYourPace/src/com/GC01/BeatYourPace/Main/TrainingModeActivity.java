@@ -149,14 +149,14 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 	            // Decreases the user's preferred pace for this track by 0.5.
 	            if(v == imagebutton6){
 	            	
-	            	DatabaseHelper.decPrefPace();
+	            	DatabaseActivity.decPrefPace();
 	            	
 	            }
 	            
 	            // Increases the user's preferred pace for this track by 0.5.
 	            if(v == imagebutton7){
 	            	
-	            	DatabaseHelper.incPrefPace();
+	            	DatabaseActivity.incPrefPace();
 	            	
 	            }
 	            
