@@ -30,7 +30,7 @@ public class DataModel {
 	public static final String COL_TITLE = "title";
 	public static final String COL_BPM = "bpm";
 	//this variable is held in miles, the value in km will be calculated
-	public static final String COL_PREF_PACE = "pace";
+	public static final String COL_PREF_PACE = "prefpace";
 
 	//table names for the database
 	public static final String TABLE_NAME = "TrackData";
@@ -91,8 +91,8 @@ public class DataModel {
 		return preferredPace;
 	}
 
-	public void setPreferredPace(double pace) {
-		this.preferredPace = pace;
+	public void setPreferredPace(double prefPace) {
+		this.preferredPace = prefPace;
 	}
 
 	@Override

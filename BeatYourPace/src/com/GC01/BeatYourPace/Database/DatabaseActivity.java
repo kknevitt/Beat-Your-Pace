@@ -120,13 +120,13 @@ public class DatabaseActivity extends Activity {
 	 * BPM is calculated in a separate class
 	 * 
 	 * @param bpm		Integer that is the autocalculated BPM for a track
-	 * @param prefPace	Double that is the preferred pace that this track should be used for
+	 * @param preferredPace	Double that is the preferred pace that this track should be used for
 	 * @param trackId	Integer that is the unique reference to the track in the device's media store db
 	 */
-	public void addBpmPace(int bpm, double prefPace, int trackId){
+	public void addBpmPace(int bpm, double preferredPace, int trackId){
 		// Insert the new values for BPM and pace using SQL
 		SQLiteDatabase db = dh.getWritableDatabase();
-		String sql = "UPDATE " + DataModel.TABLE_NAME + "SET " + DataModel.COL_BPM + "=" + bpm + "," + DataModel.COL_PREF_PACE + "=" + prefPace +"WHERE " + DataModel.COL_MEDIASTOREID + "=" + trackId;
+		String sql = "UPDATE " + DataModel.TABLE_NAME + "SET " + DataModel.COL_BPM + "=" + bpm + "," + DataModel.COL_PREF_PACE + "=" + preferredPace +"WHERE " + DataModel.COL_MEDIASTOREID + "=" + trackId;
 		db.execSQL(sql);
 	}
 	
@@ -134,17 +134,17 @@ public class DatabaseActivity extends Activity {
 	 * Get all tracks for a given pace and return ArrayList called appropriateSongs 
 	 * This needs to be modified to allow for the contentURI or the filepath of the tracks to be returned
 	 * 
-	 * @param prefPace	Double that is the preferred pace that this track should be used for
+	 * @param preferredPace	Double that is the preferred pace that this track should be used for
 	 * @return appropriateSongs	An array list of the meta data about the tracks to be played
 	 */
 
-	public ArrayList<DataModel> getAppropriateSongs(double prefPace) {
+	public ArrayList<DataModel> getAppropriateSongs(double preferredPace) {
 		
 		/** ArrayList to hold the meta data about the tracks to be played */
 		ArrayList<DataModel> appropriateSongs = new ArrayList<DataModel>();
 
 		//Build the query
-		String query = "SELECT  * FROM " + DataModel.TABLE_NAME + "WHERE COL_PACE = " + prefPace;
+		String query = "SELECT  * FROM " + DataModel.TABLE_NAME + "WHERE COL_PACE = " + preferredPace;
 
 		//Get reference to readable DB
 		SQLiteDatabase db = dh.getReadableDatabase();
@@ -222,67 +222,67 @@ public class DatabaseActivity extends Activity {
 
 		SharedPreferences sPref = PreferenceManager.getDefaultSharedPreferences(this);
 		int unitType = sPref.getInt("unitType", 1);
-		double pace;
+		double prefPace;
 
 		switch(bpm) {
 		case 150:
 			if (unitType == 2) {
-				pace = 16.0;
+				prefPace = 16.0;
 			} else {
-				pace = 10.0;
+				prefPace = 10.0;
 			}
 			break;
 		case 153:
 			if (unitType == 2) {
-				pace = 14.0;
+				prefPace = 14.0;
 			} else {
-				pace = 9.0;
+				prefPace = 9.0;
 			}
 			break;
 		case 156:
 			if (unitType == 2) {
-				pace = 12.0;
+				prefPace = 12.0;
 			} else {
-				pace = 8.0;
+				prefPace = 8.0;
 			}
 			break;
 		case 160:
 			if (unitType == 2) {
-				pace = 10.0;
+				prefPace = 10.0;
 			} else {
-				pace = 7.0;
+				prefPace = 7.0;
 			}
 			break;
 		case 163:
 			if (unitType == 2) {
-				pace = 9.0;
+				prefPace = 9.0;
 			} else {
-				pace = 6.0;
+				prefPace = 6.0;
 			}
 			break;
 		case 166:
 			if (unitType == 2) {
-				pace = 8.0;
+				prefPace = 8.0;
 			} else {
-				pace = 5.0;
+				prefPace = 5.0;
 			}
 			break;
 		case 171:
 			if (unitType == 2) {
-				pace = 6.0;
+				prefPace = 6.0;
 			} else {
-				pace = 4.0;
+				prefPace = 4.0;
 			}
 			break;
 		default:
 			if (unitType == 2) {
-				pace = 10.0;
+				prefPace = 10.0;
 			} else {
-				pace = 7.0;
+				prefPace = 7.0;
 			}
 			break;
 		}
-		return pace;
+		return prefPace;
 	}
 
 
