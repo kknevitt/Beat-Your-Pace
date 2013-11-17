@@ -36,6 +36,8 @@ public class DataModel {
 	public static final String TABLE_NAME = "TrackData";
 
 	//data types
+	//good practice to declare these as private and only return them with getters, this needs to be
+	//addressed and changes made to the DatabaseActivity where these are referred to
 	public int id;
 	public int mediaStoreId;
 	public String artist;
