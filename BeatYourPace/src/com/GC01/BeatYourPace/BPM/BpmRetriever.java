@@ -1,5 +1,6 @@
-//getBPM method used to retrieve BPM value as provided by EchoNest free library  
-//more info at: http://developer.echonest.com/licensing.html
+/**getBPM method used to retrieve BPM value as provided by EchoNest free library 
+ * more info at: http://developer.echonest.com/licensing.html
+ */
 
 package com.GC01.BeatYourPace.BPM;
 
@@ -13,7 +14,6 @@ import com.echonest.api.v4.TrackAnalysis;
 
 public class BpmRetriever {
 		
-	
 	//creating get method to query EchoNest library
 	double getBPM() throws EchoNestException, IOException{
 

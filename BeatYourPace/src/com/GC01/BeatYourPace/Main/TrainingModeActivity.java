@@ -1,6 +1,5 @@
 package com.GC01.BeatYourPace.Main;
 	
-
 import java.io.IOException;
 
 import com.GC01.BeatYourPace.Database.DatabaseActivity;
