@@ -45,10 +45,8 @@ public class TrackList {
 	
 	public TrackList(double inputPace){
 		
-		double outPutPace = inputPace;
-		
 		// Calling the method for populating the ArrayList.
-//		paceTrackList = DatabaseActivity.getAppropriateSongs(outPutPace);
+//		paceTrackList = DatabaseActivity.getAppropriateSongs(inputPace);
 	 	
 		// Default songPath needed.
 		songNo = 0;

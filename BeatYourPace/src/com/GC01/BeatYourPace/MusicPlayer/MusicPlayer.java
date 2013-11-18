@@ -10,7 +10,7 @@ import android.media.MediaPlayer;
 
 /** 
  * <p> This class is used to create the MusicPlayer object </p>
- * <p> The MusicPlayer object is created using a Tracklist object and is used to fulfill
+ * <p> The MusicPlayer object is created using a TrackList object and is used to fulfil
  * the functions of a media player, such as playing a song and skipping to the next. </p>
  */
  
@@ -24,9 +24,9 @@ public class MusicPlayer {
 	
 
 	
-	/** Constructor for MusicPlayer and assigning the Tracklist it receives to a TrackList object
+	/** Constructor for MusicPlayer and assigning the TrackList it receives to a TrackList object
 	 @return
-	 @param trackListToPlay A Tracklist determined by the target pace and a database query for appropriate songs for that target pace
+	 @param trackListToPlay A TrackList determined by the target pace and a database query for appropriate songs for that target pace
 	 */
 	public MusicPlayer(TrackList trackListToPlay){
 		
@@ -34,7 +34,7 @@ public class MusicPlayer {
 	}
 	
 	
-	/** Plays a random song from the current tracklist by manipulating what the current song is and playing it
+	/** Plays a random song from the current trackList by manipulating what the current song is and playing it
 	 @return
 	 @param
 	 */
@@ -57,7 +57,7 @@ public class MusicPlayer {
 		mediaPlayer.start();
  	}
  	
-	/** Reverts to the previous song in the Tracklist ArrayList and plays that song
+	/** Reverts to the previous song in the TrackList ArrayList and plays that song
 	 @return
 	 @param
 	 */
