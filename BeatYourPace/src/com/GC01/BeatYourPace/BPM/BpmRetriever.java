@@ -28,15 +28,15 @@ public class BpmRetriever {
     File file = new File("C:\\Users\\Solange\\Desktop\\eclipse java\\BPM\\res\\raw\\04.mp3");
     Track track = echoNest.uploadTrack(file, true);
     
-    //analysing track to get BPM
+    //setting a max time for analysis that will retrieve a track's BPM
     track.waitForAnalysis(30000);
-    TrackAnalysis a = track.getAnalysis();
+    TrackAnalysis analysis = track.getAnalysis();
     
     //retrieve the BPM
-    double tempo = a.getTempo(); 
+    double tempo = analysis.getTempo(); 
     
     //temporary function
-    System.out.print("Tempo " + a.getTempo());
+    System.out.print("Tempo " + analysis.getTempo());
     
     return tempo;
    

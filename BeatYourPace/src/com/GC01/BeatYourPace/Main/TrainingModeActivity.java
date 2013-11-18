@@ -30,36 +30,34 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 	//	targetPace = DatabaseActivity.getTargetPace();
 		
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.trainingmode); 	//loading training mode layout
+		setContentView(R.layout.trainingmode); 	
 		
-		//creating image buttons objects and getting their setup from xml
-        imagebutton1 = (ImageButton) findViewById(R.id.bPlaySong); // for play button
-        //imagebutton2 = (ImageButton) findViewById(R.id.imageButton2); //for pause button
-        imagebutton4 = (ImageButton) findViewById(R.id.bSkipTrack); //for skipping track button
-        imagebutton5 = (ImageButton) findViewById(R.id.bPreviousTrack); //for previous track button
-        imagebutton6 = (ImageButton) findViewById(R.id.bSongTooSlow);
-        imagebutton7 = (ImageButton) findViewById(R.id.bSongTooFast);
-        imagebutton8 = (ImageButton) findViewById(R.id.bDecTarget);
-        imagebutton9 = (ImageButton) findViewById(R.id.bIncTarget);
+		//creates image buttons objects and gets their setup from xml
+        imagebutton1 = (ImageButton) findViewById(R.id.bPlaySong); 			//play button
+        //imagebutton2 = (ImageButton) findViewById(R.id.imageButton2); 	//pause button
+        imagebutton4 = (ImageButton) findViewById(R.id.bSkipTrack); 		//skip track button
+        imagebutton5 = (ImageButton) findViewById(R.id.bPreviousTrack); 	//previous track button
+        imagebutton6 = (ImageButton) findViewById(R.id.bSongTooSlow); 		//tag track as too fast
+        imagebutton7 = (ImageButton) findViewById(R.id.bSongTooFast);		//tag track as too slow
+        imagebutton8 = (ImageButton) findViewById(R.id.bDecTarget);			//increase target pace
+        imagebutton9 = (ImageButton) findViewById(R.id.bIncTarget);			//decrease target pace
         
         atext= (TextView) findViewById(R.id.CurrentTargetPace);
         
         // Takes the variable Target Pace and pushes it to the text view.
         String tarPace = Double.toString(targetPace);
         atext.setText(tarPace);
-        
+        	
         //setting an event listener for each button
         imagebutton1.setOnClickListener(this);
-       // imagebutton2.setOnClickListener(this);
+        //imagebutton2.setOnClickListener(this);
         imagebutton4.setOnClickListener(this);
         imagebutton5.setOnClickListener(this);
         imagebutton6.setOnClickListener(this);
         imagebutton7.setOnClickListener(this);
         imagebutton8.setOnClickListener(this);
         imagebutton9.setOnClickListener(this);
-        
-        
-        
+     
     
    }
 
@@ -142,7 +140,7 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
-					}
+					} 	
 	            }
 	            
 	            // Decreases the user's preferred pace for this track by 0.5.
