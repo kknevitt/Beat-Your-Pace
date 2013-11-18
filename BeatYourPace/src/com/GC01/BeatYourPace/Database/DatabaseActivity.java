@@ -12,7 +12,7 @@ package com.GC01.BeatYourPace.Database;
  * </dl>
  * 
  * @version $Date: 2013/11/14
- * @author snichols
+ * @author sarahnicholson
  *
  */
 
