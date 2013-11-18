@@ -1,5 +1,13 @@
-/**getBPM method used to retrieve BPM value as provided by EchoNest free library 
- * more info at: http://developer.echonest.com/licensing.html
+/**
+ * 
+ * @author Laura Barbosa
+ * @version 1.0, Updated 18/11/2013
+ * 
+ * 
+ * Class implements getBPM method used to retrieve a track BPM value as provided by EchoNest free library. 
+ * More info about the at: http://the.echonest.com/
+ * 
+ * The class has temporary methods and variables set for local testing purposes. 
  */
 
 package com.GC01.BeatYourPace.BPM;
@@ -14,7 +22,12 @@ import com.echonest.api.v4.TrackAnalysis;
 
 public class BpmRetriever {
 		
-	//creating get method to query EchoNest library
+	/**creating get method to query EchoNest library 
+	 * 
+	 * @return
+	 * @throws EchoNestException
+	 * @throws IOException
+	 */
 	double getBPM() throws EchoNestException, IOException{
 
 	//adding EchoNest API developer key
