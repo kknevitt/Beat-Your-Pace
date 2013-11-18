@@ -173,7 +173,6 @@ public class LetsRunMode extends Activity implements OnClickListener {
 	      }
 	
 		public void setTargetPace(boolean increment){
-			
 			if (increment == true){
 				
 				targetPace += 0.5;

@@ -78,8 +78,7 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 		MusicPlayer musicPlayer = new MusicPlayer(trackList); // This has the tracklist object as the parameter
 
 	      if(v == imagebutton1){ //onclick the first track is played
-	    	  
-	    	  
+	    
 	    	  try {
 	    		  
 					musicPlayer.play();
