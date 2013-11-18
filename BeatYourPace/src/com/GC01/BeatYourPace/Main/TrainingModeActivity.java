@@ -2,17 +2,19 @@ package com.GC01.BeatYourPace.Main;
 	
 import java.io.IOException;
 
+import android.app.Activity;
+
 import com.GC01.BeatYourPace.Database.DatabaseActivity;
 import com.GC01.BeatYourPace.Database.DatabaseHelper;
 import com.GC01.BeatYourPace.MusicPlayer.MusicPlayer;
 import com.GC01.BeatYourPace.MusicPlayer.TrackList;
 import com.example.beatyourpace.R;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -20,7 +22,8 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 
 	public double targetPace;
     
-    ImageButton imagebutton1, imagebutton2, imagebutton4, imagebutton5, imagebutton6, imagebutton7, imagebutton8, imagebutton9;
+    ImageButton imagebutton1, imagebutton2, imagebutton4, imagebutton5;
+    Button button6, button7, button8, button9;
     TextView atext;
     
 	@Override
@@ -36,10 +39,10 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
         //imagebutton2 = (ImageButton) findViewById(R.id.imageButton2); 	//pause button
         imagebutton4 = (ImageButton) findViewById(R.id.bSkipTrack); 		//skip track button
         imagebutton5 = (ImageButton) findViewById(R.id.bPreviousTrack); 	//previous track button
-        imagebutton6 = (ImageButton) findViewById(R.id.bSongTooSlow); 		//tag track as too fast
-        imagebutton7 = (ImageButton) findViewById(R.id.bSongTooFast);		//tag track as too slow
-        imagebutton8 = (ImageButton) findViewById(R.id.bDecTarget);			//increase target pace
-        imagebutton9 = (ImageButton) findViewById(R.id.bIncTarget);			//decrease target pace
+        button6 = (Button) findViewById(R.id.bSongTooSlow); 		//tag track as too fast
+        button7 = (Button) findViewById(R.id.bSongTooFast);		//tag track as too slow
+        button8 = (Button) findViewById(R.id.bDecTarget);			//increase target pace
+        button9 = (Button) findViewById(R.id.bIncTarget);			//decrease target pace
         
         atext= (TextView) findViewById(R.id.CurrentTargetPace);
         
@@ -52,10 +55,10 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
         //imagebutton2.setOnClickListener(this);
         imagebutton4.setOnClickListener(this);
         imagebutton5.setOnClickListener(this);
-        imagebutton6.setOnClickListener(this);
-        imagebutton7.setOnClickListener(this);
-        imagebutton8.setOnClickListener(this);
-        imagebutton9.setOnClickListener(this);
+        button6.setOnClickListener(this);
+        button7.setOnClickListener(this);
+        button8.setOnClickListener(this);
+        button9.setOnClickListener(this);
      
     
    }
@@ -143,26 +146,26 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 	            }
 	            
 	            // Decreases the user's preferred pace for this track by 0.5.
-	            if(v == imagebutton6){
+	            if(v == button6){
 	            	
 	            	DatabaseActivity.decPrefPace();
 	            	
 	            }
 	            
 	            // Increases the user's preferred pace for this track by 0.5.
-	            if(v == imagebutton7){
+	            if(v == button7){
 	            	
 	            	DatabaseActivity.incPrefPace();
 	            	
 	            }
 	            
-	            if(v == imagebutton8){
+	            if(v == button8){
 	            	
 	            	setTargetPace(false);     	
        	
 	            }
 	            
-	            if(v == imagebutton9){
+	            if(v == button9){
 	            	
 	            	setTargetPace(true);
 	            }

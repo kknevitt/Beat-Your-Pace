@@ -9,6 +9,7 @@ import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -23,8 +24,8 @@ public class LetsRunModeActivity extends Activity implements OnClickListener {
 	
 	public double targetPace;
 
- 
-    ImageButton imagebutton1, imagebutton2, imagebutton4, imagebutton5, imagebutton6, imagebutton7, imagebutton8, imagebutton9;
+    ImageButton imagebutton1, imagebutton2, imagebutton4, imagebutton5;
+    Button button6, button7, button8, button9;
     TextView atext;
     
 	@Override
@@ -35,17 +36,16 @@ public class LetsRunModeActivity extends Activity implements OnClickListener {
 		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_lets_run_mode); 	//loading lets run mode layout
-	
 		
 		//creating image buttons objects and getting their setup from xml
         imagebutton1 = (ImageButton) findViewById(R.id.bPlaySong); // for play button
         //imagebutton2 = (ImageButton) findViewById(R.id.imageButton2); //for pause button
         imagebutton4 = (ImageButton) findViewById(R.id.bSkipTrack); //for skipping track button
         imagebutton5 = (ImageButton) findViewById(R.id.bPreviousTrack); //for previous track button
-        imagebutton6 = (ImageButton) findViewById(R.id.bSongTooSlow);
-        imagebutton7 = (ImageButton) findViewById(R.id.bSongTooFast);
-        imagebutton8 = (ImageButton) findViewById(R.id.bDecTarget);
-        imagebutton9 = (ImageButton) findViewById(R.id.bIncTarget);
+        button6 = (Button) findViewById(R.id.bSongTooSlow);
+        button7 = (Button) findViewById(R.id.bSongTooFast);
+        button8 = (Button) findViewById(R.id.bDecTarget);
+        button9 = (Button) findViewById(R.id.bIncTarget);
         
         atext= (TextView) findViewById(R.id.CurrentTargetPace);
         
@@ -58,10 +58,10 @@ public class LetsRunModeActivity extends Activity implements OnClickListener {
        // imagebutton2.setOnClickListener(this);
         imagebutton4.setOnClickListener(this);
         imagebutton5.setOnClickListener(this);
-        imagebutton6.setOnClickListener(this);
-        imagebutton7.setOnClickListener(this);
-        imagebutton8.setOnClickListener(this);
-        imagebutton9.setOnClickListener(this);
+        button6.setOnClickListener(this);
+        button7.setOnClickListener(this);
+        button8.setOnClickListener(this);
+        button9.setOnClickListener(this);
         
         
         
@@ -152,26 +152,26 @@ public class LetsRunModeActivity extends Activity implements OnClickListener {
 	            }
 	            
 	            // Decreases the user's preferred pace for this track by 0.5.
-	            if(v == imagebutton6){
+	            if(v == button6){
 	            	
 	            	DatabaseActivity.decPrefPace();
 	            	
 	            }
 	            
 	            // Increases the user's preferred pace for this track by 0.5.
-	            if(v == imagebutton7){
+	            if(v == button7){
 	            	
 	            	DatabaseActivity.incPrefPace();
 	            	
 	            }
 	            
-	            if(v == imagebutton8){
+	            if(v == button8){
 	            	
 	            	setTargetPace(false);     	
        	
 	            }
 	            
-	            if(v == imagebutton9){
+	            if(v == button9){
 	            	
 	            	setTargetPace(true);
 	            }
