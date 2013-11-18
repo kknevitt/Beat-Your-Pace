@@ -20,6 +20,7 @@ import com.example.beatyourpace.R;
 
 public class LetsRunModeActivity extends Activity implements OnClickListener {
 	
+	
 	public double targetPace;
 
  
