@@ -35,7 +35,7 @@ public class LetsRunModeActivity extends Activity implements OnClickListener {
 		
 		
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_lets_run_mode); 	//loading lets run mode layout
+		setContentView(R.layout.activity_lets_run_mode); 	
 		
 		//creating image buttons objects and getting their setup from xml
         imagebutton1 = (ImageButton) findViewById(R.id.bPlaySong); // for play button
@@ -64,8 +64,7 @@ public class LetsRunModeActivity extends Activity implements OnClickListener {
         button9.setOnClickListener(this);
         
         
-        
-    
+  
    }
 
 
@@ -83,13 +82,10 @@ public class LetsRunModeActivity extends Activity implements OnClickListener {
 		MusicPlayer musicPlayer = new MusicPlayer(trackList); // This has the tracklist object as the parameter
 
 	      if(v == imagebutton1){ //onclick the first track is played
-	    	  
-	    	  
-	    	  try {
-	    		  
+	    	 
+	    	  try {  
 					musicPlayer.play();
-	    	  
-					
+	    	  	
 	      	} catch (IllegalArgumentException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -104,10 +100,7 @@ public class LetsRunModeActivity extends Activity implements OnClickListener {
 				e.printStackTrace();
 			}
 	      }
-	            
-	    	  
-	    	  
-	    	  
+	            	  
 	            if(v == imagebutton4){ //onclick the next track is played
 	            	 try {
 	            		 

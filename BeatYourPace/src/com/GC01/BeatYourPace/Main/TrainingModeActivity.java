@@ -39,10 +39,10 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
         //imagebutton2 = (ImageButton) findViewById(R.id.imageButton2); 	//pause button
         imagebutton4 = (ImageButton) findViewById(R.id.bSkipTrack); 		//skip track button
         imagebutton5 = (ImageButton) findViewById(R.id.bPreviousTrack); 	//previous track button
-        button6 = (Button) findViewById(R.id.bSongTooSlow); 		//tag track as too fast
-        button7 = (Button) findViewById(R.id.bSongTooFast);		//tag track as too slow
-        button8 = (Button) findViewById(R.id.bDecTarget);			//increase target pace
-        button9 = (Button) findViewById(R.id.bIncTarget);			//decrease target pace
+        button6 = (Button) findViewById(R.id.bSongTooSlow); 				//tag track as too fast
+        button7 = (Button) findViewById(R.id.bSongTooFast);					//tag track as too slow
+        button8 = (Button) findViewById(R.id.bDecTarget);					//increase target pace
+        button9 = (Button) findViewById(R.id.bIncTarget);					//decrease target pace
         
         atext= (TextView) findViewById(R.id.CurrentTargetPace);
         
