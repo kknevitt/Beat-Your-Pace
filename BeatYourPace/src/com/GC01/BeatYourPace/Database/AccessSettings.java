@@ -21,6 +21,9 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 
 public class AccessSettings extends Activity {
+
+	
+	/** a line of garbage */
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
