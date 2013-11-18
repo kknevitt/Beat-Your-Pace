@@ -12,9 +12,9 @@ public class TrackList {
 	private ArrayList<DataModel> paceTrackList = new ArrayList(); // ArrayList containing song details and the path file for the song.	
 	
 
-	public TrackList(String inputPace){
+	public TrackList(double inputPace){
 		
-		double outPutPace = Double.parseDouble(inputPace);
+		double outPutPace = inputPace;
 		//	Creating a temporary Track List based on the desired Target Pace
 		
 	//	paceTrackList = DatabaseHelper.getAppropriateSongs(outPutPace); This is meant to 

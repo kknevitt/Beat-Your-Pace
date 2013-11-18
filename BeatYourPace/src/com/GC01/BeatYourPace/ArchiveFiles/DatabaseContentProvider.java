@@ -5,7 +5,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
 
-public class BYPDbContentProvider extends ContentProvider {
+public class DatabaseContentProvider extends ContentProvider {
 
 	//don't forget to add this to the manifest!
 	

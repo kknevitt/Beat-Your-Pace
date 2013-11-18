@@ -1,5 +1,6 @@
 package com.GC01.BeatYourPace.PaceCalculator;
 
+import com.GC01.BeatYourPace.Database.AccessSettings;
 import com.GC01.BeatYourPace.Database.DataModel;
 import com.example.beatyourpace.R;
 
@@ -10,18 +11,20 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 
+
+
 public class Pace extends Activity {
 	Context context;
 	
 	
 	// Declaring Fields.
-	String pace;
+	private String pace;
 	// paceCalc has to be a float as this is the variable that the getSpeed() method returns from the Location object.
-	float paceCalc;
+	private float paceCalc;
 	
 	// constants for converting from metres per seconds, to minutes per mile, or km per mile
-	final double MPS_TO_MINS_PER_MILE = 0.0372822715;
-	final double MPS_TO_PER_KILOMETRES = 0.06;
+	private final double MPS_TO_MINS_PER_MILE = 0.0372822715;
+	private final double MPS_TO_PER_KILOMETRES = 0.06;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -65,9 +68,9 @@ public class Pace extends Activity {
 		    	// This is casted as a float because you are dividing a float by a double, but only need 
 		    	// the accuracy of a float for our purposes.
 		    
-		    	if (DataModel.unitType == 1)
+		    	if (AccessSettings.getUnitType() == 1)
 				paceCalc = (float) (location.getSpeed() * MPS_TO_MINS_PER_MILE);
-				else if (DataModel.unitType == 2);
+				else if (AccessSettings.getUnitType() == 2);
 				paceCalc = (float) (location.getSpeed() * MPS_TO_PER_KILOMETRES);
 				
 				

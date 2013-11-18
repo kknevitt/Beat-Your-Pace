@@ -2,13 +2,10 @@ package com.GC01.BeatYourPace.MusicPlayer;
  
 import java.io.IOException;
 import android.media.MediaPlayer;
-import android.content.Context;
-
 
  
 public class MusicPlayer {	 
 
-	public Context context;
 	private MediaPlayer mediaPlayer = new MediaPlayer();
 	private TrackList trackList; // default TrackList made to show methods working
 	

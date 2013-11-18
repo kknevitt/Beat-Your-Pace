@@ -1,26 +1,28 @@
 package com.GC01.BeatYourPace.Main;
-	
 
 import java.io.IOException;
 
-import com.GC01.BeatYourPace.Database.DatabaseActivity;
-import com.GC01.BeatYourPace.Database.DatabaseHelper;
-import com.GC01.BeatYourPace.MusicPlayer.MusicPlayer;
-import com.GC01.BeatYourPace.MusicPlayer.TrackList;
-import com.example.beatyourpace.R;
-
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-public class TrainingModeActivity extends Activity implements OnClickListener {
+import com.GC01.BeatYourPace.Database.DatabaseActivity;
+import com.GC01.BeatYourPace.Database.DatabaseHelper;
+import com.GC01.BeatYourPace.MusicPlayer.TrackList;
+import com.GC01.BeatYourPace.MusicPlayer.MusicPlayer;
+import com.example.beatyourpace.R;
 
+public class LetsRunModeActivity extends Activity implements OnClickListener {
+	
 	public double targetPace;
-    
+
+ 
     ImageButton imagebutton1, imagebutton2, imagebutton4, imagebutton5, imagebutton6, imagebutton7, imagebutton8, imagebutton9;
     TextView atext;
     
@@ -29,8 +31,10 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 	
 	//	targetPace = DatabaseActivity.getTargetPace();
 		
+		
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.trainingmode); 	//loading training mode layout
+		setContentView(R.layout.activity_lets_run_mode); 	//loading lets run mode layout
+	
 		
 		//creating image buttons objects and getting their setup from xml
         imagebutton1 = (ImageButton) findViewById(R.id.bPlaySong); // for play button
@@ -78,7 +82,8 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 		MusicPlayer musicPlayer = new MusicPlayer(trackList); // This has the tracklist object as the parameter
 
 	      if(v == imagebutton1){ //onclick the first track is played
-	    
+	    	  
+	    	  
 	    	  try {
 	    		  
 					musicPlayer.play();
@@ -185,12 +190,9 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 				
 		}
 		
-		// retrieving the targetPace
 		public double getTargetPace(){
 			
 			return targetPace;
-	}
+		}
 		
-}
-	
-	
+	}
