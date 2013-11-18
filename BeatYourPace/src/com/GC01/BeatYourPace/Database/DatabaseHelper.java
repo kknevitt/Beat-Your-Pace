@@ -39,7 +39,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 
-		/** SQL statement to create TrackData table */
+		// SQL statement to create TrackData table
 		String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS" + DataModel.TABLE_NAME + "(" + DataModel.COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + DataModel.COL_MEDIASTOREID + " INTEGER,"+ DataModel.COL_TITLE + " TEXT," + DataModel.COL_ARTIST + " TEXT,"  + DataModel.COL_BPM + " INTEGER," + DataModel.COL_PREF_PACE + " DOUBLE)"; 
 
 		// create the table

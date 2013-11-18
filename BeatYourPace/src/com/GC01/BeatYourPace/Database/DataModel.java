@@ -20,10 +20,10 @@ import android.preference.PreferenceManager;
 
 public class DataModel {
 
-	/** Database name */
+	//Database name
 	public static final String DATABASE_NAME = "byp.db";
 
-	/** column names for the database */
+	// column names for the database
 	public static final String COL_ID = "_id";
 	public static final String COL_MEDIASTOREID = "mediastoreID";
 	public static final String COL_ARTIST = "artist";
@@ -32,10 +32,10 @@ public class DataModel {
 	//this variable is held in miles, the value in km will be calculated
 	public static final String COL_PREF_PACE = "prefpace";
 
-	/** table names for the database */
+	//table names for the database
 	public static final String TABLE_NAME = "TrackData";
 
-	/** data types */
+	//data types
 	//good practice to declare these as private and only return them with getters, this needs to be
 	//addressed and changes made to the DatabaseActivity where these are referred to
 	public int id;

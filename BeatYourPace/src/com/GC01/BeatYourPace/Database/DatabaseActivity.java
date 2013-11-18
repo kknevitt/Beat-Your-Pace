@@ -64,7 +64,7 @@ public class DatabaseActivity extends Activity {
 	 * @param artist	String of the artist name
 	 */
 	public void addTrack(Integer msId, String title, String artist) {
-		/** gets a reference to the database in writable format */
+		//get reference to the database in writable format
 		SQLiteDatabase db = dh.getWritableDatabase();
 
 		// create ContentValues to add key "column"/value
@@ -94,7 +94,7 @@ public class DatabaseActivity extends Activity {
 		values2.put(DataModel.COL_TITLE, MediaStore.Audio.Media.TITLE);
 		values2.put(DataModel.COL_ARTIST, MediaStore.Audio.Artists.ARTIST);
 
-		/** columns needed from the content provider media store */
+		//columns needed from the content provider media store
 		String[] projection = { MediaStore.Audio.Media._ID, MediaStore.Audio.Media.TITLE,MediaStore.Audio.Artists.ARTIST};
 
 		//Query the media store database using CursorLoader
@@ -143,7 +143,7 @@ public class DatabaseActivity extends Activity {
 		/** ArrayList to hold the meta data about the tracks to be played */
 		ArrayList<DataModel> appropriateSongs = new ArrayList<DataModel>();
 
-		/** String which builds the query to search for appropriate songs for a given BPM */
+		//Build the query
 		String query = "SELECT  * FROM " + DataModel.TABLE_NAME + "WHERE COL_PACE = " + preferredPace;
 
 		//Get reference to readable DB
