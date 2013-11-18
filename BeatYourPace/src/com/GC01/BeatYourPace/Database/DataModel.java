@@ -14,7 +14,7 @@ import android.preference.PreferenceManager;
  * </dl>
  * 
  * @version $Date: 2013/11/14
- * @author snichols
+ * @author sarahnicholson
  *
  */
 
@@ -30,25 +30,20 @@ public class DataModel {
 	public static final String COL_TITLE = "title";
 	public static final String COL_BPM = "bpm";
 	//this variable is held in miles, the value in km will be calculated
-	public static final String COL_PREF_PACE = "pace";
+	public static final String COL_PREF_PACE = "prefpace";
 
 	//table names for the database
 	public static final String TABLE_NAME = "TrackData";
 
 	//data types
+	//good practice to declare these as private and only return them with getters, this needs to be
+	//addressed and changes made to the DatabaseActivity where these are referred to
 	public int id;
 	public int mediaStoreId;
 	public String artist;
 	public String title;
 	public int bpm; 
 	public double preferredPace;
-
-	
-	//double targetTargetPace to be read from the settings set_target_pace, placeholder value of 6.0 for now
-	public static double defaultTargetPace = getDefaultTargetPace();
-	
-	//this needs to be moved to within settings
-	public static int unitType = getUnitType();
 	
 	public DataModel() {	
 		super();
@@ -98,27 +93,14 @@ public class DataModel {
 		return preferredPace;
 	}
 
-	public void setPreferredPace(double pace) {
-		this.preferredPace = pace;
+	public void setPreferredPace(double prefPace) {
+		this.preferredPace = prefPace;
 	}
 
 	@Override
 	//needed for arraylist
 	public String toString() {
 		return "DataModel [id=" + id + ", mediastoreID=" + mediaStoreId + ", artist=" + artist  + ", title=" + title + ", bpm=" + bpm + ", pace=" + preferredPace + "]";
-	}
-	
-	public static double getDefaultTargetPace(){
-		//The following parameter null needs to be changed to the correct context
-		SharedPreferences sPref = PreferenceManager.getDefaultSharedPreferences(null);
-		defaultTargetPace = Double.parseDouble(Float.toString(sPref.getFloat("set_target_pace", (float) 6.0)));
-		return defaultTargetPace;
-	}
-	
-	public static int getUnitType(){
-		SharedPreferences sPref = PreferenceManager.getDefaultSharedPreferences(null);
-		unitType = sPref.getInt("unitType", 1);
-		return unitType;
 	}
 
 }

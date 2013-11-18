@@ -1,5 +1,6 @@
 package com.GC01.BeatYourPace.PaceCalculator;
 
+import com.GC01.BeatYourPace.Database.AccessSettings;
 import com.GC01.BeatYourPace.Database.DataModel;
 import com.example.beatyourpace.R;
 
@@ -67,9 +68,9 @@ public class Pace extends Activity {
 		    	// This is casted as a float because you are dividing a float by a double, but only need 
 		    	// the accuracy of a float for our purposes.
 		    
-		    	if (DataModel.unitType == 1)
+		    	if (AccessSettings.getUnitType() == 1)
 				paceCalc = (float) (location.getSpeed() * MPS_TO_MINS_PER_MILE);
-				else if (DataModel.unitType == 2);
+				else if (AccessSettings.getUnitType() == 2);
 				paceCalc = (float) (location.getSpeed() * MPS_TO_PER_KILOMETRES);
 				
 				

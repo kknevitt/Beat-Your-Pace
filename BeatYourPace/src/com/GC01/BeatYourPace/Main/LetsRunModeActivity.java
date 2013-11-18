@@ -3,13 +3,16 @@ package com.GC01.BeatYourPace.Main;
 import java.io.IOException;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.GC01.BeatYourPace.Database.DatabaseActivity;
 import com.GC01.BeatYourPace.Database.DatabaseHelper;
 import com.GC01.BeatYourPace.MusicPlayer.TrackList;
 import com.GC01.BeatYourPace.MusicPlayer.MusicPlayer;
@@ -27,6 +30,7 @@ public class LetsRunModeActivity extends Activity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 	
 	//	targetPace = DatabaseActivity.getTargetPace();
+		
 		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_lets_run_mode); 	//loading lets run mode layout
@@ -149,14 +153,14 @@ public class LetsRunModeActivity extends Activity implements OnClickListener {
 	            // Decreases the user's preferred pace for this track by 0.5.
 	            if(v == imagebutton6){
 	            	
-	            	DatabaseHelper.decPrefPace();
+	            	DatabaseActivity.decPrefPace();
 	            	
 	            }
 	            
 	            // Increases the user's preferred pace for this track by 0.5.
 	            if(v == imagebutton7){
 	            	
-	            	DatabaseHelper.incPrefPace();
+	            	DatabaseActivity.incPrefPace();
 	            	
 	            }
 	            
