@@ -36,11 +36,11 @@ public class Analytics {
 		
 	}
 	
-	public String getAnalyticCat(){
+	public String getAnalyticsCat(){
 		return analyticCat;
 	}
 	
-	protected void setAnalyticCat(){
+	protected void setAnalyticsCat(){
 	}
 	
 }

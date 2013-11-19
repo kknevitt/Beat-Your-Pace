@@ -1,8 +1,8 @@
 package com.GC01.BeatYourPace.PaceCalculator;
 
 
-import com.GC01.BeatYourPace.Database.AccessSettings;
 import com.GC01.BeatYourPace.Database.DataModel;
+import com.GC01.BeatYourPace.Settings.AccessSettings;
 import com.example.beatyourpace.R;
 
 import android.app.Activity;

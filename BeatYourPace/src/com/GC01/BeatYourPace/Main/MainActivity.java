@@ -4,6 +4,7 @@ import android.app.Activity;
 
 import com.google.analytics.tracking.android.EasyTracker;
 import com.GC01.BeatYourPace.ArchiveFiles.TrainingModeActivity;
+import com.GC01.BeatYourPace.Settings.SettingsActivity;
 import com.example.beatyourpace.R;
 
 import android.os.Bundle;
