@@ -89,10 +89,10 @@ public class DatabaseActivity extends Activity {
 		SQLiteDatabase db = dh.getWritableDatabase();
 
 		// create ContentValues to add the content from the media store table to the equivalent column in our database
-		ContentValues values2 = new ContentValues();
-		values2.put(DataModel.COL_MEDIASTOREID, MediaStore.Audio.Media._ID);
-		values2.put(DataModel.COL_TITLE, MediaStore.Audio.Media.TITLE);
-		values2.put(DataModel.COL_ARTIST, MediaStore.Audio.Artists.ARTIST);
+		ContentValues cv = new ContentValues();
+		cv.put(DataModel.COL_MEDIASTOREID, MediaStore.Audio.Media._ID);
+		cv.put(DataModel.COL_TITLE, MediaStore.Audio.Media.TITLE);
+		cv.put(DataModel.COL_ARTIST, MediaStore.Audio.Artists.ARTIST);
 
 		//columns needed from the content provider media store
 		String[] projection = { MediaStore.Audio.Media._ID, MediaStore.Audio.Media.TITLE,MediaStore.Audio.Artists.ARTIST};
@@ -105,7 +105,7 @@ public class DatabaseActivity extends Activity {
 		//iterate through the contents and then write them to our database
 		cursor.moveToFirst();
 		while (!cursor.isAfterLast()) {
-			db.insert(DataModel.DATABASE_NAME, null, values2);
+			db.insert(DataModel.DATABASE_NAME, null, cv);
 			cursor.moveToNext();
 		}
 		cursor.close();
@@ -154,16 +154,16 @@ public class DatabaseActivity extends Activity {
 		//int numRows = cursor.getCount();
 		cursor.moveToFirst();
 		while (!cursor.isAfterLast()) {
-			DataModel track = new DataModel();
-			track.id = cursor.getInt(0);
-			track.mediaStoreId = cursor.getInt(1);
-			track.artist = cursor.getString(2);
-			track.title = cursor.getString(3);
-			track.bpm = cursor.getInt(4);
-			track.preferredPace = cursor.getDouble(5);
+			DataModel trackModel = new DataModel();
+			trackModel.id = cursor.getInt(0);
+			trackModel.mediaStoreId = cursor.getInt(1);
+			trackModel.artist = cursor.getString(2);
+			trackModel.title = cursor.getString(3);
+			trackModel.bpm = cursor.getInt(4);
+			trackModel.preferredPace = cursor.getDouble(5);
 
 			// Add track to the playlist for the pace
-			appropriateSongs.add(track);
+			appropriateSongs.add(trackModel);
 			cursor.moveToNext();
 		}
 		cursor.close();
