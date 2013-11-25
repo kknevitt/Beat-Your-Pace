@@ -1,8 +1,5 @@
 package com.GC01.BeatYourPace.Database;
 
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-
 /**
  * <dl>
  * 	<dt> Purpose:
@@ -45,8 +42,17 @@ public class DataModel {
 	public int bpm; 
 	public double preferredPace;
 	
-	public DataModel() {	
-		super();
+	public DataModel() {
+		
+	}
+	
+	public DataModel(int id, int mediaStoreId, String artist, String title, int bpm, double preferredPace) {	
+		this.id = id;
+		this.mediaStoreId = mediaStoreId;
+		this.artist = artist;
+		this.title = title;
+		this.bpm = bpm;
+		this.preferredPace = preferredPace;
 	}
 
 	public int getId() {
@@ -93,8 +99,8 @@ public class DataModel {
 		return preferredPace;
 	}
 
-	public void setPreferredPace(double prefPace) {
-		this.preferredPace = prefPace;
+	public void setPreferredPace(double preferredPace) {
+		this.preferredPace = preferredPace;
 	}
 
 	@Override

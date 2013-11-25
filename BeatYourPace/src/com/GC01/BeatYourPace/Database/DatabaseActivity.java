@@ -143,33 +143,43 @@ public class DatabaseActivity extends Activity {
 		/** ArrayList to hold the meta data about the tracks to be played */
 		ArrayList<DataModel> appropriateSongs = new ArrayList<DataModel>();
 
-		//Build the query
+		/** String that builds the query */
 		String query = "SELECT  * FROM " + DataModel.TABLE_NAME + "WHERE COL_PACE = " + preferredPace;
 
-		//Get reference to readable DB
+		//Get a reference to readable DB
 		SQLiteDatabase db = dh.getReadableDatabase();
 		Cursor cursor = db.rawQuery(query, null);
 
 		//Go over each row, build track and add it to list
-		//int numRows = cursor.getCount();
 		cursor.moveToFirst();
 		while (!cursor.isAfterLast()) {
-			DataModel trackModel = new DataModel();
-			trackModel.id = cursor.getInt(0);
-			trackModel.mediaStoreId = cursor.getInt(1);
-			trackModel.artist = cursor.getString(2);
-			trackModel.title = cursor.getString(3);
-			trackModel.bpm = cursor.getInt(4);
-			trackModel.preferredPace = cursor.getDouble(5);
+			//Create an entry for one track using the data fields from the data model
+			DataModel trackModel = buildDataMod(cursor);
 
 			// Add track to the playlist for the pace
 			appropriateSongs.add(trackModel);
 			cursor.moveToNext();
 		}
 		cursor.close();
-		// return playlist
+		// return the completed playlist
 		return appropriateSongs;
 	}
+	
+	/**
+	 * This method is used to read the output from the database and create one entry (used elsewhere to build an ArrayList)
+	 * @param cursor   Uses the cursor which read lines from the database
+	 * @return track   Holds one record from the database so it later be written to an arrayList
+	 */
+	  private DataModel buildDataMod(Cursor cursor) {
+		    DataModel track = new DataModel();
+		    track.setId(cursor.getInt(0));
+			track.setMediastoreid(cursor.getInt(1));
+			track.setArtist(cursor.getString(2));
+			track.setTitle(cursor.getString(3));
+			track.setBPM(cursor.getInt(4));
+			track.setPreferredPace(cursor.getDouble(5));
+		    return track;
+		  }
 	
 	/**
 	 * Update database method yet to be implemented, this needs to look for changes in the audio db
