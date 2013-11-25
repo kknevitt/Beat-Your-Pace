@@ -44,7 +44,7 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
         button8 = (Button) findViewById(R.id.bDecTarget);					//increase target pace
         button9 = (Button) findViewById(R.id.bIncTarget);					//decrease target pace
         
-        atext= (TextView) findViewById(R.id.CurrentTargetPace);
+        atext = (TextView) findViewById(R.id.CurrentTargetPace);
         
         // Takes the variable Target Pace and pushes it to the text view.
         String tarPace = Double.toString(targetPace);
@@ -77,37 +77,28 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 		TrackList trackList = new TrackList(getTargetPace()); // This has the Target Pace as its parameter
 		MusicPlayer musicPlayer = new MusicPlayer(trackList); // This has the tracklist object as the parameter
 
-	      if(v == imagebutton1){ //onclick the first track is played
-	    
-	    	  try {
-	    		  
-					musicPlayer.play();
-	    	  
-					
-	      	} catch (IllegalArgumentException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SecurityException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IllegalStateException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	      }
-	            
-	    	  
-	    	  
-	    	  
-	            if(v == imagebutton4){ //onclick the next track is played
-	            	 try {
-	            		 
+		switch (v.getId()) {		
+			case R.id.bPlaySong: 	    		  
+					try {
+						musicPlayer.play();
+					} catch (IllegalArgumentException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (SecurityException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (IllegalStateException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+			    break;
+			
+			case R.id.bSkipTrack: 
+	    	    	try {
 						musicPlayer.skip();
-						
-						
 					} catch (IllegalArgumentException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -121,15 +112,11 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
+	            break; 
 	                 
-	                 
-	                	 
-	            } 
-	            if(v == imagebutton5){ //onclick the previous track is played
-	                 
-	                 try {
-						musicPlayer.previous();
-						
+			case R.id.bPreviousTrack:
+	                try {
+						musicPlayer.previous();	
 					} catch (IllegalArgumentException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -143,51 +130,43 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					} 	
-	            }
+	            break;
 	            
 	            // Decreases the user's preferred pace for this track by 0.5.
-	            if(v == button6){
-	            	
+			case R.id.bSongTooSlow:
 	            	DatabaseActivity.decPrefPace();
-	            	
-	            }
+	            break;
 	            
 	            // Increases the user's preferred pace for this track by 0.5.
-	            if(v == button7){
-	            	
+			case R.id.bSongTooFast:
 	            	DatabaseActivity.incPrefPace();
-	            	
-	            }
+	            break;
+	        
+			case R.id.bDecTarget:    
+				setTargetPace(false);   	
+	            break;
 	            
-	            if(v == button8){
-	            	
-	            	setTargetPace(false);     	
-       	
-	            }
-	            
-	            if(v == button9){
-	            	
+			case R.id.bIncTarget:
 	            	setTargetPace(true);
-	            }
-	      }
+	            break;
+		}
+	  }
 	
 		public void setTargetPace(boolean increment){
 			
 			if (increment == true){
-				
 				targetPace += 0.5;
 			}
 				
 			else {
-				
 				targetPace -= 0.5;
 			}
-				
+			
+			
 		}
 		
 		// retrieving the targetPace
 		public double getTargetPace(){
-			
 			return targetPace;
 	}
 		

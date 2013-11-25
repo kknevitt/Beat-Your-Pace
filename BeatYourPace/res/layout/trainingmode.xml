@@ -45,7 +45,6 @@
 
     <ImageButton
         android:id="@+id/bPlaySong"
-
         android:layout_width="75sp"
         android:layout_height="75sp"
         android:layout_alignTop="@+id/bPreviousTrack"
