@@ -21,7 +21,7 @@ import com.echonest.api.v4.TrackAnalysis;
 
 
 public class BpmRetriever {
-		
+	
 	/**creating get method to query EchoNest library 
 	 * 
 	 * @return
