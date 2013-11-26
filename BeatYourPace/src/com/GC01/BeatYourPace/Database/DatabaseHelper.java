@@ -28,10 +28,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 	/** Field which sets the Database version */
 	public static final int DATABASE_VERSION = 1;
+	
+	// SQL statement to create TrackData table
+	private static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS" + DataEntry.TABLE_NAME + "(" + DataEntry.COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + DataEntry.COL_MEDIASTOREID + " INTEGER,"+ DataEntry.COL_TITLE + " TEXT," + DataEntry.COL_ARTIST + " TEXT,"  + DataEntry.COL_BPM + " INTEGER," + DataEntry.COL_PREF_PACE + " DOUBLE)"; 
 
 	public DatabaseHelper(Context context, String name, CursorFactory factory,int version) {
 		super(context, DataEntry.DATABASE_NAME, factory, DATABASE_VERSION);
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -40,10 +42,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	 */
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-
-		// SQL statement to create TrackData table
-		String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS" + DataEntry.TABLE_NAME + "(" + DataEntry.COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + DataEntry.COL_MEDIASTOREID + " INTEGER,"+ DataEntry.COL_TITLE + " TEXT," + DataEntry.COL_ARTIST + " TEXT,"  + DataEntry.COL_BPM + " INTEGER," + DataEntry.COL_PREF_PACE + " DOUBLE)"; 
-
 		// create the table
 		db.execSQL(CREATE_TABLE);
 	}

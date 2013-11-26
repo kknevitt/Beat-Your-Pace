@@ -23,13 +23,13 @@ public class DataModel {
 	private String artist;
 	private String title;
 	private int bpm; 
-	private double preferredPace;
+	private float preferredPace;
 	
 	public DataModel() {
 		
 	}
 	
-	public DataModel(int id, int mediaStoreId, String artist, String title, int bpm, double preferredPace) {	
+	public DataModel(int id, int mediaStoreId, String artist, String title, int bpm, float preferredPace) {	
 		this.id = id;
 		this.mediaStoreId = mediaStoreId;
 		this.artist = artist;
@@ -78,11 +78,11 @@ public class DataModel {
 		this.bpm = bpm;
 	}
 
-	public double getPreferredPace(){
+	public float getPreferredPace(){
 		return preferredPace;
 	}
 
-	public void setPreferredPace(double preferredPace) {
+	public void setPreferredPace(float preferredPace) {
 		this.preferredPace = preferredPace;
 	}
 

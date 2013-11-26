@@ -126,7 +126,7 @@ public class DatabaseActivity extends Activity {
 	 * @param preferredPace	Double that is the preferred pace that this track should be used for
 	 * @param trackId	Integer that is the unique reference to the track in the device's media store db
 	 */
-	public void addBpmPace(int bpm, double preferredPace, int trackId){
+	public void addBpmPace(int bpm, float preferredPace, int trackId){
 		// Insert the new values for BPM and pace using SQL
 		SQLiteDatabase db = dh.getWritableDatabase();
 		String sql = "UPDATE " + DataEntry.TABLE_NAME + "SET " + DataEntry.COL_BPM + "=" + bpm + "," + DataEntry.COL_PREF_PACE + "=" + preferredPace +"WHERE " + DataEntry.COL_MEDIASTOREID + "=" + trackId;
@@ -180,7 +180,7 @@ public class DatabaseActivity extends Activity {
 			track.setArtist(cursor.getString(2));
 			track.setTitle(cursor.getString(3));
 			track.setBPM(cursor.getInt(4));
-			track.setPreferredPace(cursor.getDouble(5));
+			track.setPreferredPace(cursor.getFloat(5));
 		    return track;
 		  }
 	
@@ -235,63 +235,63 @@ public class DatabaseActivity extends Activity {
 
 		SharedPreferences sPref = PreferenceManager.getDefaultSharedPreferences(this);
 		int unitType = sPref.getInt("unitType", 1);
-		double prefPace;
+		float prefPace;
 
 		switch(bpm) {
 		case 150:
 			if (unitType == 2) {
-				prefPace = 16.0;
+				prefPace = (float) 16.0;
 			} else {
-				prefPace = 10.0;
+				prefPace = (float) 10.0;
 			}
 			break;
 		case 153:
 			if (unitType == 2) {
-				prefPace = 14.0;
+				prefPace = (float) 14.0;
 			} else {
-				prefPace = 9.0;
+				prefPace = (float) 9.0;
 			}
 			break;
 		case 156:
 			if (unitType == 2) {
-				prefPace = 12.0;
+				prefPace = (float) 12.0;
 			} else {
-				prefPace = 8.0;
+				prefPace = (float) 8.0;
 			}
 			break;
 		case 160:
 			if (unitType == 2) {
-				prefPace = 10.0;
+				prefPace = (float) 10.0;
 			} else {
-				prefPace = 7.0;
+				prefPace = (float) 7.0;
 			}
 			break;
 		case 163:
 			if (unitType == 2) {
-				prefPace = 9.0;
+				prefPace = (float) 9.0;
 			} else {
-				prefPace = 6.0;
+				prefPace = (float) 6.0;
 			}
 			break;
 		case 166:
 			if (unitType == 2) {
-				prefPace = 8.0;
+				prefPace = (float) 8.0;
 			} else {
-				prefPace = 5.0;
+				prefPace = (float) 5.0;
 			}
 			break;
 		case 171:
 			if (unitType == 2) {
-				prefPace = 6.0;
+				prefPace = (float) 6.0;
 			} else {
-				prefPace = 4.0;
+				prefPace = (float) 4.0;
 			}
 			break;
 		default:
 			if (unitType == 2) {
-				prefPace = 10.0;
+				prefPace = (float) 10.0;
 			} else {
-				prefPace = 7.0;
+				prefPace = (float) 7.0;
 			}
 			break;
 		}
