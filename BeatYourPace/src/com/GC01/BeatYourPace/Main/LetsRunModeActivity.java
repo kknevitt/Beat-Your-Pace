@@ -23,7 +23,6 @@ public class LetsRunModeActivity extends Activity implements OnClickListener {
 	
 	
 	public double targetPace;
-
     ImageButton imagebutton1, imagebutton2, imagebutton4, imagebutton5;
     Button button6, button7, button8, button9;
     TextView atext;
@@ -46,11 +45,10 @@ public class LetsRunModeActivity extends Activity implements OnClickListener {
         button7 = (Button) findViewById(R.id.bSongTooFast);
         button8 = (Button) findViewById(R.id.bDecTarget);
         button9 = (Button) findViewById(R.id.bIncTarget);
-        
         atext= (TextView) findViewById(R.id.CurrentTargetPace);
         
         // Takes the variable Target Pace and pushes it to the text view.
-        String tarPace = Double.toString(targetPace);
+        String tarPace = String.valueOf(getTargetPace());
         atext.setText(tarPace);
         
         //setting an event listener for each button
@@ -134,7 +132,7 @@ public class LetsRunModeActivity extends Activity implements OnClickListener {
 	            
    
 		case R.id.bDecTarget:
-	          setTargetPace(false);     	
+	          setTargetPace(false); 
 	          break;
 	         
 		case R.id.bIncTarget:
@@ -145,7 +143,6 @@ public class LetsRunModeActivity extends Activity implements OnClickListener {
 	
 	
 	public void setTargetPace(boolean increment){
-			
 			if (increment == true){	
 				targetPace += 0.5;
 			}

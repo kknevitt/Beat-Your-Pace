@@ -47,7 +47,7 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
         atext = (TextView) findViewById(R.id.CurrentTargetPace);
         
         // Takes the variable Target Pace and pushes it to the text view.
-        String tarPace = Double.toString(targetPace);
+        String tarPace = String.valueOf(getTargetPace());
         atext.setText(tarPace);
         	
         //setting an event listener for each button
