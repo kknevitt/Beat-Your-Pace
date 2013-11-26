@@ -17,7 +17,10 @@ package com.GC01.BeatYourPace.Database;
  */
 
 import java.util.ArrayList;
+
+import com.GC01.BeatYourPace.Database.DatabaseContract.DataEntry;
 import com.example.beatyourpace.R;
+
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -36,7 +39,7 @@ import android.database.sqlite.SQLiteDatabase;
 public class DatabaseActivity extends Activity {
 	
 	/** Instantiates a subclass of SQLiteOpenHelper to access our database */
-	DatabaseHelper dh = new DatabaseHelper(this, DataModel.DATABASE_NAME, null, DatabaseHelper.DATABASE_VERSION);
+	DatabaseHelper dh = new DatabaseHelper(this, DataEntry.DATABASE_NAME, null, DatabaseHelper.DATABASE_VERSION);
 	//DatabaseActivityDatabaseHelper dh = new DatabaseHelper(getContext());
 	
 	
@@ -69,12 +72,12 @@ public class DatabaseActivity extends Activity {
 
 		// create ContentValues to add key "column"/value
 		ContentValues values = new ContentValues();
-		values.put(DataModel.COL_MEDIASTOREID, msId);
-		values.put(DataModel.COL_TITLE, title);
-		values.put(DataModel.COL_ARTIST, artist);
+		values.put(DataEntry.COL_MEDIASTOREID, msId);
+		values.put(DataEntry.COL_TITLE, title);
+		values.put(DataEntry.COL_ARTIST, artist);
 
 		// Insert values into the database
-		db.insert(DataModel.DATABASE_NAME, null, values);
+		db.insert(DataEntry.DATABASE_NAME, null, values);
 		
 		//Close the database
 		db.close();
@@ -90,9 +93,9 @@ public class DatabaseActivity extends Activity {
 
 		// create ContentValues to add the content from the media store table to the equivalent column in our database
 		ContentValues cv = new ContentValues();
-		cv.put(DataModel.COL_MEDIASTOREID, MediaStore.Audio.Media._ID);
-		cv.put(DataModel.COL_TITLE, MediaStore.Audio.Media.TITLE);
-		cv.put(DataModel.COL_ARTIST, MediaStore.Audio.Artists.ARTIST);
+		cv.put(DataEntry.COL_MEDIASTOREID, MediaStore.Audio.Media._ID);
+		cv.put(DataEntry.COL_TITLE, MediaStore.Audio.Media.TITLE);
+		cv.put(DataEntry.COL_ARTIST, MediaStore.Audio.Artists.ARTIST);
 
 		//columns needed from the content provider media store
 		String[] projection = { MediaStore.Audio.Media._ID, MediaStore.Audio.Media.TITLE,MediaStore.Audio.Artists.ARTIST};
@@ -105,7 +108,7 @@ public class DatabaseActivity extends Activity {
 		//iterate through the contents and then write them to our database
 		cursor.moveToFirst();
 		while (!cursor.isAfterLast()) {
-			db.insert(DataModel.DATABASE_NAME, null, cv);
+			db.insert(DataEntry.DATABASE_NAME, null, cv);
 			cursor.moveToNext();
 		}
 		cursor.close();
@@ -126,7 +129,7 @@ public class DatabaseActivity extends Activity {
 	public void addBpmPace(int bpm, double preferredPace, int trackId){
 		// Insert the new values for BPM and pace using SQL
 		SQLiteDatabase db = dh.getWritableDatabase();
-		String sql = "UPDATE " + DataModel.TABLE_NAME + "SET " + DataModel.COL_BPM + "=" + bpm + "," + DataModel.COL_PREF_PACE + "=" + preferredPace +"WHERE " + DataModel.COL_MEDIASTOREID + "=" + trackId;
+		String sql = "UPDATE " + DataEntry.TABLE_NAME + "SET " + DataEntry.COL_BPM + "=" + bpm + "," + DataEntry.COL_PREF_PACE + "=" + preferredPace +"WHERE " + DataEntry.COL_MEDIASTOREID + "=" + trackId;
 		db.execSQL(sql);
 	}
 	
@@ -144,7 +147,7 @@ public class DatabaseActivity extends Activity {
 		ArrayList<DataModel> appropriateSongs = new ArrayList<DataModel>();
 
 		/** String that builds the query */
-		String query = "SELECT  * FROM " + DataModel.TABLE_NAME + "WHERE COL_PACE = " + preferredPace;
+		String query = "SELECT  * FROM " + DataEntry.TABLE_NAME + "WHERE COL_PACE = " + preferredPace;
 
 		//Get a reference to readable DB
 		SQLiteDatabase db = dh.getReadableDatabase();

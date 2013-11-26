@@ -17,30 +17,13 @@ package com.GC01.BeatYourPace.Database;
 
 public class DataModel {
 
-	//Database name
-	public static final String DATABASE_NAME = "byp.db";
-
-	// column names for the database
-	public static final String COL_ID = "_id";
-	public static final String COL_MEDIASTOREID = "mediastoreID";
-	public static final String COL_ARTIST = "artist";
-	public static final String COL_TITLE = "title";
-	public static final String COL_BPM = "bpm";
-	//this variable is held in miles, the value in km will be calculated
-	public static final String COL_PREF_PACE = "prefpace";
-
-	//table names for the database
-	public static final String TABLE_NAME = "TrackData";
-
 	//data types
-	//good practice to declare these as private and only return them with getters, this needs to be
-	//addressed and changes made to the DatabaseActivity where these are referred to
-	public int id;
-	public int mediaStoreId;
-	public String artist;
-	public String title;
-	public int bpm; 
-	public double preferredPace;
+	private int id;
+	private int mediaStoreId;
+	private String artist;
+	private String title;
+	private int bpm; 
+	private double preferredPace;
 	
 	public DataModel() {
 		

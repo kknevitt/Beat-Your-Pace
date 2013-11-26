@@ -15,6 +15,8 @@ package com.GC01.BeatYourPace.Database;
  *
  */
 
+import com.GC01.BeatYourPace.Database.DatabaseContract.DataEntry;
+
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
@@ -28,7 +30,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	public static final int DATABASE_VERSION = 1;
 
 	public DatabaseHelper(Context context, String name, CursorFactory factory,int version) {
-		super(context, DataModel.DATABASE_NAME, factory, DATABASE_VERSION);
+		super(context, DataEntry.DATABASE_NAME, factory, DATABASE_VERSION);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -40,7 +42,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase db) {
 
 		// SQL statement to create TrackData table
-		String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS" + DataModel.TABLE_NAME + "(" + DataModel.COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + DataModel.COL_MEDIASTOREID + " INTEGER,"+ DataModel.COL_TITLE + " TEXT," + DataModel.COL_ARTIST + " TEXT,"  + DataModel.COL_BPM + " INTEGER," + DataModel.COL_PREF_PACE + " DOUBLE)"; 
+		String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS" + DataEntry.TABLE_NAME + "(" + DataEntry.COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + DataEntry.COL_MEDIASTOREID + " INTEGER,"+ DataEntry.COL_TITLE + " TEXT," + DataEntry.COL_ARTIST + " TEXT,"  + DataEntry.COL_BPM + " INTEGER," + DataEntry.COL_PREF_PACE + " DOUBLE)"; 
 
 		// create the table
 		db.execSQL(CREATE_TABLE);
@@ -58,7 +60,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		Log.w("LOG_TAG", "Upgrading database from version "+ oldoldDbVer + " to " + newDbVer + ", which will destroy all old data");
 
 		// Delete existing tables
-		db.execSQL("DROP TABLE IF EXISTS " + DataModel.TABLE_NAME);
+		db.execSQL("DROP TABLE IF EXISTS " + DataEntry.TABLE_NAME);
 
 		// Create new instance of schema
 		onCreate(db);
