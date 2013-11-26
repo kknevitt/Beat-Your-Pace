@@ -1,6 +1,7 @@
 package com.GC01.BeatYourPace.MusicPlayer;
  
 import java.io.IOException;
+
 import android.media.MediaPlayer;
 /** 
  * @author Kristian Knevitt
@@ -40,9 +41,9 @@ public class MusicPlayer {
 	 */
 	public void play() throws IllegalArgumentException, SecurityException, IllegalStateException, IOException {
 		
+		mediaPlayer.reset();
 		trackList.setSong("play");
-		mediaPlayer.setDataSource(trackList.getSongPath());
-		mediaPlayer.start();		
+		playCurrentSong();
 	}
 	
 	
@@ -52,9 +53,9 @@ public class MusicPlayer {
 	 */
 	public void skip() throws IllegalArgumentException, SecurityException, IllegalStateException, IOException {
 		
+		mediaPlayer.reset();
 		trackList.setSong("skip");
-		mediaPlayer.setDataSource(trackList.getSongPath());
-		mediaPlayer.start();
+		playCurrentSong();
  	}
  	
 	/** Reverts to the previous song in the TrackList ArrayList and plays that song
@@ -63,10 +64,26 @@ public class MusicPlayer {
 	 */
 	public void previous() throws IllegalArgumentException, SecurityException, IllegalStateException, IOException {
 	
+		mediaPlayer.reset();
 		trackList.setSong("previous");
-		mediaPlayer.setDataSource(trackList.getSongPath());
-		mediaPlayer.start();	
+		playCurrentSong();	
  	}
 	
+	
+	private void playCurrentSong() throws IllegalArgumentException, SecurityException, IllegalStateException, IOException{
+		 
+		mediaPlayer.setDataSource(trackList.getSongPath());
+		mediaPlayer.prepare();
+		mediaPlayer.start();
+		
+		/* trying to have the next song play automatically
+		MediaPlayer.OnCompletionListener playerlistener = new MediaPlayer.OnCompletionListener () {
+			public void onCompletion(MediaPlayer mediaPlayer){
+		                    skip();
+			}
+		}
+	}
+	*/
 }
- 
+}
+
