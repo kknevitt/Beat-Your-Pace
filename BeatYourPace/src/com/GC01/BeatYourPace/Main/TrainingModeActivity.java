@@ -28,11 +28,11 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
     
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-	
-	//	targetPace = DatabaseActivity.getTargetPace();
-		
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.trainingmode); 	
+		setContentView(R.layout.trainingmode); 
+		
+	
+	//	targetPace = DatabaseActivity.getTargetPace();	
 		
 		//creates image buttons objects and gets their setup from xml
         imagebutton1 = (ImageButton) findViewById(R.id.bPlaySong); 			//play button
@@ -59,8 +59,6 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
         button7.setOnClickListener(this);
         button8.setOnClickListener(this);
         button9.setOnClickListener(this);
-     
-    
    }
 
 
@@ -82,16 +80,12 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 					try {
 						musicPlayer.play();
 					} catch (IllegalArgumentException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					} catch (SecurityException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					} catch (IllegalStateException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					} catch (IOException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 			    break;
@@ -100,16 +94,12 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 	    	    	try {
 						musicPlayer.skip();
 					} catch (IllegalArgumentException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					} catch (SecurityException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					} catch (IllegalStateException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					} catch (IOException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 	            break; 
@@ -118,16 +108,12 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 	                try {
 						musicPlayer.previous();	
 					} catch (IllegalArgumentException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					} catch (SecurityException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					} catch (IllegalStateException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					} catch (IOException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					} 	
 	            break;

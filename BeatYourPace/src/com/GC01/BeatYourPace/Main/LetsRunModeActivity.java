@@ -84,16 +84,12 @@ public class LetsRunModeActivity extends Activity implements OnClickListener {
 				try {
 					musicPlayer.play();
 				} catch (IllegalArgumentException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				} catch (SecurityException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				} catch (IllegalStateException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				break;
@@ -102,16 +98,12 @@ public class LetsRunModeActivity extends Activity implements OnClickListener {
 	            try {
 	            	musicPlayer.skip();	
 				} catch (IllegalArgumentException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (SecurityException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (IllegalStateException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 	            break;
@@ -120,16 +112,12 @@ public class LetsRunModeActivity extends Activity implements OnClickListener {
 	           try {
 					musicPlayer.previous();
 	           } catch (IllegalArgumentException e) {
-	        	   // TODO Auto-generated catch block
 					e.printStackTrace();
 	           } catch (SecurityException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (IllegalStateException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 	           break;   
