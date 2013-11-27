@@ -20,8 +20,8 @@ public class LetsRunMode extends Activity implements OnClickListener {
 	public double targetPace;
 
  
-    ImageButton imagebutton1, imagebutton2, imagebutton4, imagebutton5, imagebutton6, imagebutton7, imagebutton8, imagebutton9;
-    TextView atext;
+    ImageButton playSongImageButton, imagebutton2, skipSongImageButton, previousSongImageButton, imagebutton6, imagebutton7, imagebutton8, imagebutton9;
+    TextView targetPaceText;
     
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,26 +33,26 @@ public class LetsRunMode extends Activity implements OnClickListener {
 	
 		
 		//creating image buttons objects and getting their setup from xml
-        imagebutton1 = (ImageButton) findViewById(R.id.bPlaySong); // for play button
+        playSongImageButton = (ImageButton) findViewById(R.id.bPlaySong); // for play button
         //imagebutton2 = (ImageButton) findViewById(R.id.imageButton2); //for pause button
-        imagebutton4 = (ImageButton) findViewById(R.id.bSkipTrack); //for skipping track button
-        imagebutton5 = (ImageButton) findViewById(R.id.bPreviousTrack); //for previous track button
+        skipSongImageButton = (ImageButton) findViewById(R.id.bSkipTrack); //for skipping track button
+        previousSongImageButton = (ImageButton) findViewById(R.id.bPreviousTrack); //for previous track button
         imagebutton6 = (ImageButton) findViewById(R.id.bSongTooSlow);
         imagebutton7 = (ImageButton) findViewById(R.id.bSongTooFast);
         imagebutton8 = (ImageButton) findViewById(R.id.bDecTarget);
         imagebutton9 = (ImageButton) findViewById(R.id.bIncTarget);
         
-        atext= (TextView) findViewById(R.id.CurrentTargetPace);
+        targetPaceText= (TextView) findViewById(R.id.CurrentTargetPace);
         
         // Takes the variable Target Pace and pushes it to the text view.
         String tarPace = Double.toString(targetPace);
-        atext.setText(tarPace);
+        targetPaceText.setText(tarPace);
         
         //setting an event listener for each button
-        imagebutton1.setOnClickListener(this);
+        playSongImageButton.setOnClickListener(this);
        // imagebutton2.setOnClickListener(this);
-        imagebutton4.setOnClickListener(this);
-        imagebutton5.setOnClickListener(this);
+        skipSongImageButton.setOnClickListener(this);
+        previousSongImageButton.setOnClickListener(this);
         imagebutton6.setOnClickListener(this);
         imagebutton7.setOnClickListener(this);
         imagebutton8.setOnClickListener(this);
@@ -77,7 +77,7 @@ public class LetsRunMode extends Activity implements OnClickListener {
 		TrackList trackList = new TrackList("8"); // This has the Target Pace as its parameter
 		MusicPlayer musicPlayer = new MusicPlayer(trackList); // This has the tracklist object as the parameter
 
-	      if(v == imagebutton1){ //onclick the first track is played
+	      if(v == playSongImageButton){ //onclick the first track is played
 	    	  
 	    	  
 	    	  try {
@@ -103,7 +103,7 @@ public class LetsRunMode extends Activity implements OnClickListener {
 	    	  
 	    	  
 	    	  
-	            if(v == imagebutton4){ //onclick the next track is played
+	            if(v == skipSongImageButton){ //onclick the next track is played
 	            	 try {
 	            		 
 						musicPlayer.skip();
@@ -126,7 +126,7 @@ public class LetsRunMode extends Activity implements OnClickListener {
 	                 
 	                	 
 	            } 
-	            if(v == imagebutton5){ //onclick the previous track is played
+	            if(v == previousSongImageButton){ //onclick the previous track is played
 	                 
 	                 try {
 						musicPlayer.previous();

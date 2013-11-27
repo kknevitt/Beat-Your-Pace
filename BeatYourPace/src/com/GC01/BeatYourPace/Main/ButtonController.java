@@ -72,13 +72,13 @@ public static void buttonFunction(View v) {
 			case R.id.bDecTarget:    
 				setTargetPace(false); 
 				String tarPace = String.valueOf(getTargetPace());
-				TrainingModeActivity.atext.setText(tarPace);
+				TrainingModeActivity.targetPaceText.setText(tarPace);
 	            break;
 	            
 			case R.id.bIncTarget:
 	            	setTargetPace(true);
 	            	String tarPace1 = String.valueOf(getTargetPace());
-		    	    TrainingModeActivity.atext.setText(tarPace1);
+		    	    TrainingModeActivity.targetPaceText.setText(tarPace1);
 	            break;
 		}
 	  }

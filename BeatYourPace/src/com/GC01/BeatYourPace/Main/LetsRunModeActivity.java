@@ -23,9 +23,10 @@ public class LetsRunModeActivity extends Activity implements OnClickListener {
 	
 	
 	public double targetPace = 6.0; //setting it temporarily to 6.0
-    ImageButton imagebutton1, imagebutton2, imagebutton4, imagebutton5;
-    Button button6, button7, button8, button9;
-    TextView atext;
+    ImageButton playSongImageButton, imagebutton2, skupSongImageButton, previousSongImageButton;
+    Button songTooSlowButton, songTooFastButton, decreaseTargetPaceButton, increaseTargetPaceButton;
+    static TextView targetPaceText;
+    static TextView currentPaceText;
     
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,29 +38,31 @@ public class LetsRunModeActivity extends Activity implements OnClickListener {
 		setContentView(R.layout.activity_lets_run_mode); 	
 		
 		//creating image buttons objects and getting their setup from xml
-        imagebutton1 = (ImageButton) findViewById(R.id.bPlaySong); // for play button
-        //imagebutton2 = (ImageButton) findViewById(R.id.imageButton2); //for pause button
-        imagebutton4 = (ImageButton) findViewById(R.id.bSkipTrack); //for skipping track button
-        imagebutton5 = (ImageButton) findViewById(R.id.bPreviousTrack); //for previous track button
-        button6 = (Button) findViewById(R.id.bSongTooSlow);
-        button7 = (Button) findViewById(R.id.bSongTooFast);
-        button8 = (Button) findViewById(R.id.bDecTarget);
-        button9 = (Button) findViewById(R.id.bIncTarget);
-        atext= (TextView) findViewById(R.id.CurrentTargetPace);
+        playSongImageButton = (ImageButton) findViewById(R.id.bPlaySong); 
+        //imagebutton2 = (ImageButton) findViewById(R.id.imageButton2); 
+        skupSongImageButton = (ImageButton) findViewById(R.id.bSkipTrack); 
+        previousSongImageButton = (ImageButton) findViewById(R.id.bPreviousTrack); 
+        songTooSlowButton = (Button) findViewById(R.id.bSongTooSlow);
+        songTooFastButton = (Button) findViewById(R.id.bSongTooFast);
+        decreaseTargetPaceButton = (Button) findViewById(R.id.bDecTarget);
+        increaseTargetPaceButton = (Button) findViewById(R.id.bIncTarget);
+       
+        targetPaceText= (TextView) findViewById(R.id.CurrentTargetPace);
+        currentPaceText = (TextView) findViewById(R.id.CurrentTargetPace);
         
         // Takes the variable Target Pace and pushes it to the text view.
         String tarPace = String.valueOf(getTargetPace());
-        atext.setText(tarPace);
+        targetPaceText.setText(tarPace);
         
         //setting an event listener for each button
-        imagebutton1.setOnClickListener(this);
+        playSongImageButton.setOnClickListener(this);
        // imagebutton2.setOnClickListener(this);
-        imagebutton4.setOnClickListener(this);
-        imagebutton5.setOnClickListener(this);
-        button6.setOnClickListener(this);
-        button7.setOnClickListener(this);
-        button8.setOnClickListener(this);
-        button9.setOnClickListener(this);
+        skupSongImageButton.setOnClickListener(this);
+        previousSongImageButton.setOnClickListener(this);
+        songTooSlowButton.setOnClickListener(this);
+        songTooFastButton.setOnClickListener(this);
+        decreaseTargetPaceButton.setOnClickListener(this);
+        increaseTargetPaceButton.setOnClickListener(this);
   
    }
 
@@ -134,13 +137,13 @@ public class LetsRunModeActivity extends Activity implements OnClickListener {
 		case R.id.bDecTarget:
 	          setTargetPace(false); 
 	          String tarPace = String.valueOf(getTargetPace());
-    	      atext.setText(tarPace);
+    	      targetPaceText.setText(tarPace);
 	          break;
 	         
 		case R.id.bIncTarget:
 	          setTargetPace(true);
 	          String tarPace1 = String.valueOf(getTargetPace());
-    	      atext.setText(tarPace1);
+    	      targetPaceText.setText(tarPace1);
 	          break;
 		}
 	}
