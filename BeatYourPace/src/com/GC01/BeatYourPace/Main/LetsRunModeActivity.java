@@ -22,7 +22,7 @@ import com.example.beatyourpace.R;
 public class LetsRunModeActivity extends Activity implements OnClickListener {
 	
 	
-	public double targetPace;
+	public double targetPace = 6.0; //setting it temporarily to 6.0
     ImageButton imagebutton1, imagebutton2, imagebutton4, imagebutton5;
     Button button6, button7, button8, button9;
     TextView atext;
@@ -133,10 +133,14 @@ public class LetsRunModeActivity extends Activity implements OnClickListener {
    
 		case R.id.bDecTarget:
 	          setTargetPace(false); 
+	          String tarPace = String.valueOf(getTargetPace());
+    	      atext.setText(tarPace);
 	          break;
 	         
 		case R.id.bIncTarget:
 	          setTargetPace(true);
+	          String tarPace1 = String.valueOf(getTargetPace());
+    	      atext.setText(tarPace1);
 	          break;
 		}
 	}

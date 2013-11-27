@@ -20,11 +20,11 @@ import android.widget.TextView;
 
 public class TrainingModeActivity extends Activity implements OnClickListener {
 
-	public double targetPace;
+	public static double targetPace = 6.0; //setting temporarily to 6
     
     ImageButton imagebutton1, imagebutton2, imagebutton4, imagebutton5;
     Button button6, button7, button8, button9;
-    TextView atext;
+    static TextView atext;
     
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +47,7 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
         atext = (TextView) findViewById(R.id.CurrentTargetPace);
         
         // Takes the variable Target Pace and pushes it to the text view.
-        String tarPace = String.valueOf(getTargetPace());
+        String tarPace = String.valueOf(ButtonController.getTargetPace());
         atext.setText(tarPace);
         	
         //setting an event listener for each button
@@ -68,94 +68,16 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
-	
+
+
 	@Override
 	public void onClick(View v) {
-		
-		TrackList trackList = new TrackList(getTargetPace()); // This has the Target Pace as its parameter
-		MusicPlayer musicPlayer = new MusicPlayer(trackList); // This has the tracklist object as the parameter
 
-		switch (v.getId()) {		
-			case R.id.bPlaySong: 	    		  
-					try {
-						musicPlayer.play();
-					} catch (IllegalArgumentException e1) {
-						e1.printStackTrace();
-					} catch (SecurityException e1) {
-						e1.printStackTrace();
-					} catch (IllegalStateException e1) {
-						e1.printStackTrace();
-					} catch (IOException e1) {
-						e1.printStackTrace();
-					}
-			    break;
-			
-			case R.id.bSkipTrack: 
-	    	    	try {
-						musicPlayer.skip();
-					} catch (IllegalArgumentException e) {
-						e.printStackTrace();
-					} catch (SecurityException e) {
-						e.printStackTrace();
-					} catch (IllegalStateException e) {
-						e.printStackTrace();
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-	            break; 
-	                 
-			case R.id.bPreviousTrack:
-	                try {
-						musicPlayer.previous();	
-					} catch (IllegalArgumentException e) {
-						e.printStackTrace();
-					} catch (SecurityException e) {
-						e.printStackTrace();
-					} catch (IllegalStateException e) {
-						e.printStackTrace();
-					} catch (IOException e) {
-						e.printStackTrace();
-					} 	
-	            break;
-	            
-	            // Decreases the user's preferred pace for this track by 0.5.
-			case R.id.bSongTooSlow:
-	            	DatabaseActivity.decPrefPace();
-	            break;
-	            
-	            // Increases the user's preferred pace for this track by 0.5.
-			case R.id.bSongTooFast:
-	            	DatabaseActivity.incPrefPace();
-	            break;
-	        
-			case R.id.bDecTarget:    
-				setTargetPace(false);   	
-	            break;
-	            
-			case R.id.bIncTarget:
-	            	setTargetPace(true);
-	            break;
-		}
-	  }
-	
-		public void setTargetPace(boolean increment){
-			
-			if (increment == true){
-				targetPace += 0.5;
-			}
-				
-			else {
-				targetPace -= 0.5;
-			}
-			
-			
-		}
+		ButtonController.buttonFunction(v);
 		
-		// retrieving the targetPace
-		public double getTargetPace(){
-			return targetPace;
 	}
-		
+	
+			
 }
 	
 	

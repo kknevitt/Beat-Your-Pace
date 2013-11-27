@@ -36,7 +36,8 @@
             android:label="@string/title_activity_settings"
             android:parentActivityName="com.GC01.BeatYourPace.Main.MainActivity" >
         </activity>
-        <activity android:name="com.GC01.BeatYourPace.ArchiveFiles.TrainingModeActivity" >
+        <activity android:name="com.GC01.BeatYourPace.Main.TrainingModeActivity" 
+            android:label="@string/title_activity_TrainingModeActivity" >
         </activity>
         <activity
             android:name="com.GC01.BeatYourPace.Database.DatabaseActivity"
