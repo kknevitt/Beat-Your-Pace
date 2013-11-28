@@ -38,9 +38,9 @@ public class TrackList {
 	
 	/** Constructor for the Tracklist -
 	 * Queries the database to populate the ArrayList of details for appropriate songs, the database
-	 * determines which songs are appropriate by referencing the current Target Running Pace
+	 * determines which songs are appropriate by referencing the current Target Running CurrentPace
 	 * 
-	 * @param inputPace The current Target Running Pace of the user
+	 * @param inputPace The current Target Running CurrentPace of the user
 	 */
 	
 	public TrackList(double inputPace){

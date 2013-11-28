@@ -1,13 +1,12 @@
 package com.GC01.BeatYourPace.Main;
 	
 import java.io.IOException;
-
 import android.app.Activity;
-
 import com.GC01.BeatYourPace.Database.DatabaseActivity;
 import com.GC01.BeatYourPace.Database.DatabaseHelper;
 import com.GC01.BeatYourPace.MusicPlayer.MusicPlayer;
 import com.GC01.BeatYourPace.MusicPlayer.TrackList;
+import com.GC01.BeatYourPace.PaceCalculator.TargetPace;
 import com.example.beatyourpace.R;
 
 import android.os.Bundle;
@@ -48,8 +47,8 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
         targetPaceText = (TextView) findViewById(R.id.CurrentTargetPace);
         currentPaceText = (TextView) findViewById(R.id.CurrentTargetPace);
         
-        // Takes the variable Target Pace and pushes it to the text view.
-        String tarPace = String.valueOf(ButtonController.getTargetPace());
+        // Takes the variable Target CurrentPace and pushes it to the text view.
+        String tarPace = String.valueOf(TargetPace.getTargetPace());
         targetPaceText.setText(tarPace);
        
         

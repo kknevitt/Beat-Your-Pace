@@ -7,13 +7,14 @@ import android.view.View;
 import com.GC01.BeatYourPace.Database.DatabaseActivity;
 import com.GC01.BeatYourPace.MusicPlayer.MusicPlayer;
 import com.GC01.BeatYourPace.MusicPlayer.TrackList;
+import com.GC01.BeatYourPace.PaceCalculator.TargetPace;
 import com.example.beatyourpace.R;
 
 public class ButtonController {
 
 public static void buttonFunction(View v) {
 		
-		TrackList trackList = new TrackList(getTargetPace()); // This has the Target Pace as its parameter
+		TrackList trackList = new TrackList(TargetPace.getTargetPace()); // This has the Target CurrentPace as its parameter
 		MusicPlayer musicPlayer = new MusicPlayer(trackList); // This has the tracklist object as the parameter
 
 		switch (v.getId()) {		
@@ -70,39 +71,16 @@ public static void buttonFunction(View v) {
 	            break;
 	        
 			case R.id.bDecTarget:    
-				setTargetPace(false); 
-				String tarPace = String.valueOf(getTargetPace());
+				TargetPace.setTargetPace(false); 
+				String tarPace = String.valueOf(TargetPace.getTargetPace());
 				TrainingModeActivity.targetPaceText.setText(tarPace);
 	            break;
 	            
 			case R.id.bIncTarget:
-	            	setTargetPace(true);
-	            	String tarPace1 = String.valueOf(getTargetPace());
+	            	TargetPace.setTargetPace(true);
+	            	String tarPace1 = String.valueOf(TargetPace.getTargetPace());
 		    	    TrainingModeActivity.targetPaceText.setText(tarPace1);
 	            break;
 		}
 	  }
-	
-		public static void setTargetPace(boolean increment){
-			
-			if (increment == true){
-				TrainingModeActivity.targetPace += 0.5;
-			}
-				
-			else {
-				TrainingModeActivity.targetPace -= 0.5;
-			}
-			
-			
-		}
-		
-		// retrieving the targetPace
-		public static double getTargetPace(){
-			return TrainingModeActivity.targetPace;
-	}
-
-	
-	
-	
-	
 }

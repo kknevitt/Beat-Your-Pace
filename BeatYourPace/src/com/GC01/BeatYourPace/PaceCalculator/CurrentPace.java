@@ -20,10 +20,10 @@ import android.os.Bundle;
 
 /** 
  * <p> This class is used to create the pace object </p>
- * <p> The Pace object uses GPS functions to determine the speed of the user, and a get method to enable the screen
+ * <p> The CurrentPace object uses GPS functions to determine the speed of the user, and a get method to enable the screen
  * to display it. </p>
  */
-public class Pace extends Activity {
+public class CurrentPace extends Activity {
 	Context context;
 	
 	
@@ -45,11 +45,11 @@ public class Pace extends Activity {
 	}
 
 	
-	/** Constructor for Pace setting the pace and paceCalc to default values 
+	/** Constructor for CurrentPace setting the pace and paceCalc to default values 
 	 @return
 	 @param
 	 */
-	public Pace(){
+	public CurrentPace(){
 		
 		// setting default values, with No Movement to be different to 0.0 which will displayed if the LM is
 		// active but is not moving or currently working.

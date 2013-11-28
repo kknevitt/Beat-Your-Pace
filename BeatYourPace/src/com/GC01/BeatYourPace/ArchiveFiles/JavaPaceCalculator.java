@@ -19,7 +19,7 @@ public JavaPaceCalculator(){
 	public void setPace(){
 		
 		// Use the Location class from Android API
-		// See Pace.java for attempted implementation
+		// See CurrentPace.java for attempted implementation
 		// Location Manager and Location Listener needed.
 		
 		

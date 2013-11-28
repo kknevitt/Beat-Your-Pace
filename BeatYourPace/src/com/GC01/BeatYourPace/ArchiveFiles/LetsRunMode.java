@@ -44,7 +44,7 @@ public class LetsRunMode extends Activity implements OnClickListener {
         
         targetPaceText= (TextView) findViewById(R.id.CurrentTargetPace);
         
-        // Takes the variable Target Pace and pushes it to the text view.
+        // Takes the variable Target CurrentPace and pushes it to the text view.
         String tarPace = Double.toString(targetPace);
         targetPaceText.setText(tarPace);
         
@@ -74,7 +74,7 @@ public class LetsRunMode extends Activity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		
-		TrackList trackList = new TrackList("8"); // This has the Target Pace as its parameter
+		TrackList trackList = new TrackList("8"); // This has the Target CurrentPace as its parameter
 		MusicPlayer musicPlayer = new MusicPlayer(trackList); // This has the tracklist object as the parameter
 
 	      if(v == playSongImageButton){ //onclick the first track is played
