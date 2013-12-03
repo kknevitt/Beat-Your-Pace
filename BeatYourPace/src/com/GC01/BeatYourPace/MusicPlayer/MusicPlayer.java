@@ -3,6 +3,7 @@ package com.GC01.BeatYourPace.MusicPlayer;
 import java.io.IOException;
 
 import android.app.IntentService;
+import android.app.Service;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
@@ -12,6 +13,8 @@ import android.media.MediaPlayer.OnErrorListener;
  * @version 1.0, Updated 18/11/2013
  */
 import android.net.Uri;
+import android.os.IBinder;
+import android.widget.Toast;
 
 
 /** 
@@ -20,7 +23,7 @@ import android.net.Uri;
  * the functions of a media player, such as playing a song and skipping to the next. </p>
  */
  
-public class MusicPlayer implements OnCompletionListener, OnErrorListener {	 
+public class MusicPlayer extends Service implements OnCompletionListener, OnErrorListener {	 
 
 	/** Uses a MediaPlayer object from the android.media package as a base for playback functions */
 	private static MediaPlayer mediaPlayer = new MediaPlayer();
@@ -144,6 +147,24 @@ public class MusicPlayer implements OnCompletionListener, OnErrorListener {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+
+	@Override
+	public IBinder onBind(Intent arg0) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Not there yet");
+	}
+	
+	public void onCreate() {
+		
+		Toast.makeText(this, "MusicPlayer service started", Toast.LENGTH_LONG).show();
+	}
+	
+	public void onDestroy() {
+		
+		Toast.makeText(this, "MusicPlayer has ended", Toast.LENGTH_LONG).show();
+		}
+	
 	}
 
 

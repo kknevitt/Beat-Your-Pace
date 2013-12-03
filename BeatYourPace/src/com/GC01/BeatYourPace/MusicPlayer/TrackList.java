@@ -45,9 +45,9 @@ public class TrackList {
 		
 		updateTrackList(defaultInputPace);
 	
-		String first = "/sdcard/song.mp3";
+		String first = "/sdcard/one.wav";
 		paceTrackList.add(first);
-		String second = "/sdcard/song1.mp3";
+		String second = "/sdcard/two.wav";
 		paceTrackList.add(second);
 		String third = "/sdcard/three.wav";
 		paceTrackList.add(third);

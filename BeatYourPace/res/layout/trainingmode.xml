@@ -39,7 +39,8 @@
         android:layout_alignTop="@+id/bPreviousTrack"
         android:layout_centerHorizontal="true"
         android:src="@android:drawable/ic_media_play"
-        android:contentDescription="@string/sDscrPlayPause" />
+        android:contentDescription="@string/sDscrPlayPause"
+        android:onClick="startNewService"/>
 
     <Button
         android:id="@+id/bSongTooFast"
@@ -142,6 +143,7 @@
         android:layout_alignBaseline="@+id/placeHolderPause"
         android:layout_alignBottom="@+id/placeHolderPause"
         android:layout_alignLeft="@+id/CurrentTargetPace"
-        android:text="Stop" />
+        android:text="Stop" 
+        android:onClick="stopNewService"/>
 
 </RelativeLayout>

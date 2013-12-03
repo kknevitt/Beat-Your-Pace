@@ -3,9 +3,11 @@ package com.GC01.BeatYourPace.Main;
 import java.io.IOException;
 
 import android.app.Activity;
+import android.content.Intent;
 
 import com.GC01.BeatYourPace.ArchiveFiles.DatabaseActivity;
 import com.GC01.BeatYourPace.Database.DatabaseHelper;
+import com.GC01.BeatYourPace.MusicPlayer.AudioFocusManager;
 import com.GC01.BeatYourPace.MusicPlayer.MusicPlayer;
 import com.GC01.BeatYourPace.MusicPlayer.TrackList;
 import com.GC01.BeatYourPace.PaceCalculator.TargetPace;
@@ -37,6 +39,11 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.trainingmode); 
+		
+		
+		
+	// Possible sending of context to the AFM in order to get audio focus.	
+	//	AudioFocusManager aFM = new AudioFocusManager(this);
 		
 	
 	//targetPace = DatabaseActivity.getTargetPace();	
@@ -78,6 +85,12 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
         stop.setOnClickListener(this);
    }
 
+	
+	public void startNewService(View view) {
+		
+		startService(new Intent(this, MusicPlayer.class));
+	
+	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -93,6 +106,8 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 		ButtonController.buttonFunction(v);
 		
 	}
+	
+	
 	
 			
 }

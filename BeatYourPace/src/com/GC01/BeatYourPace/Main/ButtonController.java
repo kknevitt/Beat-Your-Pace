@@ -12,7 +12,6 @@ import com.example.beatyourpace.R;
 
 public class ButtonController {
 	
-
 	static TrackList trackList = new TrackList(TargetPace.getTargetPace()); // This has the Target CurrentPace as its parameter
 	static MusicPlayer musicPlayer = new MusicPlayer(trackList); // This has the tracklist object as the parameter
 
