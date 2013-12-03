@@ -13,7 +13,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.GC01.BeatYourPace.Database.DatabaseActivity;
+import com.GC01.BeatYourPace.ArchiveFiles.DatabaseActivity;
 import com.GC01.BeatYourPace.Database.DatabaseHelper;
 import com.GC01.BeatYourPace.MusicPlayer.TrackList;
 import com.GC01.BeatYourPace.MusicPlayer.MusicPlayer;

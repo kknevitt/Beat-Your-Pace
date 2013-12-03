@@ -23,18 +23,20 @@ public class DataModel {
 	private String artist;
 	private String title;
 	private int bpm; 
+	private float initialPrefPace;
 	private float preferredPace;
 	
 	public DataModel() {
 		
 	}
 	
-	public DataModel(int id, int mediaStoreId, String artist, String title, int bpm, float preferredPace) {	
+	public DataModel(int id, int mediaStoreId, String artist, String title, int bpm, float initialPrefPace, float preferredPace) {	
 		this.id = id;
 		this.mediaStoreId = mediaStoreId;
 		this.artist = artist;
 		this.title = title;
 		this.bpm = bpm;
+		this.setInitialPrefPace(initialPrefPace);
 		this.preferredPace = preferredPace;
 	}
 
@@ -90,6 +92,14 @@ public class DataModel {
 	//needed for arraylist
 	public String toString() {
 		return "DataModel [id=" + id + ", mediastoreID=" + mediaStoreId + ", artist=" + artist  + ", title=" + title + ", bpm=" + bpm + ", pace=" + preferredPace + "]";
+	}
+
+	public float getInitialPrefPace() {
+		return initialPrefPace;
+	}
+
+	public void setInitialPrefPace(float initialPrefPace) {
+		this.initialPrefPace = initialPrefPace;
 	}
 
 }

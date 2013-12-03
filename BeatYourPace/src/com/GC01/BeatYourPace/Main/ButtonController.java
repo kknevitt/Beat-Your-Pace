@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import android.view.View;
 
-import com.GC01.BeatYourPace.Database.DatabaseActivity;
+import com.GC01.BeatYourPace.ArchiveFiles.DatabaseActivity;
 import com.GC01.BeatYourPace.MusicPlayer.MusicPlayer;
 import com.GC01.BeatYourPace.MusicPlayer.TrackList;
 import com.GC01.BeatYourPace.PaceCalculator.TargetPace;

@@ -2,8 +2,8 @@ package com.GC01.BeatYourPace.MusicPlayer;
 
 import java.util.ArrayList;
 
+import com.GC01.BeatYourPace.ArchiveFiles.DatabaseActivity;
 import com.GC01.BeatYourPace.Database.DataModel;
-import com.GC01.BeatYourPace.Database.DatabaseActivity;
 import com.GC01.BeatYourPace.Database.DatabaseHelper;
 
 /** 

@@ -1,8 +1,10 @@
 package com.GC01.BeatYourPace.Main;
 	
 import java.io.IOException;
+
 import android.app.Activity;
-import com.GC01.BeatYourPace.Database.DatabaseActivity;
+
+import com.GC01.BeatYourPace.ArchiveFiles.DatabaseActivity;
 import com.GC01.BeatYourPace.Database.DatabaseHelper;
 import com.GC01.BeatYourPace.MusicPlayer.MusicPlayer;
 import com.GC01.BeatYourPace.MusicPlayer.TrackList;

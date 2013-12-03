@@ -40,7 +40,7 @@
             android:label="@string/title_activity_TrainingModeActivity" >
         </activity>
         <activity
-            android:name="com.GC01.BeatYourPace.Database.DatabaseActivity"
+            android:name="com.GC01.BeatYourPace.ArchiveFiles.DatabaseActivity"
             android:label="@string/title_activity_database" >
         </activity>
         <activity
