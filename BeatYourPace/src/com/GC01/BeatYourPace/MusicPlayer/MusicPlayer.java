@@ -23,10 +23,10 @@ import android.net.Uri;
 public class MusicPlayer implements OnCompletionListener, OnErrorListener {	 
 
 	/** Uses a MediaPlayer object from the android.media package as a base for playback functions */
-	private MediaPlayer mediaPlayer = new MediaPlayer();
+	private static MediaPlayer mediaPlayer = new MediaPlayer();
 	
 	/** A TrackList object is used to supply the MusicPlayer with the song information it needs */
-	private TrackList trackList;
+	private static TrackList trackList;
 	
 
 	
@@ -48,7 +48,6 @@ public class MusicPlayer implements OnCompletionListener, OnErrorListener {
 	 */
 	public void play() throws IllegalArgumentException, SecurityException, IllegalStateException, IOException {
 		
-	
 		trackList.setSong("play");
 		playCurrentSong();
 		
@@ -76,6 +75,19 @@ public class MusicPlayer implements OnCompletionListener, OnErrorListener {
 		trackList.setSong("previous");
 		playCurrentSong();	
  	}
+	
+	public void pause() {
+		if (mediaPlayer.isPlaying())
+		mediaPlayer.pause();
+		else
+			mediaPlayer.start();
+	}
+	
+	public void stop() {
+		
+		mediaPlayer.stop();
+	}
+	
 	
 	
 	// Attempting to reduce reuse of code as all 3 buttons use this function.
@@ -107,8 +119,7 @@ public class MusicPlayer implements OnCompletionListener, OnErrorListener {
 
 	@Override
 	public void onCompletion(MediaPlayer mp) {
-		// TODO Auto-generated method stub
-		
+
 		try {
 			skip();
 		} catch (IllegalArgumentException e) {

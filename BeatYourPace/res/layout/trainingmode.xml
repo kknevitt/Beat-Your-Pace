@@ -4,17 +4,6 @@
     android:layout_height="match_parent"
     android:background="#0298db" >
 
-    <TextView
-        android:id="@+id/tSongName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/bSongTooFast"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="31dp"
-        android:text="@string/sSongDetails"
-        android:textColor="#ffffff"
-        android:textSize="28sp" />
-
     <ImageButton
         android:id="@+id/bSkipTrack"
         android:layout_width="75sp"
@@ -127,5 +116,32 @@
         android:layout_toRightOf="@+id/bDecTarget"
         android:text="@string/sTargetTitle"
         android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/tSongName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button1"
+        android:layout_centerHorizontal="true"
+        android:text="@string/sSongDetails"
+        android:textColor="#ffffff"
+        android:textSize="28sp" />
+
+    <Button
+        android:id="@+id/placeHolderPause"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bPreviousTrack"
+        android:layout_alignRight="@+id/sTargetTitle"
+        android:text="Pause" />
+
+    <Button
+        android:id="@+id/placeHolderStop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/placeHolderPause"
+        android:layout_alignBottom="@+id/placeHolderPause"
+        android:layout_alignLeft="@+id/CurrentTargetPace"
+        android:text="Stop" />
 
 </RelativeLayout>

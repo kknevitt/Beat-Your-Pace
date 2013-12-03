@@ -83,6 +83,17 @@ public static void buttonFunction(View v) {
 	            	String tarPace1 = String.valueOf(TargetPace.getTargetPace());
 		    	    TrainingModeActivity.targetPaceText.setText(tarPace1);
 	            break;
+	            
+	       //place holder buttons
+			case R.id.placeHolderPause:
+				musicPlayer.pause();
+				break;
+				
+			case R.id.placeHolderStop:
+				musicPlayer.stop();
+				break;
+	            
+	            
 		}
 	  }
 }

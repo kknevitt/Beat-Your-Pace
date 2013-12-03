@@ -106,6 +106,7 @@ public class TrackList {
 			songNo = getSongIndex() -1;
 			
 			System.out.println("song after previous before play is" + getSongIndex());
+			
 		}
 		System.out.println("song index after setSong is" + getSongIndex());
 		
@@ -133,12 +134,7 @@ public class TrackList {
 		 */
 		public String getSongPath() {
 			
-			// This will use a method to be implemented later in order to get the path for the song which
-			// is at that SongIndex from within the ArrayList.
-			
-	//		songPath = (paceTrackList.get(getSongIndex()).getFilePath()); The getFilePath() method is yet to be implemented
-			
-			
+					
 			songPath = paceTrackList.get(getSongIndex());
 			return songPath;
 					

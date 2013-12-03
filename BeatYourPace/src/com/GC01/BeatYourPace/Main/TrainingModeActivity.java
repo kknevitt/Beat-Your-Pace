@@ -25,6 +25,11 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
     
     ImageButton playSongImageButton, imagebutton2, skipSongImageButton, previousSongImageButton;
     Button songTooSlowButton, songTooFastButton, decreaseTargetPaceButton, increaseTargetPaceButton;
+    
+    //placeholder buttons
+    Button pause;
+    Button stop;
+    
     static TextView targetPaceText;
     static TextView currentPaceText;
     
@@ -44,7 +49,13 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
         songTooSlowButton = (Button) findViewById(R.id.bSongTooSlow); 				
         songTooFastButton = (Button) findViewById(R.id.bSongTooFast);					
         decreaseTargetPaceButton = (Button) findViewById(R.id.bDecTarget);					
-        increaseTargetPaceButton = (Button) findViewById(R.id.bIncTarget);					
+        increaseTargetPaceButton = (Button) findViewById(R.id.bIncTarget);	
+        
+        
+        // adding placeholder buttons
+        pause = (Button) findViewById(R.id.placeHolderPause);
+        stop = (Button) findViewById(R.id.placeHolderStop);
+        
         
         targetPaceText = (TextView) findViewById(R.id.CurrentTargetPace);
         currentPaceText = (TextView) findViewById(R.id.CurrentTargetPace);
@@ -63,6 +74,8 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
         songTooFastButton.setOnClickListener(this);
         decreaseTargetPaceButton.setOnClickListener(this);
         increaseTargetPaceButton.setOnClickListener(this);
+        pause.setOnClickListener(this);
+        stop.setOnClickListener(this);
    }
 
 
