@@ -1,8 +1,12 @@
 package com.GC01.BeatYourPace.Main;
 
 import android.app.Activity;
+import android.app.Service;
 
 import com.google.analytics.tracking.android.EasyTracker;
+import com.GC01.BeatYourPace.Database.DatabaseAdapter;
+import com.GC01.BeatYourPace.Database.DatabaseIntentService;
+import com.GC01.BeatYourPace.Database.DatabaseService;
 import com.GC01.BeatYourPace.Settings.SettingsActivity;
 import com.example.beatyourpace.R;
 
@@ -18,12 +22,6 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 
 public class MainActivity extends Activity implements OnClickListener{
-	
-	//SN This sets up the preferences
-	//It may be needed to call default settings for the first time the app is used
-	
-	// Pass the preferences to the java class.
-	//SharedPreferences sPref = PreferenceManager.getDefaultSharedPreferences(this);
 	
 	//creating button objects
     Button b1, b2, b3;
@@ -42,6 +40,13 @@ public class MainActivity extends Activity implements OnClickListener{
         b1.setOnClickListener(this);
         b2.setOnClickListener(this);
         b3.setOnClickListener(this);
+        
+        //Start loading music data to the database
+        //Implemented as a background service
+        //Intent intent = new Intent(this,DatabaseService.class);  doesn't work
+        Intent intent = new Intent(this,DatabaseIntentService.class); 
+        this.startService(intent);
+        	
 	}
 
 	@Override
@@ -67,7 +72,7 @@ public class MainActivity extends Activity implements OnClickListener{
 	      }
 	}       
 	
-	//SN added settings option to the top action bar
+	//Add settings option to the top action bar
 		@Override
 		public boolean onOptionsItemSelected(MenuItem item) {
 		    // code to launch the Settings Activity when settings is selected from the menu

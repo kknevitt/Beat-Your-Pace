@@ -26,12 +26,19 @@ import android.util.Log;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
+	//TAG for the class name
+	private static final String LOG_TAG = "DatabaseHelper";
+	
 	/** Field which sets the Database version */
 	public static final int DATABASE_VERSION = 1;
 	
 	// SQL statement to create TrackData table
-	private static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS" + DataEntry.TABLE_NAME + "(" + DataEntry.COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + DataEntry.COL_MEDIASTOREID + " INTEGER,"+ DataEntry.COL_TITLE + " TEXT," + DataEntry.COL_ARTIST + " TEXT,"  + DataEntry.COL_BPM + " INTEGER," + DataEntry.COL_INITIAL_PREF_PACE + " FLOAT," + DataEntry.COL_PREF_PACE + " FLOAT)"; 
+	//private static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS " + DataEntry.DATABASE_NAME + "." + DataEntry.TABLE_NAME + " (" + DataEntry.COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + DataEntry.COL_MEDIASTOREID + " INTEGER,"+ DataEntry.COL_TITLE + " TEXT," + DataEntry.COL_ARTIST + " TEXT,"  + DataEntry.COL_BPM + " INTEGER," + DataEntry.COL_INITIAL_PREF_PACE + " FLOAT," + DataEntry.COL_PREF_PACE + " FLOAT," + DataEntry.COL_FILE_LOC + " STRING);"; 
+	// During debug want to create and replace each time
+	//private static final String CREATE_TABLE = "CREATE TABLE " + DataEntry.DATABASE_NAME + "." + DataEntry.TABLE_NAME + " (" + DataEntry.COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + DataEntry.COL_MEDIASTOREID + " INTEGER,"+ DataEntry.COL_TITLE + " TEXT," + DataEntry.COL_ARTIST + " TEXT,"  + DataEntry.COL_BPM + " INTEGER," + DataEntry.COL_INITIAL_PREF_PACE + " FLOAT," + DataEntry.COL_PREF_PACE + " FLOAT," + DataEntry.COL_FILE_LOC + " STRING);"; 
+	private static final String CREATE_TABLE = "CREATE TABLE " + DataEntry.TABLE_NAME + " (" + DataEntry.COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + DataEntry.COL_MEDIASTOREID + " INTEGER,"+ DataEntry.COL_TITLE + " TEXT," + DataEntry.COL_ARTIST + " TEXT,"  + DataEntry.COL_BPM + " INTEGER," + DataEntry.COL_INITIAL_PREF_PACE + " FLOAT," + DataEntry.COL_PREF_PACE + " FLOAT," + DataEntry.COL_FILE_LOC + " STRING);"; 
 
+	
 	public DatabaseHelper(Context context, String name, CursorFactory factory,int version) {
 		super(context, DataEntry.DATABASE_NAME, factory, DATABASE_VERSION);
 	}
@@ -42,6 +49,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	 */
 	@Override
 	public void onCreate(SQLiteDatabase db) {
+		Log.d(LOG_TAG,"DatabaseHelper : onCreate");
 		// create the table
 		db.execSQL(CREATE_TABLE);
 	}
@@ -54,8 +62,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	 */
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldoldDbVer, int newDbVer) {
-		// REFERENCE DB PROGRAMMING BOOK CH2 
-		Log.w("LOG_TAG", "Upgrading database from version "+ oldoldDbVer + " to " + newDbVer + ", which will destroy all old data");
+		// Log that the database is being upgraded
+		Log.w(LOG_TAG, "Upgrading database from version "+ oldoldDbVer + " to " + newDbVer + ", which will destroy all old data");
 
 		// Delete existing tables
 		db.execSQL("DROP TABLE IF EXISTS " + DataEntry.TABLE_NAME);

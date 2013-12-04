@@ -30,7 +30,7 @@ public final class DatabaseContract {
 	    	public static final String COL_FILE_LOC = "fileLoc";
 	    	
 	    	//table name for the database
-	    	public static final String TABLE_NAME = "TrackData";
+	    	public static final String TABLE_NAME = "tracks";
 
 	    }
 }

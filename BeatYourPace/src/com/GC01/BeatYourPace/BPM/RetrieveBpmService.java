@@ -1,20 +1,27 @@
 package com.GC01.BeatYourPace.BPM;
 
-//NOT working yet, attempt to learn how to create and use a service
+/**
+ * Service to call the EchoNest API to see if there is a bpm for the track
+ * If there is no bpm in echonest then use a default of 160
+ * 
+ */
 
 import java.io.File;
 import java.io.IOException;
+
 import com.echonest.api.v4.EchoNestAPI;
 import com.echonest.api.v4.EchoNestException;
 import com.echonest.api.v4.Track;
 import com.echonest.api.v4.TrackAnalysis;
+
 import android.app.IntentService;
 import android.content.Intent;
 
-
-
 public class RetrieveBpmService extends IntentService {
 
+	// Used to write to the system log from this class.
+    public static final String LOG_TAG = "RetrieveBpmService";
+    
 	public RetrieveBpmService() {
 		super("RetrieveBpmService");
 		
@@ -23,9 +30,22 @@ public class RetrieveBpmService extends IntentService {
 	@Override
 	protected void onHandleIntent(Intent intent) {
 		
+		 // Gets a URL to read from the incoming Intent's "data" value
+        String localUrlString = intent.getDataString();
+        
+        try {
+			getBPM(null);
+		} catch (EchoNestException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
 		
 	}
-		/**creating get method to query EchoNest library 
+		/** Get method to query EchoNest library 
 		 * @param  file   The path to the track that the BPM is needed for
 		 * @return tempo  A double that returns the bpm of a track
 		 * @throws EchoNestException
@@ -40,8 +60,6 @@ public class RetrieveBpmService extends IntentService {
 		EchoNestAPI echoNest = new EchoNestAPI(API_KEY);
 			
 		//open file and uploads track to get BPM analysed
-		//to be replaced by a 'get music' method
-	    //File file = new File("C:\\Users\\Solange\\Desktop\\eclipse java\\BPM\\res\\raw\\04.mp3");
 	    File file = file1;
 		Track track = echoNest.uploadTrack(file, true);
 	    

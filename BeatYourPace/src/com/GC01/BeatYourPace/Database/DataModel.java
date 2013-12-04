@@ -25,19 +25,21 @@ public class DataModel {
 	private int bpm; 
 	private float initialPrefPace;
 	private float preferredPace;
+	private String fileLoc;
 	
 	public DataModel() {
 		
 	}
 	
-	public DataModel(int id, int mediaStoreId, String artist, String title, int bpm, float initialPrefPace, float preferredPace) {	
-		this.id = id;
+	public DataModel(int mediaStoreId, String artist, String title, int bpm, float initialPrefPace, float preferredPace, String fileLoc) {	
 		this.mediaStoreId = mediaStoreId;
 		this.artist = artist;
 		this.title = title;
 		this.bpm = bpm;
-		this.setInitialPrefPace(initialPrefPace);
+		this.initialPrefPace = initialPrefPace;
 		this.preferredPace = preferredPace;
+		this.fileLoc = fileLoc;
+		
 	}
 
 	public int getId() {
@@ -100,6 +102,14 @@ public class DataModel {
 
 	public void setInitialPrefPace(float initialPrefPace) {
 		this.initialPrefPace = initialPrefPace;
+	}
+
+	public String getFileLoc() {
+		return fileLoc;
+	}
+
+	public void setFileLoc(String fileLoc) {
+		this.fileLoc = fileLoc;
 	}
 
 }

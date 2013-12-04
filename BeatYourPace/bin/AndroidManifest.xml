@@ -36,7 +36,8 @@
             android:label="@string/title_activity_settings"
             android:parentActivityName="com.GC01.BeatYourPace.Main.MainActivity" >
         </activity>
-        <activity android:name="com.GC01.BeatYourPace.Main.TrainingModeActivity" 
+        <activity
+            android:name="com.GC01.BeatYourPace.Main.TrainingModeActivity"
             android:label="@string/title_activity_TrainingModeActivity" >
         </activity>
         <activity
@@ -47,6 +48,17 @@
             android:name="com.GC01.BeatYourPace.Main.LetsRunModeActivity"
             android:label="@string/title_activity_lets_run_mode" >
         </activity>
+
+        <service
+            android:name="com.GC01.BeatYourPace.BPM.RetrieveBpmService"
+            android:exported="false" >
+        </service>
+        <service
+            android:name="com.GC01.BeatYourPace.Database.DatabaseService"
+            android:enabled="true"
+            android:exported="false" >
+        </service>
+        <service android:name="com.GC01.BeatYourPace.Database.DatabaseIntentService"></service>
     </application>
 
 </manifest>
