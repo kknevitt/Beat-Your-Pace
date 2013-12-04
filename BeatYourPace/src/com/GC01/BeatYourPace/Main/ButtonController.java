@@ -11,11 +11,12 @@ import com.GC01.BeatYourPace.PaceCalculator.TargetPace;
 import com.example.beatyourpace.R;
 
 public class ButtonController {
+	
+	static TrackList trackList = new TrackList(TargetPace.getTargetPace()); // This has the Target CurrentPace as its parameter
+	static MusicPlayer musicPlayer = new MusicPlayer(trackList); // This has the tracklist object as the parameter
 
 public static void buttonFunction(View v) {
 		
-		TrackList trackList = new TrackList(TargetPace.getTargetPace()); // This has the Target CurrentPace as its parameter
-		MusicPlayer musicPlayer = new MusicPlayer(trackList); // This has the tracklist object as the parameter
 
 		switch (v.getId()) {		
 			case R.id.bPlaySong: 	    		  
@@ -81,6 +82,17 @@ public static void buttonFunction(View v) {
 	            	String tarPace1 = String.valueOf(TargetPace.getTargetPace());
 		    	    TrainingModeActivity.targetPaceText.setText(tarPace1);
 	            break;
+	            
+	       //place holder buttons
+			case R.id.placeHolderPause:
+				musicPlayer.pause();
+				break;
+				
+			case R.id.placeHolderStop:
+				musicPlayer.stop();
+				break;
+	            
+	            
 		}
 	  }
 }

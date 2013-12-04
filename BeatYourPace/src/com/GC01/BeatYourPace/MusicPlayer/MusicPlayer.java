@@ -2,11 +2,19 @@ package com.GC01.BeatYourPace.MusicPlayer;
  
 import java.io.IOException;
 
+import android.app.IntentService;
+import android.app.Service;
+import android.content.Intent;
 import android.media.MediaPlayer;
+import android.media.MediaPlayer.OnCompletionListener;
+import android.media.MediaPlayer.OnErrorListener;
 /** 
  * @author Kristian Knevitt
  * @version 1.0, Updated 18/11/2013
  */
+import android.net.Uri;
+import android.os.IBinder;
+import android.widget.Toast;
 
 
 /** 
@@ -15,13 +23,13 @@ import android.media.MediaPlayer;
  * the functions of a media player, such as playing a song and skipping to the next. </p>
  */
  
-public class MusicPlayer {	 
+public class MusicPlayer extends Service implements OnCompletionListener, OnErrorListener {	 
 
 	/** Uses a MediaPlayer object from the android.media package as a base for playback functions */
-	private MediaPlayer mediaPlayer = new MediaPlayer();
+	private static MediaPlayer mediaPlayer = new MediaPlayer();
 	
 	/** A TrackList object is used to supply the MusicPlayer with the song information it needs */
-	private TrackList trackList;
+	private static TrackList trackList;
 	
 
 	
@@ -30,6 +38,8 @@ public class MusicPlayer {
 	 @param trackListToPlay A TrackList determined by the target pace and a database query for appropriate songs for that target pace
 	 */
 	public MusicPlayer(TrackList trackListToPlay){
+		
+		mediaPlayer.setOnCompletionListener(this);
 		
 		trackList = trackListToPlay; // this needs to be the trackList that the Player is using.
 	}
@@ -41,9 +51,9 @@ public class MusicPlayer {
 	 */
 	public void play() throws IllegalArgumentException, SecurityException, IllegalStateException, IOException {
 		
-		mediaPlayer.reset();
 		trackList.setSong("play");
 		playCurrentSong();
+		
 	}
 	
 	
@@ -53,9 +63,10 @@ public class MusicPlayer {
 	 */
 	public void skip() throws IllegalArgumentException, SecurityException, IllegalStateException, IOException {
 		
-		mediaPlayer.reset();
+		
 		trackList.setSong("skip");
 		playCurrentSong();
+		
  	}
  	
 	/** Reverts to the previous song in the TrackList ArrayList and plays that song
@@ -63,27 +74,97 @@ public class MusicPlayer {
 	 @param
 	 */
 	public void previous() throws IllegalArgumentException, SecurityException, IllegalStateException, IOException {
-	
-		mediaPlayer.reset();
+		
 		trackList.setSong("previous");
 		playCurrentSong();	
  	}
 	
+	public void pause() {
+		if (mediaPlayer.isPlaying())
+		mediaPlayer.pause();
+		else
+			mediaPlayer.start();
+	}
 	
+	public void stop() {
+		
+		mediaPlayer.stop();
+	}
+	
+	
+	
+	// Attempting to reduce reuse of code as all 3 buttons use this function.
 	private void playCurrentSong() throws IllegalArgumentException, SecurityException, IllegalStateException, IOException{
 		 
-		mediaPlayer.setDataSource(trackList.getSongPath());
+		// testing values
+		String testTrack = trackList.getSongPath();
+		int testIndex = trackList.getSongIndex();
+		System.out.println(testTrack + testIndex);
+		
+		try {
+		if (mediaPlayer.isPlaying()){
+			mediaPlayer.stop();
+		}
+		}
+		catch(Exception e){
+			System.out.println("Error in trying to stop the media player while playing");
+		}
+		
+		
+		
+		mediaPlayer.reset();
+		mediaPlayer.setDataSource(testTrack);
 		mediaPlayer.prepare();
 		mediaPlayer.start();
 		
-		/* trying to have the next song play automatically
-		MediaPlayer.OnCompletionListener playerlistener = new MediaPlayer.OnCompletionListener () {
-			public void onCompletion(MediaPlayer mediaPlayer){
-		                    skip();
-			}
 		}
+
+
+	@Override
+	public void onCompletion(MediaPlayer mp) {
+
+		try {
+			skip();
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalStateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
-	*/
-}
-}
+
+
+	@Override
+	public boolean onError(MediaPlayer mp, int what, int extra) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	@Override
+	public IBinder onBind(Intent arg0) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Not there yet");
+	}
+	
+	public void onCreate() {
+		
+		Toast.makeText(this, "MusicPlayer service started", Toast.LENGTH_LONG).show();
+	}
+	
+	public void onDestroy() {
+		
+		Toast.makeText(this, "MusicPlayer has ended", Toast.LENGTH_LONG).show();
+		}
+	
+	}
+
 

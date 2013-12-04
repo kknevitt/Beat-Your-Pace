@@ -2,10 +2,6 @@ package com.GC01.BeatYourPace.MusicPlayer;
 
 import java.util.ArrayList;
 
-import com.GC01.BeatYourPace.ArchiveFiles.DatabaseActivity;
-import com.GC01.BeatYourPace.Database.DataModel;
-import com.GC01.BeatYourPace.Database.DatabaseHelper;
-
 /** 
  * @author Kristian Knevitt
  * @version 1.0, Updated 18/11/2013
@@ -30,7 +26,7 @@ public class TrackList {
 	private int songNo;
 	
 	/** An ArrayList which will contain the information of the appropriate songs for the MusicPlayer to play*/
-	private ArrayList<DataModel> paceTrackList = new ArrayList(); // ArrayList containing song details and the path file for the song.	
+	private ArrayList<String> paceTrackList = new ArrayList(); // ArrayList containing song details and the path file for the song.	
 	
 
 	
@@ -43,10 +39,22 @@ public class TrackList {
 	 * @param inputPace The current Target Running CurrentPace of the user
 	 */
 	
-	public TrackList(double inputPace){
+	public TrackList(double defaultInputPace){
 		
 		// Calling the method for populating the ArrayList.
-//		paceTrackList = DatabaseActivity.getAppropriateSongs(inputPace);
+		
+		updateTrackList(defaultInputPace);
+	
+		String first = "/sdcard/one.wav";
+		paceTrackList.add(first);
+		String second = "/sdcard/two.wav";
+		paceTrackList.add(second);
+		String third = "/sdcard/three.wav";
+		paceTrackList.add(third);
+		String fourth = "/sdcard/four.wav";
+		paceTrackList.add(fourth);
+		String fifth = "/sdcard/five.wav";
+		paceTrackList.add(fifth);
 	 	
 		// Default songPath needed.
 		songNo = 0;
@@ -64,27 +72,44 @@ public class TrackList {
 			
 		// if the function is play set a random song from the ArrayList to play - dependent on the size of the Array
 	 	// It is cast as an int so that it can be used as an index, and also means it wont go out of bounds of the Array List.
+		System.out.println("song index before setSong is" + getSongIndex());
+			
+		if (function == "play") {
 	
-		if (function == "play")
-			songNo = (int) (Math.random() * paceTrackList.size());
+		
+		}
+		System.out.println("song index after play is" + getSongIndex());
+		
+
 		
 		
 		// if the function is skip, sets the songNo to the next one in the array unless it as at the end.
-		if (function == "skip")
-			if (songNo == paceTrackList.size()-1){
+		if (function == "skip") {
+			System.out.println("song index before skip is" + getSongIndex());
+			if (getSongIndex() == paceTrackList.size()-1){
 				songNo = 0;
 			}
 			else
-			songNo = songNo + 1;
-		
+			songNo = getSongIndex() + 1;
+			
+		}
+		System.out.println("song index after skip is" + getSongIndex());
 			
 		// if the function is previous it reduces the songNo by 1 unless it as at the beginning.	
-		if (function == "previous")
-			if (songNo == 0){
+		if (function == "previous") {
+			
+			System.out.println("song index before previous is" + getSongIndex());
+			if (getSongIndex() == 0){
 				songNo = paceTrackList.size()-1;
 			}
 			else
-			songNo = songNo -1;
+			songNo = getSongIndex() -1;
+			
+			System.out.println("song after previous before play is" + getSongIndex());
+			
+		}
+		System.out.println("song index after setSong is" + getSongIndex());
+		
 		
 		}
 	 	
@@ -109,14 +134,22 @@ public class TrackList {
 		 */
 		public String getSongPath() {
 			
-			// This will use a method to be implemented later in order to get the path for the song which
-			// is at that SongIndex from within the ArrayList.
-			
-	//		songPath = (paceTrackList.get(getSongIndex()).getFilePath()); The getFilePath() method is yet to be implemented
-			
+					
+			songPath = paceTrackList.get(getSongIndex());
 			return songPath;
 					
 			}	
+		
+		
+		// method for populating the TrackList
+		public void updateTrackList(double tarPace) {
+			
+			
+			
+			// insert code for repopulating trackList
+			
+			
+			}
 }
 
 
