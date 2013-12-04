@@ -13,6 +13,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.widget.Toast;
 
 /** 
  * @author Kristian Knevitt
@@ -28,6 +29,7 @@ import android.os.IBinder;
 public class CurrentPace extends Service {
 	Context context;
 	LocationManager locationManager;
+	Location location;
 	
 	/** the currentPace double is used to retrieve the speed value to be displayed on the UI*/
 	public static double currentPace;
@@ -60,23 +62,25 @@ public class CurrentPace extends Service {
 		 final LocationManager locationManager = (LocationManager)context.getSystemService(Context.LOCATION_SERVICE);
 		 LocationListener locationListener = new LocationListener(){
 		        
-			 public void onLocationChanged(Location location){
+			public void onLocationChanged(Location location){
 		       // Called when a new location is found by the network location provider.
-			   if(location !=null){     	
+				 if (location.hasAccuracy() && location !=null) {    	
 			    	// An if else selection is used in order to be using the correct prefences for miles or kilometres
 				    // for the preferred distance unit.	
-			    	if (AccessSettings.getUnitType() == 1) {
+				   if (AccessSettings.getUnitType() == 1) {
 			    		currentPace = (float) (location.getSpeed() * MPS_TO_MINS_PER_MILE);
 			    			if (AccessSettings.getUnitType() == 2) {
 			    				currentPace = (float) (location.getSpeed() * MPS_TO_PER_KILOMETRES);
 			    				}
-			    			}    		
-					} else if (location == null){
-						currentPace = 0.00;
-					}
-			
-
-		        }
+			    			}  
+				 }
+				 else if( location == null ) {
+						 currentPace = 0.00;
+							Toast.makeText(getApplicationContext(), "Your GPS is not responding, it may be off.",
+									   Toast.LENGTH_LONG).show();	
+				   } 				   	
+		      }
+			 
 			 //Unimplemented methods
 		        public void onStatusChanged(String provider, int status, Bundle extras) {}
 		        public void onProviderEnabled(String provider) {}
