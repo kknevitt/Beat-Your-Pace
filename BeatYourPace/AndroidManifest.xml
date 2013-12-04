@@ -59,6 +59,7 @@
             android:exported="false" >
         </service>
         <service android:name="com.GC01.BeatYourPace.Database.DatabaseIntentService"></service>
+        <service android:name="com.GC01.BeatYourPace.PaceCalculator.CurrentPace"></service>
     </application>
 
 </manifest>

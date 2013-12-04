@@ -7,6 +7,7 @@ import com.google.analytics.tracking.android.EasyTracker;
 import com.GC01.BeatYourPace.Database.DatabaseAdapter;
 import com.GC01.BeatYourPace.Database.DatabaseIntentService;
 import com.GC01.BeatYourPace.Database.DatabaseService;
+import com.GC01.BeatYourPace.PaceCalculator.CurrentPace;
 import com.GC01.BeatYourPace.Settings.SettingsActivity;
 import com.example.beatyourpace.R;
 
@@ -61,6 +62,10 @@ public class MainActivity extends Activity implements OnClickListener{
 	      if(v == b1){ //onclick the user is taken to the TrainingMode view as per TrainingModeActivity class
               Intent intent = new Intent(this,TrainingModeActivity.class);
               startActivity(intent);
+              
+              //start the CurrentPace service class
+              Intent CurrentPaceService = new Intent(this, CurrentPace.class);
+              startService(CurrentPaceService);
 				}
 	      if (v == b2) {
 	    	  Intent intent = new Intent(this,LetsRunModeActivity.class);
