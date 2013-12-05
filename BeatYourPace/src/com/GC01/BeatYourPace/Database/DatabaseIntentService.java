@@ -1,5 +1,9 @@
 package com.GC01.BeatYourPace.Database;
 
+import java.util.ArrayList;
+
+import com.echonest.api.v4.EchoNestException;
+
 import android.app.IntentService;
 import android.content.Intent;
 import android.util.Log;
@@ -13,23 +17,42 @@ public class DatabaseIntentService extends IntentService {
 	
 	public DatabaseIntentService() {
 		super("DatabaseIntentService");
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	protected void onHandleIntent(Intent intent) {
-		// TODO Auto-generated method stub
+		
 		Log.d(LOG_TAG,"DatabaseIntentService : onCreate");
 		this.db = new DatabaseAdapter(getApplicationContext());
 		this.db.openDbWrite();
+		
+		//add the tracks from the device to the byp database
 		this.db.addTracks();
 		Log.d(LOG_TAG,"Tracks added");
+		
+		//get the BPM for each track in the byp database
+		try {
+			this.db.addBpm();
+		} catch (EchoNestException e) {
+			e.printStackTrace();
+		}
+		Log.d(LOG_TAG,"Bpm added");
+		
+		//add the initialPrePace for each track to the database
+		this.db.addInitialPrefPace();
+		Log.d(LOG_TAG,"Initial preferred pace added");
+		
+		//for testing only
+		ArrayList<String> appSong = this.db.getAppropriateSongs((float)10.0);
+		for (int i = 0; i < appSong.size(); i++ ) {
+			System.out.println(appSong.get(i));
+		}
 	}
 	
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		Log.d(LOG_TAG,"DatabaseIntentService : onStartCommand");
-		Toast.makeText(this, "Database service starting", Toast.LENGTH_SHORT).show();
+		Toast.makeText(this, "Analysing your music", Toast.LENGTH_SHORT).show();
 	    return super.onStartCommand(intent,flags,startId);
 	}
 

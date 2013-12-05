@@ -100,7 +100,7 @@ public class DataModel {
 		return initialPrefPace;
 	}
 
-	public void setInitialPrefPace(float initialPrefPace) {
+	public void setInitialPrefPace(int initialPrefPace) {
 		this.initialPrefPace = initialPrefPace;
 	}
 
