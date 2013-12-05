@@ -42,11 +42,13 @@ public class DatabaseIntentService extends IntentService {
 		this.db.addInitialPrefPace();
 		Log.d(LOG_TAG,"Initial preferred pace added");
 		
+		/*
 		//for testing only
 		ArrayList<String> appSong = this.db.getAppropriateSongs((float)10.0);
 		for (int i = 0; i < appSong.size(); i++ ) {
 			System.out.println(appSong.get(i));
 		}
+		*/
 	}
 	
 	@Override

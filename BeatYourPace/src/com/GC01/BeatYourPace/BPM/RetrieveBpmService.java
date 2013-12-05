@@ -56,9 +56,9 @@ public class RetrieveBpmService extends IntentService {
 		if (songs.size() > 0) {
 			double tempo = songs.get(0).getTempo();
 			int bpm = (int)Math.round(tempo);
-			//The following are for de-bugging only
-				String strBpm = Integer.toString(bpm);
-				Log.d(LOG_TAG, "BPM is " + strBpm);
+			//The following log is for de-bugging only
+				//String strBpm = Integer.toString(bpm);
+				//Log.d(LOG_TAG, "BPM is " + strBpm);
 			return Integer.valueOf(bpm);
 		} else {
 			//This should ideally be null rather than 0
