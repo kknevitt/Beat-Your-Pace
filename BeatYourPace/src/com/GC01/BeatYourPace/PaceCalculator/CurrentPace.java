@@ -17,7 +17,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 /** 
- * @author Kristian Knevitt
+ * @author Laura Barbosa & Kristian Knevitt
  * @version 1.0, Updated 18/11/2013
  */
 
