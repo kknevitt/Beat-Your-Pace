@@ -76,7 +76,7 @@ public static void buttonFunction(View v) {
 				TargetPace.setTargetPace(false); 
 				String tarPace = String.valueOf(TargetPace.getTargetPace());
 				TrainingModeActivity.targetPaceText.setText(tarPace);
-				TrackList.getInstance().updateTrackList(TargetPace.getTargetPace());
+				TrackList.getInstance().updateTrackList((float) TargetPace.getTargetPace());
 				
 				if (MusicPlayer.getInstance().isPlaying()){
 				MusicPlayer.getInstance().stop();
@@ -105,7 +105,7 @@ public static void buttonFunction(View v) {
 		    	    TrainingModeActivity.targetPaceText.setText(tarPace1);
 		    	    
 		    	    
-		    	    TrackList.getInstance().updateTrackList(TargetPace.getTargetPace());
+		    	    TrackList.getInstance().updateTrackList((float) TargetPace.getTargetPace());
 		    	    
 		    	    
 		    	    if (MusicPlayer.getInstance().isPlaying()) {
