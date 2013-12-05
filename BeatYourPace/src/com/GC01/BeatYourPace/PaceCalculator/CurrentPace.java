@@ -13,6 +13,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.util.Log;
 import android.widget.Toast;
 
 /** 
@@ -57,22 +58,24 @@ public class CurrentPace extends Service {
       startService(context);
     }
 
-				
 	public void startService(Context context){
+	    Log.d(null, "testing - startService() is being called");
 		 LocationListener locationListener = new LocationListener(){
 		        
-		
 			public void onLocationChanged(Location location){
 		       // Called when a new location is found by the network location provider.
 				 if (location.hasAccuracy() && location !=null) {    	
 			    	// An if else selection is used in order to be using the correct prefences for miles or kilometres
 				    // for the preferred distance unit.	
 				   if (AccessSettings.getUnitType() == 1) {
-			    		currentPace = (float) (location.getSpeed() * MPS_TO_MINS_PER_MILE);
-			    		location.setSpeed(currentPace);
+			    		currentPace = (float) (location.getSpeed() / MPS_TO_MINS_PER_MILE);
+
+			    		System.out.println("testing1");
+			    		
 			    			if (AccessSettings.getUnitType() == 2) {
-			    				currentPace = (float) (location.getSpeed() * MPS_TO_PER_KILOMETRES);
-			    				location.setSpeed(currentPace);
+			    				currentPace = (float) (location.getSpeed() / MPS_TO_PER_KILOMETRES);
+
+			    				System.out.println("testing2");
 			    				}
 			    			}  
 				 }

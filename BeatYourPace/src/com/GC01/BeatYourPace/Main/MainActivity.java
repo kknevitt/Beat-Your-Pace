@@ -63,7 +63,7 @@ public class MainActivity extends Activity implements OnClickListener{
               Intent intent = new Intent(this,TrainingModeActivity.class);
               startActivity(intent);
               
-              //start the CurrentPace service class
+              //start the CurrentPace service class when training mode is selected.
               Intent CurrentPaceService = new Intent(this, CurrentPace.class);
               startService(CurrentPaceService);
 				}

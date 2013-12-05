@@ -30,6 +30,7 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
     ImageButton playSongImageButton, imagebutton2, skipSongImageButton, previousSongImageButton;
     Button songTooSlowButton, songTooFastButton, decreaseTargetPaceButton, increaseTargetPaceButton;
     
+    Context context;
     //placeholder buttons
     Button pause;
     Button stop;
@@ -44,6 +45,7 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.trainingmode); 
 		
+		startCurrentPaceService(context);
 		
 		
 	// Possible sending of context to the AFM in order to get audio focus.	
@@ -98,9 +100,7 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 	
 	public void startCurrentPaceService(Context context) {
 	
-		startService(new Intent(this, CurrentPace.class));
-		
-		
+		startService(new Intent(this, CurrentPace.class));		
 		currentPaceText = (TextView) findViewById(R.id.CurrentTargetPace);
 	}
 	
