@@ -32,7 +32,7 @@ public class CurrentPace extends Service {
 	Location location;
 	
 	/** the currentPace double is used to retrieve the speed value to be displayed on the UI*/
-	public static double currentPace;
+	public static float currentPace;
 	
 	/** the pace String is used in the getPace() method to be displayed on the screen.*/
 	private static String pace;
@@ -59,9 +59,9 @@ public class CurrentPace extends Service {
 
 				
 	public void startService(Context context){
-		 final LocationManager locationManager = (LocationManager)context.getSystemService(Context.LOCATION_SERVICE);
 		 LocationListener locationListener = new LocationListener(){
 		        
+		
 			public void onLocationChanged(Location location){
 		       // Called when a new location is found by the network location provider.
 				 if (location.hasAccuracy() && location !=null) {    	
@@ -69,13 +69,15 @@ public class CurrentPace extends Service {
 				    // for the preferred distance unit.	
 				   if (AccessSettings.getUnitType() == 1) {
 			    		currentPace = (float) (location.getSpeed() * MPS_TO_MINS_PER_MILE);
+			    		location.setSpeed(currentPace);
 			    			if (AccessSettings.getUnitType() == 2) {
 			    				currentPace = (float) (location.getSpeed() * MPS_TO_PER_KILOMETRES);
+			    				location.setSpeed(currentPace);
 			    				}
 			    			}  
 				 }
 				 else if( location == null ) {
-						 currentPace = 0.00;
+						 currentPace = 0;
 							Toast.makeText(getApplicationContext(), "Your GPS is not responding, it may be off.",
 									   Toast.LENGTH_LONG).show();	
 				   } 				   	
@@ -91,22 +93,6 @@ public class CurrentPace extends Service {
 		    locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 0, locationListener);
 		} 
 		
-	/** Used to receive the pace of the user, returning a String as this is what has to be used to be displayed
-	 * on the Android screen
-	 * @return pace (String)  The current running speed of the user
-	 * @param 
-	 * @return 
-	 */
-	public static String returnService(Context context){
-		
-		
-		pace = Double.toString(currentPace);
-	
-		return pace;
-		
-	}
-
-
 	@Override
 	public IBinder onBind(Intent intent) {
 		// TODO Auto-generated method stub

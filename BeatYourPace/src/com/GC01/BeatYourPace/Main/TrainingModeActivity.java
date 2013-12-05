@@ -99,7 +99,8 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 	public void startCurrentPaceService(Context context) {
 	
 		startService(new Intent(this, CurrentPace.class));
-		CurrentPace.returnService(context);
+		
+		
 		currentPaceText = (TextView) findViewById(R.id.CurrentTargetPace);
 	}
 	
