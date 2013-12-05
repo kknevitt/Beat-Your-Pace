@@ -10,12 +10,18 @@
  * The class has temporary methods and variables set for local testing purposes. 
  */
 
-package com.GC01.BeatYourPace.BPM;
+package com.GC01.BeatYourPace.ArchiveFiles;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
+
+import android.util.Log;
+
 import com.echonest.api.v4.EchoNestAPI;
 import com.echonest.api.v4.EchoNestException;
+import com.echonest.api.v4.Song;
+import com.echonest.api.v4.SongParams;
 import com.echonest.api.v4.Track;
 import com.echonest.api.v4.TrackAnalysis;
 
@@ -52,7 +58,7 @@ public class BpmRetriever {
     System.out.print("Tempo " + analysis.getTempo());
     
     return tempo;
-   
 
 	}
+	
 }
