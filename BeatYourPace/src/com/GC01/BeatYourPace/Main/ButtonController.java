@@ -12,16 +12,16 @@ import com.example.beatyourpace.R;
 
 public class ButtonController {
 	
-	static TrackList trackList = new TrackList(TargetPace.getTargetPace()); // This has the Target CurrentPace as its parameter
-	static MusicPlayer musicPlayer = new MusicPlayer(trackList); // This has the tracklist object as the parameter
-
+	//static TrackList trackList = new TrackList(TargetPace.getTargetPace()); // This has the Target CurrentPace as its parameter
+	
 public static void buttonFunction(View v) {
-		
 
+	
 		switch (v.getId()) {		
 			case R.id.bPlaySong: 	    		  
 					try {
-						musicPlayer.play();
+						
+						MusicPlayer.getInstance().play();
 					} catch (IllegalArgumentException e1) {
 						e1.printStackTrace();
 					} catch (SecurityException e1) {
@@ -35,7 +35,8 @@ public static void buttonFunction(View v) {
 			
 			case R.id.bSkipTrack: 
 	    	    	try {
-						musicPlayer.skip();
+	    	    		
+	    	    		MusicPlayer.getInstance().skip();
 					} catch (IllegalArgumentException e) {
 						e.printStackTrace();
 					} catch (SecurityException e) {
@@ -49,7 +50,7 @@ public static void buttonFunction(View v) {
 	                 
 			case R.id.bPreviousTrack:
 	                try {
-						musicPlayer.previous();	
+	                	MusicPlayer.getInstance().previous();	
 					} catch (IllegalArgumentException e) {
 						e.printStackTrace();
 					} catch (SecurityException e) {
@@ -75,21 +76,65 @@ public static void buttonFunction(View v) {
 				TargetPace.setTargetPace(false); 
 				String tarPace = String.valueOf(TargetPace.getTargetPace());
 				TrainingModeActivity.targetPaceText.setText(tarPace);
+				TrackList.getInstance().updateTrackList(TargetPace.getTargetPace());
+				
+				if (MusicPlayer.getInstance().isPlaying()){
+				MusicPlayer.getInstance().stop();
+			try {
+				MusicPlayer.getInstance().play();
+			} catch (IllegalArgumentException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (SecurityException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IllegalStateException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+				}
+				
 	            break;
 	            
 			case R.id.bIncTarget:
 	            	TargetPace.setTargetPace(true);
 	            	String tarPace1 = String.valueOf(TargetPace.getTargetPace());
 		    	    TrainingModeActivity.targetPaceText.setText(tarPace1);
+		    	    
+		    	    
+		    	    TrackList.getInstance().updateTrackList(TargetPace.getTargetPace());
+		    	    
+		    	    
+		    	    if (MusicPlayer.getInstance().isPlaying()) {
+		    	    MusicPlayer.getInstance().stop();
+			try {
+				MusicPlayer.getInstance().play();
+			} catch (IllegalArgumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SecurityException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalStateException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		    	    }
 	            break;
 	            
 	       //place holder buttons
 			case R.id.placeHolderPause:
-				musicPlayer.pause();
+				MusicPlayer.getInstance().pause();
 				break;
 				
 			case R.id.placeHolderStop:
-				musicPlayer.stop();
+				MusicPlayer.getInstance().stop();
 				break;
 	            
 	            

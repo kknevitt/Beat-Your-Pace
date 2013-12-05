@@ -23,25 +23,34 @@ import android.widget.Toast;
  * the functions of a media player, such as playing a song and skipping to the next. </p>
  */
  
-public class MusicPlayer extends Service implements OnCompletionListener, OnErrorListener {	 
+public class MusicPlayer implements OnCompletionListener, OnErrorListener {	 
 
 	/** Uses a MediaPlayer object from the android.media package as a base for playback functions */
 	private static MediaPlayer mediaPlayer = new MediaPlayer();
 	
-	/** A TrackList object is used to supply the MusicPlayer with the song information it needs */
-	private static TrackList trackList;
-	
 
+	private static MusicPlayer _instance = null;
 	
 	/** Constructor for MusicPlayer and assigning the TrackList it receives to a TrackList object
 	 @return
 	 @param trackListToPlay A TrackList determined by the target pace and a database query for appropriate songs for that target pace
 	 */
-	public MusicPlayer(TrackList trackListToPlay){
+	
+	
+	private MusicPlayer(){
+		
+		
 		
 		mediaPlayer.setOnCompletionListener(this);
-		
-		trackList = trackListToPlay; // this needs to be the trackList that the Player is using.
+	}
+	
+	public static MusicPlayer getInstance()
+	{
+		if(_instance == null)
+		{
+			_instance = new MusicPlayer();
+		}
+		return _instance;
 	}
 	
 	
@@ -51,7 +60,6 @@ public class MusicPlayer extends Service implements OnCompletionListener, OnErro
 	 */
 	public void play() throws IllegalArgumentException, SecurityException, IllegalStateException, IOException {
 		
-		trackList.setSong("play");
 		playCurrentSong();
 		
 	}
@@ -64,7 +72,7 @@ public class MusicPlayer extends Service implements OnCompletionListener, OnErro
 	public void skip() throws IllegalArgumentException, SecurityException, IllegalStateException, IOException {
 		
 		
-		trackList.setSong("skip");
+		TrackList.getInstance().setSong("skip");
 		playCurrentSong();
 		
  	}
@@ -75,7 +83,7 @@ public class MusicPlayer extends Service implements OnCompletionListener, OnErro
 	 */
 	public void previous() throws IllegalArgumentException, SecurityException, IllegalStateException, IOException {
 		
-		trackList.setSong("previous");
+		TrackList.getInstance().setSong("previous");
 		playCurrentSong();	
  	}
 	
@@ -97,8 +105,8 @@ public class MusicPlayer extends Service implements OnCompletionListener, OnErro
 	private void playCurrentSong() throws IllegalArgumentException, SecurityException, IllegalStateException, IOException{
 		 
 		// testing values
-		String testTrack = trackList.getSongPath();
-		int testIndex = trackList.getSongIndex();
+		String testTrack = TrackList.getInstance().getSongPath();
+		int testIndex = TrackList.getInstance().getSongIndex();
 		System.out.println(testTrack + testIndex);
 		
 		try {
@@ -139,6 +147,16 @@ public class MusicPlayer extends Service implements OnCompletionListener, OnErro
 			e.printStackTrace();
 		}
 		
+
+		
+	}
+	
+	public boolean isPlaying() {
+		
+		if (mediaPlayer.isPlaying()) 
+			return true;
+		else
+			return false;
 	}
 
 
@@ -148,6 +166,7 @@ public class MusicPlayer extends Service implements OnCompletionListener, OnErro
 		return false;
 	}
 
+	/*
 
 	@Override
 	public IBinder onBind(Intent arg0) {
@@ -164,6 +183,8 @@ public class MusicPlayer extends Service implements OnCompletionListener, OnErro
 		
 		Toast.makeText(this, "MusicPlayer has ended", Toast.LENGTH_LONG).show();
 		}
+		
+		*/
 	
 	}
 

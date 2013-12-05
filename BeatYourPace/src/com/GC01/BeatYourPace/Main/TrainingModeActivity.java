@@ -3,13 +3,14 @@ package com.GC01.BeatYourPace.Main;
 import java.io.IOException;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 
 import com.GC01.BeatYourPace.ArchiveFiles.DatabaseActivity;
 import com.GC01.BeatYourPace.Database.DatabaseHelper;
-import com.GC01.BeatYourPace.MusicPlayer.AudioFocusManager;
 import com.GC01.BeatYourPace.MusicPlayer.MusicPlayer;
 import com.GC01.BeatYourPace.MusicPlayer.TrackList;
+import com.GC01.BeatYourPace.PaceCalculator.CurrentPace;
 import com.GC01.BeatYourPace.PaceCalculator.TargetPace;
 import com.example.beatyourpace.R;
 
@@ -34,6 +35,8 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
     
     static TextView targetPaceText;
     static TextView currentPaceText;
+    
+    String pace ="";
     
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +68,7 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
         
         
         targetPaceText = (TextView) findViewById(R.id.CurrentTargetPace);
-        currentPaceText = (TextView) findViewById(R.id.CurrentTargetPace);
+        
         
         // Takes the variable Target CurrentPace and pushes it to the text view.
         String tarPace = String.valueOf(TargetPace.getTargetPace());
@@ -91,6 +94,15 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 		startService(new Intent(this, MusicPlayer.class));
 	
 	}
+	
+	public void startCurrentPaceService(Context context) {
+	
+		startService(new Intent(this, CurrentPace.class));
+		
+		
+		currentPaceText = (TextView) findViewById(R.id.CurrentTargetPace);
+	}
+	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

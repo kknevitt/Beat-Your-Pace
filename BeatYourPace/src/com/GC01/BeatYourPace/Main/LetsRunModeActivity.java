@@ -77,9 +77,10 @@ public class LetsRunModeActivity extends Activity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		
-		TrackList trackList = new TrackList(getTargetPace()); // This has the Target CurrentPace as its parameter
-		MusicPlayer musicPlayer = new MusicPlayer(trackList); // This has the tracklist object as the parameter
+	//	TrackList trackList = new TrackList(getTargetPace()); // This has the Target CurrentPace as its parameter
+	//	MusicPlayer musicPlayer = new MusicPlayer(trackList); // This has the tracklist object as the parameter
 
+		/*
 		switch (v.getId()) {		
 		case R.id.bPlaySong: 	    		  
 				try {
@@ -146,6 +147,8 @@ public class LetsRunModeActivity extends Activity implements OnClickListener {
     	      targetPaceText.setText(tarPace1);
 	          break;
 		}
+		
+		*/
 	}
 	
 	
