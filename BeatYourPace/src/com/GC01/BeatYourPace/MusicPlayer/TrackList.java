@@ -2,6 +2,11 @@ package com.GC01.BeatYourPace.MusicPlayer;
 
 import java.util.ArrayList;
 
+import android.content.Context;
+
+import com.GC01.BeatYourPace.Database.DatabaseAdapter;
+import com.GC01.BeatYourPace.PaceCalculator.TargetPace;
+
 /** 
  * @author Kristian Knevitt
  * @version 1.0, Updated 18/11/2013
@@ -18,6 +23,7 @@ import java.util.ArrayList;
 
 
 public class TrackList {
+	Context context;
 	
 	/** A string of the filepath of the current track to be played by the MusicPlayer */
 	private String songPath;
@@ -35,7 +41,7 @@ public class TrackList {
 	private TrackList(){
 		
 		// Calling the method for populating the ArrayList.
-		updateTrackList();
+		updateTrackList((float) TargetPace.getTargetPace());
 	 	
 		// Default songPath needed.
 		songNo = 0;
@@ -130,15 +136,24 @@ public class TrackList {
 		
 		
 		// method for populating the TrackList
-		public void updateTrackList(double tarPace) {
+		public void updateTrackList(float tarPace) {
 				
 			// insert code for repopulating trackList
+			DatabaseAdapter db = new DatabaseAdapter(context);
+			
+			paceTrackList = db.getAppropriateSongs(tarPace);
+			
+			
+			for (int i = 0; i < paceTrackList.size(); i++){
+				
+				System.out.println(paceTrackList.get(i));
+				
+			}
 			
 			
 			
 			
-			
-					
+			/*		
 			if (tarPace %2 == 0) {
 				
 			paceTrackList.removeAll(paceTrackList);
@@ -162,6 +177,8 @@ public class TrackList {
 				paceTrackList.add(second);
 				String third = "/sdcard/three.wav";				
 			}
+			
+			*/
 				
 		}
 }

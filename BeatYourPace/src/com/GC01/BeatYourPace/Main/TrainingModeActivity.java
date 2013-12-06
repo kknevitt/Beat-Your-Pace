@@ -25,7 +25,9 @@ import android.widget.TextView;
 
 public class TrainingModeActivity extends Activity implements OnClickListener {
 
-	public static double targetPace = AccessSettings.getDefaultTargetPace();
+
+	public static double targetPace = 10.0; //setting temporarily to 10
+
     
     ImageButton playSongImageButton, imagebutton2, skipSongImageButton, previousSongImageButton;
     Button songTooSlowButton, songTooFastButton, decreaseTargetPaceButton, increaseTargetPaceButton;
