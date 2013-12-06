@@ -12,6 +12,7 @@ import com.GC01.BeatYourPace.MusicPlayer.MusicPlayer;
 import com.GC01.BeatYourPace.MusicPlayer.TrackList;
 import com.GC01.BeatYourPace.PaceCalculator.CurrentPace;
 import com.GC01.BeatYourPace.PaceCalculator.TargetPace;
+import com.GC01.BeatYourPace.Settings.AccessSettings;
 import com.example.beatyourpace.R;
 
 import android.os.Bundle;
@@ -24,7 +25,9 @@ import android.widget.TextView;
 
 public class TrainingModeActivity extends Activity implements OnClickListener {
 
+
 	public static double targetPace = 10.0; //setting temporarily to 10
+
     
     ImageButton playSongImageButton, imagebutton2, skipSongImageButton, previousSongImageButton;
     Button songTooSlowButton, songTooFastButton, decreaseTargetPaceButton, increaseTargetPaceButton;
@@ -71,11 +74,9 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
         
         targetPaceText = (TextView) findViewById(R.id.CurrentTargetPace);
         
-        
-        // Takes the variable Target CurrentPace and pushes it to the text view.
         String tarPace = String.valueOf(TargetPace.getTargetPace());
         targetPaceText.setText(tarPace);
-       
+    
         
         //setting an event listener for each button
         playSongImageButton.setOnClickListener(this);
@@ -90,7 +91,8 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
         stop.setOnClickListener(this);
    }
 
-	
+
+    
 	public void startNewService(View view) {
 		
 		startService(new Intent(this, MusicPlayer.class));
