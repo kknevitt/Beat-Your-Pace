@@ -32,12 +32,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	/** Field which sets the Database version */
 	public static final int DATABASE_VERSION = 1;
 	
-	// SQL statement to create TrackData table
-	//private static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS " + DataEntry.DATABASE_NAME + "." + DataEntry.TABLE_NAME + " (" + DataEntry.COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + DataEntry.COL_MEDIASTOREID + " INTEGER,"+ DataEntry.COL_TITLE + " TEXT," + DataEntry.COL_ARTIST + " TEXT,"  + DataEntry.COL_BPM + " INTEGER," + DataEntry.COL_INITIAL_PREF_PACE + " FLOAT," + DataEntry.COL_PREF_PACE + " FLOAT," + DataEntry.COL_FILE_LOC + " STRING);"; 
-	// During debug want to create and replace each time
-	//private static final String CREATE_TABLE = "CREATE TABLE " + DataEntry.DATABASE_NAME + "." + DataEntry.TABLE_NAME + " (" + DataEntry.COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + DataEntry.COL_MEDIASTOREID + " INTEGER,"+ DataEntry.COL_TITLE + " TEXT," + DataEntry.COL_ARTIST + " TEXT,"  + DataEntry.COL_BPM + " INTEGER," + DataEntry.COL_INITIAL_PREF_PACE + " FLOAT," + DataEntry.COL_PREF_PACE + " FLOAT," + DataEntry.COL_FILE_LOC + " STRING);"; 
-	private static final String CREATE_TABLE = "CREATE TABLE " + DataEntry.TABLE_NAME + " (" + DataEntry.COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + DataEntry.COL_MEDIASTOREID + " INTEGER,"+ DataEntry.COL_TITLE + " TEXT," + DataEntry.COL_ARTIST + " TEXT,"  + DataEntry.COL_BPM + " INTEGER," + DataEntry.COL_INITIAL_PREF_PACE + " FLOAT," + DataEntry.COL_PREF_PACE + " FLOAT," + DataEntry.COL_FILE_LOC + " STRING);"; 
-
+	// SQL statement to create Tracks table
+	private static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS " + DataEntry.TABLE_NAME + " (" + DataEntry.COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + DataEntry.COL_MEDIASTOREID + " INTEGER,"+ DataEntry.COL_TITLE + " TEXT," + DataEntry.COL_ARTIST + " TEXT,"  + DataEntry.COL_BPM + " INTEGER," + DataEntry.COL_INITIAL_PREF_PACE + " FLOAT," + DataEntry.COL_PREF_PACE + " FLOAT," + DataEntry.COL_FILE_LOC + " STRING, UNIQUE (" + DataEntry.COL_ARTIST + ", " + DataEntry.COL_TITLE + ") ON CONFLICT ABORT);";
 	
 	public DatabaseHelper(Context context, String name, CursorFactory factory,int version) {
 		super(context, DataEntry.DATABASE_NAME, factory, DATABASE_VERSION);

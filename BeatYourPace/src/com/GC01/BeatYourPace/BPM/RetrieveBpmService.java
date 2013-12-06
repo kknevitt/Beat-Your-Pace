@@ -40,7 +40,8 @@ public class RetrieveBpmService extends IntentService {
 	 * @throws IOException
 	 */
 	public int getTempo(String artist, String title) throws EchoNestException {
-		final String API_KEY = ("LKMQIIIK24AL58W6D"); 
+		//final String API_KEY = ("LKMQIIIK24AL58W6D"); 
+		final String API_KEY = ("METSQHGQBHSAAH077");
 		
 		//instance of EchoNest library class
 		EchoNestAPI en = new EchoNestAPI(API_KEY);  
