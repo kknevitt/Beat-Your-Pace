@@ -7,10 +7,10 @@ import android.app.Activity;
 import android.app.Service;
 
 import com.google.analytics.tracking.android.EasyTracker;
+import com.GC01.BeatYourPace.ArchiveFiles.DatabaseService;
 import com.GC01.BeatYourPace.BPM.RetrieveBpmService;
 import com.GC01.BeatYourPace.Database.DatabaseAdapter;
 import com.GC01.BeatYourPace.Database.DatabaseIntentService;
-import com.GC01.BeatYourPace.Database.DatabaseService;
 import com.GC01.BeatYourPace.PaceCalculator.CurrentPace;
 import com.GC01.BeatYourPace.Settings.SettingsActivity;
 import com.example.beatyourpace.R;

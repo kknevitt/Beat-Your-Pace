@@ -23,8 +23,10 @@ public class DataModel {
 	private String artist;
 	private String title;
 	private int bpm; 
-	private float initialPrefPace;
-	private float preferredPace;
+	private float initialPrefPaceM;
+	private float initialPrefPaceKm;
+	private float prefPaceM;
+	private float prefPaceKm;
 	private String fileLoc;
 	
 	public DataModel() {
@@ -36,8 +38,8 @@ public class DataModel {
 		this.artist = artist;
 		this.title = title;
 		this.bpm = bpm;
-		this.initialPrefPace = initialPrefPace;
-		this.preferredPace = preferredPace;
+		this.initialPrefPaceM = initialPrefPace;
+		this.prefPaceM = preferredPace;
 		this.fileLoc = fileLoc;
 		
 	}
@@ -83,25 +85,20 @@ public class DataModel {
 	}
 
 	public float getPreferredPace(){
-		return preferredPace;
+		return prefPaceM;
 	}
 
 	public void setPreferredPace(float preferredPace) {
-		this.preferredPace = preferredPace;
+		this.prefPaceM = preferredPace;
 	}
 
-	@Override
-	//needed for arraylist
-	public String toString() {
-		return "DataModel [id=" + id + ", mediastoreID=" + mediaStoreId + ", artist=" + artist  + ", title=" + title + ", bpm=" + bpm + ", pace=" + preferredPace + "]";
-	}
 
 	public float getInitialPrefPace() {
-		return initialPrefPace;
+		return initialPrefPaceM;
 	}
 
 	public void setInitialPrefPace(int initialPrefPace) {
-		this.initialPrefPace = initialPrefPace;
+		this.initialPrefPaceM = initialPrefPace;
 	}
 
 	public String getFileLoc() {
@@ -110,6 +107,25 @@ public class DataModel {
 
 	public void setFileLoc(String fileLoc) {
 		this.fileLoc = fileLoc;
+	}
+
+	public float getPrefPaceKm() {
+		return prefPaceKm;
+	}
+
+	public void setPrefPaceKm(float prefPaceKm) {
+		this.prefPaceKm = prefPaceKm;
+	}
+
+	public float getInitialPrefPaceKm() {
+		return initialPrefPaceKm;
+	}
+
+	public void setInitialPrefPaceKm(float initialPrefPaceKm) {
+		this.initialPrefPaceKm = initialPrefPaceKm;
+	}
+	public String toString() {
+		return "DataModel [id=" + id + ", mediastoreID=" + mediaStoreId + ", artist=" + artist  + ", title=" + title + ", bpm=" + bpm + ", initialPrefPaceM = " + initialPrefPaceM + ", initialPrefPaceKm = " + initialPrefPaceKm + ", prefPaceM=" + prefPaceM+ ", prefPaceKm=" + prefPaceKm+ ", fileLoc=" + fileLoc + "]";
 	}
 
 }

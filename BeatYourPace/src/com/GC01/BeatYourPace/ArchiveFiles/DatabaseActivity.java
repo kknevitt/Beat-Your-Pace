@@ -131,7 +131,7 @@ public class DatabaseActivity extends Activity {
 	public void addBpmPace(int bpm, float preferredPace, int trackId){
 		// Insert the new values for BPM and pace using SQL
 		SQLiteDatabase db = dh.getWritableDatabase();
-		String sql = "UPDATE " + DataEntry.TABLE_NAME + "SET " + DataEntry.COL_BPM + "=" + bpm + "," + DataEntry.COL_PREF_PACE + "=" + preferredPace +"WHERE " + DataEntry.COL_MEDIASTOREID + "=" + trackId;
+		String sql = "UPDATE " + DataEntry.TABLE_NAME + "SET " + DataEntry.COL_BPM + "=" + bpm + "," + DataEntry.COL_PREF_PACE_M + "=" + preferredPace +"WHERE " + DataEntry.COL_MEDIASTOREID + "=" + trackId;
 		db.execSQL(sql);
 	}
 	

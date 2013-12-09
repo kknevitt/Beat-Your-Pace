@@ -26,9 +26,9 @@ public class DatabaseIntentService extends IntentService {
 		this.db = new DatabaseAdapter(getApplicationContext());
 		this.db.openDbWrite();
 		
-		//add the tracks from the device to the byp database
-		this.db.addTracks();
-		Log.d(LOG_TAG,"Tracks added");
+		//synch the tracks from the device to the byp database
+		this.db.synchTracks();
+		Log.d(LOG_TAG,"Tracks updated");
 		
 		//get the BPM for each track in the byp database
 		try {
@@ -42,8 +42,10 @@ public class DatabaseIntentService extends IntentService {
 		this.db.addInitialPrefPace();
 		Log.d(LOG_TAG,"Initial preferred pace added");
 		
+		this.db.closeDb();
+		
 		/*
-		//for testing only
+		//for testing only, create the array list and synch it
 		ArrayList<String> appSong = this.db.getAppropriateSongs((float)10.0);
 		for (int i = 0; i < appSong.size(); i++ ) {
 			System.out.println(appSong.get(i));

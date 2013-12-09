@@ -1,4 +1,6 @@
-package com.GC01.BeatYourPace.Database;
+package com.GC01.BeatYourPace.ArchiveFiles;
+
+import com.GC01.BeatYourPace.Database.DatabaseAdapter;
 
 import android.app.Service;
 import android.content.Intent;

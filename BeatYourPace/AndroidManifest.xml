@@ -54,7 +54,7 @@
             android:exported="false" >
         </service>
         <service
-            android:name="com.GC01.BeatYourPace.Database.DatabaseService"
+            android:name="com.GC01.BeatYourPace.ArchiveFiles.DatabaseService"
             android:enabled="true"
             android:exported="false" >
         </service>

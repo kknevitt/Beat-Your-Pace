@@ -7,15 +7,19 @@ import java.util.List;
 import com.GC01.BeatYourPace.BPM.*;
 import com.GC01.BeatYourPace.Database.DatabaseContract.DataEntry;
 import com.GC01.BeatYourPace.PaceCalculator.InitialPrefPace;
+import com.GC01.BeatYourPace.PaceCalculator.InitialPrefPace.InitPrefPaceVals;
+import com.GC01.BeatYourPace.Settings.SettingsActivity;
 import com.echonest.api.v4.EchoNestException;
-
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.CursorLoader;
+import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.database.CursorJoiner;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.util.Log;
 
@@ -57,8 +61,10 @@ public class DatabaseAdapter {
 	}
 
 
-	/** Method to read the device's media db and add metadata from it to our database */
-
+	/** 
+	 * Method to read the device's media db and add metadata from it to our database 
+	 * This method is only used when the byp database is empty
+	 */
 	@SuppressLint("NewApi")
 	public void addTracks(){
 
@@ -75,18 +81,18 @@ public class DatabaseAdapter {
 		//iterate through the contents and then write them to our database
 		if (cursor.moveToFirst()) {
 			do {
-
+				//addData(cursor);
 				int id = cursor.getInt(0);
 				String title = cursor.getString(1); 
 				String artist = cursor.getString(2);
-				String data = cursor.getString(3);
+				String fileLoc = cursor.getString(3);
 
 				// create ContentValues to add the content from the media store table to the equivalent column in our database
 				ContentValues cv = new ContentValues();
 				cv.put(DataEntry.COL_MEDIASTOREID, id);
 				cv.put(DataEntry.COL_TITLE, title);
 				cv.put(DataEntry.COL_ARTIST, artist);
-				cv.put(DataEntry.COL_FILE_LOC, data);
+				cv.put(DataEntry.COL_FILE_LOC, fileLoc);
 
 				db.insert(DataEntry.TABLE_NAME, null, cv);
 			} 
@@ -96,10 +102,86 @@ public class DatabaseAdapter {
 	}
 
 	/**
-	 * Query all tracks
-	 * @param cursor  New cursor to read the database
+	 * Method is used by addTracks and synchTracks to write data to byp
 	 */
+	private void addData(Cursor cursor){
+		int id = cursor.getInt(cursor.getColumnIndex(DataEntry.COL_ID));
+		String title = cursor.getString(cursor.getColumnIndex(DataEntry.COL_TITLE)); 
+		String artist = cursor.getString(cursor.getColumnIndex(DataEntry.COL_ARTIST));
+		String fileLoc = cursor.getString(cursor.getColumnIndex(DataEntry.COL_FILE_LOC));
 
+		// create ContentValues to add the content from the media store table to the equivalent column in our database
+		ContentValues cv = new ContentValues();
+		cv.put(DataEntry.COL_MEDIASTOREID, id);
+		cv.put(DataEntry.COL_TITLE, title);
+		cv.put(DataEntry.COL_ARTIST, artist);
+		cv.put(DataEntry.COL_FILE_LOC, fileLoc);
+
+		db.insert(DataEntry.TABLE_NAME, null, cv);
+	}
+	
+	
+	/**
+	 * Method to add or delete tracks from the byp database to synchronise with media on the device
+	 * @return 
+	 * @return 
+	 */
+	public void synchTracks() {
+		// Open the byp database and get the data about all tracks in the database
+		openDbWrite();
+		Cursor cursorA = getAllTracks();
+
+		//Open the mediastore database and get data about all the music on the device
+		String[] projection = { MediaStore.Audio.Media._ID, MediaStore.Audio.Media.TITLE, MediaStore.Audio.Artists.ARTIST, MediaStore.Audio.Media.DATA};
+		String selection = MediaStore.Audio.Media.IS_MUSIC + " != 0";
+		CursorLoader cload = new CursorLoader(context, MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, projection, selection, null, MediaStore.Audio.Media._ID + " ASC");
+		Cursor cursorB = cload.loadInBackground();
+
+		//Join the two cursors and compare to see which tracks are not in both
+		//the format of the switch is set by the CursorJoiner method in Android, no Default case
+		//if cursorA(byp) is null then the code would fail so skip and go to the addTracks method instead
+		if (cursorA != null && (cursorA.getCount() > 0)) {
+		CursorJoiner cj = new CursorJoiner(cursorA, new String[]{DataEntry.COL_MEDIASTOREID}, cursorB, new String[]{MediaStore.Audio.Media._ID});
+		for (CursorJoiner.Result joinRes : cj) {
+			switch (joinRes) {
+			case LEFT:
+				// where a row in cursorA(byp) is unique delete tracks from byp
+				int rowid = cursorA.getInt(cursorA.getColumnIndex(DataEntry.COL_ID));
+				db.delete(DataEntry.TABLE_NAME, DataEntry.COL_ID + " = " + rowid, null);
+				break;
+			case RIGHT: 
+				// where a row in cursorB(mediastore) is unique add tracks to byp
+				//addData(cursorB);  this fails
+				int msid = cursorB.getInt(0);
+				String title = cursorB.getString(1); 
+				String artist = cursorB.getString(2);
+				String fileLoc = cursorB.getString(3);
+
+				// create ContentValues to add the content from the media store table to the equivalent column in our database
+				ContentValues cv = new ContentValues();
+				cv.put(DataEntry.COL_MEDIASTOREID, msid);
+				cv.put(DataEntry.COL_TITLE, title);
+				cv.put(DataEntry.COL_ARTIST, artist);
+				cv.put(DataEntry.COL_FILE_LOC, fileLoc);
+
+				db.insert(DataEntry.TABLE_NAME, null, cv);
+				break;
+			case BOTH:
+				// where a row with the same key is in both cursors do nothing
+				break;
+			}
+		}
+		} else {
+			addTracks();
+		}
+		cursorA.close();
+		cursorB.close();
+	}
+	
+	/**
+	 * Query all tracks and all data fields
+	 * @return cursor  New cursor to read the database and give the results
+	 */
 	public Cursor getAllTracks(){			
 		//Get a reference to readable DB
 		openDbRead();
@@ -107,13 +189,15 @@ public class DatabaseAdapter {
 				DataEntry.COL_ID, 
 				DataEntry.COL_MEDIASTOREID, 
 				DataEntry.COL_ARTIST, 
-				DataEntry.COL_BPM, 
-				DataEntry.COL_FILE_LOC,
-				DataEntry.COL_INITIAL_PREF_PACE,
-				DataEntry.COL_PREF_PACE,
 				DataEntry.COL_TITLE,
+				DataEntry.COL_BPM, 
+				DataEntry.COL_INITIAL_PREF_PACE_M,
+				DataEntry.COL_PREF_PACE_M,
+				DataEntry.COL_PREF_PACE_KM,
+				DataEntry.COL_FILE_LOC,
 		};
-		return db.query(DataEntry.TABLE_NAME, allCol, null, null, null, null, null);
+		String orderBy = DataEntry.COL_MEDIASTOREID + " ASC";
+		return db.query(DataEntry.TABLE_NAME, allCol, null, null, null, null, orderBy);
 	}
 
 	/**
@@ -128,7 +212,7 @@ public class DatabaseAdapter {
 				DataEntry.COL_BPM, 
 				DataEntry.COL_ARTIST, 
 				DataEntry.COL_TITLE,
-				DataEntry.COL_INITIAL_PREF_PACE,
+				DataEntry.COL_INITIAL_PREF_PACE_M,
 		};
 		return db.query(DataEntry.TABLE_NAME, echoCols, null, null, null, null, null);
 	}
@@ -147,7 +231,7 @@ public class DatabaseAdapter {
 
 		//Empty object that allows you to call the getTempo function
 		RetrieveBpmService bpmr = new RetrieveBpmService();
-		
+
 		//iterate through all tracks in cursor
 		if (cursor.moveToFirst()) {
 			do {
@@ -157,7 +241,7 @@ public class DatabaseAdapter {
 				String title = cursor.getString(3); 
 
 				if (bpmCurrent > 1) {
-					
+					//do nothing
 				} else {
 					int bpmNew = bpmr.getTempo(artist, title);
 
@@ -184,25 +268,28 @@ public class DatabaseAdapter {
 
 		//Get the data about all tracks in the database
 		Cursor cursor = getCols();
+
 		
-		//Constructor to be able to call the GetInitPrefPace
-		InitialPrefPace gipp = new InitialPrefPace();
-		
+
 		//iterate through all tracks in cursor
 		if (cursor.moveToFirst()) {
 			do {
-				int id = cursor.getInt(0);
-				int bpm = cursor.getInt(1);
-				float initialPrefPace = cursor.getFloat(4);
+				int id = cursor.getInt(cursor.getColumnIndex(DataEntry.COL_ID));
+				int bpm = cursor.getInt(cursor.getColumnIndex(DataEntry.COL_BPM));
+				float initialPrefPace = cursor.getFloat(cursor.getColumnIndex(DataEntry.COL_INITIAL_PREF_PACE_M));
 
 				if (initialPrefPace > 0) {
 					//do nothing
 				} else {
-					
-					initialPrefPace = gipp.calcInitPrefPace(bpm);
+					//Calculate the initial pref pace values for M and Km
+					InitialPrefPace gipp = new InitialPrefPace();
+					InitPrefPaceVals ippv = gipp.calcInitPrefPace(bpm);
+					float initialPrefPaceM = ippv.getIPPM();
+					float initialPrefPaceKm = ippv.getIPPKM();
 
 					ContentValues cv = new ContentValues();
-					cv.put(DataEntry.COL_INITIAL_PREF_PACE, initialPrefPace);
+					cv.put(DataEntry.COL_INITIAL_PREF_PACE_M, initialPrefPaceM);
+					cv.put(DataEntry.COL_INITIAL_PREF_PACE_KM, initialPrefPaceKm);
 
 					String where = DataEntry.COL_ID + " = " + id;
 
@@ -214,21 +301,30 @@ public class DatabaseAdapter {
 		cursor.close();
 		closeDb();
 	}
-	
-	
+
+
 	/** 
-	 * Method to add the PreferredPace data for a track
-	 * @param preferredPace	Double that is the preferred pace that this track should be used for
-	 * @param trackId	Integer that is the unique reference to the track in the device's media store db
+	 * Method to add the preferred pace data for a track
+	 * @param prefPace	Float that is the preferred pace that this track should be used for
+	 * @param fileLoc	String that is the file loc reference to the track in the device's media store db
+	 * as this is the only info that is available in the TrackList array
 	 */
-	public void addPrefPace(float preferredPace, int trackId){
-		// Insert the new values for BPM and pace using SQL
+	public void addPrefPace(float preferredPace, String fileLoc){
+		//Find out if they are using Miles (1) or Km (2)
+		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+		int unitType = preferences.getInt("unitType", 1);
+
+		// Open the database in write mode
 		openDbWrite();
 
 		//Sql statement to update preferred pace
-		String sql = "UPDATE " + DataEntry.TABLE_NAME + "SET " + DataEntry.COL_PREF_PACE + "=" + preferredPace +"WHERE " + DataEntry.COL_MEDIASTOREID + "=" + trackId;
-		db.execSQL(sql);
-
+		if (unitType == 1) {
+			String sql = "UPDATE " + DataEntry.TABLE_NAME + "SET " + DataEntry.COL_PREF_PACE_M + "= " + preferredPace +"WHERE " + DataEntry.COL_FILE_LOC + "= " + fileLoc;
+			db.execSQL(sql);
+		} else {
+			String sql = "UPDATE " + DataEntry.TABLE_NAME + "SET " + DataEntry.COL_PREF_PACE_KM + "= " + preferredPace +"WHERE " + DataEntry.COL_FILE_LOC + "= " + fileLoc;
+			db.execSQL(sql);
+		}
 		closeDb();
 	}
 
@@ -245,22 +341,35 @@ public class DatabaseAdapter {
 
 		//List that holds just the path name to the track
 		ArrayList<String> appropriateSongs = new ArrayList<String>();
-
-		//String that builds the query
-		String query2 = "SELECT * FROM " + DataEntry.TABLE_NAME + " WHERE (" + DataEntry.COL_PREF_PACE + " IS NULL OR " + DataEntry.COL_PREF_PACE + " = " + targetPace + " )";
-
-		//Get a reference to readable DB
+		
+		//Get the user preference for miles(1) or kilometres(2)
+		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+		int unitType = preferences.getInt("unitType", 1);
+		
+		String query2;
+		if (unitType == 1) {
+			//String that builds the query for miles
+			query2 = "SELECT * FROM " + DataEntry.TABLE_NAME + " WHERE (" + DataEntry.COL_PREF_PACE_M + " IS NULL OR " + DataEntry.COL_PREF_PACE_M + " = " + targetPace + " )";
+		} else {
+			//String that builds the query for km
+			query2 = "SELECT * FROM " + DataEntry.TABLE_NAME + " WHERE (" + DataEntry.COL_PREF_PACE_M + " IS NULL OR " + DataEntry.COL_PREF_PACE_KM + " = " + targetPace + " )";
+		}
+		
+		//Open the database, read to a cursor, go over each row, build track and add it to list
 		openDbRead();
 		Cursor cursor = db.rawQuery(query2, null);
-
-		//Go over each row, build track and add it to list
 		cursor.moveToFirst();
 		while (!cursor.isAfterLast()) {
-			//Create an entry for one track using the path only
-			float initPrefPace = cursor.getFloat(cursor.getColumnIndex(DataEntry.COL_INITIAL_PREF_PACE));
-			float preferredPace = cursor.getFloat(cursor.getColumnIndex(DataEntry.COL_PREF_PACE));
+			float initPrefPace = cursor.getFloat(cursor.getColumnIndex(DataEntry.COL_INITIAL_PREF_PACE_M));
+			//get the preferred pace in miles or km
+			float preferredPace;
+			if (unitType == 1) {
+				preferredPace = cursor.getFloat(cursor.getColumnIndex(DataEntry.COL_PREF_PACE_M));
+			} else {
+				preferredPace = cursor.getFloat(cursor.getColumnIndex(DataEntry.COL_PREF_PACE_KM));
+			}
 			String fileLoc = cursor.getString(cursor.getColumnIndex(DataEntry.COL_FILE_LOC));
-			
+			//add the tracks file location to the array, check the default column if there is no 
 			if (preferredPace == 0){
 				if (initPrefPace == targetPace) {
 					appropriateSongs.add(fileLoc);
@@ -277,21 +386,6 @@ public class DatabaseAdapter {
 		return appropriateSongs;
 	}
 
-	/**
-	 * Update database method yet to be implemented, this needs to look for changes in the audio db
-	 * and replicate to this db. Changes must not overwrite existing records.
-	 */
-	public void updateTable(){
-
-	}
-
-
-	/**
-	 * Method to delete a track
-	 * @return 
-	 */
-	public boolean delTrack(int rowId) {
-		return db.delete(DataEntry.TABLE_NAME, DataEntry.COL_ID + "=" + rowId, null) > 0;
-	}
 
 }
+

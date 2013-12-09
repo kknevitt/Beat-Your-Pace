@@ -24,9 +24,10 @@ public final class DatabaseContract {
 	    	public static final String COL_ARTIST = "artist";
 	    	public static final String COL_TITLE = "title";
 	    	public static final String COL_BPM = "bpm";
-	    	public static final String COL_INITIAL_PREF_PACE = "initialPrefPace";
-	    	//this variable is held in miles, the value in km will be calculated
-	    	public static final String COL_PREF_PACE = "preferredPace";
+	    	public static final String COL_INITIAL_PREF_PACE_M = "initialPrefPaceM";
+	    	public static final String COL_INITIAL_PREF_PACE_KM = "initialPrefPaceKm";
+	    	public static final String COL_PREF_PACE_M = "prefPaceM";
+	    	public static final String COL_PREF_PACE_KM = "prefPaceKm";
 	    	public static final String COL_FILE_LOC = "fileLoc";
 	    	
 	    	//table name for the database
