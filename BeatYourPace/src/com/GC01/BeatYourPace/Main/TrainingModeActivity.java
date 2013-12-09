@@ -45,7 +45,7 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
     
     static TextView targetPaceText;
     static TextView currentPaceText;
-    
+    TextView currentTrack, currentTitle;
     String pace ="";
     
 	@Override
@@ -66,17 +66,15 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 		
 		startCurrentPaceService(context);
 
-		
-		//creates image buttons objects and gets their setup from xml
-        playSongImageButton = (ImageButton) findViewById(R.id.bPlaySong); 			
-        //imagebutton2 = (ImageButton) findViewById(R.id.imageButton2); 	
+		playSongImageButton = (ImageButton) findViewById(R.id.bPlaySong); 			 	
         skipSongImageButton = (ImageButton) findViewById(R.id.bSkipTrack); 		
         previousSongImageButton = (ImageButton) findViewById(R.id.bPreviousTrack); 	
         songTooSlowButton = (Button) findViewById(R.id.bSongTooSlow); 				
         songTooFastButton = (Button) findViewById(R.id.bSongTooFast);					
         decreaseTargetPaceButton = (Button) findViewById(R.id.bDecTarget);					
         increaseTargetPaceButton = (Button) findViewById(R.id.bIncTarget);	
-        
+        currentTrack = (TextView) findViewById(R.id.CurrentTargetPace);
+        currentTitle = (TextView) findViewById(R.id.CurrentTargetPace);
         
         // adding placeholder buttons
         pause = (Button) findViewById(R.id.placeHolderPause);
@@ -88,6 +86,11 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
         String tarPace = String.valueOf(TargetPace.getTargetPace());
         targetPaceText.setText(tarPace);
     
+        
+        
+        //temp functions to display title and track
+        //currentTrack.setText(MusicPlayer.class.getTrack());
+        //currentTitle.setText(MusicPlayer.class.getTitle());
         
         //setting an event listener for each button
         playSongImageButton.setOnClickListener(this);
@@ -104,14 +107,12 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 
 
     
-	public void startNewService(View view) {
-		
+	public void startNewService(View view) {	
 		startService(new Intent(this, MusicPlayer.class));
 	
 	}
 	
 	public void startCurrentPaceService(Context context) {
-	
 		startService(new Intent(this, CurrentPace.class));		
 		currentPaceText = (TextView) findViewById(R.id.CurrentTargetPace);
 	}
@@ -127,7 +128,6 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
-
 		if (aFM.focusTest())
 		ButtonController.buttonFunction(v);
 		}

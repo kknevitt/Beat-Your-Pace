@@ -47,7 +47,7 @@ public final class R {
         public static final int TextView001=0x7f0c001d;
         public static final int TrainingText=0x7f0c0002;
         public static final int TrainingTitle=0x7f0c0001;
-        public static final int action_settings=0x7f0c0024;
+        public static final int action_settings=0x7f0c0023;
         public static final int bDecTarget=0x7f0c000f;
         public static final int bDistanceK=0x7f0c001a;
         public static final int bDistanceM=0x7f0c0018;
@@ -64,11 +64,10 @@ public final class R {
         public static final int bTargetDec=0x7f0c001e;
         public static final int bTargetInc=0x7f0c001c;
         public static final int bTrainingMode=0x7f0c0014;
-        public static final int button1=0x7f0c0021;
         public static final int helpPageTitle=0x7f0c0000;
         public static final int iCurrentMode=0x7f0c000e;
-        public static final int placeHolderPause=0x7f0c0022;
-        public static final int placeHolderStop=0x7f0c0023;
+        public static final int placeHolderPause=0x7f0c0021;
+        public static final int placeHolderStop=0x7f0c0022;
         public static final int sPaceTitle=0x7f0c0012;
         public static final int sTargetTitle=0x7f0c0013;
         public static final int tSettingsTitle=0x7f0c0020;

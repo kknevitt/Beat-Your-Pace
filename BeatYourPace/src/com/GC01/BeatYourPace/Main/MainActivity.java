@@ -1,15 +1,6 @@
 package com.GC01.BeatYourPace.Main;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.app.Activity;
-import android.app.Service;
-
-import com.google.analytics.tracking.android.EasyTracker;
-import com.GC01.BeatYourPace.ArchiveFiles.DatabaseService;
-import com.GC01.BeatYourPace.BPM.RetrieveBpmService;
-import com.GC01.BeatYourPace.Database.DatabaseAdapter;
 import com.GC01.BeatYourPace.Database.DatabaseIntentService;
 import com.GC01.BeatYourPace.PaceCalculator.CurrentPace;
 import com.GC01.BeatYourPace.Settings.SettingsActivity;
@@ -17,10 +8,7 @@ import com.example.beatyourpace.R;
 import com.example.beatyourpace.help.HelpActivity;
 
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -52,8 +40,8 @@ public class MainActivity extends Activity implements OnClickListener{
         //Start loading music data to the database
         //Implemented as a background service
         //Intent intent = new Intent(this,DatabaseService.class);  doesn't work
-        Intent intentDb = new Intent(this,DatabaseIntentService.class); 
-        this.startService(intentDb);
+ //       Intent intentDb = new Intent(this,DatabaseIntentService.class); 
+  //      this.startService(intentDb);
         
 	}
 

@@ -48,6 +48,10 @@
             android:name="com.GC01.BeatYourPace.Main.LetsRunModeActivity"
             android:label="@string/title_activity_lets_run_mode" >
         </activity>
+        <activity
+            android:name="com.GC01.BeatYourPace.Help.HelpMainActivity"
+            android:label="@string/title_helpPage" >
+        </activity>
 
         <service
             android:name="com.GC01.BeatYourPace.BPM.RetrieveBpmService"
@@ -58,8 +62,15 @@
             android:enabled="true"
             android:exported="false" >
         </service>
-        <service android:name="com.GC01.BeatYourPace.Database.DatabaseIntentService"></service>
-        <service android:name="com.GC01.BeatYourPace.PaceCalculator.CurrentPace"></service>
+        <service android:name="com.GC01.BeatYourPace.Database.DatabaseIntentService" >
+        </service>
+        <service android:name="com.GC01.BeatYourPace.PaceCalculator.CurrentPace" >
+        </service>
+
+        <activity
+            android:name="com.example.beatyourpace.help.HelpActivity"
+            android:label="@string/title_activity_help" >
+        </activity>
     </application>
 
 </manifest>
