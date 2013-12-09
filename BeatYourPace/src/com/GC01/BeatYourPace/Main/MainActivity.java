@@ -3,7 +3,7 @@ package com.GC01.BeatYourPace.Main;
 import android.app.Activity;
 
 import com.GC01.BeatYourPace.Database.DatabaseIntentService;
-import com.GC01.BeatYourPace.Help.HelpActivity;
+import com.GC01.BeatYourPace.HelpPage.HelpActivity;
 import com.GC01.BeatYourPace.PaceCalculator.CurrentPace;
 import com.GC01.BeatYourPace.Settings.SettingsActivity;
 import com.example.beatyourpace.R;

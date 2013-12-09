@@ -15,11 +15,7 @@ public final class R {
     public static final class attr {
     }
     public static final class bool {
-        /** Enable automatic activity tracking
-         */
         public static final int ga_autoActivityTracking=0x7f070000;
-        /** Enable automatic exception tracking
-         */
         public static final int ga_reportUncaughtExceptions=0x7f070001;
     }
     public static final class dimen {
@@ -78,19 +74,22 @@ public final class R {
         public static final int activity_data=0x7f030000;
         public static final int activity_database=0x7f030001;
         public static final int activity_help=0x7f030002;
-        public static final int activity_lets_run_mode=0x7f030003;
-        public static final int activity_main=0x7f030004;
-        public static final int activity_settings=0x7f030005;
-        public static final int pace=0x7f030006;
-        public static final int settings=0x7f030007;
-        public static final int trainingmode=0x7f030008;
+        public static final int activity_help_main=0x7f030003;
+        public static final int activity_lets_run_mode=0x7f030004;
+        public static final int activity_main=0x7f030005;
+        public static final int activity_settings=0x7f030006;
+        public static final int help_main=0x7f030007;
+        public static final int pace=0x7f030008;
+        public static final int settings=0x7f030009;
+        public static final int trainingmode=0x7f03000a;
     }
     public static final class menu {
         public static final int database=0x7f0b0000;
         public static final int help=0x7f0b0001;
-        public static final int lets_run_mode=0x7f0b0002;
-        public static final int main=0x7f0b0003;
-        public static final int settings=0x7f0b0004;
+        public static final int help_main=0x7f0b0002;
+        public static final int lets_run_mode=0x7f0b0003;
+        public static final int main=0x7f0b0004;
+        public static final int settings=0x7f0b0005;
     }
     public static final class raw {
         public static final int song=0x7f050000;
@@ -99,8 +98,6 @@ public final class R {
     public static final class string {
         public static final int action_settings=0x7f060002;
         public static final int app_name=0x7f060001;
-        /** Replace placeholder ID with your tracking ID
-         */
         public static final int ga_trackingId=0x7f060000;
         public static final int hello_blank_fragment=0x7f060020;
         public static final int hello_world=0x7f060003;
@@ -142,6 +139,7 @@ public final class R {
         public static final int title_activity_TrainingModeActivity=0x7f060022;
         public static final int title_activity_database=0x7f060021;
         public static final int title_activity_help=0x7f06002b;
+        public static final int title_activity_help_main=0x7f06002e;
         public static final int title_activity_lets_run_mode=0x7f060023;
         public static final int title_activity_settings=0x7f06001f;
         public static final int title_helpPage=0x7f06002a;

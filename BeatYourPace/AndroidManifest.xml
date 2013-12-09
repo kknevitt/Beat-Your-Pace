@@ -68,8 +68,16 @@
         </service>
 
         <activity
-            android:name="com.GC01.BeatYourPace.Help.HelpActivity"
+            android:name="com.GC01.BeatYourPace.HelpPage.HelpActivity"
             android:label="@string/title_activity_help" >
+        </activity>
+        <activity
+            android:name="com.example.beatyourpace.HelpMainActivity"
+            android:label="@string/title_activity_help_main" >
+        </activity>
+        <activity
+            android:name="com.example.beatyourpace.HelpMain"
+            android:label="@string/title_activity_help_main" >
         </activity>
     </application>
 

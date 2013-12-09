@@ -46,5 +46,6 @@
     <string name="title_activity_help">HelpActivity</string>
     <string name="helpLetsRunText">The Let\'s Run mode allows you to run with songs which already have been associated with your preferred BPM pace. All tracks will have a default BPM value set - so if the value has not been overriden, you will run with the pre-define values.</string>
     <string name="helpSettingsText">The Settings pace allows you to define: the speed unit (miles per minute or kilometers per minute) and initial target pace.</string>
+    <string name="title_activity_help_main">HelpMainActivity</string>
 
 </resources>
