@@ -14,6 +14,7 @@ import com.GC01.BeatYourPace.Database.DatabaseIntentService;
 import com.GC01.BeatYourPace.PaceCalculator.CurrentPace;
 import com.GC01.BeatYourPace.Settings.SettingsActivity;
 import com.example.beatyourpace.R;
+import com.example.beatyourpace.help.HelpActivity;
 
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -29,7 +30,7 @@ import android.widget.Button;
 public class MainActivity extends Activity implements OnClickListener{
 	
 	//creating button objects
-    Button b1, b2, b3;
+    Button b1, b2, b3, b4;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +41,13 @@ public class MainActivity extends Activity implements OnClickListener{
         b1 = (Button) findViewById(R.id.bTrainingMode); 
         b2 = (Button) findViewById(R.id.bLetsRun); 
         b3 = (Button) findViewById(R.id.bSettings); 
+        b4 = (Button) findViewById(R.id.bHelpPage);
         
         //setting an event listener for each button
         b1.setOnClickListener(this);
         b2.setOnClickListener(this);
         b3.setOnClickListener(this);
+        b4.setOnClickListener(this);
         
         //Start loading music data to the database
         //Implemented as a background service
@@ -79,6 +82,11 @@ public class MainActivity extends Activity implements OnClickListener{
 	    	  Intent intent = new Intent(this,SettingsActivity.class);
 	    	  startActivity(intent);
 	      }
+	      
+	      if (v == b4) { // // onclick the user is taken to the HelpPage view as per Settings class
+	    	  Intent intent = new Intent(this,HelpActivity.class);
+	    	  startActivity(intent);
+	      }
 	}       
 	
 	//Add settings option to the top action bar
@@ -87,7 +95,7 @@ public class MainActivity extends Activity implements OnClickListener{
 		    // code to launch the Settings Activity when settings is selected from the menu
 		    switch (item.getItemId()) {
 		        case R.id.action_settings:
-		        	startActivity(new Intent("com.example.beatyourpace.settingsactivity"));
+		        	startActivity(new Intent("com.example.beatyourpace.help.settingsactivity"));
 		            return true;
 		        default:
 		            return super.onOptionsItemSelected(item);

@@ -37,53 +37,61 @@ public final class R {
         public static final int ic_launcher2=0x7f020001;
     }
     public static final class id {
-        public static final int CurentPace=0x7f0c0009;
-        public static final int CurrentTargetPace=0x7f0c000a;
-        public static final int DefaultTargetPace=0x7f0c0015;
-        public static final int TextView001=0x7f0c0017;
-        public static final int action_settings=0x7f0c001e;
-        public static final int bDecTarget=0x7f0c0008;
-        public static final int bDistanceK=0x7f0c0014;
-        public static final int bDistanceM=0x7f0c0012;
-        public static final int bIncTarget=0x7f0c0004;
-        public static final int bLetsRun=0x7f0c000e;
-        public static final int bMusicLocation=0x7f0c0019;
-        public static final int bPlaySong=0x7f0c0003;
-        public static final int bPreviousTrack=0x7f0c0006;
-        public static final int bSettings=0x7f0c000d;
-        public static final int bSkipTrack=0x7f0c0002;
-        public static final int bSongTooFast=0x7f0c0001;
-        public static final int bSongTooSlow=0x7f0c0005;
-        public static final int bTargetDec=0x7f0c0018;
-        public static final int bTargetInc=0x7f0c0016;
-        public static final int bTrainingMode=0x7f0c000f;
-        public static final int button1=0x7f0c001b;
-        public static final int iCurrentMode=0x7f0c0007;
-        public static final int placeHolderPause=0x7f0c001c;
-        public static final int placeHolderStop=0x7f0c001d;
-        public static final int sPaceTitle=0x7f0c000b;
-        public static final int sTargetTitle=0x7f0c000c;
-        public static final int tLetsRun=0x7f0c0010;
-        public static final int tSettingsTitle=0x7f0c001a;
-        public static final int tSongName=0x7f0c0000;
-        public static final int tTarget=0x7f0c0013;
-        public static final int tTrainingMode=0x7f0c0011;
+        public static final int CurentPace=0x7f0c0010;
+        public static final int CurrentTargetPace=0x7f0c0011;
+        public static final int DefaultTargetPace=0x7f0c001b;
+        public static final int LetsRunText=0x7f0c0004;
+        public static final int LetsRunTitle=0x7f0c0003;
+        public static final int SettingsText=0x7f0c0006;
+        public static final int SettingsTitle=0x7f0c0005;
+        public static final int TextView001=0x7f0c001d;
+        public static final int TrainingText=0x7f0c0002;
+        public static final int TrainingTitle=0x7f0c0001;
+        public static final int action_settings=0x7f0c0024;
+        public static final int bDecTarget=0x7f0c000f;
+        public static final int bDistanceK=0x7f0c001a;
+        public static final int bDistanceM=0x7f0c0018;
+        public static final int bHelpPage=0x7f0c0017;
+        public static final int bIncTarget=0x7f0c000b;
+        public static final int bLetsRun=0x7f0c0016;
+        public static final int bMusicLocation=0x7f0c001f;
+        public static final int bPlaySong=0x7f0c000a;
+        public static final int bPreviousTrack=0x7f0c000d;
+        public static final int bSettings=0x7f0c0015;
+        public static final int bSkipTrack=0x7f0c0009;
+        public static final int bSongTooFast=0x7f0c0008;
+        public static final int bSongTooSlow=0x7f0c000c;
+        public static final int bTargetDec=0x7f0c001e;
+        public static final int bTargetInc=0x7f0c001c;
+        public static final int bTrainingMode=0x7f0c0014;
+        public static final int button1=0x7f0c0021;
+        public static final int helpPageTitle=0x7f0c0000;
+        public static final int iCurrentMode=0x7f0c000e;
+        public static final int placeHolderPause=0x7f0c0022;
+        public static final int placeHolderStop=0x7f0c0023;
+        public static final int sPaceTitle=0x7f0c0012;
+        public static final int sTargetTitle=0x7f0c0013;
+        public static final int tSettingsTitle=0x7f0c0020;
+        public static final int tSongName=0x7f0c0007;
+        public static final int tTarget=0x7f0c0019;
     }
     public static final class layout {
         public static final int activity_data=0x7f030000;
         public static final int activity_database=0x7f030001;
-        public static final int activity_lets_run_mode=0x7f030002;
-        public static final int activity_main=0x7f030003;
-        public static final int activity_settings=0x7f030004;
-        public static final int pace=0x7f030005;
-        public static final int settings=0x7f030006;
-        public static final int trainingmode=0x7f030007;
+        public static final int activity_help=0x7f030002;
+        public static final int activity_lets_run_mode=0x7f030003;
+        public static final int activity_main=0x7f030004;
+        public static final int activity_settings=0x7f030005;
+        public static final int pace=0x7f030006;
+        public static final int settings=0x7f030007;
+        public static final int trainingmode=0x7f030008;
     }
     public static final class menu {
         public static final int database=0x7f0b0000;
-        public static final int lets_run_mode=0x7f0b0001;
-        public static final int main=0x7f0b0002;
-        public static final int settings=0x7f0b0003;
+        public static final int help=0x7f0b0001;
+        public static final int lets_run_mode=0x7f0b0002;
+        public static final int main=0x7f0b0003;
+        public static final int settings=0x7f0b0004;
     }
     public static final class raw {
         public static final int song=0x7f050000;
@@ -97,6 +105,13 @@ public final class R {
         public static final int ga_trackingId=0x7f060000;
         public static final int hello_blank_fragment=0x7f060020;
         public static final int hello_world=0x7f060003;
+        public static final int helpLetsRunText=0x7f06002c;
+        public static final int helpPageLetsRunTitle=0x7f060026;
+        public static final int helpPageSettingsTitle=0x7f060027;
+        public static final int helpPageTitle=0x7f060024;
+        public static final int helpPageTrainingTitle=0x7f060025;
+        public static final int helpSettingsText=0x7f06002d;
+        public static final int helpTrainingText=0x7f060029;
         public static final int sDefaultTargetPace=0x7f06000e;
         public static final int sDefaultTargetTitle=0x7f06000d;
         public static final int sDistanceKilo=0x7f06000b;
@@ -124,10 +139,13 @@ public final class R {
         public static final int sTooSlowButton=0x7f060014;
         public static final int sTrainingMode=0x7f060004;
         public static final int sTrainingText=0x7f060005;
+        public static final int shelpPage=0x7f060028;
         public static final int title_activity_TrainingModeActivity=0x7f060022;
         public static final int title_activity_database=0x7f060021;
+        public static final int title_activity_help=0x7f06002b;
         public static final int title_activity_lets_run_mode=0x7f060023;
         public static final int title_activity_settings=0x7f06001f;
+        public static final int title_helpPage=0x7f06002a;
     }
     public static final class style {
         /** 

@@ -1,7 +1,7 @@
 /*
 package com.GC01.BeatYourPace.Main;
 
-import com.example.beatyourpace.R;
+import com.example.beatyourpace.help.R;
 
 import android.os.Build;
 import android.os.Bundle;
