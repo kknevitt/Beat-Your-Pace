@@ -1,11 +1,13 @@
 package com.GC01.BeatYourPace.Main;
 
 import android.app.Activity;
+
 import com.GC01.BeatYourPace.Database.DatabaseIntentService;
+import com.GC01.BeatYourPace.Help.HelpActivity;
 import com.GC01.BeatYourPace.PaceCalculator.CurrentPace;
 import com.GC01.BeatYourPace.Settings.SettingsActivity;
 import com.example.beatyourpace.R;
-import com.example.beatyourpace.help.HelpActivity;
+import com.google.analytics.tracking.android.EasyTracker;
 
 import android.os.Bundle;
 import android.content.Intent;
@@ -24,6 +26,9 @@ public class MainActivity extends Activity implements OnClickListener{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		//Analytics method
+		EasyTracker.getInstance(this).activityStart(this);
 		
 		//creating image buttons objects and getting their setup from xml
         b1 = (Button) findViewById(R.id.bTrainingMode); 
@@ -57,23 +62,28 @@ public class MainActivity extends Activity implements OnClickListener{
 	      if(v == b1){ //onclick the user is taken to the TrainingMode view as per TrainingModeActivity class
               Intent intent = new Intent(this,TrainingModeActivity.class);
               startActivity(intent);
+              EasyTracker.getInstance(this).activityStop(this);
               
               //start the CurrentPace service class when training mode is selected.
               Intent CurrentPaceService = new Intent(this, CurrentPace.class);
               startService(CurrentPaceService);
+              
 				}
 	      if (v == b2) {
 	    	  Intent intent = new Intent(this,LetsRunModeActivity.class);
 	    	  startActivity(intent);
+	    	  EasyTracker.getInstance(this).activityStop(this);
 	      }
 	      if (v == b3) { // // onclick the user is taken to the Settings view as per Settings class
 	    	  Intent intent = new Intent(this,SettingsActivity.class);
 	    	  startActivity(intent);
+	    	  EasyTracker.getInstance(this).activityStop(this);
 	      }
 	      
 	      if (v == b4) { // // onclick the user is taken to the HelpPage view as per Settings class
 	    	  Intent intent = new Intent(this,HelpActivity.class);
 	    	  startActivity(intent);
+	    	  EasyTracker.getInstance(this).activityStop(this);
 	      }
 	}       
 	
@@ -83,7 +93,7 @@ public class MainActivity extends Activity implements OnClickListener{
 		    // code to launch the Settings Activity when settings is selected from the menu
 		    switch (item.getItemId()) {
 		        case R.id.action_settings:
-		        	startActivity(new Intent("com.example.beatyourpace.help.settingsactivity"));
+		        	startActivity(new Intent("com.GC01.BeatYourPace.Help.settingsactivity"));
 		            return true;
 		        default:
 		            return super.onOptionsItemSelected(item);
