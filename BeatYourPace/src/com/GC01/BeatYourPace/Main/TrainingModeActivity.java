@@ -34,24 +34,22 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 	public static double targetPace = 10.0; //setting temporarily to 10
 
     
-    ImageButton playSongImageButton, imagebutton2, skipSongImageButton, previousSongImageButton;
+    ImageButton playOrPauseImageButton, imagebutton2, skipSongImageButton, previousSongImageButton, pauseImageButton, stopImageButton;
     Button songTooSlowButton, songTooFastButton, decreaseTargetPaceButton, increaseTargetPaceButton;
     
-    //placeholder buttons
-    Button pause;
-    Button stop;
     Context context;
     AudioFocusManager aFM;
     
     static TextView targetPaceText;
     static TextView currentPaceText;
-    TextView currentTrack, currentTitle;
+    
     String pace ="";
+    boolean paused;
     
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.trainingmode); 
+		setContentView(R.layout.activity_trainingmode); 
 		
 		if (aFM == null) {
 		aFM = new AudioFocusManager(this);
@@ -66,20 +64,16 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 		
 		startCurrentPaceService(context);
 
-		playSongImageButton = (ImageButton) findViewById(R.id.bPlaySong); 			 	
+		
+		//creates image buttons objects and gets their setup from xml
+        playOrPauseImageButton = (ImageButton) findViewById(R.id.bPlayAndPause); 				
         skipSongImageButton = (ImageButton) findViewById(R.id.bSkipTrack); 		
         previousSongImageButton = (ImageButton) findViewById(R.id.bPreviousTrack); 	
         songTooSlowButton = (Button) findViewById(R.id.bSongTooSlow); 				
         songTooFastButton = (Button) findViewById(R.id.bSongTooFast);					
         decreaseTargetPaceButton = (Button) findViewById(R.id.bDecTarget);					
-        increaseTargetPaceButton = (Button) findViewById(R.id.bIncTarget);	
-        currentTrack = (TextView) findViewById(R.id.CurrentTargetPace);
-        currentTitle = (TextView) findViewById(R.id.CurrentTargetPace);
-        
-        // adding placeholder buttons
-        pause = (Button) findViewById(R.id.placeHolderPause);
-        stop = (Button) findViewById(R.id.placeHolderStop);
-        
+        increaseTargetPaceButton = (Button) findViewById(R.id.bIncTarget);
+        stopImageButton = (ImageButton) findViewById(R.id.bStopSong);
         
         targetPaceText = (TextView) findViewById(R.id.CurrentTargetPace);
         
@@ -87,13 +81,8 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
         targetPaceText.setText(tarPace);
     
         
-        
-        //temp functions to display title and track
-        //currentTrack.setText(MusicPlayer.class.getTrack());
-        //currentTitle.setText(MusicPlayer.class.getTitle());
-        
         //setting an event listener for each button
-        playSongImageButton.setOnClickListener(this);
+        playOrPauseImageButton.setOnClickListener(this);
         //imagebutton2.setOnClickListener(this);
         skipSongImageButton.setOnClickListener(this);
         previousSongImageButton.setOnClickListener(this);
@@ -101,18 +90,20 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
         songTooFastButton.setOnClickListener(this);
         decreaseTargetPaceButton.setOnClickListener(this);
         increaseTargetPaceButton.setOnClickListener(this);
-        pause.setOnClickListener(this);
-        stop.setOnClickListener(this);
+       // pauseImageButton.setOnClickListener(this);
+        stopImageButton.setOnClickListener(this);
    }
 
 
     
-	public void startNewService(View view) {	
+	public void startNewService(View view) {
+		
 		startService(new Intent(this, MusicPlayer.class));
 	
 	}
 	
 	public void startCurrentPaceService(Context context) {
+	
 		startService(new Intent(this, CurrentPace.class));		
 		currentPaceText = (TextView) findViewById(R.id.CurrentTargetPace);
 	}
@@ -128,9 +119,24 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
-		if (aFM.focusTest())
-		ButtonController.buttonFunction(v);
+
+		if (aFM.focusTest()){
+			if (playOrPauseImageButton.isPressed() && paused){
+			playOrPauseImageButton.setBackgroundResource(R.drawable.medium_play);
+			paused =! paused;
+			}
+			else if (playOrPauseImageButton.isPressed()){{
+			playOrPauseImageButton.setBackgroundResource(R.drawable.medium_pause);
+			}
+			
+			
+			ButtonController.buttonFunction(v);
+			
 		}
+		}
+	}
+
+		
 
 }
 	

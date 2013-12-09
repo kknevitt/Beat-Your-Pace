@@ -19,8 +19,11 @@ public static void buttonFunction(View v) {
 
 	
 		switch (v.getId()) {		
-			case R.id.bPlaySong: 	 
-				MusicController.pressPlay();
+			case R.id.bPlayAndPause:
+				if (MusicPlayer.getInstance().isPlaying())
+				MusicController.pressPause();
+				else
+					MusicController.pressPlay();
 			    break;
 			    
 			case R.id.bSkipTrack: 
@@ -55,17 +58,10 @@ public static void buttonFunction(View v) {
             	TrainingModeActivity.targetPaceText.setText(tarPaceInc);
             	MusicController.changeTarPace();
 	            break;
-	            
-	       //place holder buttons
-			case R.id.placeHolderPause:
-				MusicController.pressPause();
-
-				break;
 				
-			case R.id.placeHolderStop:
+			case R.id.bStopSong:
 				MusicController.pressStop();
-				break;
-	            
+				break;      
 	            
 		}
 	  }

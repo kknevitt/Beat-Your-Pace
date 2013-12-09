@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_gradient" >
+
+    <Button
+        android:id="@+id/bSongTooFast"
+        android:layout_width="110dp"
+        android:layout_height="125dp"
+        android:layout_alignTop="@+id/bSongTooSlow"
+        android:layout_toRightOf="@+id/iCurrentMode"
+        android:text="@string/sTooFastButton"
+        android:textSize="32sp" />
+
+    <Button
+        android:id="@+id/bSongTooSlow"
+        android:layout_width="110dp"
+        android:layout_height="125dp"
+        android:layout_below="@+id/bDecTarget"
+        android:layout_marginTop="41dp"
+        android:layout_toLeftOf="@+id/iCurrentMode"
+        android:text="@string/sTooSlowButton"
+        android:textSize="32sp" />
+
+    <TextView
+        android:id="@+id/CurrentTargetPace"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bSongTooSlow"
+        android:layout_alignLeft="@+id/CurentPace"
+        android:text="@string/sTarget"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <Button
+        android:id="@+id/bDecTarget"
+        android:layout_width="75sp"
+        android:layout_height="75sp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="@string/sMinus"
+        android:textSize="32sp" />
+
+    <Button
+        android:id="@+id/bIncTarget"
+        android:layout_width="75sp"
+        android:layout_height="75sp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="@string/sPlus"
+        android:textSize="32sp" />
+
+    <TextView
+        android:id="@+id/CurentPace"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/CurrentTargetPace"
+        android:layout_alignLeft="@+id/bSongTooFast"
+        android:layout_marginBottom="14dp"
+        android:text="@string/sPace"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/sTargetTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bSongTooSlow"
+        android:layout_toLeftOf="@+id/iCurrentMode"
+        android:text="@string/sTargetTitle"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/sPaceTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/CurentPace"
+        android:layout_alignBottom="@+id/CurentPace"
+        android:layout_toLeftOf="@+id/iCurrentMode"
+        android:text="@string/sPaceTitle"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <ImageButton
+        android:id="@+id/bSkipTrack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/bIncTarget"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="35dp"
+        android:background="@drawable/button_shape_oval"
+        android:contentDescription="@string/sDscrSkipTrack"
+        android:src="@drawable/medium_skip" />
+
+    <ImageButton
+        android:id="@+id/bStopSong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/CurrentTargetPace"
+        android:layout_alignTop="@+id/bSkipTrack"
+        android:background="@drawable/button_shape_oval"
+        android:src="@drawable/medium_stop" />
+
+    <ImageView
+        android:id="@+id/iCurrentMode"
+        android:layout_width="50sp"
+        android:layout_height="50sp"
+        android:layout_below="@+id/CurrentTargetPace"
+        android:layout_centerHorizontal="true"
+        android:contentDescription="@string/sDscrCurrentMode"
+        android:src="@android:drawable/btn_star_big_on" />
+
+    <ImageButton
+        android:id="@+id/bPreviousTrack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/bSongTooSlow"
+        android:layout_alignTop="@+id/bPlayAndPause"
+        android:background="@drawable/button_shape_oval"
+        android:contentDescription="@string/sDscrPreviousTrack"
+        android:src="@drawable/medium_previous" />
+
+    <ImageButton
+        android:id="@+id/bPlayAndPause"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/sPaceTitle"
+        android:layout_alignTop="@+id/bStopSong"
+        android:background="@drawable/selector_pauseorplay"
+        android:contentDescription="@string/sDscrPlayPause" />
+
+    <TextView
+        android:id="@+id/tSongName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bSongTooFast"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="36dp"
+        android:text="@string/sSongDetails"
+        android:textColor="#000000"
+        android:textSize="28sp" />
+
+</RelativeLayout>
