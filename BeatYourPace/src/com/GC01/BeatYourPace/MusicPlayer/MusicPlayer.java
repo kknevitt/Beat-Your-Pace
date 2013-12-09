@@ -38,10 +38,9 @@ public class MusicPlayer implements OnCompletionListener, OnErrorListener {
 	
 	
 	private MusicPlayer(){
-		
-		
-		
+
 		mediaPlayer.setOnCompletionListener(this);
+		
 	}
 	
 	public static MusicPlayer getInstance()

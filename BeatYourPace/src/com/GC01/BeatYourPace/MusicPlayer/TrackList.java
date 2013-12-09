@@ -138,6 +138,7 @@ public class TrackList {
 		// method for populating the TrackList
 		public void updateTrackList(float tarPace) {
 				
+		/*
 			// insert code for repopulating trackList
 			DatabaseAdapter db = new DatabaseAdapter(context);
 			
@@ -150,10 +151,8 @@ public class TrackList {
 				
 			}
 			
-			
-			
-			
-			/*		
+	*/		
+				
 			if (tarPace %2 == 0) {
 				
 			paceTrackList.removeAll(paceTrackList);
@@ -175,10 +174,10 @@ public class TrackList {
 				paceTrackList.add(first);
 				String second = "/sdcard/two.wav";
 				paceTrackList.add(second);
-				String third = "/sdcard/three.wav";				
+				String third = "/sdcard/three.wav";	
+				paceTrackList.add(second);
 			}
 			
-			*/
 				
 		}
 }
