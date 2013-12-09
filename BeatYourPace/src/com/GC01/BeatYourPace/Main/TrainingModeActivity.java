@@ -8,6 +8,8 @@ import android.content.Intent;
 
 import com.GC01.BeatYourPace.ArchiveFiles.DatabaseActivity;
 import com.GC01.BeatYourPace.Database.DatabaseHelper;
+import com.GC01.BeatYourPace.MusicPlayer.AudioFocusManager;
+import com.GC01.BeatYourPace.MusicPlayer.MusicController;
 import com.GC01.BeatYourPace.MusicPlayer.MusicPlayer;
 import com.GC01.BeatYourPace.MusicPlayer.TrackList;
 import com.GC01.BeatYourPace.PaceCalculator.CurrentPace;
@@ -15,6 +17,8 @@ import com.GC01.BeatYourPace.PaceCalculator.TargetPace;
 import com.GC01.BeatYourPace.Settings.AccessSettings;
 import com.example.beatyourpace.R;
 
+import android.media.AudioManager;
+import android.media.AudioManager.OnAudioFocusChangeListener;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -22,6 +26,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class TrainingModeActivity extends Activity implements OnClickListener {
 
@@ -32,10 +37,11 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
     ImageButton playSongImageButton, imagebutton2, skipSongImageButton, previousSongImageButton;
     Button songTooSlowButton, songTooFastButton, decreaseTargetPaceButton, increaseTargetPaceButton;
     
-    Context context;
     //placeholder buttons
     Button pause;
     Button stop;
+    Context context;
+    AudioFocusManager aFM;
     
     static TextView targetPaceText;
     static TextView currentPaceText;
@@ -47,14 +53,19 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.trainingmode); 
 		
+		if (aFM == null) {
+		aFM = new AudioFocusManager(this);
+		}
+		
+		
+		if (aFM.focusTest() != true) {
+		
+		System.out.print("Didn't have focus, requesting it");
+		aFM.requestFocus();
+		}
+		
 		startCurrentPaceService(context);
-		
-		
-	// Possible sending of context to the AFM in order to get audio focus.	
-	//	AudioFocusManager aFM = new AudioFocusManager(this);
-		
-	
-	//targetPace = DatabaseActivity.getTargetPace();	
+
 		
 		//creates image buttons objects and gets their setup from xml
         playSongImageButton = (ImageButton) findViewById(R.id.bPlaySong); 			
@@ -117,13 +128,10 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 
+		if (aFM.focusTest())
 		ButtonController.buttonFunction(v);
-		
-	}
-	
-	
-	
-			
+		}
+
 }
 	
-	
+
