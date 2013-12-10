@@ -46,8 +46,8 @@ public class MainActivity extends Activity implements OnClickListener{
         //Start loading music data to the database
         //Implemented as a background service
         // Intent intent = new Intent(this,DatabaseService.class);  doesn't work
-        //Intent intentDb = new Intent(this,DatabaseIntentService.class); 
-        //this.startService(intentDb);
+        Intent intentDb = new Intent(this,DatabaseIntentService.class); 
+        this.startService(intentDb);
         
 	}
 
