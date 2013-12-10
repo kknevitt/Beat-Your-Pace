@@ -16,6 +16,7 @@ package com.GC01.BeatYourPace.Settings;
  */
 
 import com.example.beatyourpace.R;
+import com.google.analytics.tracking.android.EasyTracker;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -29,7 +30,7 @@ import android.view.Menu;
 
 
 public class SettingsActivity extends PreferenceActivity {
-
+	
     Context context = getApplicationContext(); 
     SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context); 
 	
@@ -42,6 +43,10 @@ public class SettingsActivity extends PreferenceActivity {
 		PreferenceManager.setDefaultValues(this, R.xml.preferences, false);    
 		// Displays the settings fragment as the main content
 		getFragmentManager().beginTransaction().replace(android.R.id.content, new SettingsFragment()).commit();
+	
+		/**Google Analytics tracking code  - starts tracking user's session**/
+		EasyTracker.getInstance(this).activityStart(this);
+	
 	}
 	
 	@Override
@@ -60,6 +65,9 @@ public class SettingsActivity extends PreferenceActivity {
 	    @Override
 	    public void onPause() {
 	        super.onPause();
+	        
+	        /**Google Analytics tracking code - stop tracking user's session**/
+			EasyTracker.getInstance(this).activityStop(this);
 	       
 	    }
 

@@ -48,7 +48,9 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_trainingmode); 
-	    EasyTracker.getInstance(this).activityStart(this);
+	    
+		/**Google Analytics tracking code **/
+		EasyTracker.getInstance(this).activityStart(this);
 
 		if (aFM == null) {
 		aFM = new AudioFocusManager(this);

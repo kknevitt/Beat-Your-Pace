@@ -12,6 +12,7 @@ public class HelpPageActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_help);
 		
+		/**Google Analytics tracking code**/
 		EasyTracker.getInstance(this).activityStart(this);
 	}
 

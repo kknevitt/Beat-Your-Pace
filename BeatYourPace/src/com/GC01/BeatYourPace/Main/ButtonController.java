@@ -20,6 +20,7 @@ import com.google.analytics.tracking.android.Tracker;
 
 public class ButtonController extends Service {
 	static Context context;
+	static EasyTracker tracker = EasyTracker.getInstance(context);
 	//static TrackList trackList = new TrackList(TargetPace.getTargetPace()); // This has the Target CurrentPace as its parameter
 	
 public static void buttonFunction(View v) {
@@ -45,11 +46,17 @@ public static void buttonFunction(View v) {
 	            // Decreases the user's preferred pace for this track by 0.5.
 			case R.id.bSongTooSlow:
 				InitialPrefPace.decPrefPace();
+				
+				/**Google Analytics tracking code**/
+				tracker.send(MapBuilder.createEvent("UI_Action", "button_press", "songTooSlow", null).build());
 	            break;
 	            
 	            // Increases the user's preferred pace for this track by 0.5.
 			case R.id.bSongTooFast:
 				InitialPrefPace.incPrefPace(); 
+				
+				/**Google Analytics tracking code**/
+				tracker.send(MapBuilder.createEvent("UI_Action", "button_press", "songTooFast", null).build());
 	            break;
 	        
 			case R.id.bDecTarget: 
@@ -57,6 +64,9 @@ public static void buttonFunction(View v) {
 				String tarPaceDec = String.valueOf(TargetPace.getTargetPace());
 				TrainingModeActivity.targetPaceText.setText(tarPaceDec);
 				MusicController.changeTarPace();
+				
+				/**Google Analytics tracking code**/
+				tracker.send(MapBuilder.createEvent("UI_Action", "button_press", "decreasePace", null).build());
 				break;
 	            
 			case R.id.bIncTarget:
@@ -65,8 +75,8 @@ public static void buttonFunction(View v) {
             	TrainingModeActivity.targetPaceText.setText(tarPaceInc);
             	MusicController.changeTarPace();
 
-			EasyTracker tracker = EasyTracker.getInstance(context);
-		    tracker.send(MapBuilder.createEvent("ui_action", "button_press", "increasePace", null).build());               
+            	/**Google Analytics tracking code**/
+            	tracker.send(MapBuilder.createEvent("UI_Action", "button_press", "increasePace", null).build());               
 
             	
             	break;

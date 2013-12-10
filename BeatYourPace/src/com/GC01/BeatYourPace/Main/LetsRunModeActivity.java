@@ -12,10 +12,12 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
 import com.GC01.BeatYourPace.Database.DatabaseHelper;
 import com.GC01.BeatYourPace.MusicPlayer.TrackList;
 import com.GC01.BeatYourPace.MusicPlayer.MusicPlayer;
 import com.example.beatyourpace.R;
+import com.google.analytics.tracking.android.EasyTracker;
 
 public class LetsRunModeActivity extends Activity implements OnClickListener {
 	
@@ -34,6 +36,9 @@ public class LetsRunModeActivity extends Activity implements OnClickListener {
 		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_lets_run_mode); 	
+		
+		/**Google Analytics tracking code **/
+		EasyTracker.getInstance(this).activityStart(this);
 		
 		//creating image buttons objects and getting their setup from xml
         playSongImageButton = (ImageButton) findViewById(R.id.bPlaySong); 
