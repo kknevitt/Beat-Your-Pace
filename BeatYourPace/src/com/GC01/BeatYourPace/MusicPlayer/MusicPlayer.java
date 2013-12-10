@@ -38,10 +38,9 @@ public class MusicPlayer implements OnCompletionListener, OnErrorListener {
 	
 	
 	private MusicPlayer(){
-		
-		
-		
+
 		mediaPlayer.setOnCompletionListener(this);
+		
 	}
 	
 	public static MusicPlayer getInstance()
@@ -60,7 +59,7 @@ public class MusicPlayer implements OnCompletionListener, OnErrorListener {
 	 */
 	public void play() throws IllegalArgumentException, SecurityException, IllegalStateException, IOException {
 		
-		TrackList.getInstance();
+	
 		playCurrentSong();
 		
 	}

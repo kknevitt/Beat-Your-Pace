@@ -8,6 +8,8 @@ import android.content.Intent;
 
 import com.GC01.BeatYourPace.ArchiveFiles.DatabaseActivity;
 import com.GC01.BeatYourPace.Database.DatabaseHelper;
+import com.GC01.BeatYourPace.MusicPlayer.AudioFocusManager;
+import com.GC01.BeatYourPace.MusicPlayer.MusicController;
 import com.GC01.BeatYourPace.MusicPlayer.MusicPlayer;
 import com.GC01.BeatYourPace.MusicPlayer.TrackList;
 import com.GC01.BeatYourPace.PaceCalculator.CurrentPace;
@@ -15,6 +17,8 @@ import com.GC01.BeatYourPace.PaceCalculator.TargetPace;
 import com.GC01.BeatYourPace.Settings.AccessSettings;
 import com.example.beatyourpace.R;
 
+import android.media.AudioManager;
+import android.media.AudioManager.OnAudioFocusChangeListener;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -22,6 +26,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class TrainingModeActivity extends Activity implements OnClickListener {
 
@@ -29,48 +34,46 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 	public static double targetPace = 10.0; //setting temporarily to 10
 
     
-    ImageButton playSongImageButton, imagebutton2, skipSongImageButton, previousSongImageButton;
+    ImageButton playOrPauseImageButton, imagebutton2, skipSongImageButton, previousSongImageButton, pauseImageButton, stopImageButton;
     Button songTooSlowButton, songTooFastButton, decreaseTargetPaceButton, increaseTargetPaceButton;
     
     Context context;
-    //placeholder buttons
-    Button pause;
-    Button stop;
+    AudioFocusManager aFM;
     
     static TextView targetPaceText;
     static TextView currentPaceText;
     
     String pace ="";
+    boolean paused;
     
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.trainingmode); 
+		setContentView(R.layout.activity_trainingmode); 
 		
-		startCurrentPaceService(context);
+		if (aFM == null) {
+		aFM = new AudioFocusManager(this);
+		}
 		
 		
-	// Possible sending of context to the AFM in order to get audio focus.	
-	//	AudioFocusManager aFM = new AudioFocusManager(this);
+		if (aFM.focusTest() != true) {
 		
-	
-	//targetPace = DatabaseActivity.getTargetPace();	
+		System.out.print("Didn't have focus, requesting it");
+		aFM.requestFocus();
+		}
+		
+		startCurrentPaceService(this);
+
 		
 		//creates image buttons objects and gets their setup from xml
-        playSongImageButton = (ImageButton) findViewById(R.id.bPlaySong); 			
-        //imagebutton2 = (ImageButton) findViewById(R.id.imageButton2); 	
+        playOrPauseImageButton = (ImageButton) findViewById(R.id.bPlayAndPause); 				
         skipSongImageButton = (ImageButton) findViewById(R.id.bSkipTrack); 		
         previousSongImageButton = (ImageButton) findViewById(R.id.bPreviousTrack); 	
         songTooSlowButton = (Button) findViewById(R.id.bSongTooSlow); 				
         songTooFastButton = (Button) findViewById(R.id.bSongTooFast);					
         decreaseTargetPaceButton = (Button) findViewById(R.id.bDecTarget);					
-        increaseTargetPaceButton = (Button) findViewById(R.id.bIncTarget);	
-        
-        
-        // adding placeholder buttons
-        pause = (Button) findViewById(R.id.placeHolderPause);
-        stop = (Button) findViewById(R.id.placeHolderStop);
-        
+        increaseTargetPaceButton = (Button) findViewById(R.id.bIncTarget);
+        stopImageButton = (ImageButton) findViewById(R.id.bStopSong);
         
         targetPaceText = (TextView) findViewById(R.id.CurrentTargetPace);
         
@@ -79,7 +82,7 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
     
         
         //setting an event listener for each button
-        playSongImageButton.setOnClickListener(this);
+        playOrPauseImageButton.setOnClickListener(this);
         //imagebutton2.setOnClickListener(this);
         skipSongImageButton.setOnClickListener(this);
         previousSongImageButton.setOnClickListener(this);
@@ -87,8 +90,8 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
         songTooFastButton.setOnClickListener(this);
         decreaseTargetPaceButton.setOnClickListener(this);
         increaseTargetPaceButton.setOnClickListener(this);
-        pause.setOnClickListener(this);
-        stop.setOnClickListener(this);
+       // pauseImageButton.setOnClickListener(this);
+        stopImageButton.setOnClickListener(this);
    }
 
 
@@ -117,13 +120,11 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 
-		ButtonController.buttonFunction(v);
+		if (aFM.focusTest()){
 		
-	}
-	
-	
-	
+			ButtonController.buttonFunction(v);
 			
-}
-	
-	
+		}
+		}
+	}
+

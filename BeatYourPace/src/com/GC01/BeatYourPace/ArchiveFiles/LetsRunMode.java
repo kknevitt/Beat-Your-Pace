@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.GC01.BeatYourPace.Database.DatabaseHelper;
 import com.GC01.BeatYourPace.MusicPlayer.TrackList;
 import com.GC01.BeatYourPace.MusicPlayer.MusicPlayer;
-import com.example.beatyourpace.R;
+import com.GC01.BeatYourPace.Help.R;
 
 public class LetsRunMode extends Activity implements OnClickListener {
 	

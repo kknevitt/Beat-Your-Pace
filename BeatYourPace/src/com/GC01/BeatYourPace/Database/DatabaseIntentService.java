@@ -26,6 +26,7 @@ public class DatabaseIntentService extends IntentService {
 		this.db = new DatabaseAdapter(getApplicationContext());
 		this.db.openDbWrite();
 		
+		
 		//synch the tracks from the device to the byp database
 		this.db.synchTracks();
 		Log.d(LOG_TAG,"Tracks updated");

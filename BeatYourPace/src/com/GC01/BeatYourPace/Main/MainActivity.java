@@ -1,25 +1,16 @@
 package com.GC01.BeatYourPace.Main;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.app.Activity;
-import android.app.Service;
 
-import com.google.analytics.tracking.android.EasyTracker;
-import com.GC01.BeatYourPace.ArchiveFiles.DatabaseService;
-import com.GC01.BeatYourPace.BPM.RetrieveBpmService;
-import com.GC01.BeatYourPace.Database.DatabaseAdapter;
 import com.GC01.BeatYourPace.Database.DatabaseIntentService;
+import com.GC01.BeatYourPace.HelpPage.HelpActivity;
 import com.GC01.BeatYourPace.PaceCalculator.CurrentPace;
 import com.GC01.BeatYourPace.Settings.SettingsActivity;
 import com.example.beatyourpace.R;
+import com.google.analytics.tracking.android.EasyTracker;
 
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,26 +20,31 @@ import android.widget.Button;
 public class MainActivity extends Activity implements OnClickListener{
 	
 	//creating button objects
-    Button b1, b2, b3;
+    Button b1, b2, b3, b4;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
+		//Analytics method
+		EasyTracker.getInstance(this).activityStart(this);
+		
 		//creating image buttons objects and getting their setup from xml
         b1 = (Button) findViewById(R.id.bTrainingMode); 
         b2 = (Button) findViewById(R.id.bLetsRun); 
         b3 = (Button) findViewById(R.id.bSettings); 
+        b4 = (Button) findViewById(R.id.bHelpPage);
         
         //setting an event listener for each button
         b1.setOnClickListener(this);
         b2.setOnClickListener(this);
         b3.setOnClickListener(this);
+        b4.setOnClickListener(this);
         
         //Start loading music data to the database
         //Implemented as a background service
-        //Intent intent = new Intent(this,DatabaseService.class);  doesn't work
+        // Intent intent = new Intent(this,DatabaseService.class);  doesn't work
         Intent intentDb = new Intent(this,DatabaseIntentService.class); 
         this.startService(intentDb);
         
@@ -66,18 +62,28 @@ public class MainActivity extends Activity implements OnClickListener{
 	      if(v == b1){ //onclick the user is taken to the TrainingMode view as per TrainingModeActivity class
               Intent intent = new Intent(this,TrainingModeActivity.class);
               startActivity(intent);
+              EasyTracker.getInstance(this).activityStop(this);
               
               //start the CurrentPace service class when training mode is selected.
               Intent CurrentPaceService = new Intent(this, CurrentPace.class);
               startService(CurrentPaceService);
+              
 				}
 	      if (v == b2) {
 	    	  Intent intent = new Intent(this,LetsRunModeActivity.class);
 	    	  startActivity(intent);
+	    	  EasyTracker.getInstance(this).activityStop(this);
 	      }
 	      if (v == b3) { // // onclick the user is taken to the Settings view as per Settings class
 	    	  Intent intent = new Intent(this,SettingsActivity.class);
 	    	  startActivity(intent);
+	    	  EasyTracker.getInstance(this).activityStop(this);
+	      }
+	      
+	      if (v == b4) { // // onclick the user is taken to the HelpPage view as per Settings class
+	    	  Intent intent = new Intent(this,HelpActivity.class);
+	    	  startActivity(intent);
+	    	  EasyTracker.getInstance(this).activityStop(this);
 	      }
 	}       
 	
@@ -87,7 +93,7 @@ public class MainActivity extends Activity implements OnClickListener{
 		    // code to launch the Settings Activity when settings is selected from the menu
 		    switch (item.getItemId()) {
 		        case R.id.action_settings:
-		        	startActivity(new Intent("com.example.beatyourpace.settingsactivity"));
+		        	startActivity(new Intent("com.GC01.BeatYourPace.Help.settingsactivity"));
 		            return true;
 		        default:
 		            return super.onOptionsItemSelected(item);

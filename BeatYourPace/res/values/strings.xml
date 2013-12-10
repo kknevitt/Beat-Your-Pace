@@ -36,5 +36,16 @@
     <string name="title_activity_database">DatabaseActivity</string>
     <string name="title_activity_TrainingModeActivity">TrainingModeActivity</string>
     <string name="title_activity_lets_run_mode">LetsRunMode</string>
+    <string name="helpPageTitle">Help Page</string>
+    <string name="helpPageTrainingTitle">Training mode</string>
+    <string name="helpPageLetsRunTitle">Let\'s Run mode</string>
+    <string name="helpPageSettingsTitle">Settings </string>
+    <string name="shelpPage">Help Page</string>
+    <string name="helpTrainingText">The Training mode allows you to override the default BPM for each song. You can control the inbuilt music player and your preferred target pace.</string>
+    <string name="title_helpPage">Help Page</string>
+    <string name="title_activity_help">HelpActivity</string>
+    <string name="helpLetsRunText">The Let\'s Run mode allows you to run with songs which already have been associated with your preferred BPM pace. All tracks will have a default BPM value set - so if the value has not been overriden, you will run with the pre-define values.</string>
+    <string name="helpSettingsText">The Settings pace allows you to define: the speed unit (miles per minute or kilometers per minute) and initial target pace.</string>
+    <string name="title_activity_help_main">HelpMainActivity</string>
 
 </resources>
