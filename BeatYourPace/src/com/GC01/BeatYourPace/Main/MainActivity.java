@@ -91,9 +91,9 @@ public class MainActivity extends Activity implements OnClickListener{
 		public boolean onOptionsItemSelected(MenuItem item) {
 		    // code to launch the Settings Activity when settings is selected from the menu
 		    switch (item.getItemId()) {
-		        case R.id.action_settings:
-		        	startActivity(new Intent("com.GC01.BeatYourPace.Settings.settingsactivity"));
-		            return true;
+		        //case R.id.action_settings:
+		        	//startActivity(new Intent("com.GC01.BeatYourPace.Settings.settingsactivity"));
+		            //return true;
 		        //case R.id.  add in help here
 		        default:
 		            return super.onOptionsItemSelected(item);
