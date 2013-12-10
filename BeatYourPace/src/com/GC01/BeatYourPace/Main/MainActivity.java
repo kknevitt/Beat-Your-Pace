@@ -60,11 +60,9 @@ public class MainActivity extends Activity implements OnClickListener{
 	}
 	@Override
 	public void onClick(View v) {
-	            //  auto-generated code: Auto-generated method stub
-	      if(v == trainingModeButton){ //onclick the user is taken to the TrainingMode view as per TrainingModeActivity class
+	     if(v == trainingModeButton){ //onclick the user is taken to the TrainingMode view as per TrainingModeActivity class
               Intent intent = new Intent(this,TrainingModeActivity.class);
               startActivity(intent);
-              EasyTracker.getInstance(this).activityStop(this);
               
               //start the CurrentPace service class when training mode is selected.
               Intent CurrentPaceService = new Intent(this, CurrentPace.class);

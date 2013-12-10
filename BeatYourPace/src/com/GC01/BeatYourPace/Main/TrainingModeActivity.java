@@ -1,7 +1,5 @@
 package com.GC01.BeatYourPace.Main;
 	
-import java.io.IOException;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -15,12 +13,14 @@ import com.GC01.BeatYourPace.PaceCalculator.CurrentPace;
 import com.GC01.BeatYourPace.PaceCalculator.TargetPace;
 import com.example.beatyourpace.R;
 import com.google.analytics.tracking.android.EasyTracker;
+
 import android.media.AudioManager;
 import android.media.AudioManager.OnAudioFocusChangeListener;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -49,6 +49,9 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_trainingmode); 
 	    
+		/**Keep the screen on so the user can access the buttons used to associate new BPM to tracks**/
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+		
 		/**Google Analytics tracking code **/
 		EasyTracker.getInstance(this).activityStart(this);
 		
