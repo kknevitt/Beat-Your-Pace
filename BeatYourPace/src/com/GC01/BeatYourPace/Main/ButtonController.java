@@ -3,8 +3,7 @@ package com.GC01.BeatYourPace.Main;
 import java.io.IOException;
 
 import android.view.View;
-
-import com.GC01.BeatYourPace.ArchiveFiles.DatabaseActivity;
+import com.GC01.BeatYourPace.PaceCalculator.*;
 import com.GC01.BeatYourPace.MusicPlayer.MusicController;
 import com.GC01.BeatYourPace.MusicPlayer.MusicPlayer;
 import com.GC01.BeatYourPace.MusicPlayer.TrackList;
@@ -37,12 +36,12 @@ public static void buttonFunction(View v) {
 	            
 	            // Decreases the user's preferred pace for this track by 0.5.
 			case R.id.bSongTooSlow:
-				DatabaseActivity.decPrefPace();
+				InitialPrefPace.decPrefPace();
 	            break;
 	            
 	            // Increases the user's preferred pace for this track by 0.5.
 			case R.id.bSongTooFast:
-				DatabaseActivity.incPrefPace();
+				InitialPrefPace.incPrefPace(); 
 	            break;
 	        
 			case R.id.bDecTarget: 

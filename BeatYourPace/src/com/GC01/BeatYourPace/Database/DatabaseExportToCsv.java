@@ -42,6 +42,7 @@ public class DatabaseExportToCsv {
 	    return file;
 	}
 	
+	/*
 	public void writeFile() {
 		String filename = "bypdata";
 		String string = "Hello world!";
@@ -56,4 +57,5 @@ public class DatabaseExportToCsv {
 			e.printStackTrace();
 		}
 	}
+	*/
 }

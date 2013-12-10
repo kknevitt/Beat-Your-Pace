@@ -19,19 +19,16 @@ import com.example.beatyourpace.R;
 
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.EditTextPreference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.view.Menu;
-import android.widget.Toast;
 
 
-public class SettingsActivity extends PreferenceActivity implements OnSharedPreferenceChangeListener{
+public class SettingsActivity extends PreferenceActivity {
 
     Context context = getApplicationContext(); 
     SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context); 
@@ -57,18 +54,18 @@ public class SettingsActivity extends PreferenceActivity implements OnSharedPref
 	 @Override
 	    public void onResume() {
 	        super.onResume();
-	        prefs.registerOnSharedPreferenceChangeListener(this);
+	        
 	    }
 
 	    @Override
 	    public void onPause() {
 	        super.onPause();
-	        prefs.unregisterOnSharedPreferenceChangeListener(this);
+	       
 	    }
 
 	    
-	    @Override
-	    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+	   // @Override
+	   // public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
 	    /*
 	    	SharedPreferences.Editor prefEditor = prefs.edit();
 	    	if ("set_target_pace".equals(key)) {
@@ -93,10 +90,5 @@ public class SettingsActivity extends PreferenceActivity implements OnSharedPref
 	    	*/
 
 
-	    }
-
-
-
-
-
+	    //}
 }

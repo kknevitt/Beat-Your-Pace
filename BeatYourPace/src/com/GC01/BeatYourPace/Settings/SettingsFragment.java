@@ -62,8 +62,6 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
 
 		@Override
 		public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-			
-	    	SharedPreferences.Editor prefEditor = sharedPreferences.edit();
 	    	if ("set_target_pace".equals(key)) {
 	    		Boolean rtnval = true;
 	    		String value = sharedPreferences.getString(key, "6.0");
@@ -78,7 +76,7 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
 	    				Toast.makeText(getActivity(), "Default pace cannot be blank", Toast.LENGTH_SHORT).show();
 	    			}
 	    			else {
-	    				prefEditor.commit();
+
 	    			}
 	    	}
 			
