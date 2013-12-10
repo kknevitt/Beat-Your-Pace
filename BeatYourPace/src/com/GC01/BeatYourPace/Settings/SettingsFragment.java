@@ -18,21 +18,24 @@ import com.example.beatyourpace.R;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.Preference;
+import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.widget.Toast;
 
 
+
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 @SuppressLint("NewApi")
 public class SettingsFragment extends PreferenceFragment implements OnSharedPreferenceChangeListener {
-
+	
 		public SettingsFragment() {
 			// Required empty public constructor
 		}
@@ -41,26 +44,44 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
 		@Override
 	    public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
-
-	        // Load the preferences from an XML resource
+	        // Load the preferences
 	        addPreferencesFromResource(R.xml.preferences);
+	    }
+
+	        @Override
+	    public void onResume() {
+	        super.onResume();
+	        getPreferenceManager().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
+	    }
+
+	    @Override
+	    public void onPause() {
+	        getPreferenceManager().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
+	        super.onPause();
 	    }
 
 		@Override
 		public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-			// TODO Auto-generated method stub
 			
-			 /** Access the shared prefs for this app, this can only be called when an activity is created */
-			SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+	    	SharedPreferences.Editor prefEditor = sharedPreferences.edit();
+	    	if ("set_target_pace".equals(key)) {
+	    		Boolean rtnval = true;
+	    		String value = sharedPreferences.getString(key, "6.0");
+	    		double newTargetPace = Double.parseDouble(key);
+	    		
+	    		//need to add a second test to make sure it end 0 or 0.5 - use the string value and check the last 2 chars?
+	    		
+	    		if(newTargetPace < 4.0 || newTargetPace > 30.0) {
+	    				Toast.makeText(getActivity(),"Default pace must be between 4.0 and 30.0", Toast.LENGTH_SHORT).show();
+	    			}
+	    			else if (value.equals("")){
+	    				Toast.makeText(getActivity(), "Default pace cannot be blank", Toast.LENGTH_SHORT).show();
+	    			}
+	    			else {
+	    				prefEditor.commit();
+	    			}
+	    	}
 			
-		     if(key.equals("set_target_pace")){
-		          double newValue = sharedPref.getFloat("set_target_pace", (float) 6.0);
-		          if (newValue < 4.0 | newValue > 30.0) {
-		                Toast.makeText(getActivity(), "Default pace must be between 4.0 and 30.0",
-		                		Toast.LENGTH_SHORT).show();
-		            }
-				}
 		}
-
-
+	    
 }

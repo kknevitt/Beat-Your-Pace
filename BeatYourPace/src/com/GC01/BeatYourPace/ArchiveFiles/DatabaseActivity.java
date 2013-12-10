@@ -18,7 +18,6 @@ package com.GC01.BeatYourPace.ArchiveFiles;
 
 import java.util.ArrayList;
 
-import com.GC01.BeatYourPace.Database.DataModel;
 import com.GC01.BeatYourPace.Database.DatabaseHelper;
 import com.GC01.BeatYourPace.Database.DatabaseContract.DataEntry;
 import com.example.beatyourpace.R;

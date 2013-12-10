@@ -16,31 +16,35 @@ package com.GC01.BeatYourPace.Settings;
  */
 
 import com.example.beatyourpace.R;
+
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.EditTextPreference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.view.Menu;
+import android.widget.Toast;
 
 
-@TargetApi(Build.VERSION_CODES.HONEYCOMB)
-@SuppressLint("NewApi")
-public class SettingsActivity extends PreferenceActivity {
+public class SettingsActivity extends PreferenceActivity implements OnSharedPreferenceChangeListener{
+
+    Context context = getApplicationContext(); 
+    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context); 
 	
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	@SuppressLint("NewApi")
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		//setContentView(R.layout.activity_settings); //don't load the views, use prefs instead
-		//addPreferencesFromResource(R.xml.preferences);
-		
         //calls the preferences for the first time, 'false' indicates to only call if prefs not already set
-		PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
-        
-        getFragmentManager().beginTransaction().replace(android.R.id.content, new SettingsFragment()).commit();
+		PreferenceManager.setDefaultValues(this, R.xml.preferences, false);    
+		// Displays the settings fragment as the main content
+		getFragmentManager().beginTransaction().replace(android.R.id.content, new SettingsFragment()).commit();
 	}
 	
 	@Override
@@ -50,10 +54,49 @@ public class SettingsActivity extends PreferenceActivity {
 		return true;
 	}
 
+	 @Override
+	    public void onResume() {
+	        super.onResume();
+	        prefs.registerOnSharedPreferenceChangeListener(this);
+	    }
 
-	
-	
-	
+	    @Override
+	    public void onPause() {
+	        super.onPause();
+	        prefs.unregisterOnSharedPreferenceChangeListener(this);
+	    }
 
-	
+	    
+	    @Override
+	    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+	    /*
+	    	SharedPreferences.Editor prefEditor = prefs.edit();
+	    	if ("set_target_pace".equals(key)) {
+	    		Boolean rtnval = true;
+	    		String value = sharedPreferences.getString(key, "6.0");
+	    		double newTargetPace = Double.parseDouble(key);
+	    		
+	    		//need to add a second test to make sure it end 0 or 0.5 - use the string value and check the last 2 chars?
+	    		
+	    		if(newTargetPace < 4.0 || newTargetPace > 30.0) {
+	    				Toast.makeText(context, "Default pace must be between 4.0 and 30.0", Toast.LENGTH_SHORT).show();
+	    				prefEditor.commit();
+	    			}
+	    			else if (value.equals("")){
+	    				Toast.makeText(context, "Default pace cannot be blank", Toast.LENGTH_SHORT).show();
+	    				prefEditor.commit();
+	    			}
+	    			else {
+	    				prefEditor.commit();
+	    			}
+	    	}
+	    	*/
+
+
+	    }
+
+
+
+
+
 }
