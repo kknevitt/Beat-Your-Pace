@@ -1,4 +1,4 @@
-package com.GC01.BeatYourPace.Settings;
+package com.GC01.BeatYourPace.ArchiveFiles;
 
 /**
  * <dl>

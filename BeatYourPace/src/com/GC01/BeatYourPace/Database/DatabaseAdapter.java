@@ -390,6 +390,25 @@ public class DatabaseAdapter {
 		return appropriateSongs;
 	}
 
+	public ArrayList<String> getTrackInfo(String fileLoc){
+		//List that holds just the path name to the track
+		ArrayList<String> trackInfo = new ArrayList<String>();
+		
+		String query = "SELECT " + DataEntry.COL_ARTIST + ", " + DataEntry.COL_TITLE + " FROM " + DataEntry.TABLE_NAME + " WHERE (" + DataEntry.COL_FILE_LOC + " = " + fileLoc + " )";
+		//String selection = "DataEntry.COL_FILE_LOC = " + fileLoc;
+		
+		//Open the database, read to a cursor, go over each row, build track and add it to list
+		openDbRead();
+		Cursor cursor = db.rawQuery(query, null);
+		
+		String artist = cursor.getString(0);
+		String title = cursor.getString(1);
+		
+		trackInfo.add(artist);
+		trackInfo.add(title);
+		
+		return trackInfo;
+	}
 
 }
 
