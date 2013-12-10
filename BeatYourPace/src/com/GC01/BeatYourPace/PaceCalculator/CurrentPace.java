@@ -1,18 +1,19 @@
 package com.GC01.BeatYourPace.PaceCalculator;
 
-
-import com.GC01.BeatYourPace.ArchiveFiles.AccessSettings;
 import com.GC01.BeatYourPace.ArchiveFiles.DataModel;
+import com.GC01.BeatYourPace.Main.ContextProvider;
 import com.example.beatyourpace.R;
 
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -63,16 +64,19 @@ public class CurrentPace extends Service {
 		 LocationListener locationListener = new LocationListener(){
 		        
 			public void onLocationChanged(Location location){
+				//Get the user preference for miles(1) or kilometres(2)
+				SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ContextProvider.getContext());
+				int unitType = Integer.parseInt(preferences.getString("unitType", "1"));
 		       // Called when a new location is found by the network location provider.
 				 if (location.hasAccuracy() && location !=null) {    	
 			    	// An if else selection is used in order to be using the correct prefences for miles or kilometres
 				    // for the preferred distance unit.	
-				   if (AccessSettings.getUnitType() == 1) {
+				   if (unitType == 1) {
 			    		currentPace = (float) (location.getSpeed() / MPS_TO_MINS_PER_MILE);
 
 			    		System.out.println("testing1");
 			    		
-			    			if (AccessSettings.getUnitType() == 2) {
+			    			if (unitType == 2) {
 			    				currentPace = (float) (location.getSpeed() / MPS_TO_PER_KILOMETRES);
 
 			    				System.out.println("testing2");
