@@ -30,13 +30,13 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 
 
 	public static double targetPace = 10.0; //setting temporarily to 10
-
-    
+	public static boolean onScreen;
+	    
     ImageButton playOrPauseImageButton, imagebutton2, skipSongImageButton, previousSongImageButton, pauseImageButton, stopImageButton;
     Button songTooSlowButton, songTooFastButton, decreaseTargetPaceButton, increaseTargetPaceButton;
     
     Context context;
-    AudioFocusManager aFM;
+  //  AudioFocusManager aFM;
     
     static TextView targetPaceText;
     static TextView currentPaceText;
@@ -51,14 +51,14 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 	    
 		/**Google Analytics tracking code **/
 		EasyTracker.getInstance(this).activityStart(this);
-
-		if (aFM == null) {
-		aFM = new AudioFocusManager(this);
-		}
 		
-		if (aFM.focusTest() != true) {
+		onScreen = true;
+
+		AudioFocusManager.getInstance();
+		
+		if (AudioFocusManager.getInstance().focusTest() != true) {
 		System.out.print("Didn't have focus, requesting it");
-		aFM.requestFocus();
+		AudioFocusManager.getInstance().requestFocus();
 		}
 		
 		startCurrentPaceService(this);
@@ -119,11 +119,16 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 
-		if (aFM.focusTest()){
+		if (AudioFocusManager.getInstance().focusTest()){
 		
-			ButtonController.buttonFunction(v);
-			
+			ButtonController.buttonFunction(v);	
 		}
 		}
+	
+	public void onPause(){
+		super.onPause();
+		onScreen = false;	
+	}
+	
 	}
 

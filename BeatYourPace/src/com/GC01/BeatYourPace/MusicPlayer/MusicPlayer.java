@@ -2,6 +2,8 @@ package com.GC01.BeatYourPace.MusicPlayer;
  
 import java.io.IOException;
 
+import com.GC01.BeatYourPace.Main.TrainingModeActivity;
+
 import android.app.IntentService;
 import android.app.Service;
 import android.content.Intent;
@@ -90,8 +92,9 @@ public class MusicPlayer implements OnCompletionListener, OnErrorListener {
  	}
 	
 	public void pause() {
-		if (mediaPlayer.isPlaying())
+		if (mediaPlayer.isPlaying()) {
 		mediaPlayer.pause();
+		}
 		else
 			mediaPlayer.start();
 	}
