@@ -31,10 +31,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.GC01.BeatYourPace.Main.Settings"
-            android:label="@string/title_activity_settings" >
-        </activity>
-        <activity
             android:name="com.GC01.BeatYourPace.Settings.SettingsActivity"
             android:label="@string/title_activity_settings"
             android:parentActivityName="com.GC01.BeatYourPace.Main.MainActivity" >
