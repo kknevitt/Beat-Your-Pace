@@ -54,9 +54,7 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 		aFM = new AudioFocusManager(this);
 		}
 		
-		
 		if (aFM.focusTest() != true) {
-		
 		System.out.print("Didn't have focus, requesting it");
 		aFM.requestFocus();
 		}

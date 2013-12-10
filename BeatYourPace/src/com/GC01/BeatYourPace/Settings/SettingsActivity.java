@@ -29,9 +29,6 @@ import android.view.Menu;
 
 
 public class SettingsActivity extends PreferenceActivity {
-
-    Context context = getApplicationContext(); 
-    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context); 
 	
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	@SuppressLint("NewApi")
@@ -51,16 +48,5 @@ public class SettingsActivity extends PreferenceActivity {
 		return true;
 	}
 
-	 @Override
-	    public void onResume() {
-	        super.onResume();
-	        
-	    }
-
-	    @Override
-	    public void onPause() {
-	        super.onPause();
-	       
-	    }
 
 }
