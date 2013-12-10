@@ -15,9 +15,6 @@ public class AudioFocusManager{
 	private Context context;
 	private  int result;
 	private AudioManager audioMan;
-
-	
-	
 	
 	public AudioFocusManager(Context context){
 		

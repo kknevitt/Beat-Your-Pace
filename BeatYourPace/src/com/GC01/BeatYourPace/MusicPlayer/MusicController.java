@@ -7,8 +7,9 @@ public class MusicController {
 	
 	public static void pressPlay() {
 
-		try {
-			
+		
+		if (!MusicPlayer.getInstance().isPlaying()){		
+		try {	
 			MusicPlayer.getInstance().play();
 		} catch (IllegalArgumentException e1) {
 			e1.printStackTrace();
@@ -19,15 +20,19 @@ public class MusicController {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-		
+		}
 	}
+		
+		
+	
 	
 	public static void pressSkip() {
 	
+	if (MusicPlayer.getInstance().isPlaying()){
 	try {
-		
 		MusicPlayer.getInstance().skip();
-	} catch (IllegalArgumentException e) {
+	}
+	catch (IllegalArgumentException e) {
 		e.printStackTrace();
 	} catch (SecurityException e) {
 		e.printStackTrace();
@@ -37,9 +42,11 @@ public class MusicController {
 		e.printStackTrace();
 	}
 	}
+	}
 	
 	public static void pressPrevious() {
 		
+		if (MusicPlayer.getInstance().isPlaying()){
 		try {
         	MusicPlayer.getInstance().previous();	
         	
@@ -52,6 +59,7 @@ public class MusicController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
 	}
 	
 	public static void changeTarPace() {
@@ -81,6 +89,7 @@ public class MusicController {
 	}
 		
 	public static void pressPause() {
+		
 		
 		MusicPlayer.getInstance().pause();
 		
