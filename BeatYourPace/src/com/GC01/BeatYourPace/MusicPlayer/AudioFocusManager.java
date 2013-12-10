@@ -10,6 +10,17 @@ import android.widget.Toast;
 
 // see android audio focus tutorial
 
+
+/* Create as singleton which can take in a parameter and uses a boolean flag to test whether it has focus or not
+ * 
+ * 
+ * 
+ */
+
+
+
+
+
 public class AudioFocusManager{
 	
 	private Context context;
@@ -72,6 +83,7 @@ public class AudioFocusManager{
 					
 				case (AudioManager.AUDIOFOCUS_LOSS) :
 			
+					
 					audioMan.abandonAudioFocus(focusChangeListener);
 					MusicController.pressStop();
 					Toast.makeText(context, "Focus Lost", Toast.LENGTH_LONG).show();
