@@ -28,8 +28,10 @@ public class MusicPlayer implements OnCompletionListener, OnErrorListener {
 	/** Uses a MediaPlayer object from the android.media package as a base for playback functions */
 	private static MediaPlayer mediaPlayer = new MediaPlayer();
 	
-
 	private static MusicPlayer _instance = null;
+	
+	private String currentSongPath;
+	private int currentIndex;
 	
 	/** Constructor for MusicPlayer and assigning the TrackList it receives to a TrackList object
 	 @return
@@ -103,11 +105,10 @@ public class MusicPlayer implements OnCompletionListener, OnErrorListener {
 	
 	// Attempting to reduce reuse of code as all 3 buttons use this function.
 	private void playCurrentSong() throws IllegalArgumentException, SecurityException, IllegalStateException, IOException{
-		 
-		// testing values
-		String testTrack = TrackList.getInstance().getSongPath();
-		int testIndex = TrackList.getInstance().getSongIndex();
-		System.out.println(testTrack + testIndex);
+		
+		currentSongPath = TrackList.getInstance().getSongPath();
+		currentIndex = TrackList.getInstance().getSongIndex();
+		System.out.println(currentSongPath + currentIndex);
 		
 		try {
 		if (mediaPlayer.isPlaying()){
@@ -118,10 +119,8 @@ public class MusicPlayer implements OnCompletionListener, OnErrorListener {
 			System.out.println("Error in trying to stop the media player while playing");
 		}
 		
-		
-		
 		mediaPlayer.reset();
-		mediaPlayer.setDataSource(testTrack);
+		mediaPlayer.setDataSource(currentSongPath);
 		mediaPlayer.prepare();
 		mediaPlayer.start();
 		

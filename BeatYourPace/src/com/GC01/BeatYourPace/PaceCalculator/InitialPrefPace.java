@@ -42,8 +42,8 @@ public class InitialPrefPace {
 				initialPrefPaceM = (float) 6.0;
 				initialPrefPaceKm = (float) 8.0;
 			} else if (bpm > 166 && bpm < 171) {
-				initialPrefPaceM = (float) 6.0;
-				initialPrefPaceKm = (float) 5.0;
+				initialPrefPaceM = (float) 5.0;
+				initialPrefPaceKm = (float) 6.0;
 			} else {
 				initialPrefPaceM = (float) 7.0;
 				initialPrefPaceKm = (float) 10.0;

@@ -63,32 +63,4 @@ public class SettingsActivity extends PreferenceActivity {
 	       
 	    }
 
-	    
-	   // @Override
-	   // public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-	    /*
-	    	SharedPreferences.Editor prefEditor = prefs.edit();
-	    	if ("set_target_pace".equals(key)) {
-	    		Boolean rtnval = true;
-	    		String value = sharedPreferences.getString(key, "6.0");
-	    		double newTargetPace = Double.parseDouble(key);
-	    		
-	    		//need to add a second test to make sure it end 0 or 0.5 - use the string value and check the last 2 chars?
-	    		
-	    		if(newTargetPace < 4.0 || newTargetPace > 30.0) {
-	    				Toast.makeText(context, "Default pace must be between 4.0 and 30.0", Toast.LENGTH_SHORT).show();
-	    				prefEditor.commit();
-	    			}
-	    			else if (value.equals("")){
-	    				Toast.makeText(context, "Default pace cannot be blank", Toast.LENGTH_SHORT).show();
-	    				prefEditor.commit();
-	    			}
-	    			else {
-	    				prefEditor.commit();
-	    			}
-	    	}
-	    	*/
-
-
-	    //}
 }

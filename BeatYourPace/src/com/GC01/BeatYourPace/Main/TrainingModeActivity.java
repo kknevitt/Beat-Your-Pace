@@ -5,6 +5,8 @@ import java.io.IOException;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+
+import com.GC01.BeatYourPace.ArchiveFiles.AccessSettings;
 import com.GC01.BeatYourPace.Database.DatabaseHelper;
 import com.GC01.BeatYourPace.MusicPlayer.AudioFocusManager;
 import com.GC01.BeatYourPace.MusicPlayer.MusicController;
@@ -12,7 +14,6 @@ import com.GC01.BeatYourPace.MusicPlayer.MusicPlayer;
 import com.GC01.BeatYourPace.MusicPlayer.TrackList;
 import com.GC01.BeatYourPace.PaceCalculator.CurrentPace;
 import com.GC01.BeatYourPace.PaceCalculator.TargetPace;
-import com.GC01.BeatYourPace.Settings.AccessSettings;
 import com.example.beatyourpace.R;
 import com.google.analytics.tracking.android.EasyTracker;
 import android.media.AudioManager;

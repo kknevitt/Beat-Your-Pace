@@ -74,18 +74,15 @@ public class MainActivity extends Activity implements OnClickListener{
 	      if (v == letsRunModeButton) {
 	    	  Intent intent = new Intent(this,LetsRunModeActivity.class);
 	    	  startActivity(intent);
-	    	  EasyTracker.getInstance(this).activityStop(this);
 	      }
 	      if (v == settingsButton) { // // onclick the user is taken to the Settings view as per Settings class
 	    	  Intent intent = new Intent(this,SettingsActivity.class);
 	    	  startActivity(intent);
-	    	  EasyTracker.getInstance(this).activityStop(this);
 	      }
 	      
 	      if (v == helpPageButton) { // // onclick the user is taken to the HelpPage view as per Settings class
 	    	  Intent intent = new Intent(this,HelpPageActivity.class);
 	    	  startActivity(intent);
-	    	  EasyTracker.getInstance(this).activityStop(this);
 	      }
 	}       
 	
@@ -95,8 +92,9 @@ public class MainActivity extends Activity implements OnClickListener{
 		    // code to launch the Settings Activity when settings is selected from the menu
 		    switch (item.getItemId()) {
 		        case R.id.action_settings:
-		        	startActivity(new Intent("com.GC01.BeatYourPace.Help.settingsactivity"));
+		        	startActivity(new Intent("com.GC01.BeatYourPace.Settings.settingsactivity"));
 		            return true;
+		        //case R.id.  add in help here
 		        default:
 		            return super.onOptionsItemSelected(item);
 		    }

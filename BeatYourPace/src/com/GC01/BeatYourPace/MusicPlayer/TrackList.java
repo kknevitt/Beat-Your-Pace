@@ -33,7 +33,7 @@ public class TrackList {
 	private int songNo;
 	
 	/** An ArrayList which will contain the information of the appropriate songs for the MusicPlayer to play*/
-	private ArrayList<String> paceTrackList = new ArrayList(); // ArrayList containing song details and the path file for the song.	
+	private ArrayList<String> paceTrackList = new ArrayList<String>(); // ArrayList containing song details and the path file for the song.	
 	
 		
 	private static TrackList  _trackList = null;
@@ -149,41 +149,8 @@ public class TrackList {
 			for (int i = 0; i < paceTrackList.size(); i++){
 				
 				System.out.println(paceTrackList.get(i));
-				
 			}
-			
-		/*	
-				
-			if (tarPace %2 == 0) {
-				
-			paceTrackList.removeAll(paceTrackList);
-			
-			String first = "/sdcard/song.mp3";
-			paceTrackList.add(first);
-			String second = "/sdcard/song1.mp3";
-			paceTrackList.add(second);
-			String third = "/sdcard/three.wav";
-			paceTrackList.add(third);
-			
-			}
-			
-			else {
-				
-				paceTrackList.removeAll(paceTrackList);
-				
-				String first = "/sdcard/one.wav";
-				paceTrackList.add(first);
-				String second = "/sdcard/two.wav";
-				paceTrackList.add(second);
-				String third = "/sdcard/three.wav";	
-				paceTrackList.add(second);
-			}
-			
-				
 		}
-		*/
-}
-		
 }
 
 
