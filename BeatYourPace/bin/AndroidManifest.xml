@@ -60,8 +60,15 @@
             android:enabled="true"
             android:exported="false" >
         </service>
-        <service android:name="com.GC01.BeatYourPace.Database.DatabaseIntentService"></service>
-        <service android:name="com.GC01.BeatYourPace.PaceCalculator.CurrentPace"></service>
+        <service android:name="com.GC01.BeatYourPace.Database.DatabaseIntentService" >
+        </service>
+        <service android:name="com.GC01.BeatYourPace.PaceCalculator.CurrentPace" >
+        </service>
+
+        <activity
+            android:name="com.GC01.BeatYourPace.HelpPage.HelpPageActivity"
+            android:label="@string/title_activity_help_page" >
+        </activity>
     </application>
 
 </manifest>

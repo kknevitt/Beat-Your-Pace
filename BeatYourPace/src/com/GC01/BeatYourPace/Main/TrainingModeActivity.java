@@ -14,7 +14,7 @@ import com.GC01.BeatYourPace.PaceCalculator.CurrentPace;
 import com.GC01.BeatYourPace.PaceCalculator.TargetPace;
 import com.GC01.BeatYourPace.Settings.AccessSettings;
 import com.example.beatyourpace.R;
-
+import com.google.analytics.tracking.android.EasyTracker;
 import android.media.AudioManager;
 import android.media.AudioManager.OnAudioFocusChangeListener;
 import android.os.Bundle;
@@ -48,7 +48,8 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_trainingmode); 
-		
+	    EasyTracker.getInstance(this).activityStart(this);
+
 		if (aFM == null) {
 		aFM = new AudioFocusManager(this);
 		}

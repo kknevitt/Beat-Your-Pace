@@ -9,12 +9,13 @@ package com.example.beatyourpace;
 
 public final class R {
     public static final class array {
-        public static final int listUnitArray=0x7f080000;
-        public static final int listUnitValues=0x7f080001;
+        public static final int listUnitArray=0x7f090000;
+        public static final int listUnitValues=0x7f090001;
     }
     public static final class attr {
     }
     public static final class bool {
+        public static final int ga_anonymizeIp=0x7f070002;
         public static final int ga_autoActivityTracking=0x7f070000;
         public static final int ga_reportUncaughtExceptions=0x7f070001;
     }
@@ -25,8 +26,8 @@ public final class R {
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
-        public static final int activity_horizontal_margin=0x7f090000;
-        public static final int activity_vertical_margin=0x7f090001;
+        public static final int activity_horizontal_margin=0x7f0a0000;
+        public static final int activity_vertical_margin=0x7f0a0001;
     }
     public static final class drawable {
         public static final int background_gradient=0x7f020000;
@@ -42,66 +43,70 @@ public final class R {
         public static final int selector_pauseorplay=0x7f02000a;
     }
     public static final class id {
-        public static final int CurentPace=0x7f0c0010;
-        public static final int CurrentTargetPace=0x7f0c0011;
-        public static final int DefaultTargetPace=0x7f0c001b;
-        public static final int LetsRunText=0x7f0c0004;
-        public static final int LetsRunTitle=0x7f0c0003;
-        public static final int SettingsText=0x7f0c0006;
-        public static final int SettingsTitle=0x7f0c0005;
-        public static final int TextView001=0x7f0c001d;
-        public static final int TrainingText=0x7f0c0002;
-        public static final int TrainingTitle=0x7f0c0001;
-        public static final int action_settings=0x7f0c0025;
-        public static final int bDecTarget=0x7f0c000f;
-        public static final int bDistanceK=0x7f0c001a;
-        public static final int bDistanceM=0x7f0c0018;
-        public static final int bHelpPage=0x7f0c0017;
-        public static final int bIncTarget=0x7f0c000b;
-        public static final int bLetsRun=0x7f0c0016;
-        public static final int bMusicLocation=0x7f0c001f;
-        public static final int bPlayAndPause=0x7f0c0022;
-        public static final int bPlaySong=0x7f0c000a;
-        public static final int bPreviousTrack=0x7f0c000d;
-        public static final int bSettings=0x7f0c0015;
-        public static final int bSkipTrack=0x7f0c0009;
-        public static final int bSongTooFast=0x7f0c0008;
-        public static final int bSongTooSlow=0x7f0c000c;
-        public static final int bStopSong=0x7f0c0021;
-        public static final int bTargetDec=0x7f0c001e;
-        public static final int bTargetInc=0x7f0c001c;
-        public static final int bTrainingMode=0x7f0c0014;
-        public static final int helpPageTitle=0x7f0c0000;
-        public static final int iCurrentMode=0x7f0c000e;
-        public static final int placeHolderPause=0x7f0c0023;
-        public static final int placeHolderStop=0x7f0c0024;
-        public static final int sPaceTitle=0x7f0c0012;
-        public static final int sTargetTitle=0x7f0c0013;
-        public static final int tSettingsTitle=0x7f0c0020;
-        public static final int tSongName=0x7f0c0007;
-        public static final int tTarget=0x7f0c0019;
+        public static final int CurentPace=0x7f0d0010;
+        public static final int CurrentTargetPace=0x7f0d0011;
+        public static final int DefaultTargetPace=0x7f0d001b;
+        public static final int LetsRunText=0x7f0d0004;
+        public static final int LetsRunTitle=0x7f0d0003;
+        public static final int SettingsText=0x7f0d0006;
+        public static final int SettingsTitle=0x7f0d0005;
+        public static final int TextView001=0x7f0d001d;
+        public static final int TrainingText=0x7f0d0002;
+        public static final int TrainingTitle=0x7f0d0001;
+        public static final int action_settings=0x7f0d0025;
+        public static final int bDecTarget=0x7f0d000f;
+        public static final int bDistanceK=0x7f0d001a;
+        public static final int bDistanceM=0x7f0d0018;
+        public static final int bHelpPage=0x7f0d0017;
+        public static final int bIncTarget=0x7f0d000b;
+        public static final int bLetsRun=0x7f0d0016;
+        public static final int bMusicLocation=0x7f0d001f;
+        public static final int bPlayAndPause=0x7f0d0022;
+        public static final int bPlaySong=0x7f0d000a;
+        public static final int bPreviousTrack=0x7f0d000d;
+        public static final int bSettings=0x7f0d0015;
+        public static final int bSkipTrack=0x7f0d0009;
+        public static final int bSongTooFast=0x7f0d0008;
+        public static final int bSongTooSlow=0x7f0d000c;
+        public static final int bStopSong=0x7f0d0021;
+        public static final int bTargetDec=0x7f0d001e;
+        public static final int bTargetInc=0x7f0d001c;
+        public static final int bTrainingMode=0x7f0d0014;
+        public static final int helpPageTitle=0x7f0d0000;
+        public static final int iCurrentMode=0x7f0d000e;
+        public static final int placeHolderPause=0x7f0d0023;
+        public static final int placeHolderStop=0x7f0d0024;
+        public static final int sPaceTitle=0x7f0d0012;
+        public static final int sTargetTitle=0x7f0d0013;
+        public static final int tSettingsTitle=0x7f0d0020;
+        public static final int tSongName=0x7f0d0007;
+        public static final int tTarget=0x7f0d0019;
+    }
+    public static final class integer {
+        public static final int ga_dispatchPeriod=0x7f080000;
+        public static final int ga_sessionTimeout=0x7f080001;
     }
     public static final class layout {
         public static final int activity_data=0x7f030000;
         public static final int activity_database=0x7f030001;
         public static final int activity_help=0x7f030002;
-        public static final int activity_help_main=0x7f030003;
-        public static final int activity_lets_run_mode=0x7f030004;
-        public static final int activity_main=0x7f030005;
-        public static final int activity_settings=0x7f030006;
-        public static final int activity_trainingmode=0x7f030007;
-        public static final int help_main=0x7f030008;
-        public static final int pace=0x7f030009;
-        public static final int settings=0x7f03000a;
-        public static final int trainingmode=0x7f03000b;
+        public static final int activity_lets_run_mode=0x7f030003;
+        public static final int activity_main=0x7f030004;
+        public static final int activity_settings=0x7f030005;
+        public static final int activity_trainingmode=0x7f030006;
+        public static final int help_main=0x7f030007;
+        public static final int pace=0x7f030008;
+        public static final int settings=0x7f030009;
+        public static final int trainingmode=0x7f03000a;
     }
     public static final class menu {
-        public static final int database=0x7f0b0000;
-        public static final int help=0x7f0b0001;
-        public static final int help_main=0x7f0b0002;
-        public static final int lets_run_mode=0x7f0b0003;
-        public static final int main=0x7f0b0004;
-        public static final int settings=0x7f0b0005;
+        public static final int database=0x7f0c0000;
+        public static final int help=0x7f0c0001;
+        public static final int help_main=0x7f0c0002;
+        public static final int help_page=0x7f0c0003;
+        public static final int lets_run_mode=0x7f0c0004;
+        public static final int main=0x7f0c0005;
+        public static final int settings=0x7f0c0006;
     }
     public static final class raw {
         public static final int song=0x7f050000;
@@ -152,6 +157,7 @@ public final class R {
         public static final int title_activity_database=0x7f060021;
         public static final int title_activity_help=0x7f06002b;
         public static final int title_activity_help_main=0x7f06002e;
+        public static final int title_activity_help_page=0x7f06002f;
         public static final int title_activity_lets_run_mode=0x7f060023;
         public static final int title_activity_settings=0x7f06001f;
         public static final int title_helpPage=0x7f06002a;
@@ -178,11 +184,11 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f0a0000;
+        public static final int AppBaseTheme=0x7f0b0000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f0a0001;
+        public static final int AppTheme=0x7f0b0001;
     }
     public static final class xml {
         public static final int preferences=0x7f040000;

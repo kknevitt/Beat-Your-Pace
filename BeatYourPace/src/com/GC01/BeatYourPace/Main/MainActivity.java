@@ -3,7 +3,7 @@ package com.GC01.BeatYourPace.Main;
 import android.app.Activity;
 
 import com.GC01.BeatYourPace.Database.DatabaseIntentService;
-import com.GC01.BeatYourPace.HelpPage.HelpActivity;
+import com.GC01.BeatYourPace.HelpPage.HelpPageActivity;
 import com.GC01.BeatYourPace.PaceCalculator.CurrentPace;
 import com.GC01.BeatYourPace.Settings.SettingsActivity;
 import com.example.beatyourpace.R;
@@ -20,33 +20,34 @@ import android.widget.Button;
 public class MainActivity extends Activity implements OnClickListener{
 	
 	//creating button objects
-    Button b1, b2, b3, b4;
+    Button trainingModeButton, letsRunModeButton, settingsButton, helpPageButton;
+   
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		//Analytics method
+		//Analytics tracking user on this page
 		EasyTracker.getInstance(this).activityStart(this);
 		
 		//creating image buttons objects and getting their setup from xml
-        b1 = (Button) findViewById(R.id.bTrainingMode); 
-        b2 = (Button) findViewById(R.id.bLetsRun); 
-        b3 = (Button) findViewById(R.id.bSettings); 
-        b4 = (Button) findViewById(R.id.bHelpPage);
+        trainingModeButton = (Button) findViewById(R.id.bTrainingMode); 
+        letsRunModeButton = (Button) findViewById(R.id.bLetsRun); 
+        settingsButton = (Button) findViewById(R.id.bSettings); 
+        helpPageButton = (Button) findViewById(R.id.bHelpPage);
         
         //setting an event listener for each button
-        b1.setOnClickListener(this);
-        b2.setOnClickListener(this);
-        b3.setOnClickListener(this);
-        b4.setOnClickListener(this);
+        trainingModeButton.setOnClickListener(this);
+        letsRunModeButton.setOnClickListener(this);
+        settingsButton.setOnClickListener(this);
+        helpPageButton.setOnClickListener(this);
         
         //Start loading music data to the database
         //Implemented as a background service
         // Intent intent = new Intent(this,DatabaseService.class);  doesn't work
-        Intent intentDb = new Intent(this,DatabaseIntentService.class); 
-        this.startService(intentDb);
+        //Intent intentDb = new Intent(this,DatabaseIntentService.class); 
+        //this.startService(intentDb);
         
 	}
 
@@ -54,12 +55,13 @@ public class MainActivity extends Activity implements OnClickListener{
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// auto-generated code: Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
+		EasyTracker.getInstance(this).activityStart(this);
 		return true;
 	}
 	@Override
 	public void onClick(View v) {
 	            //  auto-generated code: Auto-generated method stub
-	      if(v == b1){ //onclick the user is taken to the TrainingMode view as per TrainingModeActivity class
+	      if(v == trainingModeButton){ //onclick the user is taken to the TrainingMode view as per TrainingModeActivity class
               Intent intent = new Intent(this,TrainingModeActivity.class);
               startActivity(intent);
               EasyTracker.getInstance(this).activityStop(this);
@@ -69,19 +71,19 @@ public class MainActivity extends Activity implements OnClickListener{
               startService(CurrentPaceService);
               
 				}
-	      if (v == b2) {
+	      if (v == letsRunModeButton) {
 	    	  Intent intent = new Intent(this,LetsRunModeActivity.class);
 	    	  startActivity(intent);
 	    	  EasyTracker.getInstance(this).activityStop(this);
 	      }
-	      if (v == b3) { // // onclick the user is taken to the Settings view as per Settings class
+	      if (v == settingsButton) { // // onclick the user is taken to the Settings view as per Settings class
 	    	  Intent intent = new Intent(this,SettingsActivity.class);
 	    	  startActivity(intent);
 	    	  EasyTracker.getInstance(this).activityStop(this);
 	      }
 	      
-	      if (v == b4) { // // onclick the user is taken to the HelpPage view as per Settings class
-	    	  Intent intent = new Intent(this,HelpActivity.class);
+	      if (v == helpPageButton) { // // onclick the user is taken to the HelpPage view as per Settings class
+	    	  Intent intent = new Intent(this,HelpPageActivity.class);
 	    	  startActivity(intent);
 	    	  EasyTracker.getInstance(this).activityStop(this);
 	      }
