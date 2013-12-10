@@ -2,8 +2,14 @@ package com.GC01.BeatYourPace.MusicPlayer;
  
 import java.io.IOException;
 
+import com.google.analytics.tracking.android.EasyTracker;
+import com.google.analytics.tracking.android.MapBuilder;
+import com.google.analytics.tracking.android.StandardExceptionParser;
+import com.google.analytics.tracking.android.Tracker;
+
 import android.app.IntentService;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
@@ -33,6 +39,10 @@ public class MusicPlayer implements OnCompletionListener, OnErrorListener {
 	private String currentSongPath;
 	private int currentIndex;
 	
+	private static Context context;
+	Tracker myTracker; 
+
+	
 	/** Constructor for MusicPlayer and assigning the TrackList it receives to a TrackList object
 	 @return
 	 @param trackListToPlay A TrackList determined by the target pace and a database query for appropriate songs for that target pace
@@ -59,11 +69,35 @@ public class MusicPlayer implements OnCompletionListener, OnErrorListener {
 	 @return
 	 @param
 	 */
-	public void play() throws IllegalArgumentException, SecurityException, IllegalStateException, IOException {
+	public void play()  {
 		
 	
-		playCurrentSong();
-		
+		try {
+			playCurrentSong();
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalStateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+			/**Google Analytics tracking code **/
+		/*	EasyTracker easyTracker = EasyTracker.getInstance(this);
+			myTracker.send(MapBuilder
+					.createException(new StandardExceptionParser(this, null)
+					.getDescription(Thread.currentThread().getName(),
+							e),
+							false).build() 
+							); */
+		}
+		           
+	      
 	}
 	
 	

@@ -17,8 +17,6 @@ public class MusicController {
 			e1.printStackTrace();
 		} catch (IllegalStateException e1) {
 			e1.printStackTrace();
-		} catch (IOException e1) {
-			e1.printStackTrace();
 		}
 		}
 	}
@@ -78,9 +76,6 @@ public class MusicController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IllegalStateException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

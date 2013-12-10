@@ -77,8 +77,6 @@ public static void buttonFunction(View v) {
 
             	/**Google Analytics tracking code**/
             	tracker.send(MapBuilder.createEvent("UI_Action", "button_press", "increasePace", null).build());               
-
-            	
             	break;
 				
 			case R.id.bStopSong:
