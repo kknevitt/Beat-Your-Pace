@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import android.content.Context;
 
 import com.GC01.BeatYourPace.Database.DatabaseAdapter;
+import com.GC01.BeatYourPace.Main.ContextProvider;
 import com.GC01.BeatYourPace.PaceCalculator.TargetPace;
 
 /** 
@@ -138,9 +139,9 @@ public class TrackList {
 		// method for populating the TrackList
 		public void updateTrackList(float tarPace) {
 				
-		/*
+		
 			// insert code for repopulating trackList
-			DatabaseAdapter db = new DatabaseAdapter(context);
+			DatabaseAdapter db = new DatabaseAdapter(ContextProvider.getContext());
 			
 			paceTrackList = db.getAppropriateSongs(tarPace);
 			
@@ -151,7 +152,7 @@ public class TrackList {
 				
 			}
 			
-	*/		
+		/*	
 				
 			if (tarPace %2 == 0) {
 				
@@ -180,6 +181,9 @@ public class TrackList {
 			
 				
 		}
+		*/
+}
+		
 }
 
 

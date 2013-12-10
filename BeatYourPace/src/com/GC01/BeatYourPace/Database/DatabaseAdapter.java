@@ -6,10 +6,12 @@ import java.util.List;
 
 import com.GC01.BeatYourPace.BPM.*;
 import com.GC01.BeatYourPace.Database.DatabaseContract.DataEntry;
+import com.GC01.BeatYourPace.Main.ContextProvider;
 import com.GC01.BeatYourPace.PaceCalculator.InitialPrefPace;
 import com.GC01.BeatYourPace.PaceCalculator.InitialPrefPace.InitPrefPaceVals;
 import com.GC01.BeatYourPace.Settings.SettingsActivity;
 import com.echonest.api.v4.EchoNestException;
+
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
@@ -311,9 +313,10 @@ public class DatabaseAdapter {
 	 */
 	public void addPrefPace(float preferredPace, String fileLoc){
 		//Find out if they are using Miles (1) or Km (2)
-		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-		int unitType = preferences.getInt("unitType", 1);
+		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ContextProvider.getContext());
+		int unitType = Integer.parseInt(preferences.getString("unitType", "1"));
 
+	
 		// Open the database in write mode
 		openDbWrite();
 
@@ -343,8 +346,9 @@ public class DatabaseAdapter {
 		ArrayList<String> appropriateSongs = new ArrayList<String>();
 		
 		//Get the user preference for miles(1) or kilometres(2)
-		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-		int unitType = preferences.getInt("unitType", 1);
+		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ContextProvider.getContext());
+		int unitType = Integer.parseInt(preferences.getString("unitType", "1"));
+		
 		
 		String query2;
 		if (unitType == 1) {
@@ -374,7 +378,7 @@ public class DatabaseAdapter {
 				if (initPrefPace == targetPace) {
 					appropriateSongs.add(fileLoc);
 				}
-			} else if (preferredPace == targetPace){
+			} else if (preferredPace >= targetPace - 0.5 || preferredPace <= targetPace + 0.5){
 				appropriateSongs.add(fileLoc);
 			} else {
 				//do nothing

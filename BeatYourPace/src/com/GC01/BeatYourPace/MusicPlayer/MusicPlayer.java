@@ -59,7 +59,7 @@ public class MusicPlayer implements OnCompletionListener, OnErrorListener {
 	 */
 	public void play() throws IllegalArgumentException, SecurityException, IllegalStateException, IOException {
 		
-		TrackList.getInstance();
+	
 		playCurrentSong();
 		
 	}

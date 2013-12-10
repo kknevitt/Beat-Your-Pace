@@ -62,7 +62,7 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 		aFM.requestFocus();
 		}
 		
-		startCurrentPaceService(context);
+		startCurrentPaceService(this);
 
 		
 		//creates image buttons objects and gets their setup from xml
@@ -121,23 +121,10 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 	public void onClick(View v) {
 
 		if (aFM.focusTest()){
-			if (playOrPauseImageButton.isPressed() && paused){
-			playOrPauseImageButton.setBackgroundResource(R.drawable.medium_play);
-			paused =! paused;
-			}
-			else if (playOrPauseImageButton.isPressed()){{
-			playOrPauseImageButton.setBackgroundResource(R.drawable.medium_pause);
-			}
-			
-			
+		
 			ButtonController.buttonFunction(v);
 			
 		}
 		}
 	}
-
-		
-
-}
-	
 
