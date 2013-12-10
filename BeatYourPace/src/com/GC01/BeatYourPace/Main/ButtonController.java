@@ -2,16 +2,24 @@ package com.GC01.BeatYourPace.Main;
 
 import java.io.IOException;
 
+import android.app.Service;
+import android.content.Context;
+import android.content.Intent;
+import android.os.IBinder;
 import android.view.View;
+
 import com.GC01.BeatYourPace.PaceCalculator.*;
 import com.GC01.BeatYourPace.MusicPlayer.MusicController;
 import com.GC01.BeatYourPace.MusicPlayer.MusicPlayer;
 import com.GC01.BeatYourPace.MusicPlayer.TrackList;
 import com.GC01.BeatYourPace.PaceCalculator.TargetPace;
 import com.example.beatyourpace.R;
+import com.google.analytics.tracking.android.EasyTracker;
+import com.google.analytics.tracking.android.MapBuilder;
+import com.google.analytics.tracking.android.Tracker;
 
-public class ButtonController {
-	
+public class ButtonController extends Service {
+	static Context context;
 	//static TrackList trackList = new TrackList(TargetPace.getTargetPace()); // This has the Target CurrentPace as its parameter
 	
 public static void buttonFunction(View v) {
@@ -56,7 +64,12 @@ public static void buttonFunction(View v) {
             	String tarPaceInc = String.valueOf(TargetPace.getTargetPace());
             	TrainingModeActivity.targetPaceText.setText(tarPaceInc);
             	MusicController.changeTarPace();
-	            break;
+
+			EasyTracker tracker = EasyTracker.getInstance(context);
+		    tracker.send(MapBuilder.createEvent("ui_action", "button_press", "increasePace", null).build());               
+
+            	
+            	break;
 				
 			case R.id.bStopSong:
 				MusicController.pressStop();
@@ -64,4 +77,10 @@ public static void buttonFunction(View v) {
 	            
 		}
 	  }
+
+@Override
+public IBinder onBind(Intent intent) {
+	// TODO Auto-generated method stub
+	return null;
+}
 }
