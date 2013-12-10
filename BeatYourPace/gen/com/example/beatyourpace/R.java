@@ -94,19 +94,15 @@ public final class R {
         public static final int activity_main=0x7f030004;
         public static final int activity_settings=0x7f030005;
         public static final int activity_trainingmode=0x7f030006;
-        public static final int help_main=0x7f030007;
-        public static final int pace=0x7f030008;
-        public static final int settings=0x7f030009;
-        public static final int trainingmode=0x7f03000a;
+        public static final int pace=0x7f030007;
+        public static final int settings=0x7f030008;
+        public static final int trainingmode=0x7f030009;
     }
     public static final class menu {
         public static final int database=0x7f0c0000;
-        public static final int help=0x7f0c0001;
-        public static final int help_main=0x7f0c0002;
-        public static final int help_page=0x7f0c0003;
-        public static final int lets_run_mode=0x7f0c0004;
-        public static final int main=0x7f0c0005;
-        public static final int settings=0x7f0c0006;
+        public static final int lets_run_mode=0x7f0c0001;
+        public static final int main=0x7f0c0002;
+        public static final int settings=0x7f0c0003;
     }
     public static final class raw {
         public static final int song=0x7f050000;
