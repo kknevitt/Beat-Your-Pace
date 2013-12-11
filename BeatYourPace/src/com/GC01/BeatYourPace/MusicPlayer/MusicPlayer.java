@@ -165,7 +165,7 @@ public class MusicPlayer implements OnCompletionListener, OnErrorListener {
 		
 		setTrackInfo(currentSongPath);
 		System.out.println(getTrackInfo());
-
+		
 		}
 	
 	
@@ -188,6 +188,7 @@ public class MusicPlayer implements OnCompletionListener, OnErrorListener {
 	@Override
 	public void onCompletion(MediaPlayer mp) {
 
+		if (!TrackList.getInstance().isEmpty()) {
 		try {
 			skip();
 		} catch (IllegalArgumentException e) {
@@ -202,6 +203,7 @@ public class MusicPlayer implements OnCompletionListener, OnErrorListener {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
 		}
 		
 
@@ -223,25 +225,6 @@ public class MusicPlayer implements OnCompletionListener, OnErrorListener {
 		return false;
 	}
 
-	/*
-
-	@Override
-	public IBinder onBind(Intent arg0) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not there yet");
-	}
-	
-	public void onCreate() {
-		
-		Toast.makeText(this, "MusicPlayer service started", Toast.LENGTH_LONG).show();
-	}
-	
-	public void onDestroy() {
-		
-		Toast.makeText(this, "MusicPlayer has ended", Toast.LENGTH_LONG).show();
-		}
-		
-		*/
 	
 	}
 

@@ -3,6 +3,7 @@ package com.GC01.BeatYourPace.MusicPlayer;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.widget.Toast;
 
 import com.GC01.BeatYourPace.Database.DatabaseAdapter;
 import com.GC01.BeatYourPace.Main.ContextProvider;
@@ -37,6 +38,10 @@ public class TrackList {
 	
 		
 	private static TrackList  _trackList = null;
+	
+	private int trackListSize;
+	
+	public static boolean empty;
 	
 	
 	private TrackList(){
@@ -102,6 +107,11 @@ public class TrackList {
 			System.out.println("song after previous before play is" + getSongIndex());
 			
 		}
+		
+		if (function == "reset"){
+			
+			songNo = 0;
+		}
 		System.out.println("song index after setSong is" + getSongIndex());
 		
 		
@@ -131,12 +141,7 @@ public class TrackList {
 			return songPath;
 					
 			}	
-		
-		
-		public void updateTrackList() {
-			
-		}
-		
+
 		
 		// method for populating the TrackList
 		public void updateTrackList(float tarPace) {
@@ -144,14 +149,54 @@ public class TrackList {
 		
 			// insert code for repopulating trackList
 			DatabaseAdapter db = new DatabaseAdapter(ContextProvider.getContext());
-			
+
 			paceTrackList = db.getAppropriateSongs(tarPace);
 			
+		//	TrackList.getInstance().setSong("reset"); atm this causes recursive error.
+			
+			System.out.println("TrackList updated");
+			System.out.println("Size is " + paceTrackList.size());
+
 			for (int i = 0; i < paceTrackList.size(); i++){
 				
 				System.out.println(paceTrackList.get(i));
+				
+				
 			}
 		}
+		
+		public int getTrackListSize(){
+			
+			trackListSize = paceTrackList.size();
+			
+			return trackListSize;
+			
+			
+		}
+		
+		public boolean isEmpty() {
+			
+			if (TrackList.getInstance().getTrackListSize() == 0){
+						
+						System.out.println("TrackList was empty");
+						Toast.makeText(ContextProvider.getContext(), "No Songs at that Target Pace", Toast.LENGTH_LONG).show();
+						
+						empty = true;
+						
+					}
+					
+					else {
+						
+						empty = false;
+						
+					}
+
+				return empty;
+				}
+			
+				
+
+		
 }
 
 
