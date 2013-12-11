@@ -13,7 +13,7 @@ public class DatabaseExportToJSON {
 	
 	private final String LOG_TAG = "Export database to JSON";
 	private static String fileName = "byp.txt";
-
+	
 	public JSONArray getJSON() {
 	 
 		DatabaseAdapter db = new DatabaseAdapter(ContextProvider.getContext());
