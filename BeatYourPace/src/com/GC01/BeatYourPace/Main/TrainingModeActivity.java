@@ -1,8 +1,10 @@
 package com.GC01.BeatYourPace.Main;
 	
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 
 import com.GC01.BeatYourPace.Database.DatabaseHelper;
@@ -19,6 +21,7 @@ import android.media.AudioManager;
 import android.media.AudioManager.OnAudioFocusChangeListener;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.content.LocalBroadcastManager;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -31,24 +34,26 @@ import android.widget.Toast;
 public class TrainingModeActivity extends Activity implements OnClickListener {
 
 
-	public static float targetPace = 0; //setting temporarily to 10
+	// Target Pace
+	public static float targetPace;
+	private static String displayTargetPace;
+    protected static TextView targetPaceText;
+    
+    // Current Pace
+    private static TextView currentPaceText;
+	
+	// Active Screen
 	public static boolean onScreen;
 	
-	    
+	// Current Track Info
+	public static String displayTrackInfo;
+	private static TextView trackInfo;
+	
+	// Buttons    
     ImageButton playOrPauseImageButton, imagebutton2, skipSongImageButton, previousSongImageButton, pauseImageButton, stopImageButton;
     Button songTooSlowButton, songTooFastButton, decreaseTargetPaceButton, increaseTargetPaceButton;
-    
-    Context context;
-  //  AudioFocusManager aFM;
-    
-    static TextView targetPaceText;
-    static TextView currentPaceText;
-    public  static TextView trackInfo;
-    
-    String pace ="";
-    boolean paused;
-    
-    private static String targetPaceStr;
+   
+
     
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +61,7 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 		setContentView(R.layout.activity_trainingmode); 
 		
 		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(ContextProvider.getContext());
-	    
+
 		/**Keep the screen on so the user can access the buttons used to associate new BPM to tracks**/
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		
@@ -86,15 +91,10 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
         stopImageButton = (ImageButton) findViewById(R.id.bStopSong);
         
         
-        trackInfo = (TextView) findViewById(R.id.tSongName);
-        String track = MusicPlayer.getInstance().getTrackInfo();
-        trackInfo.setText(track);
-        
-  
         targetPaceText = (TextView) findViewById(R.id.CurrentTargetPace);
-        targetPaceStr = sp.getString("set_target_pace", "6.0");
-        targetPace = Float.valueOf(targetPaceStr);
-        targetPaceText.setText(targetPaceStr);
+        displayTargetPace = sp.getString("set_target_pace", "6.0");
+        targetPace = Float.valueOf(displayTargetPace);
+        targetPaceText.setText(displayTargetPace);
     
         
         //setting an event listener for each button
@@ -108,6 +108,12 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
         increaseTargetPaceButton.setOnClickListener(this);
        // pauseImageButton.setOnClickListener(this);
         stopImageButton.setOnClickListener(this);
+        
+        LocalBroadcastManager.getInstance(this).registerReceiver(bReceiver,
+        	      new IntentFilter("Track Info Event"));
+        
+        
+        
    }
 
 
@@ -146,6 +152,26 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 		super.onPause();
 		onScreen = false;	
 	}
+	
+	private BroadcastReceiver bReceiver = new BroadcastReceiver() {
+		  @Override
+		  public void onReceive(Context context, Intent intent) {
+		    // Get extra data included in the Intent
+			  System.out.println("Track Received");
+			  trackInfo = (TextView) findViewById(R.id.tSongName);
+			  
+		      displayTrackInfo = intent.getStringExtra("Track Info");
+		      if (displayTrackInfo == null)
+		      System.out.println("displayTrackInfo was null");
+		      else {
+		    	  System.out.println(displayTrackInfo + " wasnt null");
+		      }
+		      trackInfo.setText(displayTrackInfo);
+			  
+		  }
+		};
+	
+	
 	
 	}
 

@@ -23,6 +23,7 @@ import android.media.MediaPlayer.OnErrorListener;
  */
 import android.net.Uri;
 import android.os.IBinder;
+import android.support.v4.content.LocalBroadcastManager;
 import android.widget.Toast;
 
 
@@ -164,9 +165,23 @@ public class MusicPlayer implements OnCompletionListener, OnErrorListener {
 		mediaPlayer.start();
 		
 		setTrackInfo(currentSongPath);
+		sendTrackInfo();
+		
 		System.out.println(getTrackInfo());
 		
 		}
+	
+	private void sendTrackInfo() {
+		
+		  Intent intent = new Intent("Track Info Event");
+		  
+		  intent.putExtra("Track Info", getTrackInfo());
+		  LocalBroadcastManager.getInstance(ContextProvider.getContext()).sendBroadcast(intent);
+		  System.out.println("Track Sent");
+		}
+	
+	
+	
 	
 	
 	public void setTrackInfo(String path){
