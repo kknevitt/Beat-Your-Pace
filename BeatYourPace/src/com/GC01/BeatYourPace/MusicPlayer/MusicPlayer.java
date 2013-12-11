@@ -163,12 +163,15 @@ public class MusicPlayer implements OnCompletionListener, OnErrorListener {
 		mediaPlayer.prepare();
 		mediaPlayer.start();
 		
-		//setTrackInfo(currentSongPath);
+		setTrackInfo(currentSongPath);
+		System.out.println(getTrackInfo());
 
 		}
 	
 	
 	public void setTrackInfo(String path){
+		
+		System.out.println("path before sending to database is " + path);
 		
 		DatabaseAdapter db = new DatabaseAdapter(ContextProvider.getContext());
 		trackInfo = db.getTrackInfo(path);

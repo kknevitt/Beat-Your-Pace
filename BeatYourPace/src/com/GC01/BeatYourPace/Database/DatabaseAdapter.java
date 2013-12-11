@@ -400,29 +400,47 @@ public class DatabaseAdapter {
 	public String getTrackInfo(String fileLoc){
 		
 		String query = "SELECT " + DataEntry.COL_ARTIST + ", " + DataEntry.COL_TITLE + " FROM " + DataEntry.TABLE_NAME + " WHERE (" + DataEntry.COL_FILE_LOC + " = " + "\"" + fileLoc + " \""+ " )";
-		//String selection = "DataEntry.COL_FILE_LOC = " + fileLoc;
-		
 	
 		String[] cols = new String[] {DataEntry.COL_ARTIST, DataEntry.COL_TITLE};
 		
 		
 		//Open the database, read to a cursor, go over each row, build track and add it to list
 		openDbRead();
-		//Cursor cursor = db.rawQuery(query, null);
-		Cursor cursor = db.query(DataEntry.TABLE_NAME, cols, null, null, null, null, null);
+		// Cursor cursor = db.rawQuery(query, null);
+		Cursor cursor = db.query(DataEntry.TABLE_NAME, cols, "fileLoc = " + "\"" + fileLoc + "\"" , null, null, null, null);
 		
+		//Cursor t = db.query(distinct, table, columns, selection, selectionArgs, groupBy, having, orderBy, limit, cancellationSignal)
+		
+		if (cursor == null) {
+			
+			System.out.println("No data");
+		}
+		String trackInfo = "test";
+		
+		cursor.moveToFirst();
+		while(!cursor.isAfterLast()){
+			
 		String artist = cursor.getString(cursor.getColumnIndex(DataEntry.COL_ARTIST));
+	//	System.out.println(artist);
+		
 		String title = cursor.getString(cursor.getColumnIndex(DataEntry.COL_TITLE));
-		String space = " ";
+	//	System.out.println(title);
+	//	String space = " - ";
 		
-		System.out.println(artist);
-		System.out.println(title);
 		
-		//String trackInfo = artist + " " + title
-		String trackInfo = artist.concat(space.concat(title));
-		System.out.println(trackInfo);
+
+
 		
-		System.out.println(trackInfo);
+		trackInfo = artist + " - " + title;
+	//	trackInfo = artist.concat(space.concat(title));
+	//	System.out.println(trackInfo);
+		
+	//	System.out.println(trackInfo);
+		
+		cursor.moveToNext();
+		}
+		
+		cursor.close();
 		
 		return trackInfo;
 	}

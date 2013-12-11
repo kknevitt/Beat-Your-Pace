@@ -1,6 +1,10 @@
 package com.GC01.BeatYourPace.MusicPlayer;
 
 import java.io.IOException;
+
+import android.widget.Toast;
+
+import com.GC01.BeatYourPace.Main.ContextProvider;
 import com.GC01.BeatYourPace.PaceCalculator.TargetPace;
 
 public class MusicController {
@@ -64,7 +68,12 @@ public class MusicController {
 		
 		TrackList.getInstance().updateTrackList((float) TargetPace.getTargetPace());
 		
-		if (MusicPlayer.getInstance().isPlaying()){
+		if (TrackList.getInstance() == null) {
+			
+			Toast.makeText(ContextProvider.getContext(), "No Songs at that Target Pace", Toast.LENGTH_LONG).show();
+		}
+		
+		else if (MusicPlayer.getInstance().isPlaying()){
 			
 		MusicPlayer.getInstance().stop();
 		try {

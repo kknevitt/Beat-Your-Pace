@@ -43,7 +43,7 @@ public class TrackList {
 		
 		// Calling the method for populating the ArrayList.
 		updateTrackList((float) TargetPace.getTargetPace());
-	 	
+			 	
 		// Default songPath needed.
 		songNo = 0;
 		}
@@ -51,6 +51,8 @@ public class TrackList {
 	public static TrackList getInstance() {
 		
 		if (_trackList == null) {
+			
+			
 			
 			_trackList = new TrackList();
 			
@@ -144,7 +146,6 @@ public class TrackList {
 			DatabaseAdapter db = new DatabaseAdapter(ContextProvider.getContext());
 			
 			paceTrackList = db.getAppropriateSongs(tarPace);
-			
 			
 			for (int i = 0; i < paceTrackList.size(); i++){
 				

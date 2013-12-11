@@ -79,9 +79,9 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
         stopImageButton = (ImageButton) findViewById(R.id.bStopSong);
         
         
-    //    trackInfo = (TextView) findViewById(R.id.tSongName);
-   //     String track = MusicPlayer.getInstance().getTrackInfo();
-     //   trackInfo.setText(track);
+        trackInfo = (TextView) findViewById(R.id.tSongName);
+        String track = MusicPlayer.getInstance().getTrackInfo();
+        trackInfo.setText(track);
         
   
         targetPaceText = (TextView) findViewById(R.id.CurrentTargetPace);
