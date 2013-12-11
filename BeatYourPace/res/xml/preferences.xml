@@ -12,7 +12,7 @@
 		<EditTextPreference 
 		    android:dialogMessage="Enter your target pace" 
 		    android:dialogTitle="@string/sSetTargetPace" 
-		    android:defaultValue="6.0" 
+		    android:defaultValue="9.0" 
 		    android:inputType="numberDecimal" 
 		    android:title="@string/sSetTargetPace" 
 		    android:key="set_target_pace"/>

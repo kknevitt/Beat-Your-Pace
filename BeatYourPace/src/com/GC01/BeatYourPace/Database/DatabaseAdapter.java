@@ -312,24 +312,48 @@ public class DatabaseAdapter {
 	 * @param fileLoc	String that is the file loc reference to the track in the device's media store db
 	 * as this is the only info that is available in the TrackList array
 	 */
-	public void addPrefPace(float preferredPace, String fileLoc){
+	public void addPrefPace(Float increment, String fileLoc){
 		//Find out if they are using Miles (1) or Km (2)
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ContextProvider.getContext());
 		int unitType = Integer.parseInt(preferences.getString("unitType", "1"));
-
-	
-		// Open the database in write mode
-		openDbWrite();
-
-		//Sql statement to update preferred pace
-		if (unitType == 1) {
-			String sql = "UPDATE " + DataEntry.TABLE_NAME + "SET " + DataEntry.COL_PREF_PACE_M + "= " + preferredPace +"WHERE " + DataEntry.COL_FILE_LOC + "= " + fileLoc;
-			db.execSQL(sql);
-		} else {
-			String sql = "UPDATE " + DataEntry.TABLE_NAME + "SET " + DataEntry.COL_PREF_PACE_KM + "= " + preferredPace +"WHERE " + DataEntry.COL_FILE_LOC + "= " + fileLoc;
-			db.execSQL(sql);
+		float prefPace;
+		float initPrefPace;
+		
+		String query = "SELECT * FROM " + DataEntry.TABLE_NAME + " WHERE fileLoc = " + fileLoc;
+		openDbRead();
+		Cursor cursor = db.rawQuery(query, null);
+		
+		while (!cursor.isAfterLast()) {
+			if (unitType == 1) {
+				prefPace = cursor.getFloat(cursor.getColumnIndex(DataEntry.COL_PREF_PACE_M));
+				initPrefPace = cursor.getFloat(cursor.getColumnIndex(DataEntry.COL_INITIAL_PREF_PACE_M));
+			} else {
+				prefPace = cursor.getFloat(cursor.getColumnIndex(DataEntry.COL_PREF_PACE_KM));
+				initPrefPace = cursor.getFloat(cursor.getColumnIndex(DataEntry.COL_INITIAL_PREF_PACE_KM));
+			}
+			if (prefPace == 0) {
+					prefPace = initPrefPace + increment;
+				} else {
+					prefPace += increment;
+				}
+		
+			// Open the database in write mode
+			openDbWrite();
+			
+			//Sql statement to update preferred pace
+			if (unitType == 1) {
+				String sql = "UPDATE " + DataEntry.TABLE_NAME + "SET " + DataEntry.COL_PREF_PACE_M + "= " + prefPace +"WHERE " + DataEntry.COL_FILE_LOC + "= " + fileLoc;
+				db.execSQL(sql);
+			} else {
+				String sql = "UPDATE " + DataEntry.TABLE_NAME + "SET " + DataEntry.COL_PREF_PACE_KM + "= " + prefPace +"WHERE " + DataEntry.COL_FILE_LOC + "= " + fileLoc;
+				db.execSQL(sql);
+			}
+			closeDb();
+			
+			cursor.moveToNext();
 		}
-		closeDb();
+		cursor.close();
+		
 	}
 
 
@@ -395,53 +419,27 @@ public class DatabaseAdapter {
 	 * This method returns the artist and title for a track so that the media player can display the info
 	 * 
 	 * @param fileLoc  String with the location of the file for which the artist and title is needed
-	 * @return  trackInfo  ArrayList with the artist and title
+	 * @return  trackInfo  String with the artist and title
 	 */
 	public String getTrackInfo(String fileLoc){
-		
-		String query = "SELECT " + DataEntry.COL_ARTIST + ", " + DataEntry.COL_TITLE + " FROM " + DataEntry.TABLE_NAME + " WHERE (" + DataEntry.COL_FILE_LOC + " = " + "\"" + fileLoc + " \""+ " )";
-	
+
 		String[] cols = new String[] {DataEntry.COL_ARTIST, DataEntry.COL_TITLE};
-		
-		
+
 		//Open the database, read to a cursor, go over each row, build track and add it to list
 		openDbRead();
-		// Cursor cursor = db.rawQuery(query, null);
 		Cursor cursor = db.query(DataEntry.TABLE_NAME, cols, "fileLoc = " + "\"" + fileLoc + "\"" , null, null, null, null);
-		
-		//Cursor t = db.query(distinct, table, columns, selection, selectionArgs, groupBy, having, orderBy, limit, cancellationSignal)
-		
 		if (cursor == null) {
-			
-			System.out.println("No data");
+			Log.d(LOG_TAG, "No artist and title data for the track");
 		}
-		String trackInfo = "test";
-		
+		String trackInfo = "";
 		cursor.moveToFirst();
 		while(!cursor.isAfterLast()){
-			
-		String artist = cursor.getString(cursor.getColumnIndex(DataEntry.COL_ARTIST));
-	//	System.out.println(artist);
-		
-		String title = cursor.getString(cursor.getColumnIndex(DataEntry.COL_TITLE));
-	//	System.out.println(title);
-	//	String space = " - ";
-		
-		
-
-
-		
-		trackInfo = artist + " - " + title;
-	//	trackInfo = artist.concat(space.concat(title));
-	//	System.out.println(trackInfo);
-		
-	//	System.out.println(trackInfo);
-		
-		cursor.moveToNext();
+			String artist = cursor.getString(cursor.getColumnIndex(DataEntry.COL_ARTIST));
+			String title = cursor.getString(cursor.getColumnIndex(DataEntry.COL_TITLE));
+			trackInfo = artist + " - " + title;
+			cursor.moveToNext();
 		}
-		
 		cursor.close();
-		
 		return trackInfo;
 	}
 
@@ -450,7 +448,7 @@ public class DatabaseAdapter {
 	 * @param targetPace  Float of the target pace the user wants music for
 	 * @return appropriateSongs  Array list with the file location, artist and title of tracks matching the pace
 	 */
-	public ArrayList<String> getTrackInfoFull(float targetPace) {
+	public ArrayList<String> getAppropriateSongsTrackData(float targetPace) {
 	//List that holds just the path name to the track
 			ArrayList<String> appropriateSongs = new ArrayList<String>();
 			
@@ -500,9 +498,7 @@ public class DatabaseAdapter {
 				cursor.moveToNext();
 			}
 			cursor.close();
-			// return the completed playlist
-			Toast toast = Toast.makeText(ContextProvider.getContext(), "No music for this pace. Try increasing or decreasing the pace.", Toast.LENGTH_LONG);
-			toast.show();
+			// return the completed play list
 			return appropriateSongs;
 	}
 }
