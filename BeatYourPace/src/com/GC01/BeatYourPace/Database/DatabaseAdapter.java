@@ -400,7 +400,7 @@ public class DatabaseAdapter {
 	public String getTrackInfo(String fileLoc){
 		
 		
-		String query = "SELECT " + DataEntry.COL_ARTIST + ", " + DataEntry.COL_TITLE + " FROM " + DataEntry.TABLE_NAME + " WHERE (" + DataEntry.COL_FILE_LOC + " = " + fileLoc + " )";
+		String query = "SELECT " + DataEntry.COL_ARTIST + ", " + DataEntry.COL_TITLE + " FROM " + DataEntry.TABLE_NAME + " WHERE (" + DataEntry.COL_FILE_LOC + " = " + "\"" + fileLoc + " \""+ " )";
 		//String selection = "DataEntry.COL_FILE_LOC = " + fileLoc;
 		
 		//Open the database, read to a cursor, go over each row, build track and add it to list
