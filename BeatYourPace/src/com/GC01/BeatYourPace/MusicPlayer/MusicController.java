@@ -83,15 +83,17 @@ public class MusicController {
 		
 		if (!TrackList.getInstance().isEmpty()) {
 				
-		if (MusicPlayer.getInstance().isPlaying()){
+			if (MusicPlayer.getInstance().isPlaying()){
 			
-		MusicPlayer.getInstance().stop();
+				MusicPlayer.getInstance().stop();
+				
 		
 		}
 		
 		System.out.println("TrackList wasn't null");
 		
 		try {
+			TrackList.getInstance().setSong("reset");
 			MusicPlayer.getInstance().play();
 		} catch (IllegalArgumentException e) {
 			// TODO Auto-generated catch block

@@ -31,7 +31,7 @@ import android.widget.Toast;
 public class TrainingModeActivity extends Activity implements OnClickListener {
 
 
-	public static float targetPace = 0; //setting temporarily to 10
+	public static float targetPace;
 	public static boolean onScreen;
 	
 	    
