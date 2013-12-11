@@ -3,6 +3,7 @@ package com.GC01.BeatYourPace.Main;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 
 import com.GC01.BeatYourPace.Database.DatabaseHelper;
 import com.GC01.BeatYourPace.MusicPlayer.AudioFocusManager;
@@ -17,6 +18,7 @@ import com.google.analytics.tracking.android.EasyTracker;
 import android.media.AudioManager;
 import android.media.AudioManager.OnAudioFocusChangeListener;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -29,8 +31,9 @@ import android.widget.Toast;
 public class TrainingModeActivity extends Activity implements OnClickListener {
 
 
-	public static double targetPace = 10.0; //setting temporarily to 10
+	public static float targetPace = 0; //setting temporarily to 10
 	public static boolean onScreen;
+	
 	    
     ImageButton playOrPauseImageButton, imagebutton2, skipSongImageButton, previousSongImageButton, pauseImageButton, stopImageButton;
     Button songTooSlowButton, songTooFastButton, decreaseTargetPaceButton, increaseTargetPaceButton;
@@ -45,10 +48,14 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
     String pace ="";
     boolean paused;
     
+    private static String targetPaceStr;
+    
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_trainingmode); 
+		
+		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(ContextProvider.getContext());
 	    
 		/**Keep the screen on so the user can access the buttons used to associate new BPM to tracks**/
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
@@ -85,8 +92,9 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
         
   
         targetPaceText = (TextView) findViewById(R.id.CurrentTargetPace);
-        String tarPace = String.valueOf(TargetPace.getTargetPace());
-        targetPaceText.setText(tarPace);
+        targetPaceStr = sp.getString("set_target_pace", "6.0");
+        targetPace = Float.valueOf(targetPaceStr);
+        targetPaceText.setText(targetPaceStr);
     
         
         //setting an event listener for each button
