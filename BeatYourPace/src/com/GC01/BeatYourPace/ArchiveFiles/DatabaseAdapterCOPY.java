@@ -1,4 +1,4 @@
-package com.GC01.BeatYourPace.Database;
+package com.GC01.BeatYourPace.ArchiveFiles;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.GC01.BeatYourPace.BPM.*;
 import com.GC01.BeatYourPace.Database.DatabaseContract.DataEntry;
+import com.GC01.BeatYourPace.Database.*;
 import com.GC01.BeatYourPace.Main.ContextProvider;
 import com.GC01.BeatYourPace.PaceCalculator.InitialPrefPace;
 import com.GC01.BeatYourPace.PaceCalculator.InitialPrefPace.InitPrefPaceVals;
@@ -27,13 +28,13 @@ import android.util.Log;
 import android.widget.Toast;
 
 @SuppressLint("NewApi")
-public class DatabaseAdapter {
+public class DatabaseAdapterCOPY {
 	private final Context context;
 	private DatabaseHelper DbHelper;
 	private SQLiteDatabase db;
 	private static final String LOG_TAG = "DatabaseAdapter";
 
-	public DatabaseAdapter (Context ctx){
+	public DatabaseAdapterCOPY (Context ctx){
 		this.context = ctx;
 		DbHelper = new DatabaseHelper(context, DataEntry.DATABASE_NAME, null, DatabaseHelper.DATABASE_VERSION);
 	}
@@ -42,7 +43,7 @@ public class DatabaseAdapter {
 	 * Method to open the database in writable format
 	 * @return  db  Returns the database in writable format
 	 */
-	public DatabaseAdapter openDbWrite() throws SQLException {
+	public DatabaseAdapterCOPY openDbWrite() throws SQLException {
 		db = DbHelper.getWritableDatabase();
 		return this;
 	}
@@ -51,7 +52,7 @@ public class DatabaseAdapter {
 	 *  Method to open the database in readable format
 	 * @return  db  Returns the database in writable format
 	 */
-	public DatabaseAdapter openDbRead() throws SQLException {
+	public DatabaseAdapterCOPY openDbRead() throws SQLException {
 		db = DbHelper.getReadableDatabase();
 		return this;
 	}
@@ -103,6 +104,26 @@ public class DatabaseAdapter {
 		}
 		cursor.close();
 	}
+
+	/**
+	 * Method is used by addTracks and synchTracks to write data to byp
+	 */
+	private void addData(Cursor cursor){
+		int id = cursor.getInt(cursor.getColumnIndex(DataEntry.COL_ID));
+		String title = cursor.getString(cursor.getColumnIndex(DataEntry.COL_TITLE)); 
+		String artist = cursor.getString(cursor.getColumnIndex(DataEntry.COL_ARTIST));
+		String fileLoc = cursor.getString(cursor.getColumnIndex(DataEntry.COL_FILE_LOC));
+
+		// create ContentValues to add the content from the media store table to the equivalent column in our database
+		ContentValues cv = new ContentValues();
+		cv.put(DataEntry.COL_MEDIASTOREID, id);
+		cv.put(DataEntry.COL_TITLE, title);
+		cv.put(DataEntry.COL_ARTIST, artist);
+		cv.put(DataEntry.COL_FILE_LOC, fileLoc);
+
+		db.insert(DataEntry.TABLE_NAME, null, cv);
+	}
+	
 	
 	/**
 	 * Method to add or delete tracks from the byp database to synchronise with media on the device
@@ -252,6 +273,8 @@ public class DatabaseAdapter {
 		//Get the data about all tracks in the database
 		Cursor cursor = getCols();
 
+		
+
 		//iterate through all tracks in cursor
 		if (cursor.moveToFirst()) {
 			do {
@@ -286,8 +309,8 @@ public class DatabaseAdapter {
 
 	/** 
 	 * Method to add the preferred pace data for a track
-	 * @param incremenet	Float that is value of the change to the preferred pace (either 0.5 or - 0.5)
-	 * @param fileLoc	String that is the file location reference to the track in the device's media store db
+	 * @param prefPace	Float that is the preferred pace that this track should be used for
+	 * @param fileLoc	String that is the file loc reference to the track in the device's media store db
 	 * as this is the only info that is available in the TrackList array
 	 */
 	public void addPrefPace(Float increment, String fileLoc){
@@ -296,53 +319,47 @@ public class DatabaseAdapter {
 		int unitType = Integer.parseInt(preferences.getString("unitType", "1"));
 		float prefPace;
 		float initPrefPace;
-
+		
+		//CursorLoader cload = new CursorLoader(context, MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, projection, selection, null, MediaStore.Audio.Media._ID + " ASC");
+		CursorLoader cl = new CursorLoader(ContextProvider.getContext());
+		CursorLoader cl2 = new CursorLoader(ContextProvider.getContext(), null, null, "fileLoc = " + "\"" + fileLoc + "\"" , null, null);
+		Cursor cursor = cl.loadInBackground();
+		
+		
+		String query = "SELECT * FROM " + DataEntry.TABLE_NAME + " WHERE fileLoc = " + fileLoc;
+		openDbRead();
+		//Cursor cursor = db.rawQuery(query, null);
 		closeDb();
-		DbHelper = new DatabaseHelper(ContextProvider.getContext(), DataEntry.DATABASE_NAME, null, DatabaseHelper.DATABASE_VERSION);
-		db = DbHelper.getWritableDatabase();
 		
-		String[] cols = new String[] {
-				DataEntry.COL_INITIAL_PREF_PACE_M,
-				DataEntry.COL_INITIAL_PREF_PACE_KM,
-				DataEntry.COL_PREF_PACE_M,
-				DataEntry.COL_PREF_PACE_KM,
-				DataEntry.COL_FILE_LOC
-		};
-		
-		String selection = DataEntry.COL_FILE_LOC + " = " + "\"" + fileLoc + "\"";
-		
-		Cursor cursor = db.query(DataEntry.TABLE_NAME, cols, selection, null, null, null, null);
-		cursor.moveToFirst();
 		while (!cursor.isAfterLast()) {
 			if (unitType == 1) {
-				if (cursor.getFloat(cursor.getColumnIndex(DataEntry.COL_PREF_PACE_M)) == (float) 0.0) {
-					initPrefPace = cursor.getFloat(cursor.getColumnIndex(DataEntry.COL_INITIAL_PREF_PACE_M));
-					prefPace = initPrefPace + increment;
-					String sql = "UPDATE " + DataEntry.TABLE_NAME + " SET " + DataEntry.COL_PREF_PACE_M + " = " + "\"" + prefPace + "\"" +" WHERE " + DataEntry.COL_FILE_LOC + "= " + "\"" + fileLoc + "\"";
-					db.execSQL(sql);
-				} else {
-					prefPace = cursor.getFloat(cursor.getColumnIndex(DataEntry.COL_PREF_PACE_M));
-					prefPace += increment;
-					String sql = "UPDATE " + DataEntry.TABLE_NAME + " SET " + DataEntry.COL_PREF_PACE_M + " = " + "\"" + prefPace + "\"" + " WHERE " + DataEntry.COL_FILE_LOC + "= " + "\"" + fileLoc + "\"";
-					db.execSQL(sql);
-				}
+				prefPace = cursor.getFloat(cursor.getColumnIndex(DataEntry.COL_PREF_PACE_M));
+				initPrefPace = cursor.getFloat(cursor.getColumnIndex(DataEntry.COL_INITIAL_PREF_PACE_M));
 			} else {
-				if (cursor.getFloat(cursor.getColumnIndex(DataEntry.COL_PREF_PACE_KM)) == 0) {
-					initPrefPace = cursor.getFloat(cursor.getColumnIndex(DataEntry.COL_INITIAL_PREF_PACE_KM));
-					prefPace = initPrefPace + increment;
-					String sql = "UPDATE " + DataEntry.TABLE_NAME + " SET " + DataEntry.COL_PREF_PACE_KM + " = " + "\"" + prefPace + "\"" +" WHERE " + DataEntry.COL_FILE_LOC + "= " + "\"" + fileLoc + "\"";
-					db.execSQL(sql);
-				} else {
-					prefPace = cursor.getFloat(cursor.getColumnIndex(DataEntry.COL_PREF_PACE_KM));
-					prefPace += increment;
-					String sql = "UPDATE " + DataEntry.TABLE_NAME + " SET " + DataEntry.COL_PREF_PACE_KM + " = " + "\""+ prefPace + "\"" + " WHERE " + DataEntry.COL_FILE_LOC + "= " + "\"" + fileLoc + "\"";
-					db.execSQL(sql);
-				}
+				prefPace = cursor.getFloat(cursor.getColumnIndex(DataEntry.COL_PREF_PACE_KM));
+				initPrefPace = cursor.getFloat(cursor.getColumnIndex(DataEntry.COL_INITIAL_PREF_PACE_KM));
 			}
+			if (prefPace == 0) {
+					prefPace = initPrefPace + increment;
+				} else {
+					prefPace += increment;
+				}
+			
+			openDbWrite();
+			//Sql statement to update preferred pace
+			if (unitType == 1) {
+				String sql = "UPDATE " + DataEntry.TABLE_NAME + "SET " + DataEntry.COL_PREF_PACE_M + "= " + prefPace +"WHERE " + DataEntry.COL_FILE_LOC + "= " + fileLoc;
+				db.execSQL(sql);
+			} else {
+				String sql = "UPDATE " + DataEntry.TABLE_NAME + "SET " + DataEntry.COL_PREF_PACE_KM + "= " + prefPace +"WHERE " + DataEntry.COL_FILE_LOC + "= " + fileLoc;
+				db.execSQL(sql);
+			}
+			closeDb();
+			
 			cursor.moveToNext();
 		}
 		cursor.close();
-		db.close();
+		
 	}
 
 
