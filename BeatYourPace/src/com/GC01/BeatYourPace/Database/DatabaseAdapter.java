@@ -399,7 +399,6 @@ public class DatabaseAdapter {
 	 */
 	public String getTrackInfo(String fileLoc){
 		
-		
 		String query = "SELECT " + DataEntry.COL_ARTIST + ", " + DataEntry.COL_TITLE + " FROM " + DataEntry.TABLE_NAME + " WHERE (" + DataEntry.COL_FILE_LOC + " = " + "\"" + fileLoc + " \""+ " )";
 		//String selection = "DataEntry.COL_FILE_LOC = " + fileLoc;
 		
@@ -409,8 +408,10 @@ public class DatabaseAdapter {
 		
 		String artist = cursor.getString(0);
 		String title = cursor.getString(1);
+		String space = " ";
 		
-		String trackInfo = artist + " " + title;
+		//String trackInfo = artist + " " + title
+		String trackInfo = artist.concat(space.concat(title));
 		
 		return trackInfo;
 	}
