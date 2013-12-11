@@ -1,5 +1,19 @@
 package com.GC01.BeatYourPace.FileManager;
 
+/**
+ * <dl>
+ * 	<dt> Purpose:
+ * 	<dd> Create the content for an export of the database to CSV file 
+ * 
+ * 	<dt> Description:
+ * 	<dd> Create the content for an export of the database to CSV file 
+ * </dl>
+ * 
+ * @version $Date: 2013/12/10
+ * @author sarahnicholson
+ *
+ */
+
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;

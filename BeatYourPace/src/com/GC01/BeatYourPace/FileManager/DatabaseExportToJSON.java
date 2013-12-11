@@ -1,5 +1,20 @@
 package com.GC01.BeatYourPace.FileManager;
 
+/**
+ * <dl>
+ * 	<dt> Purpose:
+ * 	<dd> Create the content for an export of the database of JSON data to txt file 
+ * 
+ * 	<dt> Description:
+ * 	<dd> Create the content for an export of the database to JSON data to txt file 
+ * </dl>
+ * 
+ * @version $Date: 2013/12/10
+ * @author sarahnicholson
+ *
+ */
+
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 

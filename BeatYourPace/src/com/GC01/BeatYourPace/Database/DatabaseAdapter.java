@@ -322,6 +322,7 @@ public class DatabaseAdapter {
 		String query = "SELECT * FROM " + DataEntry.TABLE_NAME + " WHERE fileLoc = " + fileLoc;
 		openDbRead();
 		Cursor cursor = db.rawQuery(query, null);
+		closeDb();
 		
 		while (!cursor.isAfterLast()) {
 			if (unitType == 1) {
@@ -336,10 +337,8 @@ public class DatabaseAdapter {
 				} else {
 					prefPace += increment;
 				}
-		
-			// Open the database in write mode
-			openDbWrite();
 			
+			openDbWrite();
 			//Sql statement to update preferred pace
 			if (unitType == 1) {
 				String sql = "UPDATE " + DataEntry.TABLE_NAME + "SET " + DataEntry.COL_PREF_PACE_M + "= " + prefPace +"WHERE " + DataEntry.COL_FILE_LOC + "= " + fileLoc;
@@ -411,8 +410,10 @@ public class DatabaseAdapter {
 			cursor.moveToNext();
 		}
 		cursor.close();
+		closeDb();
 		// return the completed playlist
 		return appropriateSongs;
+		
 	}
 
 	/**
@@ -440,6 +441,7 @@ public class DatabaseAdapter {
 			cursor.moveToNext();
 		}
 		cursor.close();
+		closeDb();
 		return trackInfo;
 	}
 

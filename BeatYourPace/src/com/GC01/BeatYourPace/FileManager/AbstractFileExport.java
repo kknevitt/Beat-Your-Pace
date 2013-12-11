@@ -1,5 +1,19 @@
 package com.GC01.BeatYourPace.FileManager;
 
+/**
+ * <dl>
+ * 	<dt> Purpose:
+ * 	<dd> Sets the skeleton for the export file capability
+ * 
+ * 	<dt> Description:
+ * 	<dd> Functionality to check for available media, create and write a file
+ * </dl>
+ * 
+ * @version $Date: 2013/12/10
+ * @author sarahnicholson
+ *
+ */
+
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;

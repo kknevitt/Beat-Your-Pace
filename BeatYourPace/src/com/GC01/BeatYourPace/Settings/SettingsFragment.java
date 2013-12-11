@@ -15,7 +15,6 @@ package com.GC01.BeatYourPace.Settings;
  */
 
 import com.example.beatyourpace.R;
-
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -34,7 +33,7 @@ import android.widget.Toast;
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 @SuppressLint("NewApi")
-public class SettingsFragment extends PreferenceFragment implements OnSharedPreferenceChangeListener {
+public class SettingsFragment extends PreferenceFragment {
 	
 		public SettingsFragment() {
 			// Required empty public constructor
@@ -51,15 +50,16 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
 	        @Override
 	    public void onResume() {
 	        super.onResume();
-	        getPreferenceManager().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
+	        //getPreferenceManager().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
 	    }
 
 	    @Override
 	    public void onPause() {
-	    	getPreferenceManager().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
+	    	//getPreferenceManager().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
 	        super.onPause();
 	    }
 	    
+	    /*
 		@Override
 		public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
 			if ("set_target_pace".equals(key)) {
@@ -83,5 +83,5 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
 	    	}
 			
 		}
-	    
+	    */
 }
