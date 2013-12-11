@@ -2,14 +2,13 @@ package com.GC01.BeatYourPace.MusicPlayer;
  
 import java.io.IOException;
 
-<<<<<<< HEAD
 import com.google.analytics.tracking.android.EasyTracker;
 import com.google.analytics.tracking.android.MapBuilder;
 import com.google.analytics.tracking.android.StandardExceptionParser;
 import com.google.analytics.tracking.android.Tracker;
-=======
+import com.GC01.BeatYourPace.Database.DatabaseAdapter;
+import com.GC01.BeatYourPace.Main.ContextProvider;
 import com.GC01.BeatYourPace.Main.TrainingModeActivity;
->>>>>>> 87adb0e6b7921d47b1ac99122dc460e0a1bdc23e
 
 import android.app.IntentService;
 import android.app.Service;
@@ -42,6 +41,7 @@ public class MusicPlayer implements OnCompletionListener, OnErrorListener {
 	
 	private String currentSongPath;
 	private int currentIndex;
+	private String trackInfo;
 	
 	private static Context context;
 	Tracker myTracker; 
@@ -163,7 +163,23 @@ public class MusicPlayer implements OnCompletionListener, OnErrorListener {
 		mediaPlayer.prepare();
 		mediaPlayer.start();
 		
+		//setTrackInfo(currentSongPath);
+
 		}
+	
+	
+	public void setTrackInfo(String path){
+		
+		DatabaseAdapter db = new DatabaseAdapter(ContextProvider.getContext());
+		trackInfo = db.getTrackInfo(path);
+	}
+	
+	public String getTrackInfo(){
+		
+		return trackInfo;
+	}
+	
+	
 
 
 	@Override

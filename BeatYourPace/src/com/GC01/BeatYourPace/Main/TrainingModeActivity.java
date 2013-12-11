@@ -40,6 +40,7 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
     
     static TextView targetPaceText;
     static TextView currentPaceText;
+    public  static TextView trackInfo;
     
     String pace ="";
     boolean paused;
@@ -77,8 +78,13 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
         increaseTargetPaceButton = (Button) findViewById(R.id.bIncTarget);
         stopImageButton = (ImageButton) findViewById(R.id.bStopSong);
         
-        targetPaceText = (TextView) findViewById(R.id.CurrentTargetPace);
         
+    //    trackInfo = (TextView) findViewById(R.id.tSongName);
+   //     String track = MusicPlayer.getInstance().getTrackInfo();
+     //   trackInfo.setText(track);
+        
+  
+        targetPaceText = (TextView) findViewById(R.id.CurrentTargetPace);
         String tarPace = String.valueOf(TargetPace.getTargetPace());
         targetPaceText.setText(tarPace);
     
@@ -126,8 +132,8 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 		
 			ButtonController.buttonFunction(v);	
 		}
-		}
-	
+	}
+		
 	public void onPause(){
 		super.onPause();
 		onScreen = false;	

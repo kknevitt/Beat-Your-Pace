@@ -406,12 +406,14 @@ public class DatabaseAdapter {
 		openDbRead();
 		Cursor cursor = db.rawQuery(query, null);
 		
-		String artist = cursor.getString(0);
-		String title = cursor.getString(1);
+		String artist = cursor.getString(cursor.getColumnIndex(DataEntry.COL_ARTIST));
+		String title = cursor.getString(cursor.getColumnIndex(DataEntry.COL_TITLE));
 		String space = " ";
 		
 		//String trackInfo = artist + " " + title
 		String trackInfo = artist.concat(space.concat(title));
+		
+		System.out.println(trackInfo);
 		
 		return trackInfo;
 	}
