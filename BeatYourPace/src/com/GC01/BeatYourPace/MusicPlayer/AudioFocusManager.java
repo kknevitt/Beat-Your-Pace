@@ -1,5 +1,8 @@
 package com.GC01.BeatYourPace.MusicPlayer;
 
+import com.GC01.BeatYourPace.Main.ContextProvider;
+import com.GC01.BeatYourPace.Main.TrainingModeActivity;
+
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -10,19 +13,36 @@ import android.widget.Toast;
 
 // see android audio focus tutorial
 
+
+/* Create as singleton which can take in a parameter and uses a boolean flag to test whether it has focus or not
+ * 
+ * 
+ * 
+ */
+
 public class AudioFocusManager{
 	
-	private Context context;
+
 	private  int result;
 	private AudioManager audioMan;
+	private static AudioFocusManager _instance;
 	
-	public AudioFocusManager(Context context){
-		
-	this.context = context;
-		
-	audioMan = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+	private AudioFocusManager(){
+
+	audioMan = (AudioManager) ContextProvider.getContext().getSystemService(Context.AUDIO_SERVICE);
 		
 	}
+	public static AudioFocusManager getInstance()
+	{
+		if(_instance == null)
+		{
+			_instance = new AudioFocusManager();
+		}
+		return _instance;
+	}
+	
+	
+	
 	
 	public void requestFocus() {	
 		
@@ -32,7 +52,7 @@ public class AudioFocusManager{
 	
 	public void abandonFocus() {
 		
-		AudioManager audioMan = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+		AudioManager audioMan = (AudioManager)  ContextProvider.getContext().getSystemService(Context.AUDIO_SERVICE);
 		audioMan.abandonAudioFocus(focusChangeListener);
 		MusicController.pressStop();	
 	}
@@ -60,27 +80,32 @@ public class AudioFocusManager{
 				switch (focusChange) {
 				
 				case(AudioManager.AUDIOFOCUS_LOSS_TRANSIENT) : 
-							
+					
+					if (MusicPlayer.getInstance().isPlaying() && TrainingModeActivity.onScreen == false){
 					MusicController.pressPause();
-					Toast.makeText(context, "Focus Interrupted", Toast.LENGTH_LONG).show();
+					}
+					Toast.makeText(ContextProvider.getContext(), "Focus Interrupted", Toast.LENGTH_LONG).show();
 					
 				case(AudioManager.AUDIOFOCUS_GAIN_TRANSIENT) : 
 					
+					if (MusicPlayer.getInstance().isPlaying() && TrainingModeActivity.onScreen == false) {
 					MusicController.pressPause();
-					Toast.makeText(context, "Focus Resumed", Toast.LENGTH_LONG).show();
+					}
+					Toast.makeText(ContextProvider.getContext(), "Focus Resumed", Toast.LENGTH_LONG).show();
 				
 					
 				case (AudioManager.AUDIOFOCUS_LOSS) :
-			
+					
+					if (MusicPlayer.getInstance().isPlaying() && TrainingModeActivity.onScreen == false) {
 					audioMan.abandonAudioFocus(focusChangeListener);
 					MusicController.pressStop();
-					Toast.makeText(context, "Focus Lost", Toast.LENGTH_LONG).show();
+					}
+					Toast.makeText( ContextProvider.getContext(), "Focus Lost", Toast.LENGTH_LONG).show();
 								
 					
 				case (AudioManager.AUDIOFOCUS_GAIN) :
 							
-				
-					Toast.makeText(context, "Focus Gained", Toast.LENGTH_LONG).show();
+					Toast.makeText(ContextProvider.getContext(), "Focus Gained", Toast.LENGTH_LONG).show();
 
 				}
 			}

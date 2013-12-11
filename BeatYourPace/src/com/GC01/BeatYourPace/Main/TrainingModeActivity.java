@@ -1,7 +1,5 @@
 package com.GC01.BeatYourPace.Main;
 	
-import java.io.IOException;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -15,12 +13,14 @@ import com.GC01.BeatYourPace.PaceCalculator.CurrentPace;
 import com.GC01.BeatYourPace.PaceCalculator.TargetPace;
 import com.example.beatyourpace.R;
 import com.google.analytics.tracking.android.EasyTracker;
+
 import android.media.AudioManager;
 import android.media.AudioManager.OnAudioFocusChangeListener;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -30,13 +30,13 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 
 
 	public static double targetPace = 10.0; //setting temporarily to 10
-
-    
+	public static boolean onScreen;
+	    
     ImageButton playOrPauseImageButton, imagebutton2, skipSongImageButton, previousSongImageButton, pauseImageButton, stopImageButton;
     Button songTooSlowButton, songTooFastButton, decreaseTargetPaceButton, increaseTargetPaceButton;
     
     Context context;
-    AudioFocusManager aFM;
+  //  AudioFocusManager aFM;
     
     static TextView targetPaceText;
     static TextView currentPaceText;
@@ -48,15 +48,20 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_trainingmode); 
-	    EasyTracker.getInstance(this).activityStart(this);
-
-		if (aFM == null) {
-		aFM = new AudioFocusManager(this);
-		}
+	    
+		/**Keep the screen on so the user can access the buttons used to associate new BPM to tracks**/
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		
-		if (aFM.focusTest() != true) {
+		/**Google Analytics tracking code **/
+		EasyTracker.getInstance(this).activityStart(this);
+		
+		onScreen = true;
+
+		AudioFocusManager.getInstance();
+		
+		if (AudioFocusManager.getInstance().focusTest() != true) {
 		System.out.print("Didn't have focus, requesting it");
-		aFM.requestFocus();
+		AudioFocusManager.getInstance().requestFocus();
 		}
 		
 		startCurrentPaceService(this);
@@ -117,11 +122,16 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 
-		if (aFM.focusTest()){
+		if (AudioFocusManager.getInstance().focusTest()){
 		
-			ButtonController.buttonFunction(v);
-			
+			ButtonController.buttonFunction(v);	
 		}
 		}
+	
+	public void onPause(){
+		super.onPause();
+		onScreen = false;	
+	}
+	
 	}
 

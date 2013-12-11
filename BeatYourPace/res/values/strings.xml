@@ -41,7 +41,7 @@
     <string name="helpPageLetsRunTitle">Let\'s Run mode</string>
     <string name="helpPageSettingsTitle">Settings </string>
     <string name="shelpPage">Help Page</string>
-    <string name="helpTrainingText">The Training mode allows you to override the default BPM for each song. You can control the inbuilt music player and your preferred target pace.</string>
+    <string name="helpTrainingText">The Training mode allows you to override the default BPM for each song. You can control the inbuilt music player and your preferred target pace. This screen will keep the phone unlocked.</string>
     <string name="title_helpPage">Help Page</string>
     <string name="title_activity_help">HelpActivity</string>
     <string name="helpLetsRunText">The Let\'s Run mode allows you to run with songs which already have been associated with your preferred BPM pace. All tracks will have a default BPM value set - so if the value has not been overriden, you will run with the pre-define values.</string>
