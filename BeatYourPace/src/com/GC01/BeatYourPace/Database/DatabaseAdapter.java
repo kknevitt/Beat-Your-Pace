@@ -402,16 +402,25 @@ public class DatabaseAdapter {
 		String query = "SELECT " + DataEntry.COL_ARTIST + ", " + DataEntry.COL_TITLE + " FROM " + DataEntry.TABLE_NAME + " WHERE (" + DataEntry.COL_FILE_LOC + " = " + "\"" + fileLoc + " \""+ " )";
 		//String selection = "DataEntry.COL_FILE_LOC = " + fileLoc;
 		
+	
+		String[] cols = new String[] {DataEntry.COL_ARTIST, DataEntry.COL_TITLE};
+		
+		
 		//Open the database, read to a cursor, go over each row, build track and add it to list
 		openDbRead();
-		Cursor cursor = db.rawQuery(query, null);
+		//Cursor cursor = db.rawQuery(query, null);
+		Cursor cursor = db.query(DataEntry.TABLE_NAME, cols, null, null, null, null, null);
 		
 		String artist = cursor.getString(cursor.getColumnIndex(DataEntry.COL_ARTIST));
 		String title = cursor.getString(cursor.getColumnIndex(DataEntry.COL_TITLE));
 		String space = " ";
 		
+		System.out.println(artist);
+		System.out.println(title);
+		
 		//String trackInfo = artist + " " + title
 		String trackInfo = artist.concat(space.concat(title));
+		System.out.println(trackInfo);
 		
 		System.out.println(trackInfo);
 		
