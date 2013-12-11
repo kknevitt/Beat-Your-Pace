@@ -411,6 +411,10 @@ public class DatabaseAdapter {
 		//Cursor cursor = db.rawQuery(query, null);
 		Cursor cursor = db.query(DataEntry.TABLE_NAME, cols, null, null, null, null, null);
 		
+		if (cursor == null) {
+			System.out.print("No data");
+		}
+		
 		String artist = cursor.getString(0);
 		String title = cursor.getString(1);
 		String space = " ";
