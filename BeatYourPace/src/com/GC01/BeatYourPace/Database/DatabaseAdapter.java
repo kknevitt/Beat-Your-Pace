@@ -397,9 +397,8 @@ public class DatabaseAdapter {
 	 * @param fileLoc  String with the location of the file for which the artist and title is needed
 	 * @return  trackInfo  ArrayList with the artist and title
 	 */
-	public ArrayList<String> getTrackInfo(String fileLoc){
-		//List that holds just the path name to the track
-		ArrayList<String> trackInfo = new ArrayList<String>();
+	public String getTrackInfo(String fileLoc){
+		
 		
 		String query = "SELECT " + DataEntry.COL_ARTIST + ", " + DataEntry.COL_TITLE + " FROM " + DataEntry.TABLE_NAME + " WHERE (" + DataEntry.COL_FILE_LOC + " = " + fileLoc + " )";
 		//String selection = "DataEntry.COL_FILE_LOC = " + fileLoc;
@@ -411,8 +410,7 @@ public class DatabaseAdapter {
 		String artist = cursor.getString(0);
 		String title = cursor.getString(1);
 		
-		trackInfo.add(artist);
-		trackInfo.add(title);
+		String trackInfo = artist + " " + title;
 		
 		return trackInfo;
 	}
