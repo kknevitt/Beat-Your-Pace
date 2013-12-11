@@ -506,4 +506,3 @@ public class DatabaseAdapter {
 			return appropriateSongs;
 	}
 }
-
