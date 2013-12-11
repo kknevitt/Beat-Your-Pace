@@ -24,6 +24,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.widget.Toast;
 
 @SuppressLint("NewApi")
 public class DatabaseAdapter {
@@ -390,6 +391,12 @@ public class DatabaseAdapter {
 		return appropriateSongs;
 	}
 
+	/**
+	 * This method returns the artist and title for a track so that the media player can display the info
+	 * 
+	 * @param fileLoc  String with the location of the file for which the artist and title is needed
+	 * @return  trackInfo  ArrayList with the artist and title
+	 */
 	public ArrayList<String> getTrackInfo(String fileLoc){
 		//List that holds just the path name to the track
 		ArrayList<String> trackInfo = new ArrayList<String>();
@@ -410,5 +417,65 @@ public class DatabaseAdapter {
 		return trackInfo;
 	}
 
+	/**
+	 * Returns the file location, artist and title in a single array list for the music player
+	 * @param targetPace  Float of the target pace the user wants music for
+	 * @return appropriateSongs  Array list with the file location, artist and title of tracks matching the pace
+	 */
+	public ArrayList<String> getTrackInfoFull(float targetPace) {
+	//List that holds just the path name to the track
+			ArrayList<String> appropriateSongs = new ArrayList<String>();
+			
+			//Get the user preference for miles(1) or kilometres(2)
+			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ContextProvider.getContext());
+			int unitType = Integer.parseInt(preferences.getString("unitType", "1"));
+			
+			String query2;
+			if (unitType == 1) {
+				//String that builds the query for miles
+				query2 = "SELECT * FROM " + DataEntry.TABLE_NAME + " WHERE (" + DataEntry.COL_PREF_PACE_M + " IS NULL OR " + DataEntry.COL_PREF_PACE_M + " = " + targetPace + " )";
+			} else {
+				//String that builds the query for km
+				query2 = "SELECT * FROM " + DataEntry.TABLE_NAME + " WHERE (" + DataEntry.COL_PREF_PACE_M + " IS NULL OR " + DataEntry.COL_PREF_PACE_KM + " = " + targetPace + " )";
+			}
+			
+			//Open the database, read to a cursor, go over each row, build track and add it to list
+			openDbRead();
+			Cursor cursor = db.rawQuery(query2, null);
+			cursor.moveToFirst();
+			while (!cursor.isAfterLast()) {
+				float initPrefPace = cursor.getFloat(cursor.getColumnIndex(DataEntry.COL_INITIAL_PREF_PACE_M));
+				//get the preferred pace in miles or km
+				float preferredPace;
+				if (unitType == 1) {
+					preferredPace = cursor.getFloat(cursor.getColumnIndex(DataEntry.COL_PREF_PACE_M));
+				} else {
+					preferredPace = cursor.getFloat(cursor.getColumnIndex(DataEntry.COL_PREF_PACE_KM));
+				}
+				String fileLoc = cursor.getString(cursor.getColumnIndex(DataEntry.COL_FILE_LOC));
+				String artist = cursor.getString(cursor.getColumnIndex(DataEntry.COL_ARTIST));
+				String title = cursor.getString(cursor.getColumnIndex(DataEntry.COL_TITLE));
+				//add the tracks file location to the array, check the default column if there is no 
+				if (preferredPace == 0){
+					if (initPrefPace == targetPace) {
+						appropriateSongs.add(fileLoc);
+						appropriateSongs.add(artist);
+						appropriateSongs.add(title);
+					}
+				} else if (preferredPace >= targetPace - 0.5 || preferredPace <= targetPace + 0.5){
+					appropriateSongs.add(fileLoc);
+					appropriateSongs.add(artist);
+					appropriateSongs.add(title);
+				} else {
+					//do nothing
+				}
+				cursor.moveToNext();
+			}
+			cursor.close();
+			// return the completed playlist
+			Toast toast = Toast.makeText(ContextProvider.getContext(), "No music for this pace. Try increasing or decreasing the pace.", Toast.LENGTH_LONG);
+			toast.show();
+			return appropriateSongs;
+	}
 }
 

@@ -88,18 +88,16 @@ public class MainActivity extends Activity implements OnClickListener{
 	//Add settings option to the top action bar
 		@Override
 		public boolean onOptionsItemSelected(MenuItem item) {
-		    // code to launch the Settings Activity when settings is selected from the menu
+		    // when the options are selected from the option menu this goes to the appropriate activity
 		    switch (item.getItemId()) {
 		        case R.id.action_settings:
 		        	startActivity(new Intent(this,SettingsActivity.class));
 		            return true;
 		        case R.id.helpPageTitle:
-		        	startActivity(new Intent(this,SettingsActivity.class));
+		        	startActivity(new Intent(this,HelpPageActivity.class));
 		            return true;
-		    	
 		        default:
 		            return super.onOptionsItemSelected(item);
 		    }
 		}
-
 }
