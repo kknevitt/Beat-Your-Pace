@@ -298,6 +298,9 @@ public class DatabaseAdapter {
 		float initPrefPace;
 
 		closeDb();
+		
+		//openDbWrite();
+		
 		DbHelper = new DatabaseHelper(ContextProvider.getContext(), DataEntry.DATABASE_NAME, null, DatabaseHelper.DATABASE_VERSION);
 		db = DbHelper.getWritableDatabase();
 		
@@ -343,6 +346,7 @@ public class DatabaseAdapter {
 		}
 		cursor.close();
 		db.close();
+		//closeDb();
 	}
 
 

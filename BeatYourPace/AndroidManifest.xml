@@ -72,13 +72,6 @@
             android:label="@string/title_activity_help_page"
             android:screenOrientation="portrait" >
         </activity>
-
-        <provider
-            android:name="com.GC01.BeatYourPace.Database.DatabaseContentProvider"
-            android:authorities="com.GC01.BeatYourPace"
-            android:enabled="true"
-            android:exported="true" >
-        </provider>
     </application>
 
 </manifest>
