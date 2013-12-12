@@ -54,7 +54,7 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
     ImageButton playOrPauseImageButton, imagebutton2, skipSongImageButton, previousSongImageButton, pauseImageButton, stopImageButton;
     Button songTooSlowButton, songTooFastButton, decreaseTargetPaceButton, increaseTargetPaceButton;
    
-
+    Button bTargetPaceTitle, bCurrentPaceTitle, bCurrentPaceValue, bCurrentPacePreference, bTargetPacePreference, bTargetPaceValue;
     
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +90,13 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
         decreaseTargetPaceButton = (Button) findViewById(R.id.bDecTarget);					
         increaseTargetPaceButton = (Button) findViewById(R.id.bIncTarget);
         stopImageButton = (ImageButton) findViewById(R.id.bStopSong);
+        bTargetPaceTitle = (Button) findViewById(R.id.bTargetPaceTitle);
+        bCurrentPaceTitle = (Button) findViewById(R.id.bCurrentPaceTitle);
+        bCurrentPaceValue = (Button) findViewById(R.id.bCurrentPaceValue);
+        bCurrentPacePreference = (Button) findViewById(R.id.bCurrentPacePreference);
+        bTargetPacePreference = (Button) findViewById(R.id.bTargetPacePreference);
+        bTargetPaceValue =(Button) findViewById(R.id.bTargetPaceValue);
+        
         
         
         targetPaceText = (TextView) findViewById(R.id.CurrentTargetPace);
@@ -105,8 +112,8 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
         previousSongImageButton.setOnClickListener(this);
         songTooSlowButton.setOnClickListener(this);
         songTooFastButton.setOnClickListener(this);
-        decreaseTargetPaceButton.setOnClickListener(this);
-        increaseTargetPaceButton.setOnClickListener(this);
+      //  decreaseTargetPaceButton.setOnClickListener(this);
+       // increaseTargetPaceButton.setOnClickListener(this);
         stopImageButton.setOnClickListener(this);
         
         LocalBroadcastManager.getInstance(this).registerReceiver(bReceiver,

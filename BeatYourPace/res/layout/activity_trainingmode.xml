@@ -11,7 +11,7 @@
         android:layout_alignTop="@+id/bSongTooSlow"
         android:layout_toRightOf="@+id/iCurrentMode"
         android:text="@string/sTooFastButton"
-        android:textSize="32sp" />
+        android:textSize="45sp" />
 
     <Button
         android:id="@+id/bSongTooSlow"
@@ -21,7 +21,7 @@
         android:layout_marginTop="41dp"
         android:layout_toLeftOf="@+id/iCurrentMode"
         android:text="@string/sTooSlowButton"
-        android:textSize="32sp" />
+        android:textSize="45sp" />
 
     <TextView
         android:id="@+id/CurrentTargetPace"
