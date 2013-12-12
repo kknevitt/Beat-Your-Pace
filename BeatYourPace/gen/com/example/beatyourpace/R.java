@@ -53,7 +53,7 @@ public final class R {
         public static final int TextView001=0x7f0c001d;
         public static final int TrainingText=0x7f0c0002;
         public static final int TrainingTitle=0x7f0c0001;
-        public static final int action_settings=0x7f0c0029;
+        public static final int action_settings=0x7f0c0028;
         public static final int bDecTarget=0x7f0c000f;
         public static final int bDecTarget1=0x7f0c0027;
         public static final int bDecTarget2=0x7f0c0026;
@@ -64,7 +64,6 @@ public final class R {
         public static final int bLetsRun=0x7f0c0016;
         public static final int bMusicLocation=0x7f0c001f;
         public static final int bPlayAndPause=0x7f0c0022;
-        public static final int bPlayPause=0x7f0c0028;
         public static final int bPlaySong=0x7f0c000a;
         public static final int bPreviousTrack=0x7f0c000d;
         public static final int bSettings=0x7f0c0015;
