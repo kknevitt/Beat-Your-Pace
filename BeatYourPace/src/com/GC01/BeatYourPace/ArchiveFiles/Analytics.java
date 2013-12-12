@@ -1,4 +1,4 @@
-package com.GC01.BeatYourPace.Analytics;
+package com.GC01.BeatYourPace.ArchiveFiles;
 
 import java.util.ArrayList;
 
