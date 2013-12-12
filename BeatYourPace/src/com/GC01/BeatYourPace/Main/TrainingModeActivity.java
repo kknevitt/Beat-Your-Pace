@@ -7,18 +7,12 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 
-import com.GC01.BeatYourPace.Database.DatabaseHelper;
 import com.GC01.BeatYourPace.MusicPlayer.AudioFocusManager;
-import com.GC01.BeatYourPace.MusicPlayer.MusicController;
 import com.GC01.BeatYourPace.MusicPlayer.MusicPlayer;
-import com.GC01.BeatYourPace.MusicPlayer.TrackList;
 import com.GC01.BeatYourPace.PaceCalculator.CurrentPace;
-import com.GC01.BeatYourPace.PaceCalculator.TargetPace;
 import com.example.beatyourpace.R;
 import com.google.analytics.tracking.android.EasyTracker;
 
-import android.media.AudioManager;
-import android.media.AudioManager.OnAudioFocusChangeListener;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.content.LocalBroadcastManager;
@@ -29,14 +23,13 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class TrainingModeActivity extends Activity implements OnClickListener {
 
 
-	// Target Pace
+	// Target Pace 
 	public static float targetPace;
-	private static String displayTargetPace;
+	private static String displayTargetPace; 
     protected static TextView targetPaceText;
     
     // Current Pace
@@ -63,10 +56,10 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 		
 		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(ContextProvider.getContext());
 
-		/**Keep the screen on so the user can access the buttons used to associate new BPM to tracks**/
+		//Keep the screen on so the user can access the buttons used to associate new BPM to tracks
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		
-		/**Google Analytics tracking code **/
+		//Google Analytics tracking code 
 		EasyTracker.getInstance(this).activityStart(this);
 		
 		onScreen = true;
@@ -79,9 +72,7 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 		}
 		
 		startCurrentPaceService(this);
-
 		
-		//creates image buttons objects and gets their setup from xml
         playOrPauseImageButton = (ImageButton) findViewById(R.id.bPlayAndPause); 				
         skipSongImageButton = (ImageButton) findViewById(R.id.bSkipTrack); 		
         previousSongImageButton = (ImageButton) findViewById(R.id.bPreviousTrack); 	
@@ -96,30 +87,28 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
         bCurrentPacePreference = (Button) findViewById(R.id.bCurrentPacePreference);
         bTargetPacePreference = (Button) findViewById(R.id.bTargetPacePreference);
         bTargetPaceValue =(Button) findViewById(R.id.bTargetPaceValue);
-        
-        
-        
         targetPaceText = (TextView) findViewById(R.id.CurrentTargetPace);
         
-        displayTargetPace = sp.getString("set_target_pace", "6.0");
+        displayTargetPace = sp.getString("set_target_pace", "6.0"); //comment these 3 lines out to run with runingmodetest
         targetPace = Float.valueOf(displayTargetPace);
         targetPaceText.setText(displayTargetPace);
     
-        
+
         //setting an event listener for each button
         playOrPauseImageButton.setOnClickListener(this);
         skipSongImageButton.setOnClickListener(this);
         previousSongImageButton.setOnClickListener(this);
         songTooSlowButton.setOnClickListener(this);
         songTooFastButton.setOnClickListener(this);
-      //  decreaseTargetPaceButton.setOnClickListener(this);
-       // increaseTargetPaceButton.setOnClickListener(this);
+        decreaseTargetPaceButton.setOnClickListener(this);
+        increaseTargetPaceButton.setOnClickListener(this);
         stopImageButton.setOnClickListener(this);
         
+        // Track Broadcast Receiver 
         LocalBroadcastManager.getInstance(this).registerReceiver(bReceiver,
         	      new IntentFilter("Track Info Event"));
         
-        /** GPS Broadcast Receiver **/
+        // GPS Broadcast Receiver
         LocalBroadcastManager.getInstance(this).registerReceiver(GPSReceiver,
       	      new IntentFilter("GPS Current Pace Info"));
     
@@ -127,23 +116,20 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
    }
 
 
-    
+	/** Method used to call the music player **/
 	public void startNewService(View view) {
-		
 		startService(new Intent(this, MusicPlayer.class));
 	
 	}
 	
+	/** Method used to start the GPS service **/
 	public void startCurrentPaceService(Context context) {
-	
 		startService(new Intent(this, CurrentPace.class));		
-		currentPaceText = (TextView) findViewById(R.id.CurrentTargetPace);
 	}
 	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// auto-generated code: Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
@@ -153,7 +139,6 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 	public void onClick(View v) {
 
 		if (AudioFocusManager.getInstance().focusTest()){
-		
 			ButtonController.buttonFunction(v);	
 		}
 	}
@@ -189,6 +174,7 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 		};
 	
 	
+	/** Creating a broadcast receiver for the GPS data**/
 	private BroadcastReceiver GPSReceiver = new BroadcastReceiver() {
 			  @Override
 			  public void onReceive(Context context, Intent intent) {

@@ -1,7 +1,6 @@
 package com.GC01.BeatYourPace.PaceCalculator;
 
 import com.GC01.BeatYourPace.Main.ContextProvider;
-import com.example.beatyourpace.R;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -35,20 +34,10 @@ public class CurrentPace extends Service {
 	/** the currentPace double is used to retrieve the speed value to be displayed on the UI*/
 	public static float currentPace;
 	
-	/** the pace String is used in the getPace() method to be displayed on the screen.*/
-	private static String pace;
-	
-	
 	/** constants for converting from metres per seconds, to minutes per mile, or kilometres per mile **/
 	private final double MPS_TO_MINS_PER_MILE = 0.0372822715;
 	private final double MPS_TO_PER_KILOMETRES = 0.06;
 	
-	
-	/** Constructor for CurrentPace setting the pace and paceCalc to default values 
-	 @return
-	 @param
-	 */
-
 	@Override
     public void onCreate()
     {
@@ -58,28 +47,32 @@ public class CurrentPace extends Service {
       startService(context);
     }
 
+	/**Stating the onLocationChange method in order to retrieve the associated getSpeed() 
+	 * provided by the Android API. The method takes into account the user speed unit preferences (defined on the Settings classes: 
+	 * miles per minute or kilometres per hour. **/
 	public void startService(Context context){
 	    Log.d(null, "testing - startService() for GPS is being called");
-		 LocationListener locationListener = new LocationListener(){
-		        
+		 LocationListener locationListener = new LocationListener(){		        
 			public void onLocationChanged(Location location){
+				
 				//Get the user preference for miles(1) or kilometres(2)
 				SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ContextProvider.getContext());
 				int unitType = Integer.parseInt(preferences.getString("unitType", "1"));
-		       // Called when a new location is found by the network location provider.
+
+				// Called when a new location is found by the network location provider.
 				 if (location !=null) {    	
-			    	// An if else selection is used in order to be using the correct preferences for miles or kilometres
-				    // for the preferred distance unit.	
-				   if (unitType == 1) {
+					 if (unitType == 1) {
 			    		currentPace = (float) (location.getSpeed() / MPS_TO_MINS_PER_MILE);
 			    		sendGPSInfo();
-			    		System.out.println("testingGPS M/M");
+			    		
+			    	    Log.d(null,"testingGPS M/M");
 			    		System.out.println(getGPSInfo());
 			    		
 			    			if (unitType == 2) {
 			    				currentPace = (float) (location.getSpeed() / MPS_TO_PER_KILOMETRES);
-
-			    				System.out.println("testing KM/M");
+			    				
+			    				
+			    				Log.d(null,"testing KM/M");
 			    				System.out.println(getGPSInfo());
 			    				}
 			    			}  
@@ -91,19 +84,18 @@ public class CurrentPace extends Service {
 				   } 				   	
 		      }
 			 
-			 //Unimplemented methods
+			 /**Unimplemented methods**/
 		        public void onStatusChanged(String provider, int status, Bundle extras) {}
 		        public void onProviderEnabled(String provider) {}
 		        public void onProviderDisabled(String provider) {}
 		    };
 		    
-		    //Setting location updates
+		    /**Setting the location provider and the updates interval time **/
 		    locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, locationListener);
 		} 
 		
 	@Override
 	public IBinder onBind(Intent intent) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	
@@ -123,7 +115,6 @@ public class CurrentPace extends Service {
 	}
 	
 	
-	//kills thread when app is no longer used
     public void onDestroy()
     {
       super.onDestroy();

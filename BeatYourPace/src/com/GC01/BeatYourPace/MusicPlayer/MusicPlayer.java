@@ -1,5 +1,5 @@
 package com.GC01.BeatYourPace.MusicPlayer;
- 
+
 import java.io.IOException;
 
 import android.content.Intent;
@@ -190,5 +190,3 @@ public class MusicPlayer extends MediaPlayer implements OnCompletionListener, On
 	}
 	
 }
-
-
