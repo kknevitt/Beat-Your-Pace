@@ -2,7 +2,7 @@ package com.GC01.BeatYourPace.MusicPlayer;
 
 import java.util.ArrayList;
 
-import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.GC01.BeatYourPace.Database.DatabaseAdapter;
@@ -11,11 +11,10 @@ import com.GC01.BeatYourPace.PaceCalculator.TargetPace;
 
 /** 
  * @author Kristian Knevitt
- * @version 1.0, Updated 18/11/2013
+ * @version 2.0, Updated 12/12/2013
  */
 
 /** 
- * <p> This class is used to create the TrackList object </p>
  * <p> The TrackList object is used to determine a list of songs which are appropriate for the user
  * at their desired target pace, it does this by querying the database for songs of an appropriate BPM for the
  * inputPace which it received as its parameter. The TrackList object also holds the logic for manipulating 
@@ -25,45 +24,55 @@ import com.GC01.BeatYourPace.PaceCalculator.TargetPace;
 
 
 public class TrackList {
-	Context context;
+
 	
 	/** A string of the filepath of the current track to be played by the MusicPlayer */
 	private String songPath;
 	
 	/** The index of the current song within the ArrayList */
-	private int songNo;
+	private int songIndex;
 	
 	/** An ArrayList which will contain the information of the appropriate songs for the MusicPlayer to play*/
 	private ArrayList<String> paceTrackList = new ArrayList<String>(); // ArrayList containing song details and the path file for the song.	
 	
-		
+	/** Static object of the Tracklist used in order to create a Singleton */	
 	private static TrackList  _trackList = null;
 	
+	/** Amount of the current songs in the TrackList*/
 	private int trackListSize;
 	
+	/** Whether the current TrackList has any songs in it*/
 	public static boolean empty;
 	
+	/** The Artist and Song of the Current Song */
+	private String trackInfo;
 	
+	
+	
+	
+	/** Singleton constructor for the TrackList */
 	private TrackList(){
 		
-		// Calling the method for populating the ArrayList.
+		// The TrackList is populated with songs of an appropriate tempo based on the current Target Running Pace 
 		updateTrackList((float) TargetPace.getTargetPace());
 			 	
-		// Default songPath needed.
-		songNo = 0;
+		// Initially pointing to the first song in the array.
+		songIndex = 0;
 		}
 	
+	
+	
+	
+	/** A singleton instance of the TrackList*/ 
 	public static TrackList getInstance() {
 		
 		if (_trackList == null) {
-			
-			
-			
+
 			_trackList = new TrackList();
 			
 		}
 		
-		return _trackList;
+		return _trackList;	
 		
 	}
 			
@@ -71,71 +80,69 @@ public class TrackList {
 		/** Manipulates what the current Song index is depending on what function the MusicPlayer has
 		 * requested.
 		 *
-		 * @param function The playback function that the MusicPlayer has requested. e.g. Play
+		 * @param function The playback function that the MusicPlayer has requested. e.g. Skip, Previous and Reset.
 		 */
 	
 	
 		public void setSong(String function){
 			
-		// if the function is play set a random song from the ArrayList to play - dependent on the size of the Array
-	 	// It is cast as an int so that it can be used as an index, and also means it wont go out of bounds of the Array List.
-			
-		// if the function is skip, sets the songNo to the next one in the array unless it as at the end.
+		// Song index is being incremented, unless it is at the end at which point it is set to 0 in order to cycle.
 		if (function == "skip") {
-			System.out.println("song index before skip is" + getSongIndex());
-			if (getSongIndex() == paceTrackList.size()-1){
-				songNo = 0;
-			}
-			else
-			songNo = getSongIndex() + 1;
+			
+			Log.d("TrackList - skip", "This TrackList index is being skipped");
+			
+				if (getSongIndex() == paceTrackList.size()-1)
+					songIndex = 0;
+				else
+					songIndex = getSongIndex() + 1;
 			
 		}
-		
-		
-		System.out.println("song index after skip is" + getSongIndex());
 			
-		// if the function is previous it reduces the songNo by 1 unless it as at the beginning.	
+		
+		// Song index is being decremented, unless it is 0 at which point it is pointed to the last element in the array list.	
 		if (function == "previous") {
 			
-			System.out.println("song index before previous is" + getSongIndex());
-			if (getSongIndex() == 0){
-				songNo = paceTrackList.size()-1;
-			}
-			else
-			songNo = getSongIndex() -1;
+			Log.d("TrackList - previous", "This TrackList index is being decremented");
 			
-			System.out.println("song after previous before play is" + getSongIndex());
+			if (getSongIndex() == 0)
+				songIndex = paceTrackList.size()-1;
+			else
+				songIndex = getSongIndex() -1;
 			
 		}
 		
+				
+		// Song Index is being reset to 0, this is a necessary function to avoid errors for when the array list is being updated to be 
+		// smaller than it had been originally, as otherwise it would be possible to achieve out of bounds errors.
 		if (function == "reset"){
 			
-			songNo = 0;
+			Log.d("TrackList - reset", "Is now the current TrackList index after being reset");
+			
+			songIndex = 0;
+			
 		}
-		System.out.println("song index after setSong is" + getSongIndex());
+		
 		
 		
 		}
 	 	
-		
-		
-	 	
+ 	
 		/** Sends the index value for the chosen song from the ArrayList
 		 * 
-		 * @return songNo (int) The current song from within the TrackList object.
+		 * @return songIndex (int) The current song from within the TrackList object.
 		 */
 		public int getSongIndex(){
 					
-			return songNo;
+			return songIndex;
 	 	}
 	 	
+		
 		
 		/** Sends the file path by using the song index from the ArrayList.
 		 *
 		 * @return songPath (String)The file path for the current song.
 		 */
 		public String getSongPath() {
-			
 					
 			songPath = paceTrackList.get(getSongIndex());
 			return songPath;
@@ -143,46 +150,59 @@ public class TrackList {
 			}	
 
 		
-		// method for populating the TrackList
+		
+		
+		/** Updates the TrackList based on what the current (updated) Target Pace is, by querying the database of possible 
+		 * appropriate songs based on their tempo in relation the target pace.
+		 * @param tarPace Current Target Pace as set by the user or using the default preference.
+		 */
 		public void updateTrackList(float tarPace) {
 				
-		
-			// insert code for repopulating trackList
 			DatabaseAdapter db = new DatabaseAdapter(ContextProvider.getContext());
 
 			paceTrackList = db.getAppropriateSongs(tarPace);
 			
 		//	TrackList.getInstance().setSong("reset"); atm this causes recursive error.
 			
-			System.out.println("TrackList updated");
-			System.out.println("Size is " + paceTrackList.size());
+			Log.d("TrackList - updateTrackList", "TrackList updated");
 
+			/* Array list printing for debugging puproses
 			for (int i = 0; i < paceTrackList.size(); i++){
 				
 				System.out.println(paceTrackList.get(i));
 				
-				
 			}
+			
+			*/
+							
 		}
 		
+		
+		
+		/** Used for getting the current amount of song paths held within the TrackList
+		 * 
+		 * @return trackListSize (int) - Size of the TrackList
+		 */
 		public int getTrackListSize(){
 			
 			trackListSize = paceTrackList.size();
 			
 			return trackListSize;
 			
-			
 		}
 		
+		
+		
+		/** Checks whether the current TrackList contains any song paths
+		 * @return empty (boolean) - If true, the TrackList contains no elements.
+		 */
 		public boolean isEmpty() {
 			
-			if (TrackList.getInstance().getTrackListSize() == 0){
+			if (paceTrackList.isEmpty()) {
 						
-						System.out.println("TrackList was empty");
-						Toast.makeText(ContextProvider.getContext(), "No Songs at that Target Pace", Toast.LENGTH_LONG).show();
-						
-						empty = true;
-						
+						Log.d("TrackList - isEmpty", "TrackList was empty");
+						Toast.makeText(ContextProvider.getContext(), "No Songs at that Target Pace", Toast.LENGTH_SHORT).show();
+						empty = true;		
 					}
 					
 					else {
@@ -193,9 +213,26 @@ public class TrackList {
 
 				return empty;
 				}
-			
-				
+		
+		
+		
+		
+		
+		
+		public void setTrackInfo(String path){
 
+			DatabaseAdapter db = new DatabaseAdapter(ContextProvider.getContext());
+			trackInfo = db.getTrackInfo(path);
+		}
+		
+		
+		public String getTrackInfo(){
+			
+			return trackInfo;
+		}
+		
+		
+		
 		
 }
 

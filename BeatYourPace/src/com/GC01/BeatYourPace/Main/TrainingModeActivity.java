@@ -153,16 +153,23 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 		onScreen = false;	
 	}
 	
+	public void onDestroy(){
+		super.onDestroy();
+		MusicPlayer.getInstance().stop();
+		MusicPlayer.getInstance().release();
+		
+	}
+	
 	private BroadcastReceiver bReceiver = new BroadcastReceiver() {
 		  @Override
 		  public void onReceive(Context context, Intent intent) {
 		    // Get extra data included in the Intent
-			  System.out.println("Track Received");
+			
 			  trackInfo = (TextView) findViewById(R.id.tSongName);
-			  
-		      displayTrackInfo = intent.getStringExtra("Track Info");
+			  System.out.println("Intent Received");
+		      displayTrackInfo = intent.getStringExtra("Track Info Action");
 		      if (displayTrackInfo == null)
-		      System.out.println("displayTrackInfo was null");
+		      System.out.println("Track received but null");
 		      else {
 		    	  System.out.println(displayTrackInfo + " wasnt null");
 		      }
