@@ -3,7 +3,8 @@ package com.GC01.BeatYourPace.FileManager;
 /**
  * <dl>
  * 	<dt> Purpose:
- * 	<dd> Sets the skeleton for the export file capability
+ * 	<dd> Sets the skeleton for the export file capability.
+ *  <dd> It currently is used to export the database contents in JSON format to a txt file
  * 
  * 	<dt> Description:
  * 	<dd> Functionality to check for available media, create and write a file
@@ -33,6 +34,7 @@ import com.GC01.BeatYourPace.Main.ContextProvider;
 public class FileExport {
 
 	String fileName;
+	String dirName;
 	private final static String LOG_TAG = "FileExport";
 	protected static Context context = ContextProvider.getContext();
 	private File folder = new File(context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS) + fileName);
@@ -76,41 +78,45 @@ public class FileExport {
 	 * @param context
 	 * @param fileName
 	 * @return
+	 * @throws IOException 
 	 */
-	public static File getFileStorageDir(Context context, String fileName) {
-		// Get the directory for the user's public downloads directory in which to store the CSV file 
+	public File getFile(Context context, String fileName) throws IOException {
 		File file = new File(context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS), fileName);
-		if (!file.mkdirs()) {
-			Log.e(LOG_TAG, "Directory not created");
-		}
+		//the file should be overwritten each time it is created
+		file.createNewFile();
 		return file;
 	}
 
-	public void exportToTxt() throws JSONException, IOException {
+	/**
+	 * Exports the JSON array to a text file on the phone's storage
+	 * @throws JSONException
+	 * @throws IOException
+	 */
+	public void exportJsonToTxt() throws JSONException, IOException {
 
 		Context context = ContextProvider.getContext();
 
 		if (isExternalStorageWritable() == true) {
-		
-		DatabaseJSON dj = new DatabaseJSON(context);
-		JSONArray ja = dj.getJsonArray();
-		
-		JSONObject jo1 = ja.getJSONObject(0);
-		System.out.println(jo1.toString());
-	
-		try {
-			FileWriter file = new FileWriter(getFileStorageDir(context, fileName));
-			for (int i = 0; i < ja.length(); i++) {
-				JSONObject jo = ja.getJSONObject(i);
-				file.write(jo.toString());
-				file.flush();
+
+			DatabaseJSON dj = new DatabaseJSON(context);
+			JSONArray ja = dj.getJsonArray();
+
+			JSONObject jo1 = ja.getJSONObject(0);
+			System.out.println(jo1.toString());
+
+			try {
+				FileWriter file = new FileWriter(getFile(context, fileName));
+				for (int i = 0; i < ja.length(); i++) {
+					JSONObject jo = ja.getJSONObject(i);
+					file.write(jo.toString());
+					file.flush();
+				}
 				file.close();
-				Log.d(LOG_TAG, "File saved to " + getFileStorageDir(context, fileName));
+				Log.d(LOG_TAG, "File saved to " + getFile(context, fileName));
+			} catch (IOException e) {
+				Log.d(LOG_TAG, "IO exception");
+				e.printStackTrace();
 			}
-		} catch (IOException e) {
-			Log.d(LOG_TAG, "IO exception");
-			e.printStackTrace();
-		}
 		}
 	}
 }

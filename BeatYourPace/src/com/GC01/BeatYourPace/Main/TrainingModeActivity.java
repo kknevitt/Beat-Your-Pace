@@ -59,7 +59,7 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_trainingmode); 
+		setContentView(R.layout.activity_trainingmode);  
 		
 		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(ContextProvider.getContext());
 
