@@ -134,33 +134,26 @@
          <RelativeLayout
             android:layout_width="match_parent"
   		   android:layout_height="match_parent" >
-  		   
-        <ImageButton
-            android:id="@+id/bPreviousTrack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/button_shape_oval"
-            android:contentDescription="@string/sDscrPreviousTrack"
-            android:src="@drawable/medium_previous" />
-
-         <ImageButton
-             android:id="@+id/bSkipTrack"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_gravity="bottom|right"
-              android:background="@drawable/button_shape_oval"
-       		 android:contentDescription="@string/sDscrSkipTrack"
-        	android:src="@drawable/medium_skip" />
-         
+        
            <ImageButton
-            android:id="@+id/bPlayPause"
+               android:id="@+id/bSkipTrack"
                android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-     
-            android:layout_toLeftOf="@+id/bPreviousTrack"
-            android:background="@drawable/selector_pauseorplay"
-        android:contentDescription="@string/sDscrPlayPause" /> 
-         
+               android:layout_height="wrap_content"
+               android:layout_alignParentRight="true"
+               android:layout_alignParentTop="true"
+               android:background="@drawable/button_shape_oval"
+               android:contentDescription="@string/sDscrSkipTrack"
+               android:src="@drawable/medium_skip" />
+
+           <ImageButton
+               android:id="@+id/bPreviousTrack"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignParentLeft="true"
+               android:layout_alignParentTop="true"
+               android:background="@drawable/button_shape_oval"
+               android:contentDescription="@string/sDscrPreviousTrack"
+               android:src="@drawable/medium_previous" />
          
         </RelativeLayout>
     </FrameLayout>

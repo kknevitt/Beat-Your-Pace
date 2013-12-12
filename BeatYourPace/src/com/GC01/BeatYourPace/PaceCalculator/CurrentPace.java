@@ -1,9 +1,7 @@
 package com.GC01.BeatYourPace.PaceCalculator;
 
-import com.GC01.BeatYourPace.ArchiveFiles.DataModel;
 import com.GC01.BeatYourPace.Main.ContextProvider;
 import com.example.beatyourpace.R;
-
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -14,6 +12,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -60,7 +59,7 @@ public class CurrentPace extends Service {
     }
 
 	public void startService(Context context){
-	    Log.d(null, "testing - startService() is being called");
+	    Log.d(null, "testing - startService() for GPS is being called");
 		 LocationListener locationListener = new LocationListener(){
 		        
 			public void onLocationChanged(Location location){
@@ -68,18 +67,20 @@ public class CurrentPace extends Service {
 				SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ContextProvider.getContext());
 				int unitType = Integer.parseInt(preferences.getString("unitType", "1"));
 		       // Called when a new location is found by the network location provider.
-				 if (location.hasAccuracy() && location !=null) {    	
-			    	// An if else selection is used in order to be using the correct prefences for miles or kilometres
+				 if (location !=null) {    	
+			    	// An if else selection is used in order to be using the correct preferences for miles or kilometres
 				    // for the preferred distance unit.	
 				   if (unitType == 1) {
 			    		currentPace = (float) (location.getSpeed() / MPS_TO_MINS_PER_MILE);
-
-			    		System.out.println("testing1");
+			    		sendGPSInfo();
+			    		System.out.println("testingGPS M/M");
+			    		System.out.println(getGPSInfo());
 			    		
 			    			if (unitType == 2) {
 			    				currentPace = (float) (location.getSpeed() / MPS_TO_PER_KILOMETRES);
 
-			    				System.out.println("testing2");
+			    				System.out.println("testing KM/M");
+			    				System.out.println(getGPSInfo());
 			    				}
 			    			}  
 				 }
@@ -97,7 +98,7 @@ public class CurrentPace extends Service {
 		    };
 		    
 		    //Setting location updates
-		    locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 0, locationListener);
+		    locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, locationListener);
 		} 
 		
 	@Override
@@ -106,11 +107,21 @@ public class CurrentPace extends Service {
 		return null;
 	}
 	
-	//gets called when app is no longer used
-	private void stopService()
-    {
-     //stop class when user stops using the app
-    }
+	
+	private float getGPSInfo(){
+		return currentPace;
+	}
+	
+	/**Sets the broadcast message about GPS current pace**/
+	private void sendGPSInfo() {
+		
+		  Intent intent = new Intent("Current Pace Event");
+		  
+		  intent.putExtra("GPS Current Pace Info", getGPSInfo());
+		  LocalBroadcastManager.getInstance(ContextProvider.getContext()).sendBroadcast(intent);
+		  System.out.println("GPS Sent");
+	}
+	
 	
 	//kills thread when app is no longer used
     public void onDestroy()

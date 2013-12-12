@@ -15,7 +15,6 @@ package com.GC01.BeatYourPace.Settings;
  *
  */
 
-import com.example.beatyourpace.R;
 import com.google.analytics.tracking.android.EasyTracker;
 
 import android.os.Build;
@@ -27,6 +26,8 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.view.Menu;
+import com.example.beatyourpace.R;
+
 
 
 public class SettingsActivity extends PreferenceActivity {
