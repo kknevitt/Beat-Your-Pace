@@ -40,6 +40,7 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
     protected static TextView targetPaceText;
     
     // Current Pace
+    public static String displayGPSinfo;
     private static TextView currentPaceText;
 	
 	// Active Screen
@@ -53,7 +54,7 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
     ImageButton playOrPauseImageButton, imagebutton2, skipSongImageButton, previousSongImageButton, pauseImageButton, stopImageButton;
     Button songTooSlowButton, songTooFastButton, decreaseTargetPaceButton, increaseTargetPaceButton;
    
-
+    Button bTargetPaceTitle, bCurrentPaceTitle, bCurrentPaceValue, bCurrentPacePreference, bTargetPacePreference, bTargetPaceValue;
     
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -89,9 +90,17 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
         decreaseTargetPaceButton = (Button) findViewById(R.id.bDecTarget);					
         increaseTargetPaceButton = (Button) findViewById(R.id.bIncTarget);
         stopImageButton = (ImageButton) findViewById(R.id.bStopSong);
+        bTargetPaceTitle = (Button) findViewById(R.id.bTargetPaceTitle);
+        bCurrentPaceTitle = (Button) findViewById(R.id.bCurrentPaceTitle);
+        bCurrentPaceValue = (Button) findViewById(R.id.bCurrentPaceValue);
+        bCurrentPacePreference = (Button) findViewById(R.id.bCurrentPacePreference);
+        bTargetPacePreference = (Button) findViewById(R.id.bTargetPacePreference);
+        bTargetPaceValue =(Button) findViewById(R.id.bTargetPaceValue);
+        
         
         
         targetPaceText = (TextView) findViewById(R.id.CurrentTargetPace);
+        
         displayTargetPace = sp.getString("set_target_pace", "6.0");
         targetPace = Float.valueOf(displayTargetPace);
         targetPaceText.setText(displayTargetPace);
@@ -99,20 +108,21 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
         
         //setting an event listener for each button
         playOrPauseImageButton.setOnClickListener(this);
-        //imagebutton2.setOnClickListener(this);
         skipSongImageButton.setOnClickListener(this);
         previousSongImageButton.setOnClickListener(this);
         songTooSlowButton.setOnClickListener(this);
         songTooFastButton.setOnClickListener(this);
-        decreaseTargetPaceButton.setOnClickListener(this);
-        increaseTargetPaceButton.setOnClickListener(this);
-       // pauseImageButton.setOnClickListener(this);
+      //  decreaseTargetPaceButton.setOnClickListener(this);
+       // increaseTargetPaceButton.setOnClickListener(this);
         stopImageButton.setOnClickListener(this);
         
         LocalBroadcastManager.getInstance(this).registerReceiver(bReceiver,
         	      new IntentFilter("Track Info Event"));
         
-        
+        /** GPS Broadcast Receiver **/
+        LocalBroadcastManager.getInstance(this).registerReceiver(GPSReceiver,
+      	      new IntentFilter("GPS Current Pace Info"));
+    
         
    }
 
@@ -179,6 +189,23 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 		};
 	
 	
+	private BroadcastReceiver GPSReceiver = new BroadcastReceiver() {
+			  @Override
+			  public void onReceive(Context context, Intent intent) {
+			    // Get extra data included in the Intent
+				  displayGPSinfo = intent.getStringExtra("GPS Current Pace Info");
+			      if (displayGPSinfo == null)
+			      System.out.println("displayGPSinfo was null");
+			      else {
+			    	  System.out.println(displayGPSinfo + " wasnt null");
+			      }
+			      
+			      System.out.println("GPS Info Received");
+				  currentPaceText = (TextView) findViewById(R.id.CurentPace);
+			      currentPaceText.setText(displayGPSinfo);
+				  
+			  }
+			};
 	
 	}
 

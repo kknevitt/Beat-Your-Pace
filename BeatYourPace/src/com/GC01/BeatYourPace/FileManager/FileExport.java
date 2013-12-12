@@ -14,51 +14,48 @@ package com.GC01.BeatYourPace.FileManager;
  *
  */
 
-import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.OutputStream;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.content.Context;
-import android.database.Cursor;
 import android.os.Environment;
 import android.util.Log;
 
-import com.GC01.BeatYourPace.Database.DatabaseAdapter;
+import com.GC01.BeatYourPace.Database.DatabaseJSON;
 import com.GC01.BeatYourPace.Main.ContextProvider;
-import com.GC01.BeatYourPace.FileManager.DatabaseExportToJSON;
 
-public abstract class AbstractFileExport {
-	
+
+public class FileExport {
+
 	String fileName;
-	private final static String LOG_TAG = "File Export";
+	private final static String LOG_TAG = "FileExport";
 	protected static Context context = ContextProvider.getContext();
 	private File folder = new File(context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS) + fileName);
-	// private File folder = new File(Environment.getExternalStorageDirectory() + "/BYP");
 
 	/**
 	 * Constructor which takes in the file name
 	 * @param fileName  String that is the name of the file to be created
 	 */
-	public AbstractFileExport (String fileName) {
+	public FileExport (String fileName) {
 		this.fileName = fileName;
-		}
+	}
 
-	
+
 	/**
 	 * Checks if external storage is available for read and write
 	 * @return  True or false
 	 */
 	public boolean isExternalStorageWritable() {
-	    String state = Environment.getExternalStorageState();
-	    if (Environment.MEDIA_MOUNTED.equals(state)) {
-	        return true;
-	    }
-	    return false;
+		String state = Environment.getExternalStorageState();
+		if (Environment.MEDIA_MOUNTED.equals(state)) {
+			return true;
+		}
+		return false;
 	}
 
 	/**
@@ -66,12 +63,12 @@ public abstract class AbstractFileExport {
 	 * @return
 	 */
 	public boolean isExternalStorageReadable() {
-	    String state = Environment.getExternalStorageState();
-	    if (Environment.MEDIA_MOUNTED.equals(state) ||
-	        Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
-	        return true;
-	    }
-	    return false;
+		String state = Environment.getExternalStorageState();
+		if (Environment.MEDIA_MOUNTED.equals(state) ||
+				Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
+			return true;
+		}
+		return false;
 	}
 
 	/**
@@ -81,27 +78,39 @@ public abstract class AbstractFileExport {
 	 * @return
 	 */
 	public static File getFileStorageDir(Context context, String fileName) {
-	    // Get the directory for the user's public downloads directory in which to store the CSV file 
+		// Get the directory for the user's public downloads directory in which to store the CSV file 
 		File file = new File(context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS), fileName);
-	    if (!file.mkdirs()) {
-	        Log.e(LOG_TAG, "Directory not created");
-	    }
-	    return file;
-	}
-	
-	public void jsonOutput() throws JSONException {
-		
-		try {
-			OutputStream out = new BufferedOutputStream(new FileOutputStream(getFileStorageDir(context, fileName)));
-			DatabaseExportToJSON dbej = new DatabaseExportToJSON();
-			JSONArray jsonar = dbej.getJSON();
-			
-			for(int i=0; i< jsonar.length(); i++) { 
-				out.write((byte[]) jsonar.get(i)); 
-			}
-			out.close();
-			} catch (IOException e) { 
-			e.printStackTrace(); 
-			} 
+		if (!file.mkdirs()) {
+			Log.e(LOG_TAG, "Directory not created");
 		}
+		return file;
+	}
+
+	public void exportToTxt() throws JSONException, IOException {
+
+		Context context = ContextProvider.getContext();
+
+		if (isExternalStorageWritable() == true) {
+		
+		DatabaseJSON dj = new DatabaseJSON(context);
+		JSONArray ja = dj.getJsonArray();
+		
+		JSONObject jo1 = ja.getJSONObject(0);
+		System.out.println(jo1.toString());
+	
+		try {
+			FileWriter file = new FileWriter(getFileStorageDir(context, fileName));
+			for (int i = 0; i < ja.length(); i++) {
+				JSONObject jo = ja.getJSONObject(i);
+				file.write(jo.toString());
+				file.flush();
+				file.close();
+				Log.d(LOG_TAG, "File saved to " + getFileStorageDir(context, fileName));
+			}
+		} catch (IOException e) {
+			Log.d(LOG_TAG, "IO exception");
+			e.printStackTrace();
+		}
+		}
+	}
 }

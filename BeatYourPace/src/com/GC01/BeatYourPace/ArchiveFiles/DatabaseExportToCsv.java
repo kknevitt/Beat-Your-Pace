@@ -1,4 +1,4 @@
-package com.GC01.BeatYourPace.FileManager;
+package com.GC01.BeatYourPace.ArchiveFiles;
 
 /**
  * <dl>
@@ -27,7 +27,7 @@ import android.os.Environment;
 import android.util.Log;
 
 import com.GC01.BeatYourPace.Main.ContextProvider;
-import com.GC01.BeatYourPace.Database.DatabaseAdapter;
+import com.GC01.BeatYourPace.Database.DatabaseAdapter1;
 
 //throws IOException
 

@@ -133,8 +133,9 @@
         android:layout_alignBaseline="@+id/placeHolderPause"
         android:layout_alignBottom="@+id/placeHolderPause"
         android:layout_alignLeft="@+id/CurrentTargetPace"
-        android:text="Stop" 
-        android:onClick="stopNewService"/>
+        android:text="Stop"
+        android:onClick="stopNewService" />
+       
 
     <TextView
         android:id="@+id/tSongName"

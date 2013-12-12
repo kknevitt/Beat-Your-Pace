@@ -18,7 +18,7 @@
     <application
         android:name="com.GC01.BeatYourPace.Main.ContextProvider"
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher2"
+        android:icon="@drawable/ic_launcher_3"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
@@ -72,13 +72,6 @@
             android:label="@string/title_activity_help_page"
             android:screenOrientation="portrait" >
         </activity>
-
-        <provider
-            android:name="com.GC01.BeatYourPace.Database.DatabaseContentProvider"
-            android:authorities="com.GC01.BeatYourPace"
-            android:enabled="true"
-            android:exported="true" >
-        </provider>
     </application>
 
 </manifest>
