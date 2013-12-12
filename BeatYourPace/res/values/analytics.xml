@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+ 
+ <!--  Analytics class as provided by Google. Goto www.google.com/analytics to login into the app's dashboard -->
+ 
  <resources>
   <string name="ga_trackingId">UA-46320059-1</string>
   <bool name="ga_autoActivityTracking">true</bool>

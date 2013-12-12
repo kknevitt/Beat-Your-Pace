@@ -1,7 +1,14 @@
 package com.GC01.BeatYourPace.MusicPlayer;
  
 import java.io.IOException;
+import java.lang.Thread.UncaughtExceptionHandler;
 
+import com.google.analytics.tracking.android.EasyTracker;
+import com.google.analytics.tracking.android.ExceptionReporter;
+import com.google.analytics.tracking.android.GAServiceManager;
+import com.google.analytics.tracking.android.GoogleAnalytics;
+import com.google.analytics.tracking.android.MapBuilder;
+import com.google.analytics.tracking.android.StandardExceptionParser;
 import com.google.analytics.tracking.android.Tracker;
 import com.GC01.BeatYourPace.Database.DatabaseAdapter;
 import com.GC01.BeatYourPace.Database.DatabaseAdapter1;
@@ -89,8 +96,7 @@ public class MusicPlayer implements OnCompletionListener, OnErrorListener {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			
-			
+
 		}
 		           
 	      
