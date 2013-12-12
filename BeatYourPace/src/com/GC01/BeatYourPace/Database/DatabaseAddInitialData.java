@@ -23,7 +23,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.provider.MediaStore;
 import android.util.Log;
 
-public class DatabaseAddInitialData extends DatabaseAdapter2 {
+public class DatabaseAddInitialData extends DatabaseAdapter {
 
 	private static final String LOG_TAG = "DatabaseCreation";
 
