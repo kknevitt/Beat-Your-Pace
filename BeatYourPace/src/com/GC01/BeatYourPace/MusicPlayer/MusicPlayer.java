@@ -6,8 +6,6 @@ import com.google.analytics.tracking.android.EasyTracker;
 import com.google.analytics.tracking.android.MapBuilder;
 import com.google.analytics.tracking.android.StandardExceptionParser;
 import com.google.analytics.tracking.android.Tracker;
-import com.GC01.BeatYourPace.Database.DatabaseAdapter1;
-import com.GC01.BeatYourPace.Main.ContextProvider;
 import com.GC01.BeatYourPace.Main.TrainingModeActivity;
 
 import android.app.IntentService;
@@ -188,7 +186,7 @@ public class MusicPlayer implements OnCompletionListener, OnErrorListener {
 		
 		System.out.println("path before sending to database is " + path);
 		
-		DatabaseAdapter1 db = new DatabaseAdapter1(ContextProvider.getContext());
+		DatabaseAdapter db = new DatabaseAdapter(ContextProvider.getContext());
 		trackInfo = db.getTrackInfo(path);
 	}
 	
@@ -242,5 +240,3 @@ public class MusicPlayer implements OnCompletionListener, OnErrorListener {
 
 	
 	}
-
-

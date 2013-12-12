@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="horizontal" >
+
+    <FrameLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:orientation="horizontal" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+  		   android:layout_height="match_parent" >
+            
+        <Button
+            android:id="@+id/bIncTarget"           
+            android:layout_width="80sp"
+            android:layout_height="75sp"
+            android:layout_gravity="top|left"
+            android:text="@string/sPlus"
+            android:textSize="32sp" />
+
+        <Button
+            android:id="@+id/bDecTarget2"
+            android:layout_width="80sp"
+            android:layout_height="75sp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:text="@string/sMinus"
+            android:textSize="32sp" />
+
+        <!--  new disguised button, it makes it easier to control their layout -->
+        <Button
+            android:id="@+id/bDecTarget1"
+            android:layout_width="80sp"
+            android:layout_height="75sp"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/bDecTarget2"
+            android:text="Target Pace:    8 M/M"
+            android:background="@android:color/white"
+            android:textSize="11sp" />
+
+        <Button
+            android:id="@+id/bDecTarget"
+            android:layout_width="80sp"
+            android:layout_height="75sp"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/bDecTarget1"
+            android:text="Current Pace:   8 M/M"
+            android:background="@android:color/white"
+            android:textSize="11sp" />
+
+	</RelativeLayout>
+    </FrameLayout>
+
+     <RelativeLayout
+            android:layout_width="match_parent"
+  		   android:layout_height="match_parent" >
+
+    
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="74dp"
+        android:orientation="horizontal" >
+
+        <!--  change the size of the width and their alignment so the buttons are more centralized -->
+        <Button
+            android:layout_marginRight="10dip"
+            android:id="@+id/bSongTooSlow"
+            android:layout_width="150dip"
+            android:layout_height="125dp"
+            android:layout_gravity="top|right"
+            android:layout_marginTop="41dp"
+            android:text="@string/sTooSlowButton"
+            android:textSize="32sp" />
+
+        <Button
+            android:layout_marginLeft="10dip"
+            android:id="@+id/bSongTooFast"
+            android:layout_width="150dip"
+            android:layout_height="125dp"
+            android:layout_marginTop="41dp"
+            android:text="@string/sTooFastButton"
+            android:textSize="32sp" />
+
+    </FrameLayout>
+    
+     </RelativeLayout>
+
+      <!--  new layout for song title only -->
+     <RelativeLayout
+            android:layout_width="match_parent"
+  		   android:layout_height="match_parent" >
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="141dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/tSongName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:text="Song title"
+            android:textSize="25sp" />
+    </FrameLayout>   
+     </RelativeLayout>
+      
+        <RelativeLayout
+            android:layout_width="match_parent"
+  		   android:layout_height="match_parent" >
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal" >
+
+         <RelativeLayout
+            android:layout_width="match_parent"
+  		   android:layout_height="match_parent" >
+  		   
+        <ImageButton
+            android:id="@+id/bPreviousTrack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_shape_oval"
+            android:contentDescription="@string/sDscrPreviousTrack"
+            android:src="@drawable/medium_previous" />
+
+         <ImageButton
+             android:id="@+id/bSkipTrack"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_gravity="bottom|right"
+              android:background="@drawable/button_shape_oval"
+       		 android:contentDescription="@string/sDscrSkipTrack"
+        	android:src="@drawable/medium_skip" />
+         
+           <ImageButton
+            android:id="@+id/bPlayPause"
+               android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+     
+            android:layout_toLeftOf="@+id/bPreviousTrack"
+            android:background="@drawable/selector_pauseorplay"
+        android:contentDescription="@string/sDscrPlayPause" /> 
+         
+         
+        </RelativeLayout>
+    </FrameLayout>
+   
+     </RelativeLayout>
+   
+     
+</RelativeLayout>
