@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.GC01.BeatYourPace.Database.DatabaseAdapter;
+import com.GC01.BeatYourPace.Database.DatabaseAdapter2;
 import com.GC01.BeatYourPace.Main.ContextProvider;
 import com.GC01.BeatYourPace.PaceCalculator.TargetPace;
 
@@ -158,7 +158,7 @@ public class TrackList {
 		 */
 		public void updateTrackList(float tarPace) {
 				
-			DatabaseAdapter db = new DatabaseAdapter(ContextProvider.getContext());
+			DatabaseAdapter2 db = new DatabaseAdapter2(ContextProvider.getContext());
 
 			paceTrackList = db.getAppropriateSongs(tarPace);
 			
@@ -221,7 +221,7 @@ public class TrackList {
 		
 		public void setTrackInfo(String path){
 
-			DatabaseAdapter db = new DatabaseAdapter(ContextProvider.getContext());
+			DatabaseAdapter2 db = new DatabaseAdapter2(ContextProvider.getContext());
 			trackInfo = db.getTrackInfo(path);
 		}
 		

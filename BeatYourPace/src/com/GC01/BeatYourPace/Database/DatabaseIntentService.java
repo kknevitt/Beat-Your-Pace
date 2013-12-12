@@ -13,7 +13,7 @@ public class DatabaseIntentService extends IntentService {
 
 	private static final String LOG_TAG = "DatabaseIntentService";
 
-	private DatabaseAdapter db;
+	private DatabaseAddInitialData db;
 	
 	public DatabaseIntentService() {
 		super("DatabaseIntentService");
@@ -23,35 +23,17 @@ public class DatabaseIntentService extends IntentService {
 	protected void onHandleIntent(Intent intent) {
 		
 		Log.d(LOG_TAG,"DatabaseIntentService : onCreate");
-		this.db = new DatabaseAdapter(getApplicationContext());
-		this.db.openDbWrite();
+		this.db = new DatabaseAddInitialData(getApplicationContext());
 		
-		
-		//synch the tracks from the device to the byp database
 		this.db.synchTracks();
-		Log.d(LOG_TAG,"Tracks updated");
 		
-		//get the BPM for each track in the byp database
 		try {
 			this.db.addBpm();
 		} catch (EchoNestException e) {
 			e.printStackTrace();
 		}
-		Log.d(LOG_TAG,"Bpm added");
 		
-		//add the initialPrePace for each track to the database
 		this.db.addInitialPrefPace();
-		Log.d(LOG_TAG,"Initial preferred pace added");
-		
-		this.db.closeDb();
-		
-		/*
-		//for testing only, create the array list and synch it
-		ArrayList<String> appSong = this.db.getAppropriateSongs((float)10.0);
-		for (int i = 0; i < appSong.size(); i++ ) {
-			System.out.println(appSong.get(i));
-		}
-		*/
 	}
 	
 	@Override
