@@ -22,7 +22,7 @@ import android.database.Cursor;
 import android.util.Log;
 
 import com.GC01.BeatYourPace.Main.ContextProvider;
-import com.GC01.BeatYourPace.Database.DatabaseAdapter;
+import com.GC01.BeatYourPace.Database.DatabaseAdapter1;
 
 public class DatabaseExportToJSON {
 	
@@ -31,7 +31,7 @@ public class DatabaseExportToJSON {
 	
 	public JSONArray getJSON() {
 	 
-		DatabaseAdapter db = new DatabaseAdapter(ContextProvider.getContext());
+		DatabaseAdapter1 db = new DatabaseAdapter1(ContextProvider.getContext());
 		
 		Cursor cursor = db.getAllTracks();
 	 

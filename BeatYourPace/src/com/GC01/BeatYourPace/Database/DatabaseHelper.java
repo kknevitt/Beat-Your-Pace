@@ -59,6 +59,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		Log.d(LOG_TAG,"DatabaseHelper : onCreate");
 		// create the table
 		db.execSQL(CREATE_TABLE);
+		Log.d(LOG_TAG, "Tracks table created");
 	}
 
 	/**
@@ -77,6 +78,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 		// Create new instance of schema
 		onCreate(db);
+		Log.d(LOG_TAG, "Database upgrade complete");
 	}
 	
 }

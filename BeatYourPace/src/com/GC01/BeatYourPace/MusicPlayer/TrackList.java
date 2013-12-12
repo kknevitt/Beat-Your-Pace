@@ -6,6 +6,8 @@ import android.content.Context;
 import android.widget.Toast;
 
 import com.GC01.BeatYourPace.Database.DatabaseAdapter;
+import com.GC01.BeatYourPace.Database.DatabaseAdapter1;
+import com.GC01.BeatYourPace.Database.DatabaseMusicPlayer;
 import com.GC01.BeatYourPace.Main.ContextProvider;
 import com.GC01.BeatYourPace.PaceCalculator.TargetPace;
 
@@ -148,7 +150,7 @@ public class TrackList {
 				
 		
 			// insert code for repopulating trackList
-			DatabaseAdapter db = new DatabaseAdapter(ContextProvider.getContext());
+			DatabaseAdapter1 db = new DatabaseAdapter1(ContextProvider.getContext());
 
 			paceTrackList = db.getAppropriateSongs(tarPace);
 			

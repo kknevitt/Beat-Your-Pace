@@ -28,8 +28,8 @@ import android.database.Cursor;
 import android.os.Environment;
 import android.util.Log;
 
-import com.GC01.BeatYourPace.Database.DatabaseAdapter;
 import com.GC01.BeatYourPace.Main.ContextProvider;
+import com.GC01.BeatYourPace.Database.DatabaseAdapter1;
 import com.GC01.BeatYourPace.FileManager.DatabaseExportToJSON;
 
 public abstract class AbstractFileExport {
