@@ -13,7 +13,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.util.Log;
 
-public class DatabaseJSON extends DatabaseAdapter2 {
+public class DatabaseJSON extends DatabaseAdapter {
 
 	final static String LOG_TAG = "DbToJSON";
 	
