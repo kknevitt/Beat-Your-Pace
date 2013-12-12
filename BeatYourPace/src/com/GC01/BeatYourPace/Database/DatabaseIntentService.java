@@ -45,13 +45,6 @@ public class DatabaseIntentService extends IntentService {
 		
 		this.db.closeDb();
 		
-		/*
-		//for testing only, create the array list and synch it
-		ArrayList<String> appSong = this.db.getAppropriateSongs((float)10.0);
-		for (int i = 0; i < appSong.size(); i++ ) {
-			System.out.println(appSong.get(i));
-		}
-		*/
 	}
 	
 	@Override

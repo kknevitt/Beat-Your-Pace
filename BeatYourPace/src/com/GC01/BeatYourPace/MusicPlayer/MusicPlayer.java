@@ -21,6 +21,7 @@ import android.media.MediaPlayer.OnErrorListener;
  */
 import android.net.Uri;
 import android.os.IBinder;
+import android.support.v4.content.LocalBroadcastManager;
 import android.widget.Toast;
 
 
@@ -39,6 +40,7 @@ public class MusicPlayer implements OnCompletionListener, OnErrorListener {
 	
 	private String currentSongPath;
 	private int currentIndex;
+	private String trackInfo;
 	
 	private static Context context;
 	Tracker myTracker; 
@@ -160,12 +162,46 @@ public class MusicPlayer implements OnCompletionListener, OnErrorListener {
 		mediaPlayer.prepare();
 		mediaPlayer.start();
 		
+		setTrackInfo(currentSongPath);
+		sendTrackInfo();
+		
+		System.out.println(getTrackInfo());
+		
 		}
+	
+	private void sendTrackInfo() {
+		
+		  Intent intent = new Intent("Track Info Event");
+		  
+		  intent.putExtra("Track Info", getTrackInfo());
+		  LocalBroadcastManager.getInstance(ContextProvider.getContext()).sendBroadcast(intent);
+		  System.out.println("Track Sent");
+		}
+	
+	
+	
+	
+	
+	public void setTrackInfo(String path){
+		
+		System.out.println("path before sending to database is " + path);
+		
+		DatabaseAdapter db = new DatabaseAdapter(ContextProvider.getContext());
+		trackInfo = db.getTrackInfo(path);
+	}
+	
+	public String getTrackInfo(){
+		
+		return trackInfo;
+	}
+	
+	
 
 
 	@Override
 	public void onCompletion(MediaPlayer mp) {
 
+		if (!TrackList.getInstance().isEmpty()) {
 		try {
 			skip();
 		} catch (IllegalArgumentException e) {
@@ -180,6 +216,7 @@ public class MusicPlayer implements OnCompletionListener, OnErrorListener {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
 		}
 		
 
@@ -201,25 +238,6 @@ public class MusicPlayer implements OnCompletionListener, OnErrorListener {
 		return false;
 	}
 
-	/*
-
-	@Override
-	public IBinder onBind(Intent arg0) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not there yet");
-	}
-	
-	public void onCreate() {
-		
-		Toast.makeText(this, "MusicPlayer service started", Toast.LENGTH_LONG).show();
-	}
-	
-	public void onDestroy() {
-		
-		Toast.makeText(this, "MusicPlayer has ended", Toast.LENGTH_LONG).show();
-		}
-		
-		*/
 	
 	}
 

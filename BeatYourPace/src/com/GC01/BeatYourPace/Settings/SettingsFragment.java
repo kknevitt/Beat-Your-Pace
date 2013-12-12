@@ -15,7 +15,6 @@ package com.GC01.BeatYourPace.Settings;
  */
 
 import com.example.beatyourpace.R;
-
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -56,26 +55,27 @@ public class SettingsFragment extends PreferenceFragment {
 
 	    @Override
 	    public void onPause() {
-	      //  getPreferenceManager().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
+	    	//getPreferenceManager().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
 	        super.onPause();
 	    }
-
-	    /*
 	    
+	    /*
 		@Override
 		public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-	    	if ("set_target_pace".equals(key)) {
-	    		Boolean rtnval = true;
+			if ("set_target_pace".equals(key)) {
+
 	    		String value = sharedPreferences.getString(key, "6.0");
 	    		double newTargetPace = Double.parseDouble(key);
 	    		
 	    		//need to add a second test to make sure it end 0 or 0.5 - use the string value and check the last 2 chars?
 	    		
 	    		if(newTargetPace < 4.0 || newTargetPace > 30.0) {
-	    				Toast.makeText(getActivity(),"Default pace must be between 4.0 and 30.0", Toast.LENGTH_SHORT).show();
+	    				Toast toast = Toast.makeText(getActivity(),"Default pace must be between 4.0 and 30.0", Toast.LENGTH_SHORT);
+	    				toast.show();
 	    			}
 	    			else if (value.equals("")){
-	    				Toast.makeText(getActivity(), "Default pace cannot be blank", Toast.LENGTH_SHORT).show();
+	    				Toast toast = Toast.makeText(getActivity(), "Default pace cannot be blank", Toast.LENGTH_SHORT);
+	    				toast.show();
 	    			}
 	    			else {
 
@@ -83,6 +83,5 @@ public class SettingsFragment extends PreferenceFragment {
 	    	}
 			
 		}
-		*/
-	    
+	    */
 }

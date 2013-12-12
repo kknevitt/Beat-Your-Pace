@@ -72,31 +72,5 @@ public class InitialPrefPace {
 	        return initialPrefPaceKm;
 	    }
 	}
-	
-	
-	/**
-	 * This method increases the preferred pace by 0.5
-	 * Check if the user default is km or m, default database value is in m
-	 * Convert from km to m if needed
-	 * Identify which track object is current
-	 * Then it changes the defaultPace value for that track
-	 * The new value then needs to be written back to the database
-	 * NOT YET WRITTEN
-	 */
-	public static void decPrefPace() {
-		SharedPreferences sPref = PreferenceManager.getDefaultSharedPreferences(null);
-		int unitType = sPref.getInt("unitType", 1);
-	}
-	
-	/**
-	 * This method decreases the preferred pace by 0.5
-	 * It needs to identify which track object is current
-	 * Then it changes the defaultPace value for that track
-	 * The new value then needs to be written back to the database
-	 * NOT YET WRITTEN
-	 */
-	public static void incPrefPace() {
-		
-	}
 		
 }

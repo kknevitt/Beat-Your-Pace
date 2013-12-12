@@ -1,13 +1,18 @@
 package com.GC01.BeatYourPace.MusicPlayer;
 
 import java.io.IOException;
+
+import android.widget.Toast;
+
+import com.GC01.BeatYourPace.Main.ContextProvider;
 import com.GC01.BeatYourPace.PaceCalculator.TargetPace;
 
 public class MusicController {
 	
 	public static void pressPlay() {
-
 		
+		if (!TrackList.getInstance().isEmpty()) {
+ 
 		if (!MusicPlayer.getInstance().isPlaying()){		
 		try {	
 			MusicPlayer.getInstance().play();
@@ -19,14 +24,19 @@ public class MusicController {
 			e1.printStackTrace();
 		}
 		}
+		
+		}
 	}
 		
 		
 	
 	
 	public static void pressSkip() {
+		
 	
-	if (MusicPlayer.getInstance().isPlaying()){
+		if (!TrackList.getInstance().isEmpty()) {
+			
+			if (MusicPlayer.getInstance().isPlaying()){
 	try {
 		MusicPlayer.getInstance().skip();
 	}
@@ -41,9 +51,13 @@ public class MusicController {
 	}
 	}
 	}
+
+		
+	}
 	
 	public static void pressPrevious() {
-		
+		if (!TrackList.getInstance().isEmpty()) {
+			
 		if (MusicPlayer.getInstance().isPlaying()){
 		try {
         	MusicPlayer.getInstance().previous();	
@@ -57,17 +71,29 @@ public class MusicController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+			}
 	}
 	}
 	
 	public static void changeTarPace() {
 		
+		
+		
 		TrackList.getInstance().updateTrackList((float) TargetPace.getTargetPace());
 		
-		if (MusicPlayer.getInstance().isPlaying()){
+		if (!TrackList.getInstance().isEmpty()) {
+				
+			if (MusicPlayer.getInstance().isPlaying()){
 			
-		MusicPlayer.getInstance().stop();
+				MusicPlayer.getInstance().stop();
+				
+		
+		}
+		
+		System.out.println("TrackList wasn't null");
+		
 		try {
+			TrackList.getInstance().setSong("reset");
 			MusicPlayer.getInstance().play();
 		} catch (IllegalArgumentException e) {
 			// TODO Auto-generated catch block
@@ -80,13 +106,17 @@ public class MusicController {
 			e.printStackTrace();
 		}
 		}
+	
+		
 		
 	}
 		
 	public static void pressPause() {
 		
-		
+		if (!TrackList.getInstance().isEmpty()) {
 		MusicPlayer.getInstance().pause();
+		
+		}
 		
 	}
 	
@@ -94,5 +124,6 @@ public class MusicController {
 		
 		MusicPlayer.getInstance().stop();
 	}
+	
 }
 	

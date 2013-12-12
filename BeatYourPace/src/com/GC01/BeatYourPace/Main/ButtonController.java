@@ -9,6 +9,7 @@ import android.os.IBinder;
 import android.view.View;
 
 import com.GC01.BeatYourPace.PaceCalculator.*;
+import com.GC01.BeatYourPace.Database.DatabaseAdapter;
 import com.GC01.BeatYourPace.MusicPlayer.MusicController;
 import com.GC01.BeatYourPace.MusicPlayer.MusicPlayer;
 import com.GC01.BeatYourPace.MusicPlayer.TrackList;
@@ -45,7 +46,9 @@ public static void buttonFunction(View v) {
 	            
 	            // Decreases the user's preferred pace for this track by 0.5.
 			case R.id.bSongTooSlow:
-				InitialPrefPace.decPrefPace();
+				DatabaseAdapter db = new DatabaseAdapter(context);
+				db.addPrefPace((float) 0.5, TrackList.getInstance().getSongPath());
+				db.closeDb();
 				
 				/**Google Analytics tracking code**/
 				tracker.send(MapBuilder.createEvent("UI_Action", "button_press", "songTooSlow", null).build());
@@ -53,7 +56,9 @@ public static void buttonFunction(View v) {
 	            
 	            // Increases the user's preferred pace for this track by 0.5.
 			case R.id.bSongTooFast:
-				InitialPrefPace.incPrefPace(); 
+				DatabaseAdapter db2 = new DatabaseAdapter(context);
+				db2.addPrefPace((float) -0.5, TrackList.getInstance().getSongPath());
+				db2.closeDb();
 				
 				/**Google Analytics tracking code**/
 				tracker.send(MapBuilder.createEvent("UI_Action", "button_press", "songTooFast", null).build());

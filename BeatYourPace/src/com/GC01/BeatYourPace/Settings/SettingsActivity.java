@@ -31,9 +31,6 @@ import android.view.Menu;
 
 public class SettingsActivity extends PreferenceActivity {
 	
-    Context context = getApplicationContext(); 
-    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context); 
-	
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	@SuppressLint("NewApi")
 	@Override
