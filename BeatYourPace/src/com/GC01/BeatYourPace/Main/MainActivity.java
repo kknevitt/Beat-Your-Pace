@@ -54,16 +54,6 @@ public class MainActivity extends Activity implements OnClickListener{
         Intent intentDb = new Intent(this,DatabaseIntentService.class); 
         this.startService(intentDb);
         
-        FileExport fe = new FileExport("bypJSON.txt");
-        try {
-			fe.exportToTxt();
-		} catch (JSONException e) {
-			Log.d("Main", "JSON exception");
-			e.printStackTrace();
-		} catch (IOException e) {
-			Log.d("Main", "IO exception");
-			e.printStackTrace();
-		}
 	}
 
 	@Override
