@@ -2,9 +2,6 @@ package com.GC01.BeatYourPace.MusicPlayer;
  
 import java.io.IOException;
 
-import com.google.analytics.tracking.android.EasyTracker;
-import com.google.analytics.tracking.android.MapBuilder;
-import com.google.analytics.tracking.android.StandardExceptionParser;
 import com.google.analytics.tracking.android.Tracker;
 import com.GC01.BeatYourPace.Database.DatabaseAdapter;
 import com.GC01.BeatYourPace.Database.DatabaseAdapter1;
@@ -93,14 +90,7 @@ public class MusicPlayer implements OnCompletionListener, OnErrorListener {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			
-			/**Google Analytics tracking code **/
-		/*	EasyTracker easyTracker = EasyTracker.getInstance(this);
-			myTracker.send(MapBuilder
-					.createException(new StandardExceptionParser(this, null)
-					.getDescription(Thread.currentThread().getName(),
-							e),
-							false).build() 
-							); */
+			
 		}
 		           
 	      
