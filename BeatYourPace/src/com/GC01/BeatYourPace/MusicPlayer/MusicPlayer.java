@@ -2,14 +2,11 @@ package com.GC01.BeatYourPace.MusicPlayer;
  
 import java.io.IOException;
 
-<<<<<<< HEAD
 import com.google.analytics.tracking.android.EasyTracker;
 import com.google.analytics.tracking.android.MapBuilder;
 import com.google.analytics.tracking.android.StandardExceptionParser;
 import com.google.analytics.tracking.android.Tracker;
-=======
 import com.GC01.BeatYourPace.Main.TrainingModeActivity;
->>>>>>> 87adb0e6b7921d47b1ac99122dc460e0a1bdc23e
 
 import android.app.IntentService;
 import android.app.Service;

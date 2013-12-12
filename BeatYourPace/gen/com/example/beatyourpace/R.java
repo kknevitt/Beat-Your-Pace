@@ -53,8 +53,10 @@ public final class R {
         public static final int TextView001=0x7f0d001d;
         public static final int TrainingText=0x7f0d0002;
         public static final int TrainingTitle=0x7f0d0001;
-        public static final int action_settings=0x7f0d0025;
+        public static final int action_settings=0x7f0d0028;
         public static final int bDecTarget=0x7f0d000f;
+        public static final int bDecTarget1=0x7f0d0027;
+        public static final int bDecTarget2=0x7f0d0026;
         public static final int bDistanceK=0x7f0d001a;
         public static final int bDistanceM=0x7f0d0018;
         public static final int bHelpPage=0x7f0d0017;
@@ -74,6 +76,7 @@ public final class R {
         public static final int bTrainingMode=0x7f0d0014;
         public static final int helpPageTitle=0x7f0d0000;
         public static final int iCurrentMode=0x7f0d000e;
+        public static final int linearLayout1=0x7f0d0025;
         public static final int placeHolderPause=0x7f0d0023;
         public static final int placeHolderStop=0x7f0d0024;
         public static final int sPaceTitle=0x7f0d0012;
@@ -97,6 +100,7 @@ public final class R {
         public static final int pace=0x7f030007;
         public static final int settings=0x7f030008;
         public static final int trainingmode=0x7f030009;
+        public static final int trainingmodetest=0x7f03000a;
     }
     public static final class menu {
         public static final int database=0x7f0c0000;
