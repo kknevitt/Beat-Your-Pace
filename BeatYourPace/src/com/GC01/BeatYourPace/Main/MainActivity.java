@@ -1,14 +1,12 @@
 package com.GC01.BeatYourPace.Main;
 
 import android.app.Activity;
-
 import com.GC01.BeatYourPace.Database.DatabaseIntentService;
 import com.GC01.BeatYourPace.HelpPage.HelpPageActivity;
 import com.GC01.BeatYourPace.PaceCalculator.CurrentPace;
 import com.GC01.BeatYourPace.Settings.SettingsActivity;
 import com.example.beatyourpace.R;
 import com.google.analytics.tracking.android.EasyTracker;
-
 import android.os.Bundle;
 import android.content.Intent;
 import android.view.Menu;
@@ -45,7 +43,6 @@ public class MainActivity extends Activity implements OnClickListener{
         
         //Start loading music data to the database
         //Implemented as a background service
-        // Intent intent = new Intent(this,DatabaseService.class);  doesn't work
         Intent intentDb = new Intent(this,DatabaseIntentService.class); 
         this.startService(intentDb);
         
@@ -84,15 +81,14 @@ public class MainActivity extends Activity implements OnClickListener{
 	      }
 	}       
 	
-	//Add settings option to the top action bar
 		@Override
 		public boolean onOptionsItemSelected(MenuItem item) {
-		    // code to launch the Settings Activity when settings is selected from the menu
 		    switch (item.getItemId()) {
 		        case R.id.action_settings:
 		        	startActivity(new Intent(this,SettingsActivity.class));		        	
 		            return true;
-		        //case R.id.  add in help here
+		        case R.id.helpPageTitle:
+		        	startActivity(new Intent(this,HelpPageActivity.class));
 		        default:
 		            return super.onOptionsItemSelected(item);
 		    }

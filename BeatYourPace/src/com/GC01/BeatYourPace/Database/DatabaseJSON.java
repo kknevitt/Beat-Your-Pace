@@ -1,40 +1,31 @@
-package com.GC01.BeatYourPace.FileManager;
+package com.GC01.BeatYourPace.Database;
 
 /**
- * <dl>
- * 	<dt> Purpose:
- * 	<dd> Create the content for an export of the database of JSON data to txt file 
+ * Extracts contents of the database in JSON format
  * 
- * 	<dt> Description:
- * 	<dd> Create the content for an export of the database to JSON data to txt file 
- * </dl>
- * 
- * @version $Date: 2013/12/10
  * @author sarahnicholson
- *
  */
 
-
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Context;
 import android.database.Cursor;
 import android.util.Log;
 
-import com.GC01.BeatYourPace.Main.ContextProvider;
-import com.GC01.BeatYourPace.Database.DatabaseAdapter1;
+public class DatabaseJSON extends DatabaseAdapter {
 
-public class DatabaseExportToJSON {
+	final static String LOG_TAG = "DbToJSON";
+	private static String fileName = "bypJSON.txt";
 	
-	private final String LOG_TAG = "Export database to JSON";
-	private static String fileName = "byp.txt";
-	
-	public JSONArray getJSON() {
-	 
-		DatabaseAdapter1 db = new DatabaseAdapter1(ContextProvider.getContext());
-		
-		Cursor cursor = db.getAllTracks();
-	 
+	public DatabaseJSON(Context ctx) {
+		super(ctx);
+	}
+
+	public JSONArray getJsonArray() throws JSONException {
+		Cursor cursor = getAllTracks();
+		 
 		JSONArray allTracksJson = new JSONArray();
 	 
 		cursor.moveToFirst();
@@ -62,8 +53,8 @@ public class DatabaseExportToJSON {
 	       	    cursor.moveToNext();
 	        }
 			cursor.close(); 
-			Log.d(LOG_TAG, allTracksJson.toString() );
+			closeDb();
+			Log.d(LOG_TAG, "JSON data extracted");
 			return allTracksJson; 
 	}
-	
 }

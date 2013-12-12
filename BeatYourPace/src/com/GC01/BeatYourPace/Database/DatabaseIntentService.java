@@ -13,7 +13,7 @@ public class DatabaseIntentService extends IntentService {
 
 	private static final String LOG_TAG = "DatabaseIntentService";
 
-	private DatabaseCreation db;
+	private DatabaseAddInitialData db;
 	
 	public DatabaseIntentService() {
 		super("DatabaseIntentService");
@@ -23,7 +23,7 @@ public class DatabaseIntentService extends IntentService {
 	protected void onHandleIntent(Intent intent) {
 		
 		Log.d(LOG_TAG,"DatabaseIntentService : onCreate");
-		this.db = new DatabaseCreation(getApplicationContext());
+		this.db = new DatabaseAddInitialData(getApplicationContext());
 		
 		this.db.synchTracks();
 		

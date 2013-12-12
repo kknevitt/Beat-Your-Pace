@@ -35,7 +35,7 @@ public abstract class DatabaseAdapter {
 	 * Method to open the database in writable format
 	 * @return  db  Returns the database in writable format
 	 */
-	protected DatabaseAdapter openDbWrite() throws SQLException {
+	public DatabaseAdapter openDbWrite() throws SQLException {
 		db = DbHelper.getWritableDatabase();
 		return this;
 	}
@@ -44,7 +44,7 @@ public abstract class DatabaseAdapter {
 	 *  Method to open the database in readable format
 	 * @return  db  Returns the database in writable format
 	 */
-	protected DatabaseAdapter openDbRead() throws SQLException {
+	public DatabaseAdapter openDbRead() throws SQLException {
 		db = DbHelper.getReadableDatabase();
 		return this;
 	}
@@ -60,7 +60,7 @@ public abstract class DatabaseAdapter {
 	 * Query all tracks and all data fields
 	 * @return cursor  New cursor to read the database and give the results
 	 */
-	protected Cursor getAllTracks() {			
+	public Cursor getAllTracks() {			
 		openDbRead();
 		String[] allCol = new String[] {
 				DataEntry.COL_ID, 
@@ -75,7 +75,7 @@ public abstract class DatabaseAdapter {
 		};
 		String orderBy = DataEntry.COL_MEDIASTOREID + " ASC";
 		Cursor cursor = db.query(DataEntry.TABLE_NAME, allCol, null, null, null, null, orderBy);
-		closeDb();
+		// closeDb();
 		return cursor;
 	}
 
@@ -84,7 +84,7 @@ public abstract class DatabaseAdapter {
 	 * Check the default unit stored in the shared preferences file
 	 * @return int unitType  This returns 1 for miles and 2 for kilometres
 	 */
-	protected int getUnitType() {
+	public int getUnitType() {
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ContextProvider.getContext());
 		int unitType = Integer.parseInt(preferences.getString("unitType", "1"));
 		return unitType;

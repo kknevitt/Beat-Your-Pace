@@ -1,9 +1,7 @@
 package com.GC01.BeatYourPace.Database;
 
-//Work in progress - will be used to break up the large Database Adapter class
-
 /**
- * This class provides methods to populate or update the data in the database when the app starts
+ * Provides methods to populate or update the data in the database when the app starts
  * 
  * @author sarahnicholson
  */
@@ -25,7 +23,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.provider.MediaStore;
 import android.util.Log;
 
-public class DatabaseCreation extends DatabaseAdapter {
+public class DatabaseAddInitialData extends DatabaseAdapter {
 
 	private static final String LOG_TAG = "DatabaseCreation";
 
@@ -49,7 +47,7 @@ public class DatabaseCreation extends DatabaseAdapter {
 	};
 	public String orderBy = DataEntry.COL_MEDIASTOREID + " ASC";
 
-	public DatabaseCreation(Context ctx) {
+	public DatabaseAddInitialData(Context ctx) {
 		super(ContextProvider.getContext());
 	}
 
