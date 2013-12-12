@@ -1,13 +1,8 @@
 package com.GC01.BeatYourPace.Main;
 
-import java.io.IOException;
-
-import org.json.JSONException;
-
 import android.app.Activity;
 
 import com.GC01.BeatYourPace.Database.DatabaseIntentService;
-import com.GC01.BeatYourPace.FileManager.FileExport;
 import com.GC01.BeatYourPace.HelpPage.HelpPageActivity;
 import com.GC01.BeatYourPace.PaceCalculator.CurrentPace;
 import com.GC01.BeatYourPace.Settings.SettingsActivity;
@@ -16,7 +11,6 @@ import com.google.analytics.tracking.android.EasyTracker;
 
 import android.os.Bundle;
 import android.content.Intent;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -54,16 +48,6 @@ public class MainActivity extends Activity implements OnClickListener{
         Intent intentDb = new Intent(this,DatabaseIntentService.class); 
         this.startService(intentDb);
         
-        FileExport fe = new FileExport("bypJSON.txt");
-        try {
-			fe.exportToTxt();
-		} catch (JSONException e) {
-			Log.d("Main", "JSON exception");
-			e.printStackTrace();
-		} catch (IOException e) {
-			Log.d("Main", "IO exception");
-			e.printStackTrace();
-		}
 	}
 
 	@Override
@@ -106,7 +90,8 @@ public class MainActivity extends Activity implements OnClickListener{
 		        	startActivity(new Intent(this,SettingsActivity.class));		        	
 		            return true;
 		        case R.id.helpPageTitle:
-		        	startActivity(new Intent(this,HelpPageActivity.class));
+		        	 startActivity(new Intent(this,HelpPageActivity.class));
+			    	 return true;
 		        default:
 		            return super.onOptionsItemSelected(item);
 		    }

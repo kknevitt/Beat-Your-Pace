@@ -15,6 +15,7 @@ package com.GC01.BeatYourPace.Settings;
  */
 
 import com.example.beatyourpace.R;
+
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -33,19 +34,28 @@ import android.widget.Toast;
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 @SuppressLint("NewApi")
-public class SettingsFragment extends PreferenceFragment {
+public class SettingsFragment extends PreferenceFragment implements OnSharedPreferenceChangeListener{
 	
 		public SettingsFragment() {
-			// Required empty public constructor
 		}
 	
 	    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 		@Override
 	    public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
-	        // Load the preferences
 	        addPreferencesFromResource(R.xml.preferences);
-	    }
+	        //the following is not fully implemented, it will be used to check the user enters a correct value
+	        //findPreference("set_target_pace").setOnPreferenceChangeListener(
+	                /*
+	        		new Preference.OnPreferenceChangeListener() {
+	                	 @Override
+	                     public boolean onPreferenceChange(Preference preference, Object newValue) {
+	                         //error check code here
+	                     }
+
+	                 });
+	                 */
+	                }
 
 	        @Override
 	    public void onResume() {
@@ -58,6 +68,13 @@ public class SettingsFragment extends PreferenceFragment {
 	    	//getPreferenceManager().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
 	        super.onPause();
 	    }
+
+		@Override
+		public void onSharedPreferenceChanged(
+				SharedPreferences sharedPreferences, String key) {
+			// TODO Auto-generated method stub
+			
+		}
 	    
 	    /*
 		@Override

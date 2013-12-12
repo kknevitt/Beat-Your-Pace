@@ -9,13 +9,16 @@ import com.GC01.BeatYourPace.PaceCalculator.TargetPace;
 
 public class MusicController {
 	
+	private static TrackList trackList = TrackList.getInstance();
+	private static MusicPlayer musicPlayer = MusicPlayer.getInstance();
+	
 	public static void pressPlay() {
 		
-		if (!TrackList.getInstance().isEmpty()) {
+		if (!trackList.isEmpty()) {
  
-		if (!MusicPlayer.getInstance().isPlaying()){		
+		if (!musicPlayer.isPlaying()){		
 		try {	
-			MusicPlayer.getInstance().play();
+			musicPlayer.play();
 		} catch (IllegalArgumentException e1) {
 			e1.printStackTrace();
 		} catch (SecurityException e1) {
@@ -27,18 +30,15 @@ public class MusicController {
 		
 		}
 	}
-		
-		
-	
 	
 	public static void pressSkip() {
 		
 	
-		if (!TrackList.getInstance().isEmpty()) {
+		if (!trackList.isEmpty()) {
 			
-			if (MusicPlayer.getInstance().isPlaying()){
+			if (musicPlayer.isPlaying()){
 	try {
-		MusicPlayer.getInstance().skip();
+		musicPlayer.skip();
 	}
 	catch (IllegalArgumentException e) {
 		e.printStackTrace();
@@ -56,11 +56,11 @@ public class MusicController {
 	}
 	
 	public static void pressPrevious() {
-		if (!TrackList.getInstance().isEmpty()) {
+		if (!trackList.isEmpty()) {
 			
-		if (MusicPlayer.getInstance().isPlaying()){
+		if (musicPlayer.isPlaying()){
 		try {
-        	MusicPlayer.getInstance().previous();	
+        	musicPlayer.previous();	
         	
 		} catch (IllegalArgumentException e) {
 			e.printStackTrace();
@@ -79,13 +79,13 @@ public class MusicController {
 		
 		
 		
-		TrackList.getInstance().updateTrackList((float) TargetPace.getTargetPace());
+		trackList.updateTrackList((float) TargetPace.getTargetPace());
 		
-		if (!TrackList.getInstance().isEmpty()) {
+		if (!trackList.isEmpty()) {
 				
-			if (MusicPlayer.getInstance().isPlaying()){
+			if (musicPlayer.isPlaying()){
 			
-				MusicPlayer.getInstance().stop();
+				musicPlayer.stop();
 				
 		
 		}
@@ -93,8 +93,8 @@ public class MusicController {
 		System.out.println("TrackList wasn't null");
 		
 		try {
-			TrackList.getInstance().setSong("reset");
-			MusicPlayer.getInstance().play();
+			trackList.setSong("reset");
+			musicPlayer.play();
 		} catch (IllegalArgumentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -106,15 +106,13 @@ public class MusicController {
 			e.printStackTrace();
 		}
 		}
-	
-		
 		
 	}
 		
 	public static void pressPause() {
 		
-		if (!TrackList.getInstance().isEmpty()) {
-		MusicPlayer.getInstance().pause();
+		if (!trackList.isEmpty()) {
+		musicPlayer.pause();
 		
 		}
 		
@@ -122,7 +120,7 @@ public class MusicController {
 	
 	public static void pressStop() {
 		
-		MusicPlayer.getInstance().stop();
+		musicPlayer.stop();
 	}
 	
 }

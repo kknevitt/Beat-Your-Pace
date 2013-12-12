@@ -1,6 +1,6 @@
 package com.GC01.BeatYourPace.ArchiveFiles;
 
-import com.GC01.BeatYourPace.Database.DatabaseAdapter1;
+import com.GC01.BeatYourPace.Database.DatabaseAdapter2;
 
 import android.app.Service;
 import android.content.Intent;
@@ -12,13 +12,13 @@ public class DatabaseService extends Service {
 
 	private static final String LOG_TAG = "DatabaseService";
 
-	private DatabaseAdapter1 db;
+	private DatabaseAdapter2 db;
 	
 	@Override
 	public void onCreate() {
 		super.onCreate();
 		Log.d(LOG_TAG,"DatabaseService : onCreate");
-		this.db = new DatabaseAdapter1(getApplicationContext());
+		this.db = new DatabaseAdapter2(getApplicationContext());
 		Log.d(LOG_TAG,"DB created");
 		this.db.openDbWrite();
 		this.db.addTracks();

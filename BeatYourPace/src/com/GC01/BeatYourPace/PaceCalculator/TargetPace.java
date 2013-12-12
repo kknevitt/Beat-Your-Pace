@@ -10,7 +10,7 @@ public class TargetPace {
 		if (increment == true){
 			
 			
-			TrainingModeActivity.targetPace += 0.5;
+			TrainingModeActivity.targetPace += 0.5	;
 			
 		}
 			
