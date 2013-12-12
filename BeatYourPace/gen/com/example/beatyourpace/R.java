@@ -35,12 +35,13 @@ public final class R {
         public static final int button_shape_rounded=0x7f020002;
         public static final int ic_launcher=0x7f020003;
         public static final int ic_launcher2=0x7f020004;
-        public static final int medium_pause=0x7f020005;
-        public static final int medium_play=0x7f020006;
-        public static final int medium_previous=0x7f020007;
-        public static final int medium_skip=0x7f020008;
-        public static final int medium_stop=0x7f020009;
-        public static final int selector_pauseorplay=0x7f02000a;
+        public static final int ic_launcher_3=0x7f020005;
+        public static final int medium_pause=0x7f020006;
+        public static final int medium_play=0x7f020007;
+        public static final int medium_previous=0x7f020008;
+        public static final int medium_skip=0x7f020009;
+        public static final int medium_stop=0x7f02000a;
+        public static final int selector_pauseorplay=0x7f02000b;
     }
     public static final class id {
         public static final int CurentPace=0x7f0c0010;

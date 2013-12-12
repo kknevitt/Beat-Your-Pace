@@ -398,7 +398,7 @@ public class DatabaseAdapter1 {
 				if (initPrefPace == targetPace) {
 					appropriateSongs.add(fileLoc);
 				}
-			} else if (preferredPace >= targetPace - 0.5 || preferredPace <= targetPace + 0.5){
+			} else if (preferredPace >= targetPace - 0.5 && preferredPace <= targetPace + 0.5){
 				appropriateSongs.add(fileLoc);
 			} else {
 				//do nothing
