@@ -14,6 +14,7 @@ package com.GC01.BeatYourPace.Settings;
  *
  */
 
+import com.GC01.BeatYourPace.Main.ContextProvider;
 import com.example.beatyourpace.R;
 
 import android.annotation.SuppressLint;
@@ -34,58 +35,47 @@ import android.widget.Toast;
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 @SuppressLint("NewApi")
-public class SettingsFragment extends PreferenceFragment implements OnSharedPreferenceChangeListener{
+public class SettingsFragment extends PreferenceFragment implements OnSharedPreferenceChangeListener {
+
+	private OnSharedPreferenceChangeListener listener;
 	
-		public SettingsFragment() {
-		}
-	
-	    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-		@Override
-	    public void onCreate(Bundle savedInstanceState) {
-	        super.onCreate(savedInstanceState);
-	        addPreferencesFromResource(R.xml.preferences);
-	        //the following is not fully implemented, it will be used to check the user enters a correct value
-	        //findPreference("set_target_pace").setOnPreferenceChangeListener(
-	                /*
-	        		new Preference.OnPreferenceChangeListener() {
-	                	 @Override
-	                     public boolean onPreferenceChange(Preference preference, Object newValue) {
-	                         //error check code here
-	                     }
+	public SettingsFragment() {
+	}
 
-	                 });
-	                 */
-	                }
+	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		addPreferencesFromResource(R.xml.preferences);
+		
+		//SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(ContextProvider.getContext());
+		//sp.registerOnSharedPreferenceChangeListener(listener);
+		getPreferenceManager().getSharedPreferences().registerOnSharedPreferenceChangeListener(listener);
+		
+	}
 
-	        @Override
-	    public void onResume() {
-	        super.onResume();
-	        //getPreferenceManager().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
-	    }
+	@Override
+	public void onResume() {
+		super.onResume();
+		getPreferenceManager().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
+	}
 
-	    @Override
-	    public void onPause() {
-	    	//getPreferenceManager().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
-	        super.onPause();
-	    }
+	@Override
+	public void onPause() {
+		getPreferenceManager().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
+		super.onPause();
+	}
 
-		@Override
-		public void onSharedPreferenceChanged(
-				SharedPreferences sharedPreferences, String key) {
-			// TODO Auto-generated method stub
-			
-		}
-	    
-	    /*
-		@Override
-		public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-			if ("set_target_pace".equals(key)) {
+	@Override
+	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+		/*
+		if ("set_target_pace".equals(key)) {
 
 	    		String value = sharedPreferences.getString(key, "6.0");
 	    		double newTargetPace = Double.parseDouble(key);
-	    		
+
 	    		//need to add a second test to make sure it end 0 or 0.5 - use the string value and check the last 2 chars?
-	    		
+
 	    		if(newTargetPace < 4.0 || newTargetPace > 30.0) {
 	    				Toast toast = Toast.makeText(getActivity(),"Default pace must be between 4.0 and 30.0", Toast.LENGTH_SHORT);
 	    				toast.show();
@@ -98,7 +88,6 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
 
 	    			}
 	    	}
-			
-		}
-	    */
+	    	*/
+	}
 }

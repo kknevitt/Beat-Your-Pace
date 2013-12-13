@@ -75,19 +75,7 @@ public abstract class DatabaseAdapter {
 		};
 		String orderBy = DataEntry.COL_MEDIASTOREID + " ASC";
 		Cursor cursor = db.query(DataEntry.TABLE_NAME, allCol, null, null, null, null, orderBy);
-		// closeDb();
 		return cursor;
-	}
-
-	//consider moving this to the settings package
-	/**
-	 * Check the default unit stored in the shared preferences file
-	 * @return int unitType  This returns 1 for miles and 2 for kilometres
-	 */
-	public int getUnitType() {
-		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ContextProvider.getContext());
-		int unitType = Integer.parseInt(preferences.getString("unitType", "1"));
-		return unitType;
 	}
 
 }
