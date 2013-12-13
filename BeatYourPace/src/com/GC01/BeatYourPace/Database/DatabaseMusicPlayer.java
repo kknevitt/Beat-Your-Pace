@@ -10,7 +10,10 @@ package com.GC01.BeatYourPace.Database;
  */
 
 import java.util.ArrayList;
+
 import com.GC01.BeatYourPace.Database.DatabaseContract.DataEntry;
+import com.GC01.BeatYourPace.Settings.GetSettings;
+
 import android.content.Context;
 import android.database.Cursor;
 import android.util.Log;
@@ -31,7 +34,9 @@ public class DatabaseMusicPlayer extends DatabaseAdapter {
 	 */
 	public void addPrefPace(Float increment, String fileLoc){
 	
-		int unitType = getUnitType();
+		GetSettings gs = new GetSettings();
+		int unitType = gs.getUnitType();
+		
 		float prefPace;
 		float initPrefPace;
 
@@ -91,7 +96,8 @@ public class DatabaseMusicPlayer extends DatabaseAdapter {
 		//List that holds just the path name to the track as this is what the music player needs
 		ArrayList<String> appropriateSongs = new ArrayList<String>();
 
-		int unitType = getUnitType();
+		GetSettings gs = new GetSettings();
+		int unitType = gs.getUnitType();
 
 		String query2;
 		
