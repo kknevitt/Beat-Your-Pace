@@ -1,18 +1,15 @@
 package com.GC01.BeatYourPace.Main;
 
-import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.app.Activity;
+
 import com.GC01.BeatYourPace.Database.DatabaseIntentService;
 import com.GC01.BeatYourPace.HelpPage.HelpPageActivity;
 import com.GC01.BeatYourPace.PaceCalculator.CurrentPace;
 import com.GC01.BeatYourPace.Settings.SettingsActivity;
-import com.GC01.BeatYourPace.Settings.SettingsFragment;
 import com.example.beatyourpace.R;
 import com.google.analytics.tracking.android.EasyTracker;
-import android.os.Build;
+
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,14 +17,12 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class MainActivity extends Activity implements OnClickListener{
 	
 	//creating button objects
     Button trainingModeButton, letsRunModeButton, settingsButton, helpPageButton;
    
 
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -48,7 +43,8 @@ public class MainActivity extends Activity implements OnClickListener{
         settingsButton.setOnClickListener(this);
         helpPageButton.setOnClickListener(this);
         
-        //Start loading music data to the database now so it is ready when the music player starts
+        //Start loading music data to the database
+        //Implemented as a background service
         Intent intentDb = new Intent(this,DatabaseIntentService.class); 
         this.startService(intentDb);
         
@@ -61,8 +57,6 @@ public class MainActivity extends Activity implements OnClickListener{
 		EasyTracker.getInstance(this).activityStart(this);
 		return true;
 	}
-	
-	
 	@Override
 	public void onClick(View v) {
 	     if(v == trainingModeButton){ //onclick the user is taken to the TrainingMode view as per TrainingModeActivity class
@@ -93,7 +87,7 @@ public class MainActivity extends Activity implements OnClickListener{
 		public boolean onOptionsItemSelected(MenuItem item) {
 		    switch (item.getItemId()) {
 		        case R.id.action_settings:
-		        	startActivity(new Intent(this,SettingsActivity.class));	
+		        	startActivity(new Intent(this,SettingsActivity.class));		        	
 		            return true;
 		        case R.id.helpPageTitle:
 		        	 startActivity(new Intent(this,HelpPageActivity.class));
