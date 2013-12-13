@@ -25,7 +25,7 @@
     <string name="sSongDetails">Music Artist &amp; Track</string>
     <string name="sPaceTitle">Pace</string>
     <string name="sTargetTitle">Target</string>
-    <string name="sPace">7mph</string>
+    <string name="sPace">0.0</string>
     <string name="sTarget">8mph</string>
     <string name="sDscrPreviousTrack">Plays the Previous Track Played</string>
     <string name="sDscrPlayPause">Play or Pause the Current Track</string>

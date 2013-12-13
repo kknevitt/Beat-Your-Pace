@@ -15,7 +15,4 @@ public class HelpPageActivity extends Activity {
 		/**Google Analytics tracking code**/
 		EasyTracker.getInstance(this).activityStart(this);
 	}
-
-	
-
 }

@@ -28,7 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/bSongTooSlow"
-        android:layout_alignLeft="@+id/CurentPace"
+        android:layout_alignLeft="@+id/currentPaceText"
         android:text="@string/sTarget"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -51,7 +51,7 @@
         android:textSize="32sp" />
 
     <TextView
-        android:id="@+id/CurentPace"
+        android:id="@+id/currentPaceText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/CurrentTargetPace"
