@@ -24,16 +24,12 @@ import com.GC01.BeatYourPace.PaceCalculator.TargetPace;
 
 
 public class TrackList {
-
-	
-	/** A string of the filepath of the current track to be played by the MusicPlayer */
-	private String songPath;
 	
 	/** The index of the current song within the ArrayList */
-	private int songIndex;
+	private int trackIndex;
 	
 	/** An ArrayList which will contain the information of the appropriate songs for the MusicPlayer to play*/
-	private ArrayList<String> paceTrackList = new ArrayList<String>(); // ArrayList containing song details and the path file for the song.	
+	private ArrayList<String> currentTrackList = new ArrayList<String>(); // ArrayList containing song details and the path file for the song.	
 	
 	/** Static object of the Tracklist used in order to create a Singleton */	
 	private static TrackList  _trackList = null;
@@ -44,8 +40,7 @@ public class TrackList {
 	/** Whether the current TrackList has any songs in it*/
 	public static boolean empty;
 	
-	/** The Artist and Song of the Current Song */
-	private String trackInfo;
+
 	
 	
 	
@@ -57,7 +52,7 @@ public class TrackList {
 		updateTrackList((float) TargetPace.getTargetPace());
 			 	
 		// Initially pointing to the first song in the array.
-		songIndex = 0;
+		trackIndex = 0;
 		}
 	
 	
@@ -84,17 +79,17 @@ public class TrackList {
 		 */
 	
 	
-		public void setSong(String function){
+		public void setTrackIndex(String function){
 			
 		// Song index is being incremented, unless it is at the end at which point it is set to 0 in order to cycle.
 		if (function == "skip") {
 			
 			Log.d("TrackList - skip", "This TrackList index is being skipped");
 			
-				if (getSongIndex() == paceTrackList.size()-1)
-					songIndex = 0;
+				if (getTrackIndex() == currentTrackList.size()-1)
+					trackIndex = 0;
 				else
-					songIndex = getSongIndex() + 1;
+					trackIndex = getTrackIndex() + 1;
 			
 		}
 			
@@ -104,10 +99,10 @@ public class TrackList {
 			
 			Log.d("TrackList - previous", "This TrackList index is being decremented");
 			
-			if (getSongIndex() == 0)
-				songIndex = paceTrackList.size()-1;
+			if (getTrackIndex() == 0)
+				trackIndex = currentTrackList.size()-1;
 			else
-				songIndex = getSongIndex() -1;
+				trackIndex = getTrackIndex() -1;
 			
 		}
 		
@@ -116,40 +111,34 @@ public class TrackList {
 		// smaller than it had been originally, as otherwise it would be possible to achieve out of bounds errors.
 		if (function == "reset"){
 			
-			Log.d("TrackList - reset", "Is now the current TrackList index after being reset");
+			Log.d("TrackList", "TrackList index has been reset");
 			
-			songIndex = 0;
+			trackIndex = 0;
 			
+			}
+
 		}
 		
 		
 		
+		public String getTrackIndex(int index){
+			
+			return currentTrackList.get(index);
 		}
+		
 	 	
  	
 		/** Sends the index value for the chosen song from the ArrayList
 		 * 
 		 * @return songIndex (int) The current song from within the TrackList object.
 		 */
-		public int getSongIndex(){
+		
+		
+		public int getTrackIndex(){
 					
-			return songIndex;
+			return trackIndex;
 	 	}
 	 	
-		
-		
-		/** Sends the file path by using the song index from the ArrayList.
-		 *
-		 * @return songPath (String)The file path for the current song.
-		 */
-		public String getSongPath() {
-					
-			songPath = paceTrackList.get(getSongIndex());
-			return songPath;
-					
-			}	
-
-		
 		
 		
 		/** Updates the TrackList based on what the current (updated) Target Pace is, by querying the database of possible 
@@ -158,18 +147,29 @@ public class TrackList {
 		 */
 		public void updateTrackList(float tarPace) {
 				
+			try {
 			DatabaseAdapter1 db = new DatabaseAdapter1(ContextProvider.getContext());
 
-			paceTrackList = db.getAppropriateSongs(tarPace);
+			currentTrackList = db.getAppropriateSongs(tarPace);
+			
+			Log.d("TrackList", "TrackList updated");
+			}
+			
+			catch(Exception e){
+				
+				Log.d("TrackList", "TrackList update has failed");
+				
+			}
+			
 			
 		//	TrackList.getInstance().setSong("reset"); atm this causes recursive error.
 			
-			Log.d("TrackList - updateTrackList", "TrackList updated");
+			
 
 			/* Array list printing for debugging puproses
 			for (int i = 0; i < paceTrackList.size(); i++){
 				
-				System.out.println(paceTrackList.get(i));
+				System.out.println(currentTrackList.get(i));
 				
 			}
 			
@@ -185,7 +185,7 @@ public class TrackList {
 		 */
 		public int getTrackListSize(){
 			
-			trackListSize = paceTrackList.size();
+			trackListSize = currentTrackList.size();
 			
 			return trackListSize;
 			
@@ -198,9 +198,9 @@ public class TrackList {
 		 */
 		public boolean isEmpty() {
 			
-			if (paceTrackList.isEmpty()) {
+			if (currentTrackList.isEmpty()) {
 						
-						Log.d("TrackList - isEmpty", "TrackList was empty");
+						Log.d("TrackList", "TrackList was empty");
 						Toast.makeText(ContextProvider.getContext(), "No Songs at that Target Pace", Toast.LENGTH_SHORT).show();
 						empty = true;		
 					}
@@ -214,22 +214,7 @@ public class TrackList {
 				return empty;
 				}
 		
-		
-		
-		
-		
-		
-		public void setTrackInfo(String path){
 
-			DatabaseAdapter1 db = new DatabaseAdapter1(ContextProvider.getContext());
-			trackInfo = db.getTrackInfo(path);
-		}
-		
-		
-		public String getTrackInfo(){
-			
-			return trackInfo;
-		}
 		
 		
 		

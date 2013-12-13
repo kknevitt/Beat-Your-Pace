@@ -23,32 +23,35 @@ import com.google.analytics.tracking.android.Tracker;
  * such as playing a song. </p>
  */
  
-public class MusicPlayer extends MediaPlayer implements OnCompletionListener, OnErrorListener {	 
+//The class originally extended mediaPlayer and inherited these methods directly, but I have been unable to yet 
+	//  deal with the exceptions created when using the inherited methods, so some have been re-added indirectly for now.
+public class MusicPlayer implements OnCompletionListener, OnErrorListener {	 
 
 	/** Uses a MediaPlayer object from the android.media package as a base for playback functions */
 
 	/** Singleton Instance of the MusicPlayer. */
 	private static MusicPlayer _instance = null;
 	
-	private TrackList trackList = TrackList.getInstance();
+	
+	protected TrackList trackList = TrackList.getInstance();
+	
+	private CurrentSong song = CurrentSong.getInstance();
+	
+	private boolean playing;
+	private int position;
 	
 	Tracker myTracker; 
-	
-	protected String trackInfo;
-	
-	
-	
-	
 
 	
 	/** Private constructor for MusicPlayer which ensure it has an onCompletionListener when it is created in order to know
 	 * when to automatically play the next song.
 	 */
 	
+	public static MediaPlayer mediaPlayer = new MediaPlayer();
+	
 	private MusicPlayer(){
-		
-		super();
-		this.setOnCompletionListener(this);
+
+		mediaPlayer.setOnCompletionListener(this);
 		
 	}
 	
@@ -94,7 +97,7 @@ public class MusicPlayer extends MediaPlayer implements OnCompletionListener, On
 	
 	public void skip() throws IllegalArgumentException, SecurityException, IllegalStateException, IOException {
 		
-		trackList.setSong("skip");
+		trackList.setTrackIndex("skip");
 		playCurrentSong();
 		
  	}
@@ -103,7 +106,7 @@ public class MusicPlayer extends MediaPlayer implements OnCompletionListener, On
 	/** Reverts to the previous song in the TrackList ArrayList and plays that song	 */
 	public void previous() throws IllegalArgumentException, SecurityException, IllegalStateException, IOException {
 		
-		trackList.setSong("previous");
+		trackList.setTrackIndex("previous");
 		playCurrentSong();	
  	}
 	
@@ -113,8 +116,8 @@ public class MusicPlayer extends MediaPlayer implements OnCompletionListener, On
 		// Ensures that the Music Player will stop the current song before attempting to play the next to ensure it will not be
 		// playing over the top of itself
 		try {
-		if (this.isPlaying()){
-			this.stop();
+		if (this.currentlyPlaying()){
+			mediaPlayer.stop();
 			}
 		}
 		catch(Exception e){
@@ -128,10 +131,10 @@ public class MusicPlayer extends MediaPlayer implements OnCompletionListener, On
 		 */
 		
 		try {
-		this.reset();
-		this.setDataSource(trackList.getSongPath());
-		this.prepare();
-		this.start();
+		mediaPlayer.reset();
+		mediaPlayer.setDataSource(song.getSongPath());
+		mediaPlayer.prepare();
+		mediaPlayer.start();
 		}
 		catch(Exception e){
 			Log.e("Music Player", "Unable to assign proper states and play song");
@@ -139,18 +142,18 @@ public class MusicPlayer extends MediaPlayer implements OnCompletionListener, On
 		
 		// Sends the current Track Information to be broadcast to the Activities to be displayed for the user.
 		
-		trackList.setTrackInfo(trackList.getSongPath());
-		trackInfo = trackList.getTrackInfo();
-		
-		sendTrackInfo();
+		song.setTrackInfo(song.getSongPath());
+			
+		sendTrackInfo(song.getTrackInfo());
 	
 		}
 	
 	
 	/** Uses a LocalBroadCastManager to send a broadcast for the activities to receive and in turn display the current
 	 * track information including the artist and song name.
+	 * @param trackInfo 
 	 */
-	public void sendTrackInfo() {
+	public void sendTrackInfo(String trackInfo) {
 		
 	// Creating a new Intent to send the broadcast to the Activity
 	  Intent intent = new Intent("Track Info Event");
@@ -180,6 +183,17 @@ public class MusicPlayer extends MediaPlayer implements OnCompletionListener, On
 			
 	}
 	
+	/** Resumes the track if one has already been started */
+	public void resumeTrack(){
+		
+		mediaPlayer.start();
+	}
+	
+	/** Pauses the current track */
+	public void pausePosition(){
+		
+		mediaPlayer.pause();
+	}
 
 
 	@Override
@@ -187,6 +201,42 @@ public class MusicPlayer extends MediaPlayer implements OnCompletionListener, On
 
 		// TODO Auto-generated method stub
 		return false;
+	}
+	
+	
+	
+	// Re-added methods
+	public boolean currentlyPlaying(){
+		
+		if (mediaPlayer.isPlaying()) {
+			
+			playing = true;
+			
+		}
+			
+			else {
+				
+				playing = false;
+			}
+		
+		return playing;
+
+	}
+	
+	public void stopPlayback(){
+		
+		mediaPlayer.stop();
+	}
+	
+	public int getPosition(){
+		
+		position = mediaPlayer.getCurrentPosition();
+		return position;
+	}
+	
+	public void pausePlayback(){
+		
+		mediaPlayer.pause();
 	}
 	
 }

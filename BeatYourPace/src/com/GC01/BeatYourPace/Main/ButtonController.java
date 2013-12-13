@@ -1,38 +1,37 @@
 package com.GC01.BeatYourPace.Main;
 
-import java.io.IOException;
-
 import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 import android.view.View;
 
-import com.GC01.BeatYourPace.PaceCalculator.*;
 import com.GC01.BeatYourPace.Database.DatabaseAdapter1;
+import com.GC01.BeatYourPace.MusicPlayer.CurrentSong;
 import com.GC01.BeatYourPace.MusicPlayer.MusicController;
-import com.GC01.BeatYourPace.MusicPlayer.MusicPlayer;
 import com.GC01.BeatYourPace.MusicPlayer.TrackList;
 import com.GC01.BeatYourPace.PaceCalculator.TargetPace;
 import com.example.beatyourpace.R;
 import com.google.analytics.tracking.android.EasyTracker;
 import com.google.analytics.tracking.android.MapBuilder;
-import com.google.analytics.tracking.android.Tracker;
 
+/** 
+ * @author Laura Barbosa &  Kristian Knevitt
+ * @version 1.0, Updated 12/12/2013
+ */
+
+/** Receives views and handles where the requests should be sent, e.g the play/pause button is pressed then a request
+ * is sent to the MusicController to handle what will happen.
+ */
 public class ButtonController extends Service {
-	static Context context;
-	static EasyTracker tracker = EasyTracker.getInstance(context);
-	//static TrackList trackList = new TrackList(TargetPace.getTargetPace()); // This has the Target CurrentPace as its parameter
 	
-public static void buttonFunction(View v) {
+	static EasyTracker tracker = EasyTracker.getInstance(ContextProvider.getContext());
+	
+	public static void buttonFunction(View v) {
 
 	
 		switch (v.getId()) {		
 			case R.id.bPlayAndPause:
-				if (MusicPlayer.getInstance().isPlaying())
-				MusicController.pressPause();
-				else
-					MusicController.pressPlay();
+				MusicController.pressPlay_Pause();
 			    break;
 			    
 			case R.id.bSkipTrack: 
@@ -45,11 +44,15 @@ public static void buttonFunction(View v) {
 	            break;
 	            
 	            // Decreases the user's preferred pace for this track by 0.5.
+	            //perhaps split this as the tracklist shouldnt be tested at this level, should
+	            // be within the music controller.
 			case R.id.bSongTooSlow:
-				DatabaseAdapter1 db = new DatabaseAdapter1(context);
-				db.addPrefPace((float) 0.5, TrackList.getInstance().getSongPath());
+				if (!TrackList.getInstance().isEmpty()) {
+				DatabaseAdapter1 db = new DatabaseAdapter1(ContextProvider.getContext());
+				db.addPrefPace((float) 0.5, CurrentSong.getInstance().getSongPath());
 				db.closeDb();
 				MusicController.pressSkip();
+				}
 				
 				/**Google Analytics tracking code**/
 				tracker.send(MapBuilder.createEvent("UI_Action", "button_press", "songTooSlow", null).build());
@@ -57,13 +60,17 @@ public static void buttonFunction(View v) {
 	            
 	            // Increases the user's preferred pace for this track by 0.5.
 			case R.id.bSongTooFast:
-				DatabaseAdapter1 db2 = new DatabaseAdapter1(context);
-				db2.addPrefPace((float) -0.5, TrackList.getInstance().getSongPath());
+				
+				if (!TrackList.getInstance().isEmpty()) {
+				DatabaseAdapter1 db2 = new DatabaseAdapter1(ContextProvider.getContext());
+				db2.addPrefPace((float) -0.5, CurrentSong.getInstance().getSongPath());
 				db2.closeDb();
 				MusicController.pressSkip();
 				
 				/**Google Analytics tracking code**/
 				tracker.send(MapBuilder.createEvent("UI_Action", "button_press", "songTooFast", null).build());
+				
+				}
 	            break;
 	        
 			case R.id.bDecTarget: 

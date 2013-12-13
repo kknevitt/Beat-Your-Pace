@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 
 import com.GC01.BeatYourPace.MusicPlayer.AudioFocusManager;
 import com.GC01.BeatYourPace.MusicPlayer.MusicPlayer;
+import com.GC01.BeatYourPace.MusicPlayer.TrackList;
 import com.GC01.BeatYourPace.PaceCalculator.CurrentPace;
 import com.example.beatyourpace.R;
 import com.google.analytics.tracking.android.EasyTracker;
@@ -63,6 +64,8 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 		EasyTracker.getInstance(this).activityStart(this);
 		
 		onScreen = true;
+		
+		TrackList trackList = TrackList.getInstance();
 
 		AudioFocusManager.getInstance();
 		
@@ -150,11 +153,11 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 	
 	public void onDestroy(){
 		super.onDestroy();
-		MusicPlayer.getInstance().stop();
-		MusicPlayer.getInstance().release();
+		MusicPlayer.getInstance().stopPlayback();
 		
 	}
 	
+
 	private BroadcastReceiver bReceiver = new BroadcastReceiver() {
 		  @Override
 		  public void onReceive(Context context, Intent intent) {

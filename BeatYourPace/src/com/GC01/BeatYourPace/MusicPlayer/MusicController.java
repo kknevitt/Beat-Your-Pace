@@ -2,125 +2,120 @@ package com.GC01.BeatYourPace.MusicPlayer;
 
 import java.io.IOException;
 
-import android.widget.Toast;
+import android.util.Log;
 
-import com.GC01.BeatYourPace.Main.ContextProvider;
 import com.GC01.BeatYourPace.PaceCalculator.TargetPace;
 
+
+/** 
+ * @author Kristian Knevitt
+ * @version 1.0, Updated 12/12/2013
+ */
+
+
+/** Controls the logic of what will occur to the MusicPlayer and TrackList based on what button's the user has
+ * pressed
+ */
 public class MusicController {
 	
 	private static TrackList trackList = TrackList.getInstance();
 	private static MusicPlayer musicPlayer = MusicPlayer.getInstance();
+
 	
-	public static void pressPlay() {
+	/** Starts play-back of a track if there is one to be played and it is not currently playing, if it
+	 * is not playing but has already been started it will resume that song, otherwise it will pause the
+	 * play-back of the current song.
+	 */
+	public static void pressPlay_Pause() {
 		
-		if (!trackList.isEmpty()) {
- 
-		if (!musicPlayer.isPlaying()){		
-		try {	
+		// Condtions put in place to ensure media player cannot be playing more than one song at a time
+		// 
+		if (!trackList.isEmpty() && !musicPlayer.currentlyPlaying()) {
+			
+			if (musicPlayer.getPosition() < 1000)
+			
 			musicPlayer.play();
-		} catch (IllegalArgumentException e1) {
-			e1.printStackTrace();
-		} catch (SecurityException e1) {
-			e1.printStackTrace();
-		} catch (IllegalStateException e1) {
-			e1.printStackTrace();
+			
+			else {
+				
+				musicPlayer.resumeTrack();
+			}
 		}
+			else if (!trackList.isEmpty() && musicPlayer.currentlyPlaying()){
+				
+				musicPlayer.pausePlayback();
 		}
 		
-		}
+		
+			 
 	}
 	
+	/** Requests that the Music Player skips to the next song */
 	public static void pressSkip() {
 		
-	
-		if (!trackList.isEmpty()) {
-			
-			if (musicPlayer.isPlaying()){
-	try {
-		musicPlayer.skip();
-	}
-	catch (IllegalArgumentException e) {
-		e.printStackTrace();
-	} catch (SecurityException e) {
-		e.printStackTrace();
-	} catch (IllegalStateException e) {
-		e.printStackTrace();
-	} catch (IOException e) {
-		e.printStackTrace();
-	}
-	}
-	}
+		if (!trackList.isEmpty() && musicPlayer.currentlyPlaying()) {
+				
+			try {
+				musicPlayer.skip();
+			} 
+			catch (IOException e) {
+				Log.d("Music Controller", "IO Exception at Skip request");
+				e.printStackTrace();
+			}
+		}
 
 		
 	}
 	
+	/** Requests that the Music Player reverts to playback of the previous song */
+	
 	public static void pressPrevious() {
-		if (!trackList.isEmpty()) {
-			
-		if (musicPlayer.isPlaying()){
-		try {
-        	musicPlayer.previous();	
-        	
-		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
-		} catch (SecurityException e) {
-			e.printStackTrace();
-		} catch (IllegalStateException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		
+		if (!trackList.isEmpty() && musicPlayer.currentlyPlaying()) {
+				
+			try {
+				musicPlayer.previous();	
+
+			} catch (IOException e) {
+				Log.d("Music Controller", "IO Exception at PreviousTrack request");
+				e.printStackTrace();
 			}
-	}
+		}
+	
 	}
 	
+	
+	/** Handles a request of the target pace being changed by updating the tracklist based on the new
+	 * variable
+	 */
 	public static void changeTarPace() {
 		
-		
-		
+
+		// Sends the Target Pace variable to the tracklist for it to be processed.
 		trackList.updateTrackList((float) TargetPace.getTargetPace());
 		
-		if (!trackList.isEmpty()) {
-				
-			if (musicPlayer.isPlaying()){
-			
-				musicPlayer.stop();
-				
-		
+		// Stops current playback
+		if (!trackList.isEmpty() && musicPlayer.currentlyPlaying()) {
+
+				musicPlayer.stopPlayback();		
 		}
-		
-		System.out.println("TrackList wasn't null");
-		
+
 		try {
-			trackList.setSong("reset");
+			// resets to the first index of the tracklist to avoid out of bounds errors.
+			trackList.setTrackIndex("reset");
 			musicPlayer.play();
-		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SecurityException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalStateException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
+			catch (Exception e) {
+				Log.d("Music Controller", "Failure to restart playback of updated TrackList");
+			
 		}
 		
 	}
 		
-	public static void pressPause() {
-		
-		if (!trackList.isEmpty()) {
-		musicPlayer.pause();
-		
-		}
-		
-	}
-	
+	/** Stops the Music Player, setting it to an unintialised state */
 	public static void pressStop() {
 		
-		musicPlayer.stop();
+		musicPlayer.stopPlayback();
 	}
 	
 }

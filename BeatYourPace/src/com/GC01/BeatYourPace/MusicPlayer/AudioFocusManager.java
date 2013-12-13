@@ -1,37 +1,41 @@
 package com.GC01.BeatYourPace.MusicPlayer;
 
+import android.content.Context;
+import android.media.AudioManager;
+import android.media.AudioManager.OnAudioFocusChangeListener;
+import android.util.Log;
 import com.GC01.BeatYourPace.Main.ContextProvider;
 import com.GC01.BeatYourPace.Main.TrainingModeActivity;
 
-import android.app.Service;
-import android.content.Context;
-import android.content.Intent;
-import android.media.AudioManager;
-import android.media.AudioManager.OnAudioFocusChangeListener;
-import android.os.IBinder;
-import android.widget.Toast;
-
 // see android audio focus tutorial
 
-
-/* Create as singleton which can take in a parameter and uses a boolean flag to test whether it has focus or not
- * 
- * 
- * 
+/** 
+ * @author Kristian Knevitt & Laura Barbosa
+ * @version 1.0, Updated 12/12/2013
  */
 
+
+/** Manages Audio Focus, by handling requests and listeners to changes in focus, created using the Android "Managing Audio
+ * Focus" Tutorial - http://developer.android.com/training/managing-audio/audio-focus.html and also:
+ * Professional Android 4 Application Development, 3rd Edition - Chapter 15.
+ */
 public class AudioFocusManager{
 	
-
+	// Members of the class
 	private  int result;
 	private AudioManager audioMan;
 	private static AudioFocusManager _instance;
 	
+	
+	// Uses the Android Audio Manager, which requires the context of the Audio service.
 	private AudioFocusManager(){
 
 	audioMan = (AudioManager) ContextProvider.getContext().getSystemService(Context.AUDIO_SERVICE);
 		
 	}
+	
+	
+	// Singleton creator method
 	public static AudioFocusManager getInstance()
 	{
 		if(_instance == null)
@@ -43,13 +47,18 @@ public class AudioFocusManager{
 	
 	
 	
-	
+	/** 
+	 * Requests audio focus through the audio manager by passing in the listener, the type of stream, and the expected
+	 * duration of focus (in this case unknown as it is to handle the playback of songs).
+	 * Sets the result variable to the outcome of this request.
+	 */
 	public void requestFocus() {	
 		
 		result = audioMan.requestAudioFocus(focusChangeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
 		
 		}
 	
+	/** Once Focus is no longer needed, it is abandoned, and the Music Player is stopped */
 	public void abandonFocus() {
 		
 		AudioManager audioMan = (AudioManager)  ContextProvider.getContext().getSystemService(Context.AUDIO_SERVICE);
@@ -58,54 +67,62 @@ public class AudioFocusManager{
 	}
 	
 	
+	/** Checks result of a request, returns true if it was successful */
 	public boolean focusTest() {
 		
 		if (result == AudioManager.AUDIOFOCUS_GAIN) {
-			System.out.println("AudioFocus Granted");
+			Log.d("Audio Focus Manager", "Request Successful");
 			return true;
 		
 		}
 		else {
-			System.out.println("AudioFocus Denied");
+			Log.d("Audio Focus Manager", "Request Failed");
 			return false;
 		}
 		
 	}
 		
-		
+		// Creating the listener needed.
 		private OnAudioFocusChangeListener focusChangeListener = new OnAudioFocusChangeListener () {
 			
+			
+			/** If the listener detects a change it will handle each type in a specific way */
 			public void onAudioFocusChange(int focusChange) {
 				
 				switch (focusChange) {
 				
+				// If temporarily lost and not on the screen, it will pause playback
 				case(AudioManager.AUDIOFOCUS_LOSS_TRANSIENT) : 
 					
-					if (MusicPlayer.getInstance().isPlaying() && TrainingModeActivity.onScreen == false){
-					MusicController.pressPause();
+					if (MusicPlayer.getInstance().currentlyPlaying() && TrainingModeActivity.onScreen == false){
+					MusicController.pressPlay_Pause();
 					}
-					Toast.makeText(ContextProvider.getContext(), "Focus Interrupted", Toast.LENGTH_LONG).show();
+					Log.d("Audio Focus Manager", "Focus Interrupted temporarily");
 					
+					
+					// If quickly regained and not on the screen, it will resume playback
 				case(AudioManager.AUDIOFOCUS_GAIN_TRANSIENT) : 
 					
-					if (MusicPlayer.getInstance().isPlaying() && TrainingModeActivity.onScreen == false) {
-					MusicController.pressPause();
+					if (MusicPlayer.getInstance().currentlyPlaying() && TrainingModeActivity.onScreen == false) {
+					MusicController.pressPlay_Pause();
 					}
-					Toast.makeText(ContextProvider.getContext(), "Focus Resumed", Toast.LENGTH_LONG).show();
+					Log.d("Audio Focus Manager", "Focus regained temporarily");
 				
 					
+					// If Focus lost for an unknown amount, it will stop playback indefinitely
 				case (AudioManager.AUDIOFOCUS_LOSS) :
 					
-					if (MusicPlayer.getInstance().isPlaying() && TrainingModeActivity.onScreen == false) {
+					if (MusicPlayer.getInstance().currentlyPlaying() && TrainingModeActivity.onScreen == false) {
 					audioMan.abandonAudioFocus(focusChangeListener);
 					MusicController.pressStop();
 					}
-					Toast.makeText( ContextProvider.getContext(), "Focus Lost", Toast.LENGTH_LONG).show();
+					Log.d("Audio Focus Manager", "Focus lost indefinitely");
 								
-					
+					// Won't automatically start play-back at present due to difficulties of music restarting 
+					// when re-entering activities
 				case (AudioManager.AUDIOFOCUS_GAIN) :
 							
-					Toast.makeText(ContextProvider.getContext(), "Focus Gained", Toast.LENGTH_LONG).show();
+					Log.d("Audio Focus Manager", "Focus regained indefinitely");
 
 				}
 			}
