@@ -1,5 +1,12 @@
 package com.GC01.BeatYourPace.Main;
 
+
+/**This class will be used to implement the Lets Run view of the app. 
+ * The class will be further developed once the app is tested and more advanced HCI studies are completed 
+ * before to our final deadline. 
+ * The class still uses the first layout we have implemented, however it does not provide the functionalities 
+ * developed on the Training Mode class yet.**/
+
 import java.io.IOException;
 
 import android.app.Activity;

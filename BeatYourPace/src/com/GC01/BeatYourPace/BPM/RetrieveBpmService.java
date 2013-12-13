@@ -52,7 +52,7 @@ public class RetrieveBpmService extends IntentService {
 		p.setTitle(title);
 		p.includeAudioSummary();
 		
-		//For the song go and get tempo, convet to integer
+		//For the song go and get tempo, convert to integer
 		List<Song> songs = en.searchSongs(p);
 		if (songs.size() > 0) {
 			double tempo = songs.get(0).getTempo();
