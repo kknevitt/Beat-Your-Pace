@@ -32,7 +32,7 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 	private static String displayTargetPace; 
     protected static TextView targetPaceText;
     
-    // Current Pace
+    // Current Pace 
     public static String displayGPSinfo;
     private static TextView currentPaceText;
 	
@@ -59,19 +59,21 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 		//Keep the screen on so the user can access the buttons used to associate new BPM to tracks
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		
-		//Google Analytics tracking code 
+		//Google Analytics tracking code to measure screen usage 
 		EasyTracker.getInstance(this).activityStart(this);
 		
 		onScreen = true;
 
-		AudioFocusManager.getInstance();
-		
+		//Setting the audio focus manager and requesting it if focus is false
+		AudioFocusManager.getInstance();		
 		if (AudioFocusManager.getInstance().focusTest() != true) {
 		System.out.print("Didn't have focus, requesting it");
 		AudioFocusManager.getInstance().requestFocus();
 		}
 		
+		//Starting the GPS service
 		startCurrentPaceService(this);
+		
 		
         playOrPauseImageButton = (ImageButton) findViewById(R.id.bPlayAndPause); 				
         skipSongImageButton = (ImageButton) findViewById(R.id.bSkipTrack); 		
@@ -81,6 +83,8 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
         decreaseTargetPaceButton = (Button) findViewById(R.id.bDecTarget);					
         increaseTargetPaceButton = (Button) findViewById(R.id.bIncTarget);
         stopImageButton = (ImageButton) findViewById(R.id.bStopSong);
+        
+        //Buttons created temporarily to test different layouts
         bTargetPaceTitle = (Button) findViewById(R.id.bTargetPaceTitle);
         bCurrentPaceTitle = (Button) findViewById(R.id.bCurrentPaceTitle);
         bCurrentPaceValue = (Button) findViewById(R.id.bCurrentPaceValue);
@@ -89,7 +93,8 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
         bTargetPaceValue =(Button) findViewById(R.id.bTargetPaceValue);
         targetPaceText = (TextView) findViewById(R.id.CurrentTargetPace);
         
-        displayTargetPace = sp.getString("set_target_pace", "6.0"); //comment these 3 lines out to run with runingmodetest
+        //Setting target pace values
+        displayTargetPace = sp.getString("set_target_pace", "6.0");
         targetPace = Float.valueOf(displayTargetPace);
         targetPaceText.setText(displayTargetPace);
     
@@ -135,14 +140,15 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 	}
 
 
+	/** Method used to pass on the control from the UI to the button controller class **/
 	@Override
 	public void onClick(View v) {
-
 		if (AudioFocusManager.getInstance().focusTest()){
 			ButtonController.buttonFunction(v);	
 		}
 	}
 		
+	
 	public void onPause(){
 		super.onPause();
 		onScreen = false;	
@@ -155,6 +161,7 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 		
 	}
 	
+	/** Creating a broadcast receiver for the MusicPlayer data**/
 	private BroadcastReceiver bReceiver = new BroadcastReceiver() {
 		  @Override
 		  public void onReceive(Context context, Intent intent) {

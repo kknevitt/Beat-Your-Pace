@@ -33,15 +33,14 @@ public class CurrentPace extends Service {
 	Location location;
 	
 	/** the currentPace double is used to retrieve the speed value to be displayed on the UI*/
-	public static float currentPace;
+	private static float currentPace;
 	
 	/** constants for converting from metres per seconds, to minutes per mile, or kilometres per mile **/
 	private final double MPS_TO_MINS_PER_MILE = 0.0372822715;
 	private final double MPS_TO_PER_KILOMETRES = 0.06;
 	
 	@Override
-    public void onCreate()
-    {
+	public void onCreate() {
       super.onCreate();  
       // Acquire a reference to the system Location Manager
       locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
@@ -51,7 +50,7 @@ public class CurrentPace extends Service {
 	/**Stating the onLocationChange method in order to retrieve the associated getSpeed() 
 	 * provided by the Android API. The method takes into account the user speed unit preferences (defined on the Settings classes: 
 	 * miles per minute or kilometres per hour. **/
-	public void startService(Context context){
+	private void startService(Context context){
 	
 		Log.d(null, "testing - startService() for GPS is being called");
 		
@@ -93,11 +92,10 @@ public class CurrentPace extends Service {
 			currentPace = (float) (currentPace / MPS_TO_MINS_PER_MILE);
 			sendGPSInfo();
 			
-		}
-			if (unitType == 2) {
-			currentPace = (float) (currentPace / MPS_TO_PER_KILOMETRES);
-			sendGPSInfo();
-		}
+			}if (unitType == 2) {
+				currentPace = (float) (currentPace / MPS_TO_PER_KILOMETRES);
+				sendGPSInfo();
+			}
 			
 	}	
 			    				
