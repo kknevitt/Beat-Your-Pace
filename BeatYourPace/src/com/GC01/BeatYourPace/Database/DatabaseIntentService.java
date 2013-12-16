@@ -1,9 +1,6 @@
 package com.GC01.BeatYourPace.Database;
 
-import java.util.ArrayList;
-
 import com.echonest.api.v4.EchoNestException;
-
 import android.app.IntentService;
 import android.content.Intent;
 import android.util.Log;

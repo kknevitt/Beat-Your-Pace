@@ -14,22 +14,16 @@ package com.GC01.BeatYourPace.Settings;
  *
  */
 
-import com.GC01.BeatYourPace.Main.ContextProvider;
+
 import com.example.beatyourpace.R;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
-import android.app.Activity;
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.Preference;
-import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceFragment;
-import android.preference.PreferenceManager;
-import android.widget.Toast;
 
 
 

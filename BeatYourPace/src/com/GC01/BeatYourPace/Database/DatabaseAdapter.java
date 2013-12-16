@@ -6,22 +6,16 @@ package com.GC01.BeatYourPace.Database;
  * @author sarahnicholson
  */
 
-import java.util.ArrayList;
-
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.preference.PreferenceManager;
-import android.util.Log;
 
 import com.GC01.BeatYourPace.Database.DatabaseContract.DataEntry;
 import com.GC01.BeatYourPace.Main.ContextProvider;
 
 public abstract class DatabaseAdapter {
 
-	private final String LOG_TAG = "DbAdapter";
 	private final Context context;
 	protected DatabaseHelper DbHelper;
 	protected SQLiteDatabase db;

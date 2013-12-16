@@ -3,30 +3,16 @@ package com.GC01.BeatYourPace.Database;
 //To be ultimately replaced by the DatabaseAdapter class which is a more efficient structure
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
-import com.GC01.BeatYourPace.BPM.*;
 import com.GC01.BeatYourPace.Database.DatabaseContract.DataEntry;
 import com.GC01.BeatYourPace.Main.ContextProvider;
-import com.GC01.BeatYourPace.PaceCalculator.InitialPrefPace;
-import com.GC01.BeatYourPace.PaceCalculator.InitialPrefPace.InitPrefPaceVals;
-import com.GC01.BeatYourPace.Settings.SettingsActivity;
-import com.echonest.api.v4.EchoNestException;
-
 import android.annotation.SuppressLint;
-import android.content.ContentValues;
 import android.content.Context;
-import android.content.CursorLoader;
 import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.database.CursorJoiner;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.preference.PreferenceManager;
-import android.provider.MediaStore;
 import android.util.Log;
-import android.widget.Toast;
 
 @SuppressLint("NewApi")
 public class DatabaseAdapter1 {

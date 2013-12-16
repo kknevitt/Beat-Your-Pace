@@ -23,8 +23,6 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.view.Menu;
 import com.example.beatyourpace.R;
 

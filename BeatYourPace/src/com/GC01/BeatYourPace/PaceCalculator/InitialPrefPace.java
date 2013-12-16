@@ -1,7 +1,6 @@
 package com.GC01.BeatYourPace.PaceCalculator;
 
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
+import android.util.Log;
 
 /**
  * This class has methods to calculate and add the preferred pace meta data for a track
@@ -10,6 +9,8 @@ import android.preference.PreferenceManager;
  */
 
 public class InitialPrefPace {
+	
+	private static final String LOG_CAT = "InitialPrefPace";
 	
 	public InitialPrefPace() {
 	}
@@ -48,6 +49,7 @@ public class InitialPrefPace {
 				initialPrefPaceM = (float) 7.0;
 				initialPrefPaceKm = (float) 10.0;
 			}		
+			Log.d(LOG_CAT,"Pace preference added to db");
 		return new InitPrefPaceVals(initialPrefPaceM, initialPrefPaceKm);
 	}
 	
