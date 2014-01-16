@@ -76,7 +76,9 @@ public class ButtonController extends Service {
 			case R.id.bDecTarget: 
 				TargetPace.setTargetPace(false); 
 				String tarPaceDec = String.valueOf(TargetPace.getTargetPace());
+				if (TrainingModeActivity.onScreen == true) {
 				TrainingModeActivity.targetPaceText.setText(tarPaceDec);
+				}
 				MusicController.changeTarPace();
 				
 				/**Google Analytics tracking code**/
@@ -86,7 +88,9 @@ public class ButtonController extends Service {
 			case R.id.bIncTarget:
             	TargetPace.setTargetPace(true);
             	String tarPaceInc = String.valueOf(TargetPace.getTargetPace());
-            	TrainingModeActivity.targetPaceText.setText(tarPaceInc);
+            	if (TrainingModeActivity.onScreen == true) {
+            		TrainingModeActivity.targetPaceText.setText(tarPaceInc);	
+            	}
             	MusicController.changeTarPace();
 
             	/**Google Analytics tracking code**/

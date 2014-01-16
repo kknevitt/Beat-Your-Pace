@@ -1,141 +1,310 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_gradient" >
+    android:layout_margin="3dp"
+    android:orientation="vertical" >
 
-    <Button
-        android:id="@+id/bSongTooFast"
-        android:layout_width="110dp"
-        android:layout_height="125dp"
-        android:layout_alignTop="@+id/bSongTooSlow"
-        android:layout_toRightOf="@+id/iCurrentMode"
-        android:text="@string/sTooFastButton"
-        android:textSize="30sp" />
+     <!-- Artist name -->
 
-    <Button
-        android:id="@+id/bSongTooSlow"
-        android:layout_width="110dp"
-        android:layout_height="125dp"
-        android:layout_below="@+id/bDecTarget"
-        android:layout_marginTop="41dp"
-        android:layout_toLeftOf="@+id/iCurrentMode"
-        android:text="@string/sTooSlowButton"
-        android:textSize="30sp" />
+       <TextView
+           android:id="@+id/tTargetPaceTitle"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:background="#0298db"
+           android:gravity="center"
+           android:text="@string/tAdjustTargetPace"
+           android:textColor="#FFFFFF"
+           android:textStyle="bold" />
+
+        <View
+           android:id="@+id/Spacer0"
+           android:layout_width="match_parent"
+           android:layout_height="15dp"
+            />
+    
+    
+    <!-- Pace buttons -->
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+        
+           <Button
+               android:id="@+id/bDecTarget"
+               android:layout_width="100dp"
+               android:layout_height="fill_parent"
+               android:layout_weight="0.5"
+               android:background="@drawable/button_color_gradualpurple"
+               android:textSize="35sp"
+               android:textColor="#FFFFFF"
+               android:text="@string/sMinus" />
+
+		<View
+		    android:id="@+id/Spacer2"
+		    android:layout_width="0dp"
+		    android:layout_height="80dp"
+		    android:layout_gravity="left"
+		    android:layout_weight="0.25" />
+
+           <Button
+               android:id="@+id/bIncTarget"
+               android:layout_width="100dp"
+               android:layout_height="fill_parent"
+               android:layout_weight="0.5"
+               android:background="@drawable/button_color_gradualpurple"
+               android:textSize="35sp"
+               android:textColor="#FFFFFF"
+              android:text="@string/sPlus" />
+           
+           
+    </LinearLayout>
 
     <TextView
-        android:id="@+id/CurrentTargetPace"
-        android:layout_width="wrap_content"
+           android:id="@+id/textView5"
+           android:layout_width="match_parent"
+           android:layout_height="15dp"
+            />
+    
+    <!-- Current and Target pace -->
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/bSongTooSlow"
-        android:layout_alignLeft="@+id/currentPaceText"
-        android:text="@string/sTarget"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:orientation="horizontal" >
 
-    <Button
-        android:id="@+id/bDecTarget"
-        android:layout_width="75sp"
-        android:layout_height="75sp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:text="@string/sMinus"
-        android:textSize="32sp" />
+        <TextView
+            android:id="@+id/sPaceTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_weight="1"
+            android:background="#0298db"
+            android:gravity="center"
+            android:padding="1dip"
+            android:text="@string/sPaceTitle"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/bIncTarget"
-        android:layout_width="75sp"
-        android:layout_height="75sp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:text="@string/sPlus"
-        android:textSize="32sp" />
+        <TextView
+            android:id="@+id/sTargetTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_weight="1"
+            android:background="#0298db"
+            android:gravity="center"
+            android:padding="1dip"
+            android:text="@string/sTargetTitle"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
+    </LinearLayout>
 
-    <TextView
-        android:id="@+id/currentPaceText"
-        android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/LinearLayout01"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            
+                <View
+                android:id="@+id/View0a"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="left"
+                android:layout_weight="0.25" />
+                
+            <TextView
+                android:id="@+id/currentPaceText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#FFFFFF"
+                android:gravity="center"
+                android:padding="5dip"
+                android:text="@string/sPace"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/CurrentPaceUnit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#FFFFFF"
+                android:gravity="center"
+                android:padding="5dip"
+                android:text="@string/sTargetUnit"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <View
+                android:id="@+id/View01"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="left"
+                android:layout_weight="0.25" />
+
+            <TextView
+                android:id="@+id/CurrentTargetPace"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#FFFFFF"
+                android:gravity="center"
+                android:padding="5dip"
+                android:text="@string/sTarget"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/targetPaceUnit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#FFFFFF"
+                android:gravity="center"
+                android:padding="5dip"
+                android:text="@string/sCurrentPaceUnit"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+            
+                        <View
+                android:id="@+id/View0b"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="left"
+                android:layout_weight="0.25" />
+        </LinearLayout>
+
+       
+	<!-- Too fast and too slow buttons -->
+       <LinearLayout
+        android:id="@+id/linearLayout5"
+        android:layout_width="fill_parent"
+        android:layout_height="150dp"
+        android:orientation="horizontal" >
+       
+       <Button
+           android:id="@+id/bSongTooSlow"
+           android:layout_width="100dp"
+           android:layout_height="match_parent"
+           android:layout_weight="0.5"
+           android:background="@drawable/button_color_gradualblue"
+           android:textColor="@color/white"
+           android:textStyle="bold"
+           android:text="@string/sTooFastButton" />
+
+       <View
+            android:id="@+id/Spacer4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25" />
+       <Button
+           android:id="@+id/bSongTooFast"
+           android:layout_width="100dp"
+           android:layout_height="match_parent"
+           android:layout_weight="0.5"
+           android:background="@drawable/button_color_gradualblue"
+           android:textColor="@color/white"
+           android:textStyle="bold"
+           android:text="@string/sTooSlowButton" />
+       </LinearLayout>
+
+       <!-- Blank spacer -->
+       <View
+           android:id="@+id/Spacer5"
+           android:layout_width="match_parent"
+           android:layout_height="15dp"
+            />
+
+       <!-- Artist name -->
+       <TextView
+           android:id="@+id/tSongName"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:background="#0298db"
+           android:textColor="#FFFFFF"
+           android:text="@string/sSongDetails"
+           android:textSize="18sp"
+           android:textStyle="bold"
+           android:gravity="center" />
+       
+       <!-- Music Player controllers -->
+       <LinearLayout
+        android:id="@+id/linearLayout6"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/CurrentTargetPace"
-        android:layout_alignLeft="@+id/bSongTooFast"
-        android:layout_marginBottom="14dp"
-        android:text="@string/sPace"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:background="@drawable/background_gradient_whitetoblue"
+        android:orientation="horizontal" >
 
-    <TextView
-        android:id="@+id/sTargetTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/bSongTooSlow"
-        android:layout_toLeftOf="@+id/iCurrentMode"
-        android:text="@string/sTargetTitle"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+            <View
+            android:id="@+id/Spacer7"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_weight="0.2" />
+            
+           <ImageButton
+               android:id="@+id/bPreviousTrack"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:src="@drawable/medium_previous"
+               android:contentDescription="@string/sDscrPreviousTrack"
+               android:layout_gravity="center"
+               android:background="@drawable/button_shape_oval" />
+           <View
+            android:id="@+id/Spacer8"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_weight="0.2" />
 
-    <TextView
-        android:id="@+id/sPaceTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/CurentPace"
-        android:layout_alignBottom="@+id/CurentPace"
-        android:layout_toLeftOf="@+id/iCurrentMode"
-        android:text="@string/sPaceTitle"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+           <ImageButton
+               android:id="@+id/bPlayAndPause"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:src="@drawable/medium_play"
+               android:contentDescription="@string/sDscrPlayPause"
+               android:layout_gravity="center"
+               android:background="@drawable/button_shape_oval" />
+           <View
+            android:id="@+id/Spacer9"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_weight="0.2" />
 
-    <ImageButton
-        android:id="@+id/bSkipTrack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/bIncTarget"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="35dp"
-        android:background="@drawable/button_shape_oval"
-        android:contentDescription="@string/sDscrSkipTrack"
-        android:src="@drawable/medium_skip" />
+           <ImageButton
+               android:id="@+id/bStopSong"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:src="@drawable/medium_stop"
+               android:contentDescription="@string/sDscrStop"
+               android:layout_gravity="center"
+               android:background="@drawable/button_shape_oval" />
 
-    <ImageButton
-        android:id="@+id/bStopSong"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/CurrentTargetPace"
-        android:layout_alignTop="@+id/bSkipTrack"
-        android:background="@drawable/button_shape_oval"
-        android:src="@drawable/medium_stop" />
-
-    <ImageView
-        android:id="@+id/iCurrentMode"
-        android:layout_width="50sp"
-        android:layout_height="50sp"
-        android:layout_below="@+id/CurrentTargetPace"
-        android:layout_centerHorizontal="true"
-        android:contentDescription="@string/sDscrCurrentMode"
-        android:src="@android:drawable/btn_star_big_on" />
-
-    <ImageButton
-        android:id="@+id/bPreviousTrack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/bSongTooSlow"
-        android:layout_alignTop="@+id/bPlayAndPause"
-        android:background="@drawable/button_shape_oval"
-        android:contentDescription="@string/sDscrPreviousTrack"
-        android:src="@drawable/medium_previous" />
-
-    <ImageButton
-        android:id="@+id/bPlayAndPause"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/sPaceTitle"
-        android:layout_alignTop="@+id/bStopSong"
-        android:background="@drawable/selector_pauseorplay"
-        android:contentDescription="@string/sDscrPlayPause" />
-
-    <TextView
-        android:id="@+id/tSongName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/bSongTooFast"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="36dp"
-        android:text="@string/sSongDetails"
-        android:textColor="#000000"
-        android:textSize="28sp" />
-
-</RelativeLayout>
+           <View
+            android:id="@+id/Spacer10"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_weight="0.2" />
+           
+           <ImageButton
+               android:id="@+id/bSkipTrack"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:src="@drawable/medium_skip"
+               android:contentDescription="@string/sDscrSkipTrack"
+               android:layout_gravity="center"
+               android:background="@drawable/button_shape_oval" />
+        <View
+            android:id="@+id/Spacer11"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_weight="0.2" />
+          </LinearLayout>
+</LinearLayout>

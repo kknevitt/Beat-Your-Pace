@@ -1,180 +1,158 @@
 package com.GC01.BeatYourPace.Main;
-
-
-/**This class will be used to implement the Lets Run view of the app. 
- * The class will be further developed once the app is tested and more advanced HCI studies are completed 
- * before to our final deadline. 
- * The class still uses the first layout we have implemented, however it does not provide the functionalities 
- * developed on the Training Mode class yet.**/
-
-import java.io.IOException;
-
+	
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
+
+import com.GC01.BeatYourPace.MusicPlayer.AudioFocusManager;
+import com.GC01.BeatYourPace.MusicPlayer.MusicPlayer;
+import com.GC01.BeatYourPace.MusicPlayer.TrackList;
+import com.GC01.BeatYourPace.PaceCalculator.CurrentPace;
+import com.example.beatyourpace.R;
+import com.google.analytics.tracking.android.EasyTracker;
+
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.content.LocalBroadcastManager;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.GC01.BeatYourPace.Database.DatabaseHelper;
-import com.GC01.BeatYourPace.MusicPlayer.TrackList;
-import com.GC01.BeatYourPace.MusicPlayer.MusicPlayer;
-import com.example.beatyourpace.R;
-import com.google.analytics.tracking.android.EasyTracker;
-
 public class LetsRunModeActivity extends Activity implements OnClickListener {
+
 	
+	// Active Screen
+	public static boolean onScreen;
 	
-	public double targetPace = 6.0; //setting it temporarily to 6.0
-    ImageButton playSongImageButton, imagebutton2, skupSongImageButton, previousSongImageButton;
+	// Current Track Info
+	public static String displayTrackInfo;
+	private static TextView trackInfo;
+	
+	// Buttons    
+    ImageButton playOrPauseImageButton, imagebutton2, skipSongImageButton, previousSongImageButton, pauseImageButton, stopImageButton;
     Button songTooSlowButton, songTooFastButton, decreaseTargetPaceButton, increaseTargetPaceButton;
-    static TextView targetPaceText;
-    static TextView currentPaceText;
+   
+    Button bTargetPaceTitle, bCurrentPaceTitle, bCurrentPaceValue, bCurrentPacePreference, bTargetPacePreference, bTargetPaceValue;
     
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-	
-	//	targetPace = DatabaseActivity.getTargetPace();
-		
-		
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_lets_run_mode); 	
+		setContentView(R.layout.activity_lets_run_mode);  
 		
-		/**Google Analytics tracking code **/
+		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(ContextProvider.getContext());
+
+		//Keep the screen on so the user can access the buttons used to associate new BPM to tracks
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+		
+		//Google Analytics tracking code 
 		EasyTracker.getInstance(this).activityStart(this);
 		
-		//creating image buttons objects and getting their setup from xml
-        playSongImageButton = (ImageButton) findViewById(R.id.bPlaySong); 
-        //imagebutton2 = (ImageButton) findViewById(R.id.imageButton2); 
-        skupSongImageButton = (ImageButton) findViewById(R.id.bSkipTrack); 
-        previousSongImageButton = (ImageButton) findViewById(R.id.bPreviousTrack); 
-        songTooSlowButton = (Button) findViewById(R.id.bSongTooSlow);
-        songTooFastButton = (Button) findViewById(R.id.bSongTooFast);
-        decreaseTargetPaceButton = (Button) findViewById(R.id.bDecTarget);
+		onScreen = true;
+		
+		TrackList trackList = TrackList.getInstance();
+
+		AudioFocusManager.getInstance();
+		
+		if (AudioFocusManager.getInstance().focusTest() != true) {
+		System.out.print("Didn't have focus, requesting it");
+		AudioFocusManager.getInstance().requestFocus();
+		}
+		
+		startCurrentPaceService(this);
+		
+        playOrPauseImageButton = (ImageButton) findViewById(R.id.bPlayAndPause); 				
+        skipSongImageButton = (ImageButton) findViewById(R.id.bSkipTrack); 		
+        previousSongImageButton = (ImageButton) findViewById(R.id.bPreviousTrack); 	
+        songTooSlowButton = (Button) findViewById(R.id.bSongTooSlow); 				
+        songTooFastButton = (Button) findViewById(R.id.bSongTooFast);					
+        decreaseTargetPaceButton = (Button) findViewById(R.id.bDecTarget);					
         increaseTargetPaceButton = (Button) findViewById(R.id.bIncTarget);
-       
-        targetPaceText= (TextView) findViewById(R.id.CurrentTargetPace);
-        currentPaceText = (TextView) findViewById(R.id.CurrentTargetPace);
-        
-        // Takes the variable Target CurrentPace and pushes it to the text view.
-        String tarPace = String.valueOf(getTargetPace());
-        targetPaceText.setText(tarPace);
-        
+        stopImageButton = (ImageButton) findViewById(R.id.bStopSong);
+    
+
         //setting an event listener for each button
-        playSongImageButton.setOnClickListener(this);
-       // imagebutton2.setOnClickListener(this);
-        skupSongImageButton.setOnClickListener(this);
+        playOrPauseImageButton.setOnClickListener(this);
+        skipSongImageButton.setOnClickListener(this);
         previousSongImageButton.setOnClickListener(this);
         songTooSlowButton.setOnClickListener(this);
         songTooFastButton.setOnClickListener(this);
         decreaseTargetPaceButton.setOnClickListener(this);
         increaseTargetPaceButton.setOnClickListener(this);
-  
+        stopImageButton.setOnClickListener(this);
+        
+        // Track Broadcast Receiver 
+        LocalBroadcastManager.getInstance(this).registerReceiver(bReceiver,
+        	      new IntentFilter("Track Info Event"));
+        
    }
 
 
+	/** Method used to call the music player **/
+	public void startNewService(View view) {
+		startService(new Intent(this, MusicPlayer.class));
+	
+	}
+	
+	/** Method used to start the GPS service **/
+	public void startCurrentPaceService(Context context) {
+		startService(new Intent(this, CurrentPace.class));		
+	}
+	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// auto-generated code: Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
-	
+
+
 	@Override
 	public void onClick(View v) {
-		
-	//	TrackList trackList = new TrackList(getTargetPace()); // This has the Target CurrentPace as its parameter
-	//	MusicPlayer musicPlayer = new MusicPlayer(trackList); // This has the tracklist object as the parameter
 
-		/*
-		switch (v.getId()) {		
-		case R.id.bPlaySong: 	    		  
-				try {
-					musicPlayer.play();
-				} catch (IllegalArgumentException e1) {
-					e1.printStackTrace();
-				} catch (SecurityException e1) {
-					e1.printStackTrace();
-				} catch (IllegalStateException e1) {
-					e1.printStackTrace();
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-				break;
-	
-		case R.id.bSkipTrack:       	  
-	            try {
-	            	musicPlayer.skip();	
-				} catch (IllegalArgumentException e) {
-					e.printStackTrace();
-				} catch (SecurityException e) {
-					e.printStackTrace();
-				} catch (IllegalStateException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-	            break;
-	          
-		case R.id.bPreviousTrack:
-	           try {
-					musicPlayer.previous();
-	           } catch (IllegalArgumentException e) {
-					e.printStackTrace();
-	           } catch (SecurityException e) {
-					e.printStackTrace();
-				} catch (IllegalStateException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-	           break;   
-	            
-	            // Decreases the user's preferred pace for this track by 0.5.
-		case R.id.bSongTooSlow:
-	            	DatabaseActivity.decPrefPace();
-	          break;
-	          
-	            // Increases the user's preferred pace for this track by 0.5.
-		case R.id.bSongTooFast:
-	          DatabaseActivity.incPrefPace();
-	          break;	
-	            
-   
-		case R.id.bDecTarget:
-	          setTargetPace(false); 
-	          String tarPace = String.valueOf(getTargetPace());
-    	      targetPaceText.setText(tarPace);
-	          break;
-	         
-		case R.id.bIncTarget:
-	          setTargetPace(true);
-	          String tarPace1 = String.valueOf(getTargetPace());
-    	      targetPaceText.setText(tarPace1);
-	          break;
+		if (AudioFocusManager.getInstance().focusTest()){
+			ButtonController.buttonFunction(v);	
 		}
+	}
 		
-		*/
+	public void onPause(){
+		super.onPause();
+		onScreen = false;	
 	}
 	
 	
-	public void setTargetPace(boolean increment){
-			if (increment == true){	
-				targetPace += 0.5;
-			}
-				
-			else {	
-				targetPace -= 0.5;
-			}
-				
-		}
-		
-		public double getTargetPace(){
-			return targetPace;
-		}
+	public void onDestroy(){
+		super.onDestroy();
+		onScreen = false;
+	//	MusicPlayer.getInstance().stopPlayback();
 		
 	}
+	
+	
+	
+	private BroadcastReceiver bReceiver = new BroadcastReceiver() {
+		  @Override
+		  public void onReceive(Context context, Intent intent) {
+		    // Get extra data included in the Intent
+			
+			  trackInfo = (TextView) findViewById(R.id.tSongName);
+			  System.out.println("Intent Received");
+		      displayTrackInfo = intent.getStringExtra("Track Info Action");
+		      if (displayTrackInfo == null)
+		      System.out.println("Track received but null");
+		      else {
+		    	  System.out.println(displayTrackInfo + " wasnt null");
+		      }
+		      trackInfo.setText(displayTrackInfo);
+			  
+		  }
+		};
+	
+	}
+

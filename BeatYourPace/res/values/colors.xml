@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+     <color name="black">#000</color>
+     <color name="blue1">#146C6B</color>
+     <color name="blue2">#87CEEB</color>
+     <color name="blue3">#0298db</color>
+     <color name="blue4">#0B2161</color>
+     <color name="red">#f00</color>
+     <color name="white">#fff</color>
+     <color name="green">#1C9714</color>
+     <color name="android_dark_orange">#FF8800</color>
+     <color name="android_light_orange">#FFBB33</color>
+     <color name="android_dark_purple">#9933CC</color>
+     <color name="android_light_purple">#AA66CC</color>
+     
+</resources>

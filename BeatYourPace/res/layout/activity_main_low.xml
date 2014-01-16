@@ -41,7 +41,7 @@
        <View
            android:id="@+id/SpacerB"
            android:layout_width="match_parent"
-           android:layout_height="50dp"
+           android:layout_height="25dp"
             />
     
     
@@ -57,7 +57,7 @@
                android:layout_width="fill_parent"
                android:layout_height="0dp"
                android:layout_weight="1.5"
-               android:background="@drawable/button_color_gradualblue"
+               android:background="@drawable/button_color_gradualpurple"
                android:text="@string/sTrainingMode"
            	   android:textColor="@color/white"
           	 	android:textSize="25sp" />
@@ -65,14 +65,14 @@
            <View
            android:id="@+id/SpacerC"
            android:layout_width="match_parent"
-           android:layout_height="40dp" />
+           android:layout_height="25dp" />
            
                       <Button
                android:id="@+id/bLetsRun"
                android:layout_width="fill_parent"
                android:layout_height="0dp"
                android:layout_weight="1.5"
-               android:background="@drawable/button_color_gradualblue"
+               android:background="@drawable/button_color_gradualpurple"
                android:textSize="25sp"
                android:textColor="@color/white"
                android:text="@string/sLetsRun" />
@@ -80,14 +80,14 @@
            <View
            android:id="@+id/SpacerD"
            android:layout_width="match_parent"
-           android:layout_height="40dp" />
+           android:layout_height="25dp" />
            
            <Button
            android:id="@+id/bSettings"
            android:layout_width="fill_parent"
            android:layout_height="0dp"
            android:layout_weight="1.5"
-           android:background="@drawable/button_color_gradualblue"
+           android:background="@drawable/button_color_gradualpurple"
            android:textSize="25sp"
            android:textColor="@color/white"
            android:text="@string/sSettings" />
@@ -95,14 +95,14 @@
            <View
            android:id="@+id/SpacerE"
            android:layout_width="match_parent"
-           android:layout_height="40dp" />
+           android:layout_height="25dp" />
            
            <Button
            android:id="@+id/bHelpPage"
            android:layout_width="fill_parent"
            android:layout_height="0dp"
            android:layout_weight="1.5"
-           android:background="@drawable/button_color_gradualblue"
+           android:background="@drawable/button_color_gradualpurple"
            android:textSize="25sp"
            android:textColor="@color/white"
            android:text="@string/shelpPage" />
@@ -115,6 +115,17 @@
            
            
     </LinearLayout>
-          
+    
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/background_gradient_whitetoblue">
+        
+    </LinearLayout>
+  
+    
+
+       
        
 </LinearLayout>

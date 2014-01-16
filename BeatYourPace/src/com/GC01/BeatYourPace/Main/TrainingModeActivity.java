@@ -42,10 +42,10 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 	
 	// Current Track Info
 	public static String displayTrackInfo;
-	private static TextView trackInfo;
+	private static TextView trackInfo, targetUnit, currentPaceUnit;
 	
 	// Buttons    
-    ImageButton playOrPauseImageButton, imagebutton2, skipSongImageButton, previousSongImageButton, pauseImageButton, stopImageButton;
+    ImageButton playOrPauseImageButton, skipSongImageButton, previousSongImageButton, pauseImageButton, stopImageButton;
     Button songTooSlowButton, songTooFastButton, decreaseTargetPaceButton, increaseTargetPaceButton;
    
     Button bTargetPaceTitle, bCurrentPaceTitle, bCurrentPaceValue, bCurrentPacePreference, bTargetPacePreference, bTargetPaceValue;
@@ -84,13 +84,15 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
         decreaseTargetPaceButton = (Button) findViewById(R.id.bDecTarget);					
         increaseTargetPaceButton = (Button) findViewById(R.id.bIncTarget);
         stopImageButton = (ImageButton) findViewById(R.id.bStopSong);
-        bTargetPaceTitle = (Button) findViewById(R.id.bTargetPaceTitle);
-        bCurrentPaceTitle = (Button) findViewById(R.id.bCurrentPaceTitle);
-        bCurrentPaceValue = (Button) findViewById(R.id.bCurrentPaceValue);
-        bCurrentPacePreference = (Button) findViewById(R.id.bCurrentPacePreference);
-        bTargetPacePreference = (Button) findViewById(R.id.bTargetPacePreference);
-        bTargetPaceValue =(Button) findViewById(R.id.bTargetPaceValue);
         targetPaceText = (TextView) findViewById(R.id.CurrentTargetPace);
+        targetUnit = (TextView) findViewById(R.id.targetPaceUnit);
+        currentPaceUnit = (TextView) findViewById(R.id.CurrentPaceUnit);
+        
+        if (Integer.parseInt(sp.getString("unitType", "1")) == 1) {
+        	String minPerMile = "min/Miles";
+        	targetUnit.setText(minPerMile);
+        	currentPaceUnit.setText(minPerMile);
+        }
         
         displayTargetPace = sp.getString("set_target_pace", "6.0"); //comment these 3 lines out to run with runingmodetest
         targetPace = Float.valueOf(displayTargetPace);
@@ -150,12 +152,15 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 		super.onPause();
 		onScreen = false;	
 	}
+
 	
 	public void onDestroy(){
+		onScreen = false;
 		super.onDestroy();
-		MusicPlayer.getInstance().stopPlayback();
+	//	MusicPlayer.getInstance().stopPlayback();
 		
 	}
+	
 	
 
 	private BroadcastReceiver bReceiver = new BroadcastReceiver() {
@@ -190,7 +195,7 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 			      }
 			      
 			      System.out.println("GPS Info Received");
-				  currentPaceText = (TextView) findViewById(R.id.CurentPace);
+				  currentPaceText = (TextView) findViewById(R.id.currentPaceText);
 			      currentPaceText.setText(displayGPSinfo);
 				  
 			  }

@@ -1,5 +1,6 @@
 package com.GC01.BeatYourPace.PaceCalculator;
 
+import com.GC01.BeatYourPace.Main.LetsRunModeActivity;
 import com.GC01.BeatYourPace.Main.TrainingModeActivity;
 
 public class TargetPace {
@@ -9,14 +10,16 @@ public class TargetPace {
 		
 		if (increment == true){
 			
-			
+			if (TrainingModeActivity.onScreen == true) {
 			TrainingModeActivity.targetPace += 0.5	;
+			}
 			
 		}
 			
 		else {
-		
-			TrainingModeActivity.targetPace -= 0.5;
+			if (TrainingModeActivity.onScreen == true) {
+				TrainingModeActivity.targetPace -= 0.5;
+			}
 		
 		}
 		
@@ -25,6 +28,7 @@ public class TargetPace {
 	// retrieving the targetPace
 	public static float getTargetPace() {
 		return TrainingModeActivity.targetPace;
+
 	}
 	
 }
