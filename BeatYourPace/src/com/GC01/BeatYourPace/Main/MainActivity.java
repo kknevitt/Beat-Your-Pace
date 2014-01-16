@@ -67,7 +67,6 @@ public class MainActivity extends Activity implements OnClickListener{
 			Log.d(LOG_TAG, "Unable to create JSON file");
 			e.printStackTrace();
 		}
-        
 	}
 
 	@Override

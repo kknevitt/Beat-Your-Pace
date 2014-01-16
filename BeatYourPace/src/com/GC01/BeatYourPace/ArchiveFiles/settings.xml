@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0298db" >
+
+    <RadioButton
+        android:id="@+id/bDistanceM"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tTarget"
+        android:layout_below="@+id/tTarget"
+        android:layout_marginTop="14dp"
+        android:checked="true"
+        android:text="@string/sDistanceMiles" />
+
+    <RadioButton
+        android:id="@+id/bDistanceK"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/bDistanceM"
+        android:layout_alignBottom="@+id/bDistanceM"
+        android:layout_toRightOf="@+id/sTargetTitle"
+        android:text="@string/sDistanceKilo" />
+
+    <TextView
+        android:id="@+id/DefaultTargetPace"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/bDistanceM"
+        android:layout_centerVertical="true"
+        android:text="@string/sDefaultTargetTitle"
+        android:textColor="#ffffff"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/bTargetInc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/DefaultTargetPace"
+        android:layout_marginTop="34dp"
+        android:layout_toRightOf="@+id/DefaultTargetPace"
+        android:text="@string/sPlus" />
+
+    <TextView
+        android:id="@+id/TextView001"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/bTargetDec"
+        android:layout_alignBottom="@+id/bTargetDec"
+        android:layout_alignRight="@+id/sTargetTitle"
+        android:layout_marginRight="32dp"
+        android:text="@string/sDefaultTargetPace"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <Button
+        android:id="@+id/bTargetDec"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/bTargetInc"
+        android:layout_alignBottom="@+id/bTargetInc"
+        android:layout_alignLeft="@+id/bDistanceK"
+        android:layout_marginLeft="14dp"
+        android:text="@string/sMinus" />
+
+    <Button
+        android:id="@+id/bMusicLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/DefaultTargetPace"
+        android:layout_marginBottom="14dp"
+        android:text="@string/sFindMusicButton" />
+
+    <TextView
+        android:id="@+id/sTargetTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bMusicLocation"
+        android:layout_alignLeft="@+id/DefaultTargetPace"
+        android:layout_marginBottom="15dp"
+        android:text="@string/sFindMusicTitle"
+        android:textColor="#ffffff"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/tSettingsTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:text="@string/sSettings"
+        android:textColor="#ffffff"
+        android:textSize="44sp" />
+
+    <TextView
+        android:id="@+id/tTarget"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/tSettingsTitle"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="23dp"
+        android:text="@string/sDistanceUnits"
+        android:textColor="#ffffff"
+        android:textSize="24sp" />
+
+</RelativeLayout>
