@@ -12,10 +12,10 @@
     <string name="sDistanceUnits">Distance Units</string>
     <string name="sDistanceMiles">Miles</string>
     <string name="sDistanceKilo">Kilometres</string>
-    <string name="sSetDefaultDistanceUnits">Set Default Distance Units</string>
-    <string name="sDefaultTargetTitle">Default Target Pace</string>
-    <string name="sDefaultTargetPace">8 mph</string>
-    <string name="sSetTargetPace">Set Target Pace</string>
+    <string name="sSetDefaultDistanceUnits">Set Miles or Kilometres</string>
+    <string name="sDefaultTargetTitle">Set default target pace</string>
+    <string name="sDefaultTargetPace">8.0</string>
+    <string name="sSetTargetPace">Set default target pace</string>
     <string name="sMinus">-</string>
     <string name="sPlus">+</string>
     <string name="sFindMusicTitle">Find Music</string>
@@ -26,7 +26,7 @@
     <string name="sPaceTitle">Pace</string>
     <string name="sTargetTitle">Target</string>
     <string name="sPace">0.0</string>
-    <string name="sTarget">8mph</string>
+    <string name="sTarget">8.0</string>
     <string name="sDscrPreviousTrack">Plays the Previous Track Played</string>
     <string name="sDscrPlayPause">Play or Pause the Current Track</string>
     <string name="sDscrSkipTrack">Skip To the Next Track Without Storing a Preference</string>
@@ -34,19 +34,19 @@
     <string name="title_activity_settings">Settings</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_database">DatabaseActivity</string>
-    <string name="title_activity_TrainingModeActivity">TrainingModeActivity</string>
-    <string name="title_activity_lets_run_mode">LetsRunMode</string>
-    <string name="helpPageTitle">Help Page</string>
+    <string name="title_activity_TrainingModeActivity">Training mode</string>
+    <string name="title_activity_lets_run_mode">Lets Run mode</string>
+    <string name="helpPageTitle">Help</string>
     <string name="helpPageTrainingTitle">Training mode</string>
     <string name="helpPageLetsRunTitle">Let\'s Run mode</string>
     <string name="helpPageSettingsTitle">Settings </string>
-    <string name="shelpPage">Help Page</string>
+    <string name="shelpPage">Help</string>
     <string name="helpTrainingText">The Training mode allows you to override the default BPM for each song. You can control the inbuilt music player and your preferred target pace. This screen will keep the phone unlocked.</string>
-    <string name="title_helpPage">Help Page</string>
-    <string name="title_activity_help">HelpActivity</string>
+    <string name="title_helpPage">Help</string>
+    <string name="title_activity_help">Help</string>
     <string name="helpLetsRunText">The Let\'s Run mode allows you to run with songs which already have been associated with your preferred BPM pace. All tracks will have a default BPM value set - so if the value has not been overriden, you will run with the pre-define values.</string>
     <string name="helpSettingsText">The Settings pace allows you to define: the speed unit (miles per minute or kilometers per minute) and initial target pace.</string>
-    <string name="title_activity_help_main">HelpMainActivity</string>
-    <string name="title_activity_help_page">HelpPageActivity</string>
+    <string name="title_activity_help_main">Help</string>
+    <string name="title_activity_help_page">Help</string>
 
 </resources>

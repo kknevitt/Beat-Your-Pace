@@ -38,7 +38,7 @@ public class DatabaseJSON extends DatabaseAdapter {
 		       	    		if (cursor.getString(i) != null) {
 		           	    		rowObject.put(cursor.getColumnName(i), cursor.getString(i) );
 		           	    	} else {
-		           	    		rowObject.put( cursor.getColumnName(i) ,  "" ); 
+		           	    		rowObject.put(cursor.getColumnName(i), ""); 
 		           	    	}
 	       	    		}
 	       	    		catch (Exception e) {

@@ -37,7 +37,7 @@ public class FileExport {
 	String dirName;
 	private final static String LOG_TAG = "FileExport";
 	protected static Context context = ContextProvider.getContext();
-	private File folder = new File(context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS) + fileName);
+	//private File folder = new File(context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS) + fileName);
 
 	/**
 	 * Constructor which takes in the file name

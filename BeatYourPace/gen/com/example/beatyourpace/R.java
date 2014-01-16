@@ -98,17 +98,14 @@ public final class R {
         public static final int ga_sessionTimeout=0x7f070001;
     }
     public static final class layout {
-        public static final int activity_data=0x7f030000;
-        public static final int activity_database=0x7f030001;
-        public static final int activity_help=0x7f030002;
-        public static final int activity_lets_run_mode=0x7f030003;
-        public static final int activity_main=0x7f030004;
-        public static final int activity_settings=0x7f030005;
-        public static final int activity_trainingmode=0x7f030006;
-        public static final int pace=0x7f030007;
-        public static final int settings=0x7f030008;
-        public static final int trainingmode=0x7f030009;
-        public static final int trainingmodetest=0x7f03000a;
+        public static final int activity_help=0x7f030000;
+        public static final int activity_lets_run_mode=0x7f030001;
+        public static final int activity_main=0x7f030002;
+        public static final int activity_settings=0x7f030003;
+        public static final int activity_trainingmode=0x7f030004;
+        public static final int pace=0x7f030005;
+        public static final int trainingmode=0x7f030006;
+        public static final int trainingmodetest=0x7f030007;
     }
     public static final class menu {
         public static final int database=0x7f0b0000;
