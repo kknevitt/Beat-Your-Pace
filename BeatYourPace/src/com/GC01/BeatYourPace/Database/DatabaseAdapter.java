@@ -64,6 +64,7 @@ public abstract class DatabaseAdapter {
 				DataEntry.COL_BPM, 
 				DataEntry.COL_INITIAL_PREF_PACE_M,
 				DataEntry.COL_PREF_PACE_M,
+				DataEntry.COL_INITIAL_PREF_PACE_KM,
 				DataEntry.COL_PREF_PACE_KM,
 				DataEntry.COL_FILE_LOC,
 		};
