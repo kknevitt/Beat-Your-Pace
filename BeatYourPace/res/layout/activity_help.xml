@@ -15,13 +15,10 @@
         android:id="@+id/helpPageTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#A8A8A8"
         android:orientation="vertical"
-        android:text="@string/helpPageTitle"
         android:padding="1dip"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#FFFFFF"
-        android:textStyle="bold" />
+        android:text="@string/helpPageTitle"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
         android:id="@+id/TrainingTitle"
@@ -30,7 +27,6 @@
         android:orientation="vertical"
         android:text="@string/helpPageTrainingTitle"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textStyle="bold" 
         android:padding="2dip"/>
 
     <TextView
@@ -48,7 +44,6 @@
         android:orientation="vertical"
         android:text="@string/helpPageLetsRunTitle"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textStyle="bold"
         android:padding="2dip" />
 
     <TextView
@@ -66,7 +61,7 @@
         android:orientation="vertical"
         android:text="@string/helpPageSettingsTitle"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textStyle="bold" />
+         />
 
     <TextView
         android:id="@+id/SettingsText"
