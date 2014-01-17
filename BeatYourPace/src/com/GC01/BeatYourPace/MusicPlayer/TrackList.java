@@ -2,6 +2,8 @@ package com.GC01.BeatYourPace.MusicPlayer;
 
 import java.util.ArrayList;
 
+import android.content.Intent;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -202,8 +204,15 @@ public class TrackList {
 						
 						Log.d("TrackList", "TrackList was empty");
 						Toast.makeText(ContextProvider.getContext(), "No Songs at that Target Pace", Toast.LENGTH_SHORT).show();
-						empty = true;		
-					}
+						empty = true;
+						  Intent intent = new Intent("Track Info Event");
+						  
+						  // Puts an extra data on the intent which carries the Track Info for the activity to display.
+						  intent.putExtra("Track Info Action", "Music Artist and Track");
+						  LocalBroadcastManager.getInstance(ContextProvider.getContext()).sendBroadcast(intent);
+							}
+							
+					
 					
 					else {
 						
