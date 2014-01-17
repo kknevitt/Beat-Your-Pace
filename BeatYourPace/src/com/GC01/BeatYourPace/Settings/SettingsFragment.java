@@ -16,7 +16,6 @@ package com.GC01.BeatYourPace.Settings;
 
 
 import com.example.beatyourpace.R;
-
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.SharedPreferences;
@@ -24,7 +23,6 @@ import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
-
 
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
@@ -45,7 +43,7 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
 		//SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(ContextProvider.getContext());
 		//sp.registerOnSharedPreferenceChangeListener(listener);
 		getPreferenceManager().getSharedPreferences().registerOnSharedPreferenceChangeListener(listener);
-		
+	
 	}
 
 	@Override

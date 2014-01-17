@@ -12,10 +12,10 @@
     <string name="sDistanceUnits">Select Miles or Kilometres</string>
     <string name="sDistanceMiles">Miles</string>
     <string name="sDistanceKilo">Kilometres</string>
-    <string name="sSetDefaultDistanceUnits">Set Miles or Kilometres</string>
+    <string name="sSetDefaultDistanceUnits">Select Miles or Kilometres</string>
     <string name="sDefaultTargetTitle">Default Target Pace</string>
     <string name="sDefaultTargetPace">8 mph</string>
-    <string name="sSetTargetPace">Set Target Pace</string>
+    <string name="sSetTargetPace">Select your target pace</string>
     <string name="sMinus">-</string>
     <string name="sPlus">+</string>
     <string name="sFindMusicTitle">Find Music</string>
@@ -36,7 +36,7 @@
     <string name="title_activity_database">Database</string>
     <string name="title_activity_TrainingModeActivity">Training mode</string>
     <string name="title_activity_lets_run_mode">Lets Run mode</string>
-    <string name="helpPageTitle">Help Page</string>
+    <string name="helpPageTitle">Help</string>
     <string name="helpPageTrainingTitle">Training mode</string>
     <string name="helpPageLetsRunTitle">Let\'s Run\! </string>
     <string name="helpPageSettingsTitle">Settings</string>
