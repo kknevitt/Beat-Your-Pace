@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" 
+    xmlns:picker="http://schemas.android.com/apk/res/example.android.numberpickersample">
 	<PreferenceCategory
-        android:title="Default Settings" android:fragment="@string/action_settings">
+        android:title="Settings"
+        android:fragment="@string/action_settings">
 		<ListPreference 
 		    android:title="@string/sSetDefaultDistanceUnits"
-          	android:summary="Select whether you want the pace to be shown in kilometres or miles"
+          	android:summary="Default: Miles \nDisplays and measures pace in miles or km"
             android:key="unitType"
             android:defaultValue="1"
             android:entries="@array/listUnitArray"
             android:entryValues="@array/listUnitValues" />
-		<EditTextPreference 
-		    android:dialogMessage="Enter the target pace in minutes to complete 1 unit (km or mile). Enter in 0.5 increments e.g. 6.5 or 6.0." 
-		    android:dialogTitle="@string/sSetTargetPace" 
-		    android:defaultValue="9.0" 
-		    android:inputType="numberDecimal" 
-		    android:title="@string/sSetTargetPace" 
-		    android:key="set_target_pace"/>
+		<ListPreference 
+		    android:title="@string/sSetTargetPace"
+		    android:summary="Default: 9.0 mins \nMinutes you aim to run 1 mile or km in \nMake sure your target pace matches Miles or Km as you chose above"
+          	android:key="set_target_pace"
+            android:defaultValue="9.0"
+            android:inputType="numberDecimal" 
+            android:entries="@array/targetPaceArray"
+            android:entryValues="@array/targetPaceValues" />
 	</PreferenceCategory>
 	
 	
