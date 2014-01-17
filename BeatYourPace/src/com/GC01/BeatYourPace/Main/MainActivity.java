@@ -8,6 +8,7 @@ import android.app.Activity;
 
 import com.GC01.BeatYourPace.Database.DatabaseIntentService;
 import com.GC01.BeatYourPace.Database.DatabaseExportFile;
+import com.GC01.BeatYourPace.Database.DatabaseCSV;
 import com.GC01.BeatYourPace.FileManager.FileExport;
 import com.GC01.BeatYourPace.HelpPage.HelpPageActivity;
 import com.GC01.BeatYourPace.PaceCalculator.CurrentPace;
@@ -69,8 +70,7 @@ public class MainActivity extends Activity implements OnClickListener{
 			e.printStackTrace();
 		}
         
-        //copy db to accessible location for testing
-        DatabaseExportFile.expDb();
+       
         
 	}
 
