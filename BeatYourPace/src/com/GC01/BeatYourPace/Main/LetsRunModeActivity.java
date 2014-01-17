@@ -28,6 +28,11 @@ import android.widget.TextView;
 public class LetsRunModeActivity extends Activity implements OnClickListener {
 
 	
+	// Target Pace 
+	public static float targetPace;
+	private static String displayTargetPace; 
+    protected static TextView targetPaceText;
+	
 	// Active Screen
 	public static boolean onScreen;
 	
@@ -44,7 +49,7 @@ public class LetsRunModeActivity extends Activity implements OnClickListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_lets_run_mode);  
+		setContentView(R.layout.test_activity_lets_run_mode);  
 		
 		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(ContextProvider.getContext());
 
@@ -66,6 +71,9 @@ public class LetsRunModeActivity extends Activity implements OnClickListener {
 		}
 		
 		startCurrentPaceService(this);
+		
+        displayTargetPace = sp.getString("set_target_pace", "6.0"); //comment these 3 lines out to run with runingmodetest
+        targetPace = Float.valueOf(displayTargetPace);
 		
         playOrPauseImageButton = (ImageButton) findViewById(R.id.bPlayAndPause); 				
         skipSongImageButton = (ImageButton) findViewById(R.id.bSkipTrack); 		

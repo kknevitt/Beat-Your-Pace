@@ -24,6 +24,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class TrainingModeActivity extends Activity implements OnClickListener {
 
@@ -53,7 +54,7 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_trainingmode);  
+		setContentView(R.layout.test_activity_training_mode);  
 		
 		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(ContextProvider.getContext());
 
@@ -87,6 +88,7 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
         targetPaceText = (TextView) findViewById(R.id.CurrentTargetPace);
         targetUnit = (TextView) findViewById(R.id.targetPaceUnit);
         currentPaceUnit = (TextView) findViewById(R.id.CurrentPaceUnit);
+        trackInfo = (TextView) findViewById(R.id.tSongName);
         
         if (Integer.parseInt(sp.getString("unitType", "1")) == 1) {
         	String minPerMile = "min/Miles";
@@ -168,7 +170,6 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 		  public void onReceive(Context context, Intent intent) {
 		    // Get extra data included in the Intent
 			
-			  trackInfo = (TextView) findViewById(R.id.tSongName);
 			  System.out.println("Intent Received");
 		      displayTrackInfo = intent.getStringExtra("Track Info Action");
 		      if (displayTrackInfo == null)
@@ -180,7 +181,7 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 			  
 		  }
 		};
-	
+		
 	
 	/** Creating a broadcast receiver for the GPS data**/
 	private BroadcastReceiver GPSReceiver = new BroadcastReceiver() {
@@ -188,15 +189,21 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 			  public void onReceive(Context context, Intent intent) {
 			    // Get extra data included in the Intent
 				  displayGPSinfo = intent.getStringExtra("GPS Current Pace Info");
+				  Toast.makeText(ContextProvider.getContext(), "GPS broadcast recognised", Toast.LENGTH_SHORT).show();
+				  
 			      if (displayGPSinfo == null)
 			      System.out.println("displayGPSinfo was null");
 			      else {
+			    	  
 			    	  System.out.println(displayGPSinfo + " wasnt null");
+			    	  Toast.makeText(ContextProvider.getContext(), "GPS Data was receieved but null", Toast.LENGTH_SHORT).show();
+					  
 			      }
 			      
 			      System.out.println("GPS Info Received");
 				  currentPaceText = (TextView) findViewById(R.id.currentPaceText);
 			      currentPaceText.setText(displayGPSinfo);
+			      Toast.makeText(ContextProvider.getContext(), "GPS Data was RECIEVED SUCCESSFULLY", Toast.LENGTH_SHORT).show();
 				  
 			  }
 			};

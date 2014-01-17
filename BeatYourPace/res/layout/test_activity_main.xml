@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="3dp"
+    android:orientation="vertical" >
+        
+        <LinearLayout
+        android:id="@+id/LL1_TopSpace"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.02"
+        android:orientation="vertical" >
+        
+ 	   </LinearLayout>
+
+         <LinearLayout
+        android:id="@+id/LL2_MenuButtons"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.2"
+        android:background="#FFFFFF"
+        android:orientation="vertical" >
+          
+        <LinearLayout
+        android:id="@+id/MenuButtonSpacing"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        
+           <Button
+               android:id="@+id/bTrainingMode"
+               android:layout_width="fill_parent"
+               android:layout_height="wrap_content"
+               android:layout_weight="0.2"
+               android:background="@drawable/button_color_gradualblue"
+               android:text="@string/sTrainingMode"
+           	   android:textColor="@color/white"
+           	   android:textStyle="bold"
+          	 	android:textSize="25sp" />
+           
+           <View
+           android:id="@+id/Spacer_Menu1"
+           android:layout_width="match_parent"
+           android:layout_height="0dp"
+           android:layout_weight="0.1" />
+           
+                      <Button
+               android:id="@+id/bLetsRun"
+               android:layout_width="fill_parent"
+               android:layout_height="wrap_content"
+               android:layout_weight="0.2"
+               android:background="@drawable/button_color_gradualblue"
+               android:textSize="25sp"
+               android:textColor="@color/white"
+               android:textStyle="bold"
+               android:text="@string/sLetsRun" />
+           
+           <View
+           android:id="@+id/Spacer_Menu2"
+           android:layout_width="match_parent"
+           android:layout_height="0dp"
+           android:layout_weight="0.1" />
+           
+           <Button
+           android:id="@+id/bSettings"
+           android:layout_width="fill_parent"
+           android:layout_height="wrap_content"
+           android:layout_weight="0.2"
+           android:background="@drawable/button_color_gradualblue"
+           android:textSize="25sp"
+           android:textColor="@color/white"
+           android:textStyle="bold"
+           android:text="@string/sSettings" />
+           
+           <View
+           android:id="@+id/Spacer_Menu3"
+           android:layout_width="match_parent"
+           android:layout_height="0dp"
+           android:layout_weight="0.1" />
+           
+           <Button
+           android:id="@+id/bHelpPage"
+           android:layout_width="fill_parent"
+           android:layout_height="wrap_content"
+           android:layout_weight="0.2"
+           android:background="@drawable/button_color_gradualblue"
+           android:textSize="25sp"
+           android:textColor="@color/white"
+           android:textStyle="bold"
+           android:text="@string/shelpPage" />
+           
+           
+           
+    </LinearLayout>  
+             
+ 	   </LinearLayout>
+ 	   
+           <LinearLayout
+        android:id="@+id/LL3_BottomSpace"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.02"
+
+        android:orientation="vertical"
+        android:background="#FFFFFF">
+ 	   </LinearLayout>
+ 	   
+ 
+
+</LinearLayout>

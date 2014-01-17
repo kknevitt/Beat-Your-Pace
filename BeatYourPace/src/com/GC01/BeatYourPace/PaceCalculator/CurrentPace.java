@@ -89,12 +89,16 @@ public class CurrentPace extends Service {
 		int unitType = Integer.parseInt(preferences.getString("unitType", "1"));
 		
 		if (unitType == 1){
+			
 			currentPace = (float) (currentPace / MPS_TO_MINS_PER_MILE);
 			sendGPSInfo();
-			
+			Toast.makeText(ContextProvider.getContext(), "GPS Data was sent with Miles", Toast.LENGTH_SHORT).show();
+			  
 			}if (unitType == 2) {
 				currentPace = (float) (currentPace / MPS_TO_PER_KILOMETRES);
 				sendGPSInfo();
+				Toast.makeText(ContextProvider.getContext(), "GPS Data with KM", Toast.LENGTH_SHORT).show();
+				  
 			}
 			
 	}	

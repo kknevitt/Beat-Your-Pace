@@ -1,7 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="fill_parent"
+    android:layout_height="match_parent"
     android:layout_margin="3dp"
     android:orientation="vertical" >
 
@@ -9,11 +9,6 @@
         
         <!-- Current and Target pace -->
     
-       <View
-           android:id="@+id/SpacerA"
-           android:layout_width="match_parent"
-           android:layout_height="15dp"
-            />
 
     <LinearLayout
         android:id="@+id/linearLayout4"
@@ -21,6 +16,11 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
 
+            <View
+           android:id="@+id/SpacerA"
+           android:layout_width="match_parent"
+           android:layout_height="15dp"
+            />
         
     </LinearLayout>
     
@@ -169,7 +169,7 @@
       <TextView
            android:id="@+id/tSongName"
            android:layout_width="match_parent"
-           android:layout_height="wrap_content"
+           android:layout_height="55dp"
            android:background="#0298db"
            android:textColor="#FFFFFF"
            android:text="@string/sSongDetails"
@@ -230,14 +230,19 @@
             android:layout_gravity="left"
             android:layout_weight="0.2" />
        </LinearLayout>
-
+       
+    <LinearLayout
+        android:id="@+id/linearLayout40"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
        <!-- Blank spacer -->
 		<View
            android:id="@+id/Spacer30"
            android:layout_width="match_parent"
            android:layout_height="15dp"
             />
-		
+	   </LinearLayout>	
        
        
 </LinearLayout>

@@ -53,6 +53,7 @@
     <string name="sDscrBPM_Icon">Icon for the BPM App</string>
     <string name="sTargetUnit">min/KM</string>
     <string name="sCurrentPaceUnit">min/KM</string>
+    <string name="sWelcome">Welcome!</string>
     
 
 </resources>
