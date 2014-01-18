@@ -49,7 +49,7 @@ public class LetsRunModeActivity extends Activity implements OnClickListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.test_activity_lets_run_mode);  
+		setContentView(R.layout.activity_lets_run_mode);  
 		
 		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(ContextProvider.getContext());
 

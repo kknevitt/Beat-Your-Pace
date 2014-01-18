@@ -208,7 +208,7 @@ public class TrackList {
 						  Intent intent = new Intent("Track Info Event");
 						  
 						  // Puts an extra data on the intent which carries the Track Info for the activity to display.
-						  intent.putExtra("Track Info Action", "Music Artist and Track");
+						  intent.putExtra("Track Info Action", "Try another Target Pace!");
 						  LocalBroadcastManager.getInstance(ContextProvider.getContext()).sendBroadcast(intent);
 							}
 							

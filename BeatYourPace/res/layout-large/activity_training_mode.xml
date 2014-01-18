@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:ignore="UselessParent,NestedWeights" >
+
+    <!-- Top Space -->
+
+    <LinearLayout
+        android:id="@+id/LL1_TopSpace"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.05"
+        android:background="#FFFFFF"
+        android:orientation="vertical" >
+        
+          <TextView
+           android:id="@+id/tTargetPaceTitle"
+           android:layout_width="match_parent"
+           android:layout_height="0dp"
+           android:layout_weight="0.75"
+           android:background="#0298db"
+           android:gravity="center"
+           android:text="@string/tAdjustTargetPace"
+           android:textColor="#FFFFFF"
+           android:textSize="35sp"
+           android:textStyle="bold" />
+          
+            <View
+           android:id="@+id/Spacer0"
+           android:layout_width="match_parent"
+           android:layout_height="0dp"
+           android:layout_weight="0.25"
+            />
+        
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LL2_TargetPaceButtons"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"
+        android:background="#FFFFFF"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/linearLayout2_1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal" >
+
+            <View
+                android:id="@+id/Spacer2_1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="left"
+                android:layout_weight="0.15" />
+
+            <Button
+                android:id="@+id/bDecTarget"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.5"
+                android:background="@drawable/button_color_gradualpurple"
+                android:text="@string/sMinus"
+                android:textColor="@color/white"
+                android:textSize="65sp" />
+
+            <View
+                android:id="@+id/Spacer2_2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="left"
+                android:layout_weight="0.15" />
+
+            <Button
+                android:id="@+id/bIncTarget"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.5"
+                android:background="@drawable/button_color_gradualpurple"
+                android:text="@string/sPlus"
+                android:textColor="@color/white"
+                android:textSize="65sp" />
+
+            <View
+                android:id="@+id/Spacer2_3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="left"
+                android:layout_weight="0.15" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LL3_SpacerTPMusic"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.015"
+        android:background="#FFFFFF"
+        android:orientation="vertical" >
+    </LinearLayout>
+    
+    
+    <LinearLayout
+        android:id="@+id/LL3_SpacerTPMusic2"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.08"
+        android:background="#FFFFFF"
+        android:orientation="vertical" >
+
+    
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/sPaceTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_weight="1"
+            android:background="#0298db"
+            android:gravity="center"
+            android:padding="1dip"
+            android:text="@string/sPaceTitle"
+            android:textColor="#FFFFFF"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/sTargetTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_weight="1"
+            android:background="#0298db"
+            android:gravity="center"
+            android:padding="1dip"
+            android:text="@string/sTargetTitle"
+            android:textColor="#FFFFFF"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+    
+    <LinearLayout
+            android:id="@+id/LinearLayout01"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            
+                <View
+                android:id="@+id/View0a"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="left"
+                android:layout_weight="0.15" />
+                
+            <TextView
+                android:id="@+id/currentPaceText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#FFFFFF"
+                android:gravity="center"
+                android:padding="5dip"
+                android:text="@string/sPace"
+                android:textSize="40sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/CurrentPaceUnit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#FFFFFF"
+                android:gravity="center"
+                android:padding="5dip"
+                android:text="@string/sTargetUnit"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/CurrentTargetPace"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#FFFFFF"
+                android:gravity="center"
+                android:padding="5dip"
+                android:text="@string/sTarget"
+                android:textSize="40sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/targetPaceUnit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#FFFFFF"
+                android:gravity="center"
+                android:padding="5dip"
+                android:text="@string/sCurrentPaceUnit"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+            
+                        <View
+                android:id="@+id/View0b"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="left"
+                android:layout_weight="0.15" />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/LL8_TooFastTooSlowButtons"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.15"
+        android:background="#FFFFFF"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/LL8.1_TooButtonsSpaceing"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <View
+                android:id="@+id/Spacer20"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="left"
+                android:layout_weight="0.15" />
+
+            <Button
+                android:id="@+id/bSongTooSlow"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.8"
+                android:background="@drawable/button_color_gradualblue"
+                android:text="@string/sTooFastButton"
+                android:textColor="@color/white"
+                android:textSize="35sp"
+                android:textStyle="bold" />
+
+            <View
+                android:id="@+id/Spacer21"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="left"
+                android:layout_weight="0.15" />
+
+            <Button
+                android:id="@+id/bSongTooFast"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.8"
+                android:background="@drawable/button_color_gradualblue"
+                android:text="@string/sTooSlowButton"
+                android:textColor="@color/white"
+                android:textSize="35sp"
+                android:textStyle="bold" />
+
+            <View
+                android:id="@+id/Spacer23"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_gravity="left"
+                android:layout_weight="0.15" />
+        </LinearLayout>
+        
+        
+        
+    </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/LL3_SpacerTPMusic3"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.01"
+        android:background="#FFFFFF"
+        android:orientation="vertical" >
+    </LinearLayout>
+    
+    
+    
+        <LinearLayout
+        android:id="@+id/LL6_SongDetails"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.065"
+        android:background="#FFFFFF"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/tSongName"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#0298db"
+            android:gravity="center"
+            android:text="@string/sSongDetails"
+            android:textColor="#FFFFFF"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+    
+        
+        <LinearLayout
+        android:id="@+id/LL3_SpacerTPMusic4"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.01"
+        android:background="#FFFFFF"
+        android:orientation="vertical" >
+    </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/LL4_MusicButtons"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.085"
+        android:background="#FFFFFF"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/MusicButtonSpacing"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/background_gradient_whitetoblue"
+            android:orientation="horizontal" >
+
+            <View
+                android:id="@+id/SpacerM1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_weight="0.2" />
+
+            <ImageButton
+                android:id="@+id/bPreviousTrack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/button_shape_oval"
+                android:contentDescription="@string/sDscrPreviousTrack"
+                android:src="@drawable/previous_large" />
+
+            <View
+                android:id="@+id/SpacerM2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_weight="0.2" />
+
+            <ImageButton
+                android:id="@+id/bPlayAndPause"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/button_shape_oval"
+                android:contentDescription="@string/sDscrPlayPause"
+                android:src="@drawable/play_large" />
+
+            <View
+                android:id="@+id/SpacerM3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_weight="0.2" />
+
+            <ImageButton
+                android:id="@+id/bStopSong"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/button_shape_oval"
+                android:contentDescription="@string/sDscrStop"
+                android:src="@drawable/stop_large" />
+
+            <View
+                android:id="@+id/SpacerM4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_weight="0.2" />
+
+            <ImageButton
+                android:id="@+id/bSkipTrack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/button_shape_oval"
+                android:contentDescription="@string/sDscrSkipTrack"
+                android:src="@drawable/skip_large" />
+
+            <View
+                android:id="@+id/SpacerM5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_weight="0.2" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
