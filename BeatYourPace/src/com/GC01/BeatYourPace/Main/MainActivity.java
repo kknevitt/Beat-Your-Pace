@@ -36,7 +36,7 @@ public class MainActivity extends Activity implements OnClickListener{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.test_activity_main);
+		setContentView(R.layout.activity_main);
 		
 		//Analytics tracking user on this page
 		EasyTracker.getInstance(this).activityStart(this);
@@ -54,8 +54,8 @@ public class MainActivity extends Activity implements OnClickListener{
         helpPageButton.setOnClickListener(this);
         
         //Start loading music data to the database as a background service ready for the player
-        //Intent intentDb = new Intent(this,DatabaseIntentService.class); 
-        //this.startService(intentDb);
+        Intent intentDb = new Intent(this,DatabaseIntentService.class); 
+        this.startService(intentDb);
         
         //Code to test the JSON export functionality is working
        String jsonfname = "BYPtoJSON.txt";
