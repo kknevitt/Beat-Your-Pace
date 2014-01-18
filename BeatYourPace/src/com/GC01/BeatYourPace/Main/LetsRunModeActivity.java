@@ -25,7 +25,19 @@ import android.widget.TextView;
 public class LetsRunModeActivity extends Activity implements OnClickListener {
 
 	
+<<<<<<< HEAD
 	public static boolean onScreen;	
+=======
+	// Target Pace 
+	public static float targetPace;
+	private static String displayTargetPace; 
+    protected static TextView targetPaceText;
+	
+	// Active Screen
+	public static boolean onScreen;
+	
+	// Current Track Info
+>>>>>>> a054825d0b7f7069b034c11fed81572b3e7cbcb1
 	public static String displayTrackInfo;
 	private static TextView trackInfo;	
 	protected static ImageButton playOrPauseImageButton, imagebutton2, skipSongImageButton, previousSongImageButton, pauseImageButton, stopImageButton;
@@ -35,7 +47,7 @@ public class LetsRunModeActivity extends Activity implements OnClickListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_lets_run_mode);  
+		setContentView(R.layout.test_activity_lets_run_mode);  
 		
 	      playOrPauseImageButton = (ImageButton) findViewById(R.id.bPlayAndPause); 				
 	      skipSongImageButton = (ImageButton) findViewById(R.id.bSkipTrack); 		
@@ -64,7 +76,26 @@ public class LetsRunModeActivity extends Activity implements OnClickListener {
 		AudioFocusManager.getInstance().requestFocus();
 		}
 		
+<<<<<<< HEAD
 	    
+=======
+		startCurrentPaceService(this);
+		
+        displayTargetPace = sp.getString("set_target_pace", "6.0"); //comment these 3 lines out to run with runingmodetest
+        targetPace = Float.valueOf(displayTargetPace);
+		
+        playOrPauseImageButton = (ImageButton) findViewById(R.id.bPlayAndPause); 				
+        skipSongImageButton = (ImageButton) findViewById(R.id.bSkipTrack); 		
+        previousSongImageButton = (ImageButton) findViewById(R.id.bPreviousTrack); 	
+        songTooSlowButton = (Button) findViewById(R.id.bSongTooSlow); 				
+        songTooFastButton = (Button) findViewById(R.id.bSongTooFast);					
+        decreaseTargetPaceButton = (Button) findViewById(R.id.bDecTarget);					
+        increaseTargetPaceButton = (Button) findViewById(R.id.bIncTarget);
+        stopImageButton = (ImageButton) findViewById(R.id.bStopSong);
+    
+
+        //setting an event listener for each button
+>>>>>>> a054825d0b7f7069b034c11fed81572b3e7cbcb1
         playOrPauseImageButton.setOnClickListener(this);
         skipSongImageButton.setOnClickListener(this);
         previousSongImageButton.setOnClickListener(this);

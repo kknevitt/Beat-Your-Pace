@@ -41,7 +41,7 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_trainingmode);  
+		setContentView(R.layout.test_activity_training_mode);  
 		
         playOrPauseImageButton = (ImageButton) findViewById(R.id.bPlayAndPause); 				
         skipSongImageButton = (ImageButton) findViewById(R.id.bSkipTrack); 		
@@ -74,6 +74,22 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 		
 		startCurrentPaceService(this);
 		
+<<<<<<< HEAD
+=======
+        playOrPauseImageButton = (ImageButton) findViewById(R.id.bPlayAndPause); 				
+        skipSongImageButton = (ImageButton) findViewById(R.id.bSkipTrack); 		
+        previousSongImageButton = (ImageButton) findViewById(R.id.bPreviousTrack); 	
+        songTooSlowButton = (Button) findViewById(R.id.bSongTooSlow); 				
+        songTooFastButton = (Button) findViewById(R.id.bSongTooFast);					
+        decreaseTargetPaceButton = (Button) findViewById(R.id.bDecTarget);					
+        increaseTargetPaceButton = (Button) findViewById(R.id.bIncTarget);
+        stopImageButton = (ImageButton) findViewById(R.id.bStopSong);
+        targetPaceText = (TextView) findViewById(R.id.CurrentTargetPace);
+        targetUnit = (TextView) findViewById(R.id.targetPaceUnit);
+        currentPaceUnit = (TextView) findViewById(R.id.CurrentPaceUnit);
+        trackInfo = (TextView) findViewById(R.id.tSongName);
+        
+>>>>>>> a054825d0b7f7069b034c11fed81572b3e7cbcb1
         if (Integer.parseInt(sp.getString("unitType", "1")) == 1) {
         	String minPerMile = "min/Miles";
         	targetUnit.setText(minPerMile);
@@ -130,7 +146,6 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 		  public void onReceive(Context context, Intent intent) {
 		    // Get extra data included in the Intent
 			
-			  trackInfo = (TextView) findViewById(R.id.tSongName);
 			  System.out.println("Intent Received");
 		      displayTrackInfo = intent.getStringExtra("Track Info Action");
 		      if (displayTrackInfo == null)
@@ -142,6 +157,7 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 			  
 		  }
 		};
+<<<<<<< HEAD
 	
 
 	public void startCurrentPaceService(Context context) {
@@ -150,14 +166,24 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 		
 
 	/** Broadcast receiver for the GPS data**/
+=======
+		
+	
+	/** Creating a broadcast receiver for the GPS data**/
+>>>>>>> a054825d0b7f7069b034c11fed81572b3e7cbcb1
 	private BroadcastReceiver GPSReceiver = new BroadcastReceiver() {
 			  @Override
 			  public void onReceive(Context context, Intent intent) {
 				  displayGPSinfo = intent.getStringExtra("GPS Current Pace Info");
+				  Toast.makeText(ContextProvider.getContext(), "GPS broadcast recognised", Toast.LENGTH_SHORT).show();
+				  
 			      if (displayGPSinfo == null)
 			      System.out.println("displayGPSinfo was null");
 			      else {
+			    	  
 			    	  System.out.println(displayGPSinfo + " wasnt null");
+			    	  Toast.makeText(ContextProvider.getContext(), "GPS Data was receieved but null", Toast.LENGTH_SHORT).show();
+					  
 			      }
 
 			      Toast.makeText(getApplicationContext(), " GPSInfo is on training mode.",
@@ -165,6 +191,7 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 				
 				  currentPaceText = (TextView) findViewById(R.id.currentPaceText);
 			      currentPaceText.setText(displayGPSinfo);
+			      Toast.makeText(ContextProvider.getContext(), "GPS Data was RECIEVED SUCCESSFULLY", Toast.LENGTH_SHORT).show();
 				  
 			  }
 			};

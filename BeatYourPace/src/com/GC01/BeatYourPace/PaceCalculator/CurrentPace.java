@@ -127,8 +127,42 @@ public class CurrentPace extends Service {
 	        public void onProviderEnabled(String provider) {}
 	        public void onProviderDisabled(String provider) {}
 	    
+<<<<<<< HEAD
 	    
 	    
+=======
+	    /**Setting the location provider and the updates interval time **/
+	    locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, locationListener);
+	} 
+
+	/** Method created to adjust the currentPace retrieve to the preferred speed unit of the user.
+	 * The getSpeed() method retrieves speed at metres per second.*/
+	private void addSpeedUnit(float currentPace){
+		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ContextProvider.getContext());
+		int unitType = Integer.parseInt(preferences.getString("unitType", "1"));
+		
+		if (unitType == 1){
+			
+			currentPace = (float) (currentPace / MPS_TO_MINS_PER_MILE);
+			sendGPSInfo();
+			Toast.makeText(ContextProvider.getContext(), "GPS Data was sent with Miles", Toast.LENGTH_SHORT).show();
+			  
+			}if (unitType == 2) {
+				currentPace = (float) (currentPace / MPS_TO_PER_KILOMETRES);
+				sendGPSInfo();
+				Toast.makeText(ContextProvider.getContext(), "GPS Data with KM", Toast.LENGTH_SHORT).show();
+				  
+			}
+			
+	}	
+			    				
+			
+		
+	@Override
+	public IBinder onBind(Intent intent) {
+		return null;
+	}
+>>>>>>> a054825d0b7f7069b034c11fed81572b3e7cbcb1
 	
 
 			    						
