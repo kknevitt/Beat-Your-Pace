@@ -74,9 +74,14 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 		if (AudioFocusManager.getInstance().focusTest() != true) {
 		System.out.print("Didn't have focus, requesting it");
 		AudioFocusManager.getInstance().requestFocus();
-		}
 		
 		startCurrentPaceService(this);
+		
+		Log.d("gps message from oncreate", "help");
+		}
+		
+		
+		
 		
         playOrPauseImageButton = (ImageButton) findViewById(R.id.bPlayAndPause); 				
         skipSongImageButton = (ImageButton) findViewById(R.id.bSkipTrack); 		
@@ -131,7 +136,10 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 	
 	/** Method used to start the GPS service **/
 	public void startCurrentPaceService(Context context) {
-		startService(new Intent(this, CurrentPace.class));		
+		startService(new Intent(this, CurrentPace.class));
+		
+		Log.d("startCurrentPaceService is being called", "help");
+		
 	}
 	
 
