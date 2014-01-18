@@ -22,7 +22,7 @@
 
         <!-- Blank spacer -->
        <View
-           android:id="@+id/Spacer5"
+           android:id="@+id/Spacer"
            android:layout_width="match_parent"
            android:layout_height="10dp"
             />
@@ -101,7 +101,7 @@
 
             <!-- Blank spacer -->
        <View
-           android:id="@+id/Spacer5"
+           android:id="@+id/SpSpacer5acer5"
            android:layout_width="match_parent"
            android:layout_height="10dp"
             />
