@@ -156,6 +156,14 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 		if (AudioFocusManager.getInstance().focusTest()){
 			ButtonController.buttonFunction(v);	
 		}
+		
+	      if(MusicPlayer.getInstance().currentlyPlaying() == true) {
+	    	  playOrPauseImageButton.setBackgroundResource(R.drawable.pause);
+	      }
+	      else {
+	    	  playOrPauseImageButton.setBackgroundResource(R.drawable.play);  
+	      }
+		
 	}
 		
 	public void onPause(){

@@ -31,16 +31,17 @@
     </LinearLayout>
     
 	<LinearLayout
-        android:id="@+id/LL3_SpacerTPMusic3"
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.01"
-        android:background="#FFFFFF"
-        android:orientation="vertical" >
+	    android:id="@+id/LL2_SpacerTFSD"
+	    android:layout_width="fill_parent"
+	    android:layout_height="0dp"
+	    android:layout_weight="0.01"
+	    android:background="#FFFFFF"
+	    android:orientation="vertical" >
+
     </LinearLayout>
     
     <LinearLayout
-        android:id="@+id/LL2_TargetPaceButtons"
+        android:id="@+id/LL3_TargetPaceButtons"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_weight="0.075"
@@ -48,13 +49,13 @@
         android:orientation="vertical" >
 
         <LinearLayout
-            android:id="@+id/linearLayout2_1"
+            android:id="@+id/linearLayout3_1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal" >
 
             <View
-                android:id="@+id/Spacer2_1"
+                android:id="@+id/Spacer3_1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="left"
@@ -71,7 +72,7 @@
                 android:textSize="35sp" />
 
             <View
-                android:id="@+id/Spacer2_2"
+                android:id="@+id/Spacer3_2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="left"
@@ -88,7 +89,7 @@
                 android:textSize="35sp" />
 
             <View
-                android:id="@+id/Spacer2_3"
+                android:id="@+id/Spacer3_3"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="left"
@@ -99,7 +100,7 @@
     </LinearLayout>
     
     <LinearLayout
-        android:id="@+id/LL3_SpacerTPMusic3"
+        android:id="@+id/LL2_SpacerTFSD"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_weight="0.01"
@@ -108,7 +109,7 @@
     </LinearLayout>
     
     <LinearLayout
-        android:id="@+id/LL3_SpacerTPMusic2"
+        android:id="@+id/LL5_PaceDetails"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_weight="0.07"
@@ -117,7 +118,7 @@
 
     
     <LinearLayout
-        android:id="@+id/linearLayout3"
+        android:id="@+id/PaceTitles"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
@@ -152,7 +153,7 @@
     </LinearLayout>
     
     <LinearLayout
-            android:id="@+id/LinearLayout01"
+            android:id="@+id/PaceValues"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal" >
@@ -215,8 +216,8 @@
             
         </LinearLayout>
     </LinearLayout>
-    <LinearLayout
-        android:id="@+id/LL4_TooFastTooSlowButtons"
+    <LinearLayout
+        android:id="@+id/LL5_TooFastTooSlowButtons"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_weight="0.08"
@@ -224,13 +225,13 @@
         android:orientation="vertical" >
 
         <LinearLayout
-            android:id="@+id/LL8.1_TooButtonsSpaceing"
+            android:id="@+id/LL5_1TooButtonsSpacing"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal" >
 
             <View
-                android:id="@+id/Spacer20"
+                android:id="@+id/Spacer5_1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="left"
@@ -247,7 +248,7 @@
                 android:textStyle="bold" />
 
             <View
-                android:id="@+id/Spacer21"
+                android:id="@+id/Spacer5_2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="left"
@@ -264,7 +265,7 @@
                 android:textStyle="bold" />
 
             <View
-                android:id="@+id/Spacer23"
+                android:id="@+id/Spacer5_3"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_gravity="left"
@@ -276,7 +277,7 @@
     </LinearLayout>
     
     <LinearLayout
-        android:id="@+id/LL3_SpacerTPMusic3"
+        android:id="@+id/LL2_SpacerTFSD"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_weight="0.01"
@@ -284,15 +285,13 @@
         android:orientation="vertical" >
     </LinearLayout>
     
-    
-    
         <LinearLayout
-        android:id="@+id/LL6_SongDetails"
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.045"
-        android:background="#FFFFFF"
-        android:orientation="vertical" >
+            android:id="@+id/LL7_SongDetails"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.045"
+            android:background="#FFFFFF"
+            android:orientation="vertical" >
 
         <TextView
             android:id="@+id/tSongName"
@@ -307,7 +306,7 @@
     </LinearLayout>
     
     <LinearLayout
-        android:id="@+id/LL4_MusicButtons"
+        android:id="@+id/LL8_MusicButtons"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_weight="0.075"
