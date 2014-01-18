@@ -108,5 +108,5 @@ public class ButtonController extends Service {
 public IBinder onBind(Intent intent) {
 	// TODO Auto-generated method stub
 	return null;
-}
+	}
 }

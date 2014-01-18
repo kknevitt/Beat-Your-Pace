@@ -61,7 +61,7 @@
         </service>
         <service android:name="com.GC01.BeatYourPace.PaceCalculator.CurrentPace" >
         </service>
-
+		<service android:enabled="true" android:name="com.GC01.BeatYourPace.PaceCalculator.CurrentPace" />
         <activity
             android:name="com.GC01.BeatYourPace.HelpPage.HelpPageActivity"
             android:label="@string/title_activity_help_page"

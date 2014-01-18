@@ -39,13 +39,14 @@ String speed1;
 LocationManager locationManager;
 LocationListener locationListener;
 
-protected void onCreate(Bundle savedInstanceState) { 
-    super.onCreate(); 
 
-
+public void onCreate() { 
+   
+	Log.d("gps class is being called", "help");
     LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
     locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1, 0, this);
     
+   
 
     }
 
@@ -54,6 +55,7 @@ protected void onCreate(Bundle savedInstanceState) {
         speed = location.getSpeed();
         getGPSInfo(speed);
 
+        Toast.makeText(this,"onLocationChanged method is working, the current speed is: " + speed, Toast.LENGTH_SHORT).show();
     }
 
 	public void onProviderDisabled(String provider) {
@@ -88,7 +90,8 @@ protected void onCreate(Bundle savedInstanceState) {
 	
 
 	private double getGPSInfo(double speed){
-         return speed;
+		sendGPSInfo();
+		return speed;
    }
 
 	  private void sendGPSInfo() {
