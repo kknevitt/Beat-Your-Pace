@@ -2,14 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="3dp"
+    android:layout_margin="6dp"
     android:orientation="vertical" >
         
         <LinearLayout
         android:id="@+id/LL1_TopSpace"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.02"
+        android:layout_weight="0.01"
         android:orientation="vertical" >
         
  	   </LinearLayout>
@@ -100,7 +100,7 @@
         android:id="@+id/LL3_BottomSpace"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.02"
+        android:layout_weight="0.01"
 
         android:orientation="vertical"
         android:background="#FFFFFF">
