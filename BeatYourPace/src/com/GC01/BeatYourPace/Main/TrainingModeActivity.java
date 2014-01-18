@@ -74,8 +74,6 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 		
 		startCurrentPaceService(this);
 		
-<<<<<<< HEAD
-=======
         playOrPauseImageButton = (ImageButton) findViewById(R.id.bPlayAndPause); 				
         skipSongImageButton = (ImageButton) findViewById(R.id.bSkipTrack); 		
         previousSongImageButton = (ImageButton) findViewById(R.id.bPreviousTrack); 	
@@ -89,7 +87,6 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
         currentPaceUnit = (TextView) findViewById(R.id.CurrentPaceUnit);
         trackInfo = (TextView) findViewById(R.id.tSongName);
         
->>>>>>> a054825d0b7f7069b034c11fed81572b3e7cbcb1
         if (Integer.parseInt(sp.getString("unitType", "1")) == 1) {
         	String minPerMile = "min/Miles";
         	targetUnit.setText(minPerMile);
@@ -157,7 +154,6 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 			  
 		  }
 		};
-<<<<<<< HEAD
 	
 
 	public void startCurrentPaceService(Context context) {
@@ -165,13 +161,8 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 	}
 		
 
-	/** Broadcast receiver for the GPS data**/
-=======
-		
 	
-	/** Creating a broadcast receiver for the GPS data**/
->>>>>>> a054825d0b7f7069b034c11fed81572b3e7cbcb1
-	private BroadcastReceiver GPSReceiver = new BroadcastReceiver() {
+				private BroadcastReceiver GPSReceiver = new BroadcastReceiver() {
 			  @Override
 			  public void onReceive(Context context, Intent intent) {
 				  displayGPSinfo = intent.getStringExtra("GPS Current Pace Info");
