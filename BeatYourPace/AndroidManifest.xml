@@ -59,8 +59,8 @@
         </service>
         <service android:name="com.GC01.BeatYourPace.Database.DatabaseIntentService" >
         </service>
-        <service android:name="com.GC01.BeatYourPace.PaceCalculator.CurrentPace" >
-        </service>
+        <activity android:name="com.GC01.BeatYourPace.PaceCalculator.CurrentPace" >
+        </activity>
 
         <activity
             android:name="com.GC01.BeatYourPace.HelpPage.HelpPageActivity"

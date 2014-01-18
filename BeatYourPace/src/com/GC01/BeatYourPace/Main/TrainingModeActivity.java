@@ -45,7 +45,7 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 	// Current Track Info
 	public static String displayTrackInfo;
 	private static TextView trackInfo, targetUnit, currentPaceUnit;
-	
+		
 	// Buttons    
     ImageButton playOrPauseImageButton, skipSongImageButton, previousSongImageButton, pauseImageButton, stopImageButton;
     Button songTooSlowButton, songTooFastButton, decreaseTargetPaceButton, increaseTargetPaceButton;
@@ -90,6 +90,7 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
         targetUnit = (TextView) findViewById(R.id.targetPaceUnit);
         currentPaceUnit = (TextView) findViewById(R.id.CurrentPaceUnit);
         trackInfo = (TextView) findViewById(R.id.tSongName);
+        currentPaceText = (TextView) findViewById(R.id.currentPaceText);
         
         if (Integer.parseInt(sp.getString("unitType", "1")) == 1) {
         	String minPerMile = "min/Miles";
@@ -117,13 +118,11 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
         	      new IntentFilter("Track Info Event"));
         
         // GPS Broadcast Receiver
-        LocalBroadcastManager.getInstance(this).registerReceiver(GPSReceiver,
-      	      new IntentFilter("GPS Current Pace Info"));
+        LocalBroadcastManager.getInstance(this).registerReceiver(GPSReceiver, new IntentFilter("GPS Current Pace Info"));
     
         
    }
-
-
+	
 	/** Method used to call the music player **/
 	public void startNewService(View view) {
 		startService(new Intent(this, MusicPlayer.class));
@@ -163,7 +162,7 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 		
 	}
 	
-	
+
 
 	private BroadcastReceiver bReceiver = new BroadcastReceiver() {
 		  @Override
@@ -176,22 +175,10 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
   
 		  }
 		};
-<<<<<<< HEAD
-	
-
-	public void startCurrentPaceService(Context context) {
-		startService(new Intent(this, CurrentPace.class));		
-	}
-		
-
-	
-				private BroadcastReceiver GPSReceiver = new BroadcastReceiver() {
-=======
 		
 	
 
 	private BroadcastReceiver GPSReceiver = new BroadcastReceiver() {
->>>>>>> ebca37bf67e85e818c29ff7e2044028b97dabacc
 			  @Override
 			  public void onReceive(Context context, Intent intent) {
 			    // Get extra data included in the Intent
@@ -210,7 +197,7 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 			      System.out.println("GPS Info Received");
 				  currentPaceText = (TextView) findViewById(R.id.currentPaceText);
 			      currentPaceText.setText(displayGPSinfo);
-			      Toast.makeText(ContextProvider.getContext(), "GPS Data was RECIEVED SUCCESSFULLY", Toast.LENGTH_SHORT).show();
+			      Toast.makeText(ContextProvider.getContext(), "GPS Data was RECEIVED SUCCESSFULLY", Toast.LENGTH_SHORT).show();
 				  
 			  }
 			};
