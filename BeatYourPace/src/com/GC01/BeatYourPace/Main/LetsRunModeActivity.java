@@ -28,15 +28,10 @@ import android.widget.TextView;
 public class LetsRunModeActivity extends Activity implements OnClickListener {
 
 	
-	// Target Pace 
+	public static boolean onScreen;	
 	public static float targetPace;
 	private static String displayTargetPace; 
-    protected static TextView targetPaceText;
-	
-	// Active Screen
-	public static boolean onScreen;
-	
-	// Current Track Info
+    protected static TextView targetPaceText; 	
 	public static String displayTrackInfo;
 	private static TextView trackInfo;
 	
@@ -69,8 +64,6 @@ public class LetsRunModeActivity extends Activity implements OnClickListener {
 		System.out.print("Didn't have focus, requesting it");
 		AudioFocusManager.getInstance().requestFocus();
 		}
-		
-		startCurrentPaceService(this);
 		
         displayTargetPace = sp.getString("set_target_pace", "6.0"); //comment these 3 lines out to run with runingmodetest
         targetPace = Float.valueOf(displayTargetPace);
