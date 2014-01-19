@@ -42,7 +42,7 @@
     <string name="title_helpPage">Help</string>
     <string name="title_activity_help">Help</string>
     <string name="helpLetsRunText">This mode allows you to run with songs which already have been associated with your preferred pace. If you didn\'t change any values by pressing \'Too fast\' or \'Too slow\' in the training mode then you will run with the pre-defined values.</string>
-    <string name="helpSettingsText">Please change the settings from the default to match the pace you run at\! Miles(M)/Kilometres(Km) sets whether the app displays your pace as minutes per M, or minutes per Km. It is also used to show your current pace (GPS). If you change the M/Km setting then you also need to change the pace. The target pace is the number of minutes it would take to run one M/Km. If you don\'t know your pace, try the adult default of 10 M or 6 Km, or run one M/Km and time yourself.</string>
+    <string name="helpSettingsText">Use Settings to set the pace you want to run at. \nMiles(M)/Kilometres(Km) sets whether the app will show and calculate pace in minutes per M or minutes per Km. \nIf you change the M/Km setting then you also need to change the target pace which is the number of minutes it takes you to run one M/Km. If you don\'t know your pace, try the adult default of 10 M or 6 Km, or run one M/Km and time yourself.</string>
     <string name="title_activity_help_main">Help</string>
     <string name="title_activity_help_page">Help</string>
     <string name="tAdjustTargetPace">Adjust Target Pace</string>
