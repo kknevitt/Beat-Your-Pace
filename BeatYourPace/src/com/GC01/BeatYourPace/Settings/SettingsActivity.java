@@ -10,7 +10,7 @@ package com.GC01.BeatYourPace.Settings;
  * 	<dd> Calls the settings fragment which allow the user to change these
  * </dl>
  * 
- * @version $Date: 2013/11/14
+ * @version $Date: 2014/01/19
  * @author snichols
  *
  */
@@ -47,8 +47,6 @@ public class SettingsActivity extends PreferenceActivity {
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.settings, menu);
 		return true;
 	}
 

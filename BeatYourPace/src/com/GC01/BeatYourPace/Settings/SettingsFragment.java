@@ -9,7 +9,7 @@ package com.GC01.BeatYourPace.Settings;
  * 	<dd> Allows user to set for their target pace to run (e.g. 6.5 mins per unit) at and the units to use (e.g.km)
  * </dl>
  * 
- * @version $Date: 2013/11/14
+ * @version $Date: 2014/01/19
  * @author sarahnicholson
  *
  */
@@ -18,8 +18,6 @@ package com.GC01.BeatYourPace.Settings;
 import com.example.beatyourpace.R;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
@@ -27,9 +25,7 @@ import android.preference.PreferenceFragment;
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 @SuppressLint("NewApi")
-public class SettingsFragment extends PreferenceFragment implements OnSharedPreferenceChangeListener {
-
-	private OnSharedPreferenceChangeListener listener;
+public class SettingsFragment extends PreferenceFragment {
 	
 	public SettingsFragment() {
 	}
@@ -38,24 +34,17 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		addPreferencesFromResource(R.xml.preferences);
-		getPreferenceManager().getSharedPreferences().registerOnSharedPreferenceChangeListener(listener);
-	
+		addPreferencesFromResource(R.xml.preferences);	
 	}
 
 	@Override
 	public void onResume() {
 		super.onResume();
-		getPreferenceManager().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
 	}
 
 	@Override
 	public void onPause() {
-		getPreferenceManager().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
 		super.onPause();
 	}
 
-	@Override
-	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-	}
 }

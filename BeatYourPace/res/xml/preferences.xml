@@ -6,20 +6,18 @@
         android:fragment="@string/action_settings">
 		<ListPreference 
 		    android:title="@string/sSetDefaultDistanceUnits"
-          	android:summary="Default: Miles \nDisplays and measures pace in miles or km"
+          	android:summary="Default: Miles \nDisplays and measures pace in Miles(M) or Kilometres(Km)."
             android:key="unitType"
             android:defaultValue="1"
             android:entries="@array/listUnitArray"
             android:entryValues="@array/listUnitValues" />
 		<ListPreference 
 		    android:title="@string/sSetTargetPace"
-		    android:summary="Default: 9.0 mins \nMinutes you aim to run 1 mile or km in \nMake sure your target pace matches Miles or Km as you chose above"
+		    android:summary="Default: 9.0 mins \nMinutes you aim to run 1 mile or kilometre in. \nEnsure target pace matches M or Km as selected above."
           	android:key="set_target_pace"
             android:defaultValue="9.0"
             android:inputType="numberDecimal" 
             android:entries="@array/targetPaceArray"
             android:entryValues="@array/targetPaceValues" />
 	</PreferenceCategory>
-	
-	
 </PreferenceScreen>
