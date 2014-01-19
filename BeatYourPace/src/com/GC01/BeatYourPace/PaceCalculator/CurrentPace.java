@@ -1,20 +1,20 @@
 package com.GC01.BeatYourPace.PaceCalculator;
 
 
-import java.util.List;
 
 import com.GC01.BeatYourPace.Main.ContextProvider;
 import com.example.beatyourpace.R;
 
-import android.app.Activity;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.preference.PreferenceManager;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.widget.TextView;
@@ -33,29 +33,63 @@ import android.widget.Toast;
  */
 public class CurrentPace extends Service implements LocationListener { 
 
-TextView speedText1;
-double speed = 0;
-String speed1;
+static double speedDouble = 0;
+static String speedString = "";
 LocationManager locationManager;
 LocationListener locationListener;
+Intent intent;
+private final double MPS_TO_MINS_PER_MILE = 0.0372822715;
+private final double MPS_TO_PER_KILOMETRES = 0.06;
+String point = ".";
+String index = "";
 
+
+SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(ContextProvider.getContext());
 
 public void onCreate() { 
    
-	Log.d("gps class is being called", "help");
     LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-    locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1, 0, this);
+    locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 0, this);
     
-   
-
     }
 
     public void onLocationChanged(Location location) {
+        speedDouble = location.getSpeed();
 
-        speed = location.getSpeed();
-        getGPSInfo(speed);
-
-        Toast.makeText(this,"onLocationChanged method is working, the current speed is: " + speed, Toast.LENGTH_SHORT).show();
+        if (speedDouble == 0){
+        	speedString = "0.00";
+        }
+        
+        
+        if (Integer.parseInt(sp.getString("unitType", "1")) == 1) {
+        	speedDouble = speedDouble / MPS_TO_MINS_PER_MILE; 
+        } else {
+				speedDouble = speedDouble / MPS_TO_PER_KILOMETRES;
+        }
+        
+        
+        index = Integer.toString(speedString.indexOf(point));
+        speedString = Double.toString(speedDouble);
+        
+        
+        if (index.equals("2")){
+        		speedString = speedString.substring(0, 6);
+        		Log.i("index 2 is called","");
+    		} if (index.equals("1")) {
+    			speedString = speedString.substring(0, 3);
+    				Log.i("index 1 is called","");
+    			} else {
+    				speedString = "0.0";
+    			}
+        
+        
+    	
+        
+        
+        Toast.makeText(getBaseContext(), "current speed string " + speedString + "and speed double is" + speedDouble, Toast.LENGTH_SHORT).show();
+        Log.i("current speed ", speedString);
+        sendGPSInfo(speedString);
+        
     }
 
 	public void onProviderDisabled(String provider) {
@@ -89,22 +123,12 @@ public void onCreate() {
 	}
 	
 
-	private double getGPSInfo(double speed){
-		sendGPSInfo();
-		return speed;
-   }
-
-	  private void sendGPSInfo() {
-          
-          //temporary toast message to test that the GPS data is being sent to the training mode class
-          Toast.makeText(getApplicationContext(), "send GPSInfo intent is being called.",
-                             Toast.LENGTH_LONG).show();
-          
-            Intent intent = new Intent("Current Pace Event");
-            
-            intent.putExtra("GPS Current Pace Info", getGPSInfo(speed));
-            LocalBroadcastManager.getInstance(ContextProvider.getContext()).sendBroadcast(intent);
-            System.out.println("GPS Sent");
+	
+	
+	public void sendGPSInfo(String string) {        
+           Intent intent = new Intent("Track Info Event");
+           intent.putExtra("GPS", speedString);
+           LocalBroadcastManager.getInstance(ContextProvider.getContext()).sendBroadcast(intent);
    }
 
 	@Override
@@ -112,9 +136,5 @@ public void onCreate() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	
+		
 }
-	
-	
-	

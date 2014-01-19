@@ -51,6 +51,7 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
     Button songTooSlowButton, songTooFastButton, decreaseTargetPaceButton, increaseTargetPaceButton;
    
     Button bTargetPaceTitle, bCurrentPaceTitle, bCurrentPaceValue, bCurrentPacePreference, bTargetPacePreference, bTargetPaceValue;
+	private BroadcastReceiver bl;
     
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -71,15 +72,14 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 
 		AudioFocusManager.getInstance();
 		
-		if (AudioFocusManager.getInstance().focusTest() != true) {
-		System.out.print("Didn't have focus, requesting it");
-		AudioFocusManager.getInstance().requestFocus();
-		
-		startCurrentPaceService(this);
-		
-		Log.d("gps message from oncreate", "help");
-		}
-		
+				if (AudioFocusManager.getInstance().focusTest() != true) {
+				System.out.print("Didn't have focus, requesting it");
+				AudioFocusManager.getInstance().requestFocus();
+				
+				startCurrentPaceService(this);
+				
+				}
+				
 		
 		
 		
@@ -97,10 +97,13 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
         trackInfo = (TextView) findViewById(R.id.tSongName);
         currentPaceText = (TextView) findViewById(R.id.currentPaceText);
         
+        
         if (Integer.parseInt(sp.getString("unitType", "1")) == 1) {
         	String minPerMile = "min/Miles";
         	targetUnit.setText(minPerMile);
         	currentPaceUnit.setText(minPerMile);
+        	
+        	
         }
         
         displayTargetPace = sp.getString("set_target_pace", "6.0"); //comment these 3 lines out to run with runingmodetest
@@ -117,14 +120,12 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
         decreaseTargetPaceButton.setOnClickListener(this);
         increaseTargetPaceButton.setOnClickListener(this);
         stopImageButton.setOnClickListener(this);
+     
         
         // Track Broadcast Receiver 
-        LocalBroadcastManager.getInstance(this).registerReceiver(bReceiver,
-        	      new IntentFilter("Track Info Event"));
+         LocalBroadcastManager.getInstance(this).registerReceiver(bReceiver,
+       	      new IntentFilter("Track Info Event"));
         
-        // GPS Broadcast Receiver
-        LocalBroadcastManager.getInstance(this).registerReceiver(GPSReceiver, new IntentFilter("GPS Current Pace Info"));
-    
         
    }
 	
@@ -138,7 +139,6 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 	public void startCurrentPaceService(Context context) {
 		startService(new Intent(this, CurrentPace.class));
 		
-		Log.d("startCurrentPaceService is being called", "help");
 		
 	}
 	
@@ -180,43 +180,28 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 	
 
 
-	private BroadcastReceiver bReceiver = new BroadcastReceiver() {
+	private  BroadcastReceiver bReceiver = new BroadcastReceiver() {
 		  @Override
 		  public void onReceive(Context context, Intent intent) {
-		    // Get extra data included in the Intent
-			
-		      displayTrackInfo = intent.getStringExtra("Track Info Action");
-		      Log.i("Track Info Recieved", " - " + displayTrackInfo);
-		      trackInfo.setText(displayTrackInfo);
-  
+
+			  
+				
+			    if (intent.getStringExtra("Track Info Action") != null){
+			    	displayTrackInfo = intent.getStringExtra("Track Info Action");
+			    	trackInfo.setText(displayTrackInfo);
+			    	Log.i("Track Info Recieved", " - " + displayTrackInfo);
+			      } 
+			         
+				  
+		      
+		      if (intent.getStringExtra("GPS") != null){
+		    	  displayGPSinfo = intent.getStringExtra("GPS");
+		    	  currentPaceText.setText(displayGPSinfo);
+		    	  Log.d("onReceive on TrainingMode is being called", "GPS is working");
+		      } 
+		      
 		  }
 		};
-		
-	
 
-	private BroadcastReceiver GPSReceiver = new BroadcastReceiver() {
-			  @Override
-			  public void onReceive(Context context, Intent intent) {
-			    // Get extra data included in the Intent
-				  displayGPSinfo = intent.getStringExtra("GPS Current Pace Info");
-				  Toast.makeText(ContextProvider.getContext(), "GPS broadcast recognised", Toast.LENGTH_SHORT).show();
-				  
-			      if (displayGPSinfo == null)
-			      System.out.println("displayGPSinfo was null");
-			      else {
-			    	  
-			    	  System.out.println(displayGPSinfo + " wasnt null");
-			    	  Toast.makeText(ContextProvider.getContext(), "GPS Data was receieved but null", Toast.LENGTH_SHORT).show();
-					  
-			      }
-			      
-			      System.out.println("GPS Info Received");
-				  currentPaceText = (TextView) findViewById(R.id.currentPaceText);
-			      currentPaceText.setText(displayGPSinfo);
-			      Toast.makeText(ContextProvider.getContext(), "GPS Data was RECEIVED SUCCESSFULLY", Toast.LENGTH_SHORT).show();
-				  
-			  }
-			};
-
-	}
+}
 
