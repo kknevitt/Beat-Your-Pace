@@ -9,41 +9,41 @@
     <item>"2"</item>
 </string-array>
 <string-array name="targetPaceArray">
-	<item>4.0 minutes</item>
+	<item>4 minutes</item>
 	<item>4.5 minutes</item>
-	<item>5.0 minutes</item>
+	<item>5 minutes</item>
 	<item>5.5 minutes</item>
-	<item>6.0 minutes</item>
+	<item>6 minutes</item>
 	<item>6.5 minutes</item>
-	<item>7.0 minutes</item>
+	<item>7 minutes</item>
 	<item>7.5 minutes</item>
-	<item>8.0 minutes</item>
+	<item>8 minutes</item>
 	<item>8.5 minutes</item>
-	<item>9.0 minutes</item>
+	<item>9 minutes</item>
 	<item>9.5 minutes</item>
-	<item>10.0 minutes</item>
+	<item>10 minutes</item>
 	<item>10.5 minutes</item>
-	<item>11.0 minutes</item>
+	<item>11 minutes</item>
 	<item>11.5 minutes</item>
-	<item>12.0 minutes</item>
+	<item>12 minutes</item>
 	<item>12.5 minutes</item>
-	<item>13.0 minutes</item>
+	<item>13 minutes</item>
 	<item>13.5 minutes</item>
-	<item>14.0 minutes</item>
+	<item>14 minutes</item>
 	<item>14.5 minutes</item>
-	<item>15.0 minutes</item>
+	<item>15 minutes</item>
 	<item>15.5 minutes</item>
-	<item>16.0 minutes</item>
+	<item>16 minutes</item>
 	<item>16.5 minutes</item>
-	<item>17.0 minutes</item>
+	<item>17 minutes</item>
 	<item>17.5 minutes</item>
-	<item>18.0 minutes</item>
+	<item>18 minutes</item>
 	<item>18.5 minutes</item>
-	<item>19.0 minutes</item>
+	<item>19 minutes</item>
 	<item>19.5 minutes</item>
-	<item>20.0 minutes</item>
+	<item>20 minutes</item>
 	<item>20.5 minutes</item>
-	<item>21.0 minutes</item>
+	<item>21 minutes</item>
 	<item>21.5 minutes</item>	
 </string-array>
 <string-array name="targetPaceValues">
