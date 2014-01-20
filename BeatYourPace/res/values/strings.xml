@@ -51,6 +51,7 @@
     <string name="sTargetUnit">min/KM</string>
     <string name="sCurrentPaceUnit">min/KM</string>
     <string name="sWelcome">Welcome!</string>
-    
+    <string name="title_activity_about_page">AboutPageActivity</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>
