@@ -26,8 +26,6 @@ import android.widget.Button;
 public class MainActivity extends Activity implements OnClickListener{
 	
 	final private static String LOG_TAG = "Main";
-	
-	//creating button objects
     Button trainingModeButton, letsRunModeButton, settingsButton, helpPageButton;
    
 
@@ -36,10 +34,8 @@ public class MainActivity extends Activity implements OnClickListener{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		//Analytics tracking user on this page
 		EasyTracker.getInstance(this).activityStart(this);
 		
-		//creating image buttons objects and getting their setup from xml
         trainingModeButton = (Button) findViewById(R.id.bTrainingMode); 
         letsRunModeButton = (Button) findViewById(R.id.bLetsRun); 
         settingsButton = (Button) findViewById(R.id.bSettings); 
@@ -52,8 +48,8 @@ public class MainActivity extends Activity implements OnClickListener{
         helpPageButton.setOnClickListener(this);
         
         //Start loading music data to the database as a background service ready for the player
-        Intent intentDb = new Intent(this,DatabaseIntentService.class); 
-        this.startService(intentDb);
+       // Intent intentDb = new Intent(this,DatabaseIntentService.class); 
+       // this.startService(intentDb);
         
         //Code to test the JSON export functionality is working
        String jsonfname = "BYPtoJSON.txt";
@@ -81,11 +77,10 @@ public class MainActivity extends Activity implements OnClickListener{
 	}
 	@Override
 	public void onClick(View v) {
-	     if(v == trainingModeButton){ //onclick the user is taken to the TrainingMode view as per TrainingModeActivity class
+	     if(v == trainingModeButton){ 
               Intent intent = new Intent(this,TrainingModeActivity.class);
               startActivity(intent);
               
-              //start the CurrentPace service class when training mode is selected.
               Intent CurrentPace = new Intent(this, CurrentPace.class);
               startService(CurrentPace);
               
@@ -94,7 +89,7 @@ public class MainActivity extends Activity implements OnClickListener{
 	    	  Intent intent = new Intent(this,LetsRunModeActivity.class);
 	    	  startActivity(intent);
 	      }
-	      if (v == settingsButton) { // // onclick the user is taken to the Settings view as per Settings class
+	      if (v == settingsButton) { 
 	    	  Intent intent = new Intent(this,SettingsActivity.class);
 	    	  startActivity(intent);
 	      }
