@@ -161,21 +161,24 @@ public final class R {
         public static final int ga_sessionTimeout=0x7f070001;
     }
     public static final class layout {
-        public static final int activity_help=0x7f030000;
-        public static final int activity_lets_run_mode=0x7f030001;
-        public static final int activity_main=0x7f030002;
-        public static final int activity_training_mode=0x7f030003;
+        public static final int activity_about_page=0x7f030000;
+        public static final int activity_help=0x7f030001;
+        public static final int activity_lets_run_mode=0x7f030002;
+        public static final int activity_main=0x7f030003;
+        public static final int activity_training_mode=0x7f030004;
     }
     public static final class menu {
-        public static final int database=0x7f0c0000;
-        public static final int lets_run_mode=0x7f0c0001;
-        public static final int main=0x7f0c0002;
-        public static final int settings=0x7f0c0003;
+        public static final int about_page=0x7f0c0000;
+        public static final int database=0x7f0c0001;
+        public static final int lets_run_mode=0x7f0c0002;
+        public static final int main=0x7f0c0003;
+        public static final int settings=0x7f0c0004;
     }
     public static final class string {
         public static final int action_settings=0x7f050002;
         public static final int app_name=0x7f050001;
         public static final int ga_trackingId=0x7f050000;
+        public static final int hello_world=0x7f050034;
         public static final int helpLetsRunText=0x7f050029;
         public static final int helpPageLetsRunTitle=0x7f050023;
         public static final int helpPageSettingsTitle=0x7f050024;
@@ -216,6 +219,7 @@ public final class R {
         public static final int shelpPage=0x7f050025;
         public static final int tAdjustTargetPace=0x7f05002d;
         public static final int title_activity_TrainingModeActivity=0x7f05001f;
+        public static final int title_activity_about_page=0x7f050033;
         public static final int title_activity_database=0x7f05001e;
         public static final int title_activity_help=0x7f050028;
         public static final int title_activity_help_main=0x7f05002b;

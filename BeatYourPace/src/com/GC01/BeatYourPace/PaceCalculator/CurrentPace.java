@@ -49,7 +49,8 @@ SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(ContextProv
 public void onCreate() { 
    
     LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-    locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 0, this);
+    
+     locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 0, this);
     
     }
 
@@ -70,6 +71,8 @@ public void onCreate() {
         
         index = Integer.toString(speedString.indexOf(point));
         speedString = Double.toString(speedDouble);
+        
+        //index.compareTo(index); compare index to 2 or 1
         
         
         if (index.equals("2")){
