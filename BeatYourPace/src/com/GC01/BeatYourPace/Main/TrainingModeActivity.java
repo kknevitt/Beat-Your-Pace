@@ -167,12 +167,14 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 	}
 		
 	public void onPause(){
+    
 		super.onPause();
 		onScreen = false;	
 	}
 
 	
 	public void onDestroy(){
+		stopService(new Intent(this, CurrentPace.class));
 		onScreen = false;
 		super.onDestroy();;
 		

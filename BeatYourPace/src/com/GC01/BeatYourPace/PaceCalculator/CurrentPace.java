@@ -9,6 +9,7 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.location.GpsStatus.Listener;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -50,10 +51,10 @@ static String one = "1";
 SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(ContextProvider.getContext());
 
 public void onCreate() { 
-   
-    LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-    
-     locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+	super.onCreate();
+
+    LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);    
+    locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
     
     }
 
@@ -73,7 +74,7 @@ public void onCreate() {
         
         speedString = Double.toString(speedDouble);
         index = Integer.toString(speedString.indexOf(point));
-        Log.i("index is",index);
+        
         
                 
         if (index.equals(one)) {
@@ -88,11 +89,8 @@ public void onCreate() {
                         speedString = "0.0";
            }
                      
-        	
-    		
-       
         
-        Toast.makeText(getBaseContext(), "current speed string " + speedString + "and speed double is" + speedDouble, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getBaseContext(), "current speed string " + speedString + "and speed double is" + speedDouble, Toast.LENGTH_SHORT).show();
         Log.i("current speed ", speedString);
         sendGPSInfo(speedString);
         
@@ -123,20 +121,20 @@ public void onCreate() {
                 
         }
         
-        public void onDestroy(){
-        	locationManager.removeUpdates(locationListener);
-               
-
-        }
-        
-
-        
-        
+             
         public void sendGPSInfo(String string) {        
            Intent intent = new Intent("Track Info Event");
            intent.putExtra("GPS", speedString);
            LocalBroadcastManager.getInstance(ContextProvider.getContext()).sendBroadcast(intent);
    }
+        
+        public void onDestroy(){
+        	Log.i("onDestroy is being called", "");
+        	//locationManager.removeUpdates((LocationListener) intent);
+        	Toast.makeText(getBaseContext(), "OnDestroy for GPS is being called", Toast.LENGTH_SHORT).show();
+        	super.onDestroy();
+        }
+     
 
         @Override
         public IBinder onBind(Intent arg0) {
