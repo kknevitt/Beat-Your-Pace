@@ -8,6 +8,7 @@ import android.app.Activity;
 
 import com.GC01.BeatYourPace.Database.DatabaseIntentService;
 import com.GC01.BeatYourPace.FileManager.FileExport;
+import com.GC01.BeatYourPace.HelpPage.AboutPageActivity;
 import com.GC01.BeatYourPace.HelpPage.HelpPageActivity;
 import com.GC01.BeatYourPace.PaceCalculator.CurrentPace;
 import com.GC01.BeatYourPace.Settings.SettingsActivity;
@@ -51,18 +52,18 @@ public class MainActivity extends Activity implements OnClickListener{
        Intent intentDb = new Intent(this,DatabaseIntentService.class); 
        this.startService(intentDb);
         
-        //Code to test the JSON export functionality is working
+       //This exports the user's data from the database to a file in Downloads in JSON format
        String jsonfname = "BYPtoJSON.txt";
-        FileExport fileExp = new FileExport(jsonfname);
-        try {
-			fileExp.exportJsonToTxt();
-		} catch (JSONException e) {
-			Log.d(LOG_TAG, "Unable to export JSON data");
-			e.printStackTrace();
-		} catch (IOException e) {
-			Log.d(LOG_TAG, "Unable to create JSON file");
-			e.printStackTrace();
-		}
+       FileExport fileExp = new FileExport(jsonfname);
+       try {
+    	   fileExp.exportJsonToTxt();
+       } catch (JSONException e) {
+    	   Log.d(LOG_TAG, "Unable to export JSON data");
+    	   e.printStackTrace();
+       } catch (IOException e) {
+    	   Log.d(LOG_TAG, "Unable to create JSON file");
+    	   e.printStackTrace();
+       }
         
        
         
@@ -109,6 +110,8 @@ public class MainActivity extends Activity implements OnClickListener{
 		        case R.id.helpPageTitle:
 		        	 startActivity(new Intent(this,HelpPageActivity.class));
 			    	 return true;
+		        case R.id.aboutPageTitle:
+		        	startActivity(new Intent(this,AboutPageActivity.class));
 		        default:
 		            return super.onOptionsItemSelected(item);
 		    }

@@ -7,10 +7,13 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 
+import com.GC01.BeatYourPace.HelpPage.AboutPageActivity;
+import com.GC01.BeatYourPace.HelpPage.HelpPageActivity;
 import com.GC01.BeatYourPace.MusicPlayer.AudioFocusManager;
 import com.GC01.BeatYourPace.MusicPlayer.MusicPlayer;
 import com.GC01.BeatYourPace.MusicPlayer.TrackList;
 import com.GC01.BeatYourPace.PaceCalculator.CurrentPace;
+import com.GC01.BeatYourPace.Settings.SettingsActivity;
 import com.example.beatyourpace.R;
 import com.google.analytics.tracking.android.EasyTracker;
 
@@ -19,6 +22,7 @@ import android.preference.PreferenceManager;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
@@ -149,6 +153,21 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 		return true;
 	}
 
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    switch (item.getItemId()) {
+	        case R.id.action_settings:
+	        	startActivity(new Intent(this,SettingsActivity.class));		        	
+	            return true;
+	        case R.id.helpPageTitle:
+	        	 startActivity(new Intent(this,HelpPageActivity.class));
+		    	 return true;
+	        case R.id.aboutPageTitle:
+	        	startActivity(new Intent(this,AboutPageActivity.class));
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
+	}
 
 	@Override
 	public void onClick(View v) {
