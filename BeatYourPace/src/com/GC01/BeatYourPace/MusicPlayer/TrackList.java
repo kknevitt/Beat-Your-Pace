@@ -1,6 +1,7 @@
 package com.GC01.BeatYourPace.MusicPlayer;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import android.content.Intent;
 import android.support.v4.content.LocalBroadcastManager;
@@ -39,8 +40,9 @@ public class TrackList {
 	/** Amount of the current songs in the TrackList*/
 	private int trackListSize;
 	
-	/** Whether the current TrackList has any songs in it*/
-	public static boolean empty;
+	private static boolean empty;
+	
+	private static CurrentSong _currentSong = CurrentSong.getInstance();
 	
 
 	
@@ -81,7 +83,7 @@ public class TrackList {
 		 */
 	
 	
-		public void setTrackIndex(String function){
+		protected void setTrackIndex(String function){
 			
 		// Song index is being incremented, unless it is at the end at which point it is set to 0 in order to cycle.
 		if (function == "skip") {
@@ -118,12 +120,14 @@ public class TrackList {
 			trackIndex = 0;
 			
 			}
+		
+		_currentSong.setSongPath(currentTrackList.get(getTrackIndex()));
 
 		}
 		
 		
 		
-		public String getTrackIndex(int index){
+		protected String getTrackIndex(int index){
 			
 			return currentTrackList.get(index);
 		}
@@ -136,7 +140,7 @@ public class TrackList {
 		 */
 		
 		
-		public int getTrackIndex(){
+		protected int getTrackIndex(){
 					
 			return trackIndex;
 	 	}
@@ -147,12 +151,14 @@ public class TrackList {
 		 * appropriate songs based on their tempo in relation the target pace.
 		 * @param tarPace Current Target Pace as set by the user or using the default preference.
 		 */
-		public void updateTrackList(float tarPace) {
+		protected void updateTrackList(float tarPace) {
 				
 			try {
 			DatabaseAdapter1 db = new DatabaseAdapter1(ContextProvider.getContext());
 
 			currentTrackList = db.getAppropriateSongs(tarPace);
+			
+			Collections.shuffle(currentTrackList);
 			
 			Log.d("TrackList", "TrackList updated");
 			}
@@ -163,19 +169,6 @@ public class TrackList {
 				
 			}
 			
-			
-		//	TrackList.getInstance().setSong("reset"); atm this causes recursive error.
-			
-			
-
-			/* Array list printing for debugging puproses
-			for (int i = 0; i < paceTrackList.size(); i++){
-				
-				System.out.println(currentTrackList.get(i));
-				
-			}
-			
-			*/
 							
 		}
 		
@@ -185,7 +178,7 @@ public class TrackList {
 		 * 
 		 * @return trackListSize (int) - Size of the TrackList
 		 */
-		public int getTrackListSize(){
+		protected int getTrackListSize(){
 			
 			trackListSize = currentTrackList.size();
 			
@@ -203,7 +196,6 @@ public class TrackList {
 			if (currentTrackList.isEmpty()) {
 						
 						Log.d("TrackList", "TrackList was empty");
-						Toast.makeText(ContextProvider.getContext(), "No Songs at that Target Pace", Toast.LENGTH_SHORT).show();
 						empty = true;
 						  Intent intent = new Intent("Track Info Event");
 						  
@@ -222,6 +214,25 @@ public class TrackList {
 
 				return empty;
 				}
+		
+		
+		public String getCurrentSong() {
+			
+			return _currentSong.getSongPath();
+			
+		}
+		
+
+		public void setCurrentTrackInfo(String songpath) {
+			
+			_currentSong.setSongInfo(songpath);
+			
+		}
+		
+		protected String getCurrentSongInfo(){
+			
+			return _currentSong.getSongInfo();
+		}
 		
 
 		
