@@ -32,28 +32,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class TrainingModeActivity extends Activity implements OnClickListener {
-
-
-	// Target Pace 
+ 
 	public static float targetPace;
 	private static String displayTargetPace; 
-    protected static TextView targetPaceText;
-    
-    // Current Pace
+    public static TextView targetPaceText;
     public static String displayGPSinfo;
     private static TextView currentPaceText;
-	
-	// Active Screen
 	public static boolean onScreen;
-	
-	// Current Track Info
 	public static String displayTrackInfo;
 	private static TextView trackInfo, targetUnit, currentPaceUnit;
-		
-	// Buttons    
     ImageButton playOrPauseImageButton, skipSongImageButton, previousSongImageButton, pauseImageButton, stopImageButton;
     Button songTooSlowButton, songTooFastButton, decreaseTargetPaceButton, increaseTargetPaceButton;
-   
     Button bTargetPaceTitle, bCurrentPaceTitle, bCurrentPaceValue, bCurrentPacePreference, bTargetPacePreference, bTargetPaceValue;
 	private BroadcastReceiver bl;
     
@@ -206,7 +195,6 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 		  public void onReceive(Context context, Intent intent) {
 
 			  
-				
 			    if (intent.getStringExtra("Track Info Action") != null){
 			    	displayTrackInfo = intent.getStringExtra("Track Info Action");
 			    	trackInfo.setText(displayTrackInfo);
@@ -214,12 +202,11 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 			      } 
 			         
 				  
-		      
 		      if (intent.getStringExtra("GPS") != null){
 		    	  displayGPSinfo = intent.getStringExtra("GPS");
 		    	  currentPaceText.setText(displayGPSinfo);
 		    	  Log.d("onReceive on TrainingMode is being called", "GPS is working");
-		      } 
+		      	} 
 		      
 		  }
 		};

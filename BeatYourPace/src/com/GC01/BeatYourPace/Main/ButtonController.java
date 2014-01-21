@@ -21,6 +21,7 @@ import com.google.analytics.tracking.android.MapBuilder;
 
 /** Receives views and handles where the requests should be sent, e.g the play/pause button is pressed then a request
  * is sent to the MusicController to handle what will happen.
+ * The class implements the EasyTracker Google Analytics object in order to gather insights into user activity.
  */
 public class ButtonController extends Service {
 	
@@ -28,7 +29,6 @@ public class ButtonController extends Service {
 	
 	public static void buttonFunction(View v) {
 
-	
 		switch (v.getId()) {		
 			case R.id.bPlayAndPause:
 				MusicController.pressPlay_Pause();
@@ -36,53 +36,47 @@ public class ButtonController extends Service {
 			    
 			case R.id.bSkipTrack: 
 	    	    MusicController.pressSkip();
-					
 	            break; 
 	           
 			case R.id.bPreviousTrack: 
 				MusicController.pressPrevious();
 	            break;
 	            
-	            // Decreases the user's preferred pace for this track by 0.5.
-	            //perhaps split this as the tracklist shouldnt be tested at this level, should
-	            // be within the music controller.
 			case R.id.bSongTooSlow:
 				if (!TrackList.getInstance().isEmpty()) {
 				DatabaseAdapter1 db = new DatabaseAdapter1(ContextProvider.getContext());
 				db.addPrefPace((float) 0.5, CurrentSong.getInstance().getSongPath());
 				db.closeDb();
-				MusicController.pressSkip();
-				}
 				
-				/**Google Analytics tracking code**/
+				MusicController.pressSkip();
 				tracker.send(MapBuilder.createEvent("UI_Action", "button_press", "songTooSlow", null).build());
-	            break;
-	            
-	            // Increases the user's preferred pace for this track by 0.5.
-			case R.id.bSongTooFast:
-				
-				if (!TrackList.getInstance().isEmpty()) {
-				DatabaseAdapter1 db2 = new DatabaseAdapter1(ContextProvider.getContext());
-				db2.addPrefPace((float) -0.5, CurrentSong.getInstance().getSongPath());
-				db2.closeDb();
-				MusicController.pressSkip();
-				
-				/**Google Analytics tracking code**/
-				tracker.send(MapBuilder.createEvent("UI_Action", "button_press", "songTooFast", null).build());
-				
 				}
+				
+				break;
+	            
+	            
+			    case R.id.bSongTooFast:
+					if (!TrackList.getInstance().isEmpty()) {
+					DatabaseAdapter1 db2 = new DatabaseAdapter1(ContextProvider.getContext());
+					db2.addPrefPace((float) -0.5, CurrentSong.getInstance().getSongPath());
+					db2.closeDb();
+					MusicController.pressSkip();
+					
+				tracker.send(MapBuilder.createEvent("UI_Action", "button_press", "songTooFast", null).build());
+				}
+					
 	            break;
 	        
-			case R.id.bDecTarget: 
-				TargetPace.setTargetPace(false); 
-				String tarPaceDec = String.valueOf(TargetPace.getTargetPace());
-				if (TrainingModeActivity.onScreen == true) {
-				TrainingModeActivity.targetPaceText.setText(tarPaceDec);
-				}
-				MusicController.changeTarPace();
-				
-				/**Google Analytics tracking code**/
+			    case R.id.bDecTarget: 
+					TargetPace.setTargetPace(false); 
+					String tarPaceDec = String.valueOf(TargetPace.getTargetPace());
+					if (TrainingModeActivity.onScreen == true) {
+					TrainingModeActivity.targetPaceText.setText(tarPaceDec);					
+					MusicController.changeTarPace();
+			
 				tracker.send(MapBuilder.createEvent("UI_Action", "button_press", "decreasePace", null).build());
+				}
+					
 				break;
 	            
 			case R.id.bIncTarget:
@@ -90,11 +84,11 @@ public class ButtonController extends Service {
             	String tarPaceInc = String.valueOf(TargetPace.getTargetPace());
             	if (TrainingModeActivity.onScreen == true) {
             		TrainingModeActivity.targetPaceText.setText(tarPaceInc);	
-            	}
-            	MusicController.changeTarPace();
+            		MusicController.changeTarPace();
 
-            	/**Google Analytics tracking code**/
             	tracker.send(MapBuilder.createEvent("UI_Action", "button_press", "increasePace", null).build());               
+            	}
+            	
             	break;
 				
 			case R.id.bStopSong:

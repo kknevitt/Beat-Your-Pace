@@ -38,11 +38,8 @@ public class LetsRunModeActivity extends Activity implements OnClickListener {
     protected static TextView targetPaceText; 	
 	public static String displayTrackInfo;
 	private static TextView trackInfo;
-	
-	// Buttons    
     ImageButton playOrPauseImageButton, imagebutton2, skipSongImageButton, previousSongImageButton, pauseImageButton, stopImageButton;
     Button songTooSlowButton, songTooFastButton, decreaseTargetPaceButton, increaseTargetPaceButton;
-   
     Button bTargetPaceTitle, bCurrentPaceTitle, bCurrentPaceValue, bCurrentPacePreference, bTargetPacePreference, bTargetPaceValue;
     
 	@Override
@@ -80,9 +77,7 @@ public class LetsRunModeActivity extends Activity implements OnClickListener {
         decreaseTargetPaceButton = (Button) findViewById(R.id.bDecTarget);					
         increaseTargetPaceButton = (Button) findViewById(R.id.bIncTarget);
         stopImageButton = (ImageButton) findViewById(R.id.bStopSong);
-    
 
-        //setting an event listener for each button
         playOrPauseImageButton.setOnClickListener(this);
         skipSongImageButton.setOnClickListener(this);
         previousSongImageButton.setOnClickListener(this);
@@ -92,7 +87,6 @@ public class LetsRunModeActivity extends Activity implements OnClickListener {
         increaseTargetPaceButton.setOnClickListener(this);
         stopImageButton.setOnClickListener(this);
         
-        // Track Broadcast Receiver 
         LocalBroadcastManager.getInstance(this).registerReceiver(bReceiver,
         	      new IntentFilter("Track Info Event"));
         
@@ -105,7 +99,7 @@ public class LetsRunModeActivity extends Activity implements OnClickListener {
 	
 	}
 	
-	/** Method used to start the GPS service **/
+	
 	public void startCurrentPaceService(Context context) {
 		startService(new Intent(this, CurrentPace.class));		
 	}

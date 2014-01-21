@@ -3,6 +3,7 @@ package com.GC01.BeatYourPace.BPM;
 /**
  * Service to call the EchoNest API to see if there is a bpm for the track
  * If there is no bpm in EchoNest then use a default of 0
+ * @author Laura Barbosa and Sarah Nicholson
  */
 
 

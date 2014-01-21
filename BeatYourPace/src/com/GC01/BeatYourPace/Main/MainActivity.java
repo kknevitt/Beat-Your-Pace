@@ -49,8 +49,8 @@ public class MainActivity extends Activity implements OnClickListener{
         helpPageButton.setOnClickListener(this);
         
         //Start loading music data to the database as a background service ready for the player
-       Intent intentDb = new Intent(this,DatabaseIntentService.class); 
-       this.startService(intentDb);
+       //Intent intentDb = new Intent(this,DatabaseIntentService.class); 
+       //this.startService(intentDb);
         
        //This exports the user's data from the database to a file in Downloads in JSON format
        String jsonfname = "BYPtoJSON.txt";
