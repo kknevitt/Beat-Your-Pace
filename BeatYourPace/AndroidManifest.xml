@@ -61,11 +61,18 @@
         </service>
         <service android:name="com.GC01.BeatYourPace.PaceCalculator.CurrentPace" >
         </service>
-		<service android:enabled="true" android:name="com.GC01.BeatYourPace.PaceCalculator.CurrentPace" />
+        <service
+            android:name="com.GC01.BeatYourPace.PaceCalculator.CurrentPace"
+            android:enabled="true" />
+
         <activity
             android:name="com.GC01.BeatYourPace.HelpPage.HelpPageActivity"
             android:label="@string/title_activity_help_page"
             android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.GC01.BeatYourPace.HelpPage.AboutPageActivity"
+            android:label="@string/title_activity_about_page" >
         </activity>
     </application>
 

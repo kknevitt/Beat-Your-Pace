@@ -158,5 +158,7 @@
         android:orientation="vertical"
         android:text="@string/helpSettingsText" />
 
+    
+    
 	</LinearLayout>
  </ScrollView>
