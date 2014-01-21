@@ -128,7 +128,7 @@ public void onCreate() {
            LocalBroadcastManager.getInstance(ContextProvider.getContext()).sendBroadcast(intent);
    }
         
-        public void onDestroy(){
+                public void onDestroy(){
         	Log.i("onDestroy is being called", "");
         	//locationManager.removeUpdates((LocationListener) intent);
         	Toast.makeText(getBaseContext(), "OnDestroy for GPS is being called", Toast.LENGTH_SHORT).show();
