@@ -19,5 +19,13 @@
             android:inputType="numberDecimal" 
             android:entries="@array/targetPaceArray"
             android:entryValues="@array/targetPaceValues" />
+		<ListPreference 
+		    android:title="Custom Target Pace"
+          	android:summary="Custom saved target pace from the user"
+            android:key="saved_target_pace"
+            android:defaultValue="6.0"
+            android:inputType="numberDecimal" 
+            android:entries="@array/customTargetPaces"
+            android:entryValues="@array/customTargetValues" />
 	</PreferenceCategory>
 </PreferenceScreen>

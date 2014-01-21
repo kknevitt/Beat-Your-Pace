@@ -7,13 +7,11 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 
-import com.GC01.BeatYourPace.HelpPage.AboutPageActivity;
-import com.GC01.BeatYourPace.HelpPage.HelpPageActivity;
 import com.GC01.BeatYourPace.MusicPlayer.AudioFocusManager;
 import com.GC01.BeatYourPace.MusicPlayer.MusicPlayer;
+import com.GC01.BeatYourPace.MusicPlayer.HeadsetStatusReceiver;
 import com.GC01.BeatYourPace.MusicPlayer.TrackList;
 import com.GC01.BeatYourPace.PaceCalculator.CurrentPace;
-import com.GC01.BeatYourPace.Settings.SettingsActivity;
 import com.example.beatyourpace.R;
 import com.google.analytics.tracking.android.EasyTracker;
 
@@ -22,7 +20,6 @@ import android.preference.PreferenceManager;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
@@ -32,26 +29,44 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class TrainingModeActivity extends Activity implements OnClickListener {
+<<<<<<< HEAD
  
+=======
+
+	private HeadsetStatusReceiver headsetReceiver;
+	private AudioFocusManager aFM;
+	private SharedPreferences sp;
+	
+	
+	// Target Pace 
+>>>>>>> e671020e1fe1b12a764f1af01f066d46651c8eb3
 	public static float targetPace;
 	private static String displayTargetPace; 
     public static TextView targetPaceText;
     public static String displayGPSinfo;
     private static TextView currentPaceText;
 	public static boolean onScreen;
+<<<<<<< HEAD
 	public static String displayTrackInfo;
 	private static TextView trackInfo, targetUnit, currentPaceUnit;
+=======
+	// Current Track Info
+	public static String displayTrackInfo;
+	private static TextView trackInfo, targetUnit, currentPaceUnit;
+	
+		
+	// Buttons    
+>>>>>>> e671020e1fe1b12a764f1af01f066d46651c8eb3
     ImageButton playOrPauseImageButton, skipSongImageButton, previousSongImageButton, pauseImageButton, stopImageButton;
     Button songTooSlowButton, songTooFastButton, decreaseTargetPaceButton, increaseTargetPaceButton;
     Button bTargetPaceTitle, bCurrentPaceTitle, bCurrentPaceValue, bCurrentPacePreference, bTargetPacePreference, bTargetPaceValue;
-	private BroadcastReceiver bl;
     
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_training_mode);  
 		
-		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(ContextProvider.getContext());
+		sp = PreferenceManager.getDefaultSharedPreferences(ContextProvider.getContext());
 
 		//Keep the screen on so the user can access the buttons used to associate new BPM to tracks
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
@@ -61,18 +76,17 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 		
 		onScreen = true;
 		
-		TrackList trackList = TrackList.getInstance();
-
-		AudioFocusManager.getInstance();
+		aFM = AudioFocusManager.getInstance();
 		
-				if (AudioFocusManager.getInstance().focusTest() != true) {
-				System.out.print("Didn't have focus, requesting it");
-				AudioFocusManager.getInstance().requestFocus();
-				
-				startCurrentPaceService(this);
-				
-				}
-				
+		if (aFM.focusTest() != true) {
+		System.out.print("Didn't have focus, requesting it");
+		aFM.requestFocus();
+		
+		startCurrentPaceService(this);
+		
+		Log.d("gps message from oncreate", "help");
+		}
+		
 		
 		
 		
@@ -90,17 +104,32 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
         trackInfo = (TextView) findViewById(R.id.tSongName);
         currentPaceText = (TextView) findViewById(R.id.currentPaceText);
         
-        
         if (Integer.parseInt(sp.getString("unitType", "1")) == 1) {
         	String minPerMile = "min/Miles";
         	targetUnit.setText(minPerMile);
         	currentPaceUnit.setText(minPerMile);
+        }
+        
+        
+        if(displayTargetPace == null){
         	
+        displayTargetPace = sp.getString("set_target_pace", "6.0");
+        targetPace = Float.valueOf(displayTargetPace);
+
+        }
+
+        else {
+        	
+        	displayTargetPace = sp.getString("saved_target_pace", "6.0");
+        	targetPace = Float.valueOf(displayTargetPace);
         	
         }
         
-        displayTargetPace = sp.getString("set_target_pace", "6.0"); //comment these 3 lines out to run with runingmodetest
-        targetPace = Float.valueOf(displayTargetPace);
+
+        
+
+        
+        
         targetPaceText.setText(displayTargetPace);
     
 
@@ -113,12 +142,20 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
         decreaseTargetPaceButton.setOnClickListener(this);
         increaseTargetPaceButton.setOnClickListener(this);
         stopImageButton.setOnClickListener(this);
-     
         
         // Track Broadcast Receiver 
-         LocalBroadcastManager.getInstance(this).registerReceiver(bReceiver,
-       	      new IntentFilter("Track Info Event"));
+        LocalBroadcastManager.getInstance(this).registerReceiver(bReceiver,
+        	      new IntentFilter("Track Info Event"));
         
+        // GPS Broadcast Receiver
+        LocalBroadcastManager.getInstance(this).registerReceiver(GPSReceiver, new IntentFilter("GPS Current Pace Info"));
+        
+        /*
+        headsetReceiver = new HeadsetStatusReceiver();
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("android.intent.action.HEADSET_PLUG");
+        registerReceiver(headsetReceiver, intentFilter);
+        */
         
    }
 	
@@ -132,6 +169,7 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 	public void startCurrentPaceService(Context context) {
 		startService(new Intent(this, CurrentPace.class));
 		
+		Log.d("startCurrentPaceService is being called", "help");
 		
 	}
 	
@@ -142,21 +180,6 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 		return true;
 	}
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-	    switch (item.getItemId()) {
-	        case R.id.action_settings:
-	        	startActivity(new Intent(this,SettingsActivity.class));		        	
-	            return true;
-	        case R.id.helpPageTitle:
-	        	 startActivity(new Intent(this,HelpPageActivity.class));
-		    	 return true;
-	        case R.id.aboutPageTitle:
-	        	startActivity(new Intent(this,AboutPageActivity.class));
-	        default:
-	            return super.onOptionsItemSelected(item);
-	    }
-	}
 
 	@Override
 	public void onClick(View v) {
@@ -173,26 +196,41 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 	      }
 		
 	}
-		
+	
 	public void onPause(){
-    
 		super.onPause();
+		displayTargetPace = String.valueOf(targetPace);
+		SharedPreferences.Editor editor = sp.edit();
+		editor.putFloat("saved_target_pace", 1);
+		editor.commit();
+		
 		onScreen = false;	
+		
+	//	unregisterReceiver(headsetReceiver);
+		
 	}
 
+	
 	
 	public void onDestroy(){
-		stopService(new Intent(this, CurrentPace.class));
+		super.onDestroy();
+		displayTargetPace = String.valueOf(targetPace);
+		SharedPreferences.Editor editor = sp.edit();
+		editor.putString("saved_target_pace", displayTargetPace);
+		editor.commit();
+		
 		onScreen = false;
-		super.onDestroy();;
+	//	unregisterReceiver(headsetReceiver);
+		
 		
 	}
 	
 
 
-	private  BroadcastReceiver bReceiver = new BroadcastReceiver() {
+	private BroadcastReceiver bReceiver = new BroadcastReceiver() {
 		  @Override
 		  public void onReceive(Context context, Intent intent) {
+<<<<<<< HEAD
 
 			  
 			    if (intent.getStringExtra("Track Info Action") != null){
@@ -208,8 +246,42 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 		    	  Log.d("onReceive on TrainingMode is being called", "GPS is working");
 		      	} 
 		      
+=======
+		    // Get extra data included in the Intent
+			
+		      displayTrackInfo = intent.getStringExtra("Track Info Action");
+		      Log.i("Track Info Recieved", " - " + displayTrackInfo);
+		      trackInfo.setText(displayTrackInfo);
+  
+>>>>>>> e671020e1fe1b12a764f1af01f066d46651c8eb3
 		  }
 		};
+		
+	
 
-}
+	private BroadcastReceiver GPSReceiver = new BroadcastReceiver() {
+			  @Override
+			  public void onReceive(Context context, Intent intent) {
+			    // Get extra data included in the Intent
+				  displayGPSinfo = intent.getStringExtra("GPS Current Pace Info");
+				  Toast.makeText(ContextProvider.getContext(), "GPS broadcast recognised", Toast.LENGTH_SHORT).show();
+				  
+			      if (displayGPSinfo == null)
+			      System.out.println("displayGPSinfo was null");
+			      else {
+			    	  
+			    	  System.out.println(displayGPSinfo + " wasnt null");
+			    	  Toast.makeText(ContextProvider.getContext(), "GPS Data was receieved but null", Toast.LENGTH_SHORT).show();
+					  
+			      }
+			      
+			      System.out.println("GPS Info Received");
+				  currentPaceText = (TextView) findViewById(R.id.currentPaceText);
+			      currentPaceText.setText(displayGPSinfo);
+			      Toast.makeText(ContextProvider.getContext(), "GPS Data was RECEIVED SUCCESSFULLY", Toast.LENGTH_SHORT).show();
+				  
+			  }
+			};
+
+	}
 

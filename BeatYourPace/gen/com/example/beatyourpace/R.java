@@ -9,6 +9,8 @@ package com.example.beatyourpace;
 
 public final class R {
     public static final class array {
+        public static final int customTargetPaces=0x7f080004;
+        public static final int customTargetValues=0x7f080005;
         public static final int listUnitArray=0x7f080000;
         public static final int listUnitValues=0x7f080001;
         public static final int targetPaceArray=0x7f080002;

@@ -118,5 +118,10 @@ public class MusicController {
 		musicPlayer.stopPlayback();
 	}
 	
+	public static boolean isMusicPlaying() {
+		
+		return musicPlayer.currentlyPlaying();
+	}
+	
 }
 	
