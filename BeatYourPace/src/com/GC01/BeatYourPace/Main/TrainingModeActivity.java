@@ -32,27 +32,41 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+<<<<<<< HEAD
 public class TrainingModeActivity extends Activity implements OnClickListener {
+=======
+public class TrainingModeActivity extends Activity implements OnClickListener {
+>>>>>>> 76f16d1458c108f6cfc5109e643606a294520cbf
 
 	private HeadsetStatusReceiver headsetReceiver;
 	private AudioFocusManager aFM;
 	private SharedPreferences sp;
 	
+<<<<<<< HEAD
+=======
 	
 	// Target Pace 
+>>>>>>> 76f16d1458c108f6cfc5109e643606a294520cbf
 	public static float targetPace;
 	private static String displayTargetPace; 
     public static TextView targetPaceText;
     public static String displayGPSinfo;
     private static TextView currentPaceText;
 	public static boolean onScreen;
+<<<<<<< HEAD
+=======
 
 	// Current Track Info
+>>>>>>> 76f16d1458c108f6cfc5109e643606a294520cbf
 	public static String displayTrackInfo;
 	private static TextView trackInfo, targetUnit, currentPaceUnit;
 	
 		
+<<<<<<< HEAD
 	// Buttons    
+=======
+	// Buttons    
+>>>>>>> 76f16d1458c108f6cfc5109e643606a294520cbf
     ImageButton playOrPauseImageButton, skipSongImageButton, previousSongImageButton, pauseImageButton, stopImageButton;
     Button songTooSlowButton, songTooFastButton, decreaseTargetPaceButton, increaseTargetPaceButton;
     Button bTargetPaceTitle, bCurrentPaceTitle, bCurrentPaceValue, bCurrentPacePreference, bTargetPacePreference, bTargetPaceValue;
@@ -240,7 +254,11 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 
 	private BroadcastReceiver bReceiver = new BroadcastReceiver() {
 		  @Override
+<<<<<<< HEAD
 		  public void onReceive(Context context, Intent intent) {
+=======
+		  public void onReceive(Context context, Intent intent) {
+>>>>>>> 76f16d1458c108f6cfc5109e643606a294520cbf
 
 			  
 			    if (intent.getStringExtra("Track Info Action") != null){
@@ -255,13 +273,21 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 		    	  currentPaceText.setText(displayGPSinfo);
 		    	  Log.d("onReceive on TrainingMode is being called", "GPS is working");
 		      	} 
+<<<<<<< HEAD
 		      
+=======
+		      
+>>>>>>> 76f16d1458c108f6cfc5109e643606a294520cbf
 		    // Get extra data included in the Intent
 			
 		      displayTrackInfo = intent.getStringExtra("Track Info Action");
 		      Log.i("Track Info Recieved", " - " + displayTrackInfo);
 		      trackInfo.setText(displayTrackInfo);
+<<<<<<< HEAD
   
+=======
+  
+>>>>>>> 76f16d1458c108f6cfc5109e643606a294520cbf
 		  }
 		};
 		

@@ -1,5 +1,4 @@
 package com.GC01.BeatYourPace.Main;
-
 import java.io.IOException;
 
 import org.json.JSONException;
@@ -53,8 +52,8 @@ public class MainActivity extends Activity implements OnClickListener{
         helpPageButton.setOnClickListener(this);
         
         //Start loading music data to the database as a background service ready for the player
-        Intent intentDb = new Intent(this,DatabaseIntentService.class); 
-        this.startService(intentDb);
+        //Intent intentDb = new Intent(this,DatabaseIntentService.class); 
+        //this.startService(intentDb);
         
         //Code to test the JSON export functionality is working
        String jsonfname = "BYPtoJSON.txt";
@@ -121,4 +120,8 @@ public class MainActivity extends Activity implements OnClickListener{
 		            return super.onOptionsItemSelected(item);
 		    }
 		}
+<<<<<<< HEAD
+
+=======
+>>>>>>> 76f16d1458c108f6cfc5109e643606a294520cbf
 }
