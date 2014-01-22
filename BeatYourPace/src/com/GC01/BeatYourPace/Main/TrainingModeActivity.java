@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import com.GC01.BeatYourPace.HelpPage.AboutPageActivity;
 import com.GC01.BeatYourPace.HelpPage.HelpPageActivity;
 import com.GC01.BeatYourPace.MusicPlayer.AudioFocusManager;
+import com.GC01.BeatYourPace.MusicPlayer.MusicController;
 import com.GC01.BeatYourPace.MusicPlayer.MusicPlayer;
 import com.GC01.BeatYourPace.MusicPlayer.NoisyAudioReceiver;
 import com.GC01.BeatYourPace.MusicPlayer.TrackList;
@@ -45,7 +46,7 @@ import android.widget.Toast;
 
 public class TrainingModeActivity extends Activity implements OnClickListener {
 
-	private NoisyAudioReceiver headsetReceiver;
+
 	private AudioFocusManager aFM;
 	private SharedPreferences sp;
 	public static float targetPace;
@@ -75,13 +76,11 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 		
 		aFM = AudioFocusManager.getInstance();
 		
+		startCurrentPaceService(this);
+		
 		if (aFM.focusTest() != true) {
 		System.out.print("Didn't have focus, requesting it");
 		aFM.requestFocus();
-		
-		startCurrentPaceService(this);
-		
-	
 		}
 		
 		
@@ -140,12 +139,6 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
         LocalBroadcastManager.getInstance(this).registerReceiver(bReceiver,
         	      new IntentFilter("Track Info Event"));
         
-        /*
-        headsetReceiver = new HeadsetStatusReceiver();
-        IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction("android.intent.action.HEADSET_PLUG");
-        registerReceiver(headsetReceiver, intentFilter);
-        */
         
    }
 	
@@ -189,7 +182,7 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 			ButtonController.buttonFunction(v);	
 		}
 		
-	      if(MusicPlayer.getInstance().currentlyPlaying() == true) {
+	      if (MusicController.isMusicPlaying()) {
 	    	  playOrPauseImageButton.setBackgroundResource(R.drawable.pause);
 	      }
 	      else {
@@ -210,7 +203,6 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 		
 		onScreen = false;	
 		
-	//	unregisterReceiver(headsetReceiver);
 		super.onPause();
 		
 	}
@@ -250,12 +242,6 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 		    	  currentPaceText.setText(displayGPSinfo);
 		    	  Log.d("onReceive on TrainingMode is being called", "GPS is working");
 		      	} 
-
-		    // Get extra data included in the Intent
-			
-		      displayTrackInfo = intent.getStringExtra("Track Info Action");
-		      Log.i("Track Info Recieved", " - " + displayTrackInfo);
-		      trackInfo.setText(displayTrackInfo);
 
 		  }
 		};

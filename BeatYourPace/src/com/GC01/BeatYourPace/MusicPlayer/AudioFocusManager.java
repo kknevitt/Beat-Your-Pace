@@ -1,9 +1,12 @@
 package com.GC01.BeatYourPace.MusicPlayer;
 
+import java.io.IOException;
+
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.AudioManager.OnAudioFocusChangeListener;
 import android.util.Log;
+
 import com.GC01.BeatYourPace.Main.ContextProvider;
 import com.GC01.BeatYourPace.Main.TrainingModeActivity;
 
@@ -106,6 +109,7 @@ public class AudioFocusManager{
 					
 					if (MusicPlayer.getInstance().currentlyPlaying() && TrainingModeActivity.onScreen == false) {
 					MusicController.pressPlay_Pause();
+					
 					}
 					Log.d("Audio Focus Manager", "Focus regained temporarily");
 				

@@ -1,5 +1,7 @@
 package com.GC01.BeatYourPace.MusicPlayer;
 
+import java.io.IOException;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;

@@ -27,27 +27,34 @@ public class MusicController {
 	 * play-back of the current song.
 	 */
 	public static void pressPlay_Pause() {
-		
+
 		// Conditions put in place to ensure media player cannot be playing more than one song at a time and properly resumes or pauses based on the state of the music player.
 		// 
+		
+
 		if (!trackList.isEmpty() && !musicPlayer.currentlyPlaying()) {
 			
 			if (musicPlayer.getPosition() < 1000) {
 				
+				
 			musicPlayer.play();
 			}
 	
-			else if (musicPlayer.getPosition() >= 1000) {
+			else if (musicPlayer.paused == true) {
 				
 				musicPlayer.resumeTrack();
 				
+			}
+			
+			else if (musicPlayer.paused == false) {
+				
+				musicPlayer.play();
 			}
 		}
 			else if (!trackList.isEmpty() && musicPlayer.currentlyPlaying()){
 				
 				musicPlayer.pausePlayback();
 		}
-		
 		
 			 
 	}

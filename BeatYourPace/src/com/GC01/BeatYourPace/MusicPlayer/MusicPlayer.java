@@ -16,14 +16,15 @@ import com.GC01.BeatYourPace.Main.ContextProvider;
  * @author Kristian Knevitt
  * @version 3.0, Updated 22/01/2014
  */
+import com.GC01.BeatYourPace.PaceCalculator.TargetPace;
 
 
 /** 
  * <p> The MusicPlayer object carries out the functions requested by the Music Controller in order to manipulate TrackList and play the CurrentSong </p>
  */
- 
+
 // Music Player uses the android media player by association, methods provide the specific implementation of audio playback for this app
-public class MusicPlayer implements OnCompletionListener, OnErrorListener, OnPreparedListener {	 
+public class MusicPlayer implements OnCompletionListener, OnErrorListener {	 
 
 
 	/** Singleton Instance of the MusicPlayer. */
@@ -33,7 +34,7 @@ public class MusicPlayer implements OnCompletionListener, OnErrorListener, OnPre
 	private boolean playing;
 	private int position;
 	public static MediaPlayer mediaPlayer = new MediaPlayer();
-	private String trackInfo;
+	protected boolean paused;
 
 	
 	/** Private constructor for MusicPlayer which ensure it has an onCompletionListener when it is created in order to know
@@ -42,8 +43,9 @@ public class MusicPlayer implements OnCompletionListener, OnErrorListener, OnPre
 	
 	private MusicPlayer(){
 
+		
 		mediaPlayer.setOnCompletionListener(this);
-		position = 0;
+		trackList.updateTrackList((float) TargetPace.getTargetPace());
 		
 	}
 	
@@ -99,8 +101,9 @@ public class MusicPlayer implements OnCompletionListener, OnErrorListener, OnPre
 		
 		// Ensures that the Music Player will stop the current song before attempting to play the next to ensure it will not be
 		// playing over the top of itself
+		
 		try {
-		if (this.currentlyPlaying()){
+		if (mediaPlayer.isPlaying()){
 			stopPlayback();
 			}
 		}
@@ -113,45 +116,45 @@ public class MusicPlayer implements OnCompletionListener, OnErrorListener, OnPre
 		 * being unitialised before attempting to set which song to play, and preparing the mediaPlayer.
 		 */
 		
-		try {
 		mediaPlayer.reset();
 		mediaPlayer.setDataSource(trackList.getCurrentSong());
-		mediaPlayer.setOnPreparedListener(this);
-		mediaPlayer.prepareAsync();
-	//	mediaPlayer.start();
-		
-		}
-		catch(Exception e){
-			Log.e("Music Player", "Unable to assign proper state");
-		}
+		mediaPlayer.prepare();
+		mediaPlayer.start();
+
 		
 		// Sends the current Track Information to be broadcast to the Activities to be displayed for the user.
-		
-		
 		trackList.setCurrentTrackInfo(trackList.getCurrentSong());
 		
 		sendTrackInfo("(" + (trackList.getTrackIndex() +1) + "/" + trackList.getTrackListSize() + ")" + " " + trackList.getCurrentSongInfo());
 
+		paused = false;
 		}
-
-	// Will only attempt to start playback once the mediaplayer is in the correct state.
-	public void onPrepared(MediaPlayer player){
-		
-		mediaPlayer.start();
-	}
 	
 	
 	/** Pauses Current Playback */
 	protected void pausePlayback(){
 		
+		paused = true;
 		mediaPlayer.pause();
 	}
+	
+	
+	/** Resumes the track - only use if there is audio playing */
+	protected void resumeTrack(){
+		
+		paused = false;
+		mediaPlayer.start();
+
+	}
+	
+	
 	
 	/** Stop current playback and setting the mediaPlayer to an unitialised state */
 	protected void stopPlayback(){
 		
-	//	mediaPlayer.seekTo(0);
+		System.out.println("stopping");
 		mediaPlayer.stop();
+		
 	}
 	
 	
@@ -161,7 +164,6 @@ public class MusicPlayer implements OnCompletionListener, OnErrorListener, OnPre
 	 */
 	protected void sendTrackInfo(String trackInfo) {
 		
-	// Creating a new Intent to send the broadcast to the Activity
 	  Intent intent = new Intent("Track Info Event");
 	  
 	  // Puts an extra data on the intent which carries the Track Info for the activity to display.
@@ -188,12 +190,6 @@ public class MusicPlayer implements OnCompletionListener, OnErrorListener, OnPre
 			
 	}
 	
-	/** Resumes the track - only use if there is audio playing */
-	protected void resumeTrack(){
-		
-		mediaPlayer.start();
-	}
-
 	
 	@Override
 	public boolean onError(MediaPlayer mp, int what, int extra) {
@@ -227,16 +223,16 @@ public class MusicPlayer implements OnCompletionListener, OnErrorListener, OnPre
 
 	}
 		
-	/** Gets the current position through the CUrrentSong
+	/** Gets the current position through the CurrentSong
 	 * 
 	 * @return position (int) Milliseconds through a song
 	 */
 	protected int getPosition(){
 		
 		position = mediaPlayer.getCurrentPosition();
+		System.out.println(position);
 		return position;
 	}
-	
 	
 
 }
