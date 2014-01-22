@@ -29,6 +29,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+
+
 public class LetsRunModeActivity extends Activity implements OnClickListener {
 
 	
@@ -42,19 +44,28 @@ public class LetsRunModeActivity extends Activity implements OnClickListener {
     Button songTooSlowButton, songTooFastButton, decreaseTargetPaceButton, increaseTargetPaceButton;
     Button bTargetPaceTitle, bCurrentPaceTitle, bCurrentPaceValue, bCurrentPacePreference, bTargetPacePreference, bTargetPaceValue;
     
+    /** 
+     * @author Laura Barbosa,  Kristian Knevitt & Sarah Nicholson
+     * @version 1.0, Updated 22/01/2014
+     */
+
+    /**
+     * Handles the functionalities of the Main page. 
+     */
+
+    
+    
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_lets_run_mode);  
 		
-		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(ContextProvider.getContext());
-
-		//Keep the screen on so the user can access the buttons used to associate new BPM to tracks
-		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-		
-		//Google Analytics tracking code 
 		EasyTracker.getInstance(this).activityStart(this);
 		
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+		
+		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(ContextProvider.getContext());
+
 		onScreen = true;
 		
 		TrackList trackList = TrackList.getInstance();

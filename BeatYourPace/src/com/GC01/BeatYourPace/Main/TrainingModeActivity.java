@@ -32,27 +32,31 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/** 
+ * @author Laura Barbosa,  Kristian Knevitt & Sarah Nicholson
+ * @version 1.0, Updated 22/01/2014
+ */
+
+/**
+ * Handles the functionalities of the Training Mode page. 
+ */
+
+
+
 public class TrainingModeActivity extends Activity implements OnClickListener {
 
 	private NoisyAudioReceiver headsetReceiver;
 	private AudioFocusManager aFM;
 	private SharedPreferences sp;
-	
-	
-	// Target Pace 
 	public static float targetPace;
 	private static String displayTargetPace; 
     public static TextView targetPaceText;
     public static String displayGPSinfo;
     private static TextView currentPaceText;
 	public static boolean onScreen;
-
-	// Current Track Info
 	public static String displayTrackInfo;
 	private static TextView trackInfo, targetUnit, currentPaceUnit;
 	
-		
-	// Buttons    
     ImageButton playOrPauseImageButton, skipSongImageButton, previousSongImageButton, pauseImageButton, stopImageButton;
     Button songTooSlowButton, songTooFastButton, decreaseTargetPaceButton, increaseTargetPaceButton;
     Button bTargetPaceTitle, bCurrentPaceTitle, bCurrentPaceValue, bCurrentPacePreference, bTargetPacePreference, bTargetPaceValue;
@@ -62,13 +66,10 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_training_mode);  
 		
-		sp = PreferenceManager.getDefaultSharedPreferences(ContextProvider.getContext());
-
-		//Keep the screen on so the user can access the buttons used to associate new BPM to tracks
-		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-		
-		//Google Analytics tracking code 
 		EasyTracker.getInstance(this).activityStart(this);
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+				
+		sp = PreferenceManager.getDefaultSharedPreferences(ContextProvider.getContext());
 		
 		onScreen = true;
 		
@@ -80,10 +81,8 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 		
 		startCurrentPaceService(this);
 		
-		Log.d("gps message from oncreate", "help");
+	
 		}
-		
-		
 		
 		
         playOrPauseImageButton = (ImageButton) findViewById(R.id.bPlayAndPause); 				
@@ -127,9 +126,7 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
         
         
         targetPaceText.setText(displayTargetPace);
-    
-
-        //setting an event listener for each button
+            
         playOrPauseImageButton.setOnClickListener(this);
         skipSongImageButton.setOnClickListener(this);
         previousSongImageButton.setOnClickListener(this);
@@ -158,12 +155,8 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 	
 	}
 	
-	/** Method used to start the GPS service **/
 	public void startCurrentPaceService(Context context) {
 		startService(new Intent(this, CurrentPace.class));
-		
-		Log.d("startCurrentPaceService is being called", "help");
-		
 	}
 	
 
@@ -269,4 +262,3 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 		
 	
 	}
-
