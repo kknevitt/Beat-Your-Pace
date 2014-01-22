@@ -8,11 +8,7 @@ package com.GC01.BeatYourPace.MusicPlayer;
 /** Blueprint for a song containing base variables */
 public abstract class Song {
 	
-	
-	/** A string of the filepath to be played by the MusicPlayer */
 	protected String songPath;
-	
-	/** The Artist and Title of the Current Song */
 	protected String songInfo;
 	
 	public Song(){
@@ -22,10 +18,7 @@ public abstract class Song {
 		
 	}
 	
-	/** Queries the database for Information on the song dependent on the path sent
-	 * 
-	 * @param path (String) - Directory path for that song
-	 */
+	// Abstract methods as these would be dependent on the database implementation
 	public abstract void setSongInfo(String info);
 	
 	public abstract void setSongPath(String path);

@@ -2,66 +2,52 @@ package com.GC01.BeatYourPace.MusicPlayer;
 
 import java.io.IOException;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.media.MediaPlayer.OnErrorListener;
+import android.media.MediaPlayer.OnPreparedListener;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.GC01.BeatYourPace.Main.ContextProvider;
-import com.google.analytics.tracking.android.Tracker;
 /** 
  * @author Kristian Knevitt
- * @version 2.0, Updated 12/12/2013
+ * @version 3.0, Updated 22/01/2014
  */
 
 
 /** 
- * <p> The MusicPlayer object carries out the functions requested by the Music Controller using the information 
- * in the TrackList, meaning it does not compute the logic of functions it only carries out the functions requested
- * such as playing a song. </p>
+ * <p> The MusicPlayer object carries out the functions requested by the Music Controller in order to manipulate TrackList and play the CurrentSong </p>
  */
  
-//The class originally extended mediaPlayer and inherited these methods directly, but I have been unable to yet 
-	//  deal with the exceptions created when using the inherited methods, so some have been re-added indirectly for now.
-public class MusicPlayer implements OnCompletionListener, OnErrorListener {	 
+// Music Player uses the android media player by association, methods provide the specific implementation of audio playback for this app
+public class MusicPlayer implements OnCompletionListener, OnErrorListener, OnPreparedListener {	 
 
-	/** Uses a MediaPlayer object from the android.media package as a base for playback functions */
 
 	/** Singleton Instance of the MusicPlayer. */
 	private static MusicPlayer _instance = null;
 	
-	private IntentFilter intentFilter = new IntentFilter(AudioManager.ACTION_AUDIO_BECOMING_NOISY);
-	
 	protected TrackList trackList = TrackList.getInstance();
-	
 	private boolean playing;
 	private int position;
-	
-	private HeadsetStatusReceiver noisyReceiver = new HeadsetStatusReceiver();
-	
-	Tracker myTracker; 
+	public static MediaPlayer mediaPlayer = new MediaPlayer();
+	private String trackInfo;
 
 	
 	/** Private constructor for MusicPlayer which ensure it has an onCompletionListener when it is created in order to know
 	 * when to automatically play the next song.
 	 */
 	
-	public static MediaPlayer mediaPlayer = new MediaPlayer();
-	
 	private MusicPlayer(){
 
 		mediaPlayer.setOnCompletionListener(this);
+		position = 0;
 		
 	}
 	
-	/** Method for creating a Singleton instance of the MusicPlayer */
+	// Singleton construction method
 	public static MusicPlayer getInstance()
 	{
 		if(_instance == null)
@@ -84,16 +70,7 @@ public class MusicPlayer implements OnCompletionListener, OnErrorListener {
 			Log.d("Music Player", "Unable to Play Current Song");
 			e.printStackTrace();
 		}
-			
-		/**Google Analytics tracking code **/
-		/*	EasyTracker easyTracker = EasyTracker.getInstance(this);
-			myTracker.send(MapBuilder
-					.createException(new StandardExceptionParser(this, null)
-					.getDescription(Thread.currentThread().getName(),
-							e),
-							false).build() 
-							); */
-		}
+	}
 		           
 	      
 
@@ -116,6 +93,7 @@ public class MusicPlayer implements OnCompletionListener, OnErrorListener {
 		playCurrentSong();	
  	}
 	
+	
 	/** Instructs the mediaPlayer to play the determined song, this method is reused across the MusicPlayer */
 	private void playCurrentSong() throws IllegalArgumentException, SecurityException, IllegalStateException, IOException{
 		
@@ -123,37 +101,58 @@ public class MusicPlayer implements OnCompletionListener, OnErrorListener {
 		// playing over the top of itself
 		try {
 		if (this.currentlyPlaying()){
-			mediaPlayer.stop();
+			stopPlayback();
 			}
 		}
 		catch(Exception e){
-			Log.d("Music Player", "Unable to stop the current song from playing");
+			Log.d("Music Player", "Unable to stop playback before starting playback.");
 		}
 		
 		
 		/* The main sequence for playing a song, which ensures that it is in the correct stage for each event, ie 
-		 * being unitialised before attempting to set which song to play, and preparing before attempting to play
-		 * said song. Catches an an exception if unable to do so.
+		 * being unitialised before attempting to set which song to play, and preparing the mediaPlayer.
 		 */
 		
 		try {
 		mediaPlayer.reset();
 		mediaPlayer.setDataSource(trackList.getCurrentSong());
-		mediaPlayer.prepare();
-		mediaPlayer.start();
+		mediaPlayer.setOnPreparedListener(this);
+		mediaPlayer.prepareAsync();
+	//	mediaPlayer.start();
+		
 		}
 		catch(Exception e){
-			Log.e("Music Player", "Unable to assign proper states and play song");
+			Log.e("Music Player", "Unable to assign proper state");
 		}
 		
 		// Sends the current Track Information to be broadcast to the Activities to be displayed for the user.
 		
+		
 		trackList.setCurrentTrackInfo(trackList.getCurrentSong());
-			
-		sendTrackInfo(trackList.getCurrentSongInfo());
-	
-	
+		
+		sendTrackInfo("(" + (trackList.getTrackIndex() +1) + "/" + trackList.getTrackListSize() + ")" + " " + trackList.getCurrentSongInfo());
+
 		}
+
+	// Will only attempt to start playback once the mediaplayer is in the correct state.
+	public void onPrepared(MediaPlayer player){
+		
+		mediaPlayer.start();
+	}
+	
+	
+	/** Pauses Current Playback */
+	protected void pausePlayback(){
+		
+		mediaPlayer.pause();
+	}
+	
+	/** Stop current playback and setting the mediaPlayer to an unitialised state */
+	protected void stopPlayback(){
+		
+	//	mediaPlayer.seekTo(0);
+		mediaPlayer.stop();
+	}
 	
 	
 	/** Uses a LocalBroadCastManager to send a broadcast for the activities to receive and in turn display the current
@@ -189,19 +188,13 @@ public class MusicPlayer implements OnCompletionListener, OnErrorListener {
 			
 	}
 	
-	/** Resumes the track if one has already been started */
+	/** Resumes the track - only use if there is audio playing */
 	protected void resumeTrack(){
 		
 		mediaPlayer.start();
 	}
+
 	
-	/** Pauses the current track */
-	protected void pausePosition(){
-		
-		mediaPlayer.pause();
-	}
-
-
 	@Override
 	public boolean onError(MediaPlayer mp, int what, int extra) {
 
@@ -216,49 +209,34 @@ public class MusicPlayer implements OnCompletionListener, OnErrorListener {
 					e.printStackTrace();
 					return false;
 				}
-				
-				
 			}
 		return false;	
 		}
-		
-		
-	
-	
-	
-	// Re-added methods
+
+	/** Checks if the MusicPlayer is playing by querying the mediaPlayer */
 	public boolean currentlyPlaying(){
 		
 		if (mediaPlayer.isPlaying()) {
-			
 			playing = true;
-			
-		}
+			}
 			
 			else {
-				
 				playing = false;
-			}
-		
+				}
 		return playing;
 
 	}
-	
-	protected void stopPlayback(){
 		
-		mediaPlayer.stop();
-	}
-	
+	/** Gets the current position through the CUrrentSong
+	 * 
+	 * @return position (int) Milliseconds through a song
+	 */
 	protected int getPosition(){
 		
 		position = mediaPlayer.getCurrentPosition();
 		return position;
 	}
 	
-	protected void pausePlayback(){
-		
-		mediaPlayer.pause();
-	}
-		
 	
+
 }

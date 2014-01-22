@@ -5,15 +5,16 @@ import com.GC01.BeatYourPace.Main.ContextProvider;
 
 /** 
  * @author Kristian Knevitt
- * @version 1.0, Updated 12/12/2013
+ * @version 2.0, Updated 12/01/2014
  */
 
+	/** Singleton Object of whatever song the music player is ready to play */
 	public class CurrentSong extends Song {
 	
 	private static CurrentSong _instance = null;
 
+	
 	private CurrentSong() {
-		
 		super();
 		
 	}
@@ -27,15 +28,28 @@ import com.GC01.BeatYourPace.Main.ContextProvider;
 		return _instance;
 	}
 	
+	// implementing the method from abstract to specific app purposes
+	/** Set the song info using the file path
+	 * @param info (String) - Artist and Title of the song.
+	 */
 	public void setSongInfo(String info){
-
-	DatabaseAdapter1 db = new DatabaseAdapter1(ContextProvider.getContext());
-	this.songInfo = db.getTrackInfo(info);
+		
+		DatabaseAdapter1 db = new DatabaseAdapter1(ContextProvider.getContext());
+		this.songInfo = db.getTrackInfo(info);
 	
 	}
 	
+	/** Set the file-path of the current Song 
+	 * @param path (String) file-path
+	 */
+	@Override
+	public void setSongPath(String path) {
+		
+		this.songPath = path;
+		
+	}	
 	
-	/** Sends the file path  of the current song by using the track index from the TrackList.
+	/** Getter method for the song file-path
 	 *
 	 * @return songPath (String)The file path for the current song.
 	 */
@@ -44,12 +58,7 @@ import com.GC01.BeatYourPace.Main.ContextProvider;
 		return this.songPath;
 				
 		}
-
-	@Override
-	public void setSongPath(String path) {
-		
-	this.songPath = path;
-		
-	}	
+	
+	
 
 }

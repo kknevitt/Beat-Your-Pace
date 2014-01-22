@@ -11,7 +11,7 @@ import com.GC01.BeatYourPace.HelpPage.AboutPageActivity;
 import com.GC01.BeatYourPace.HelpPage.HelpPageActivity;
 import com.GC01.BeatYourPace.MusicPlayer.AudioFocusManager;
 import com.GC01.BeatYourPace.MusicPlayer.MusicPlayer;
-import com.GC01.BeatYourPace.MusicPlayer.HeadsetStatusReceiver;
+import com.GC01.BeatYourPace.MusicPlayer.NoisyAudioReceiver;
 import com.GC01.BeatYourPace.MusicPlayer.TrackList;
 import com.GC01.BeatYourPace.PaceCalculator.CurrentPace;
 import com.GC01.BeatYourPace.Settings.SettingsActivity;
@@ -34,7 +34,7 @@ import android.widget.Toast;
 
 public class TrainingModeActivity extends Activity implements OnClickListener {
 
-	private HeadsetStatusReceiver headsetReceiver;
+	private NoisyAudioReceiver headsetReceiver;
 	private AudioFocusManager aFM;
 	private SharedPreferences sp;
 	

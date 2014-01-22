@@ -21,15 +21,16 @@ import com.GC01.BeatYourPace.Main.TrainingModeActivity;
  */
 public class AudioFocusManager{
 	
-	// Members of the class
+
 	private  int result;
 	private AudioManager audioMan;
 	private static AudioFocusManager _instance;
 	
 	
-	// Uses the Android Audio Manager, which requires the context of the Audio service.
+	
 	private AudioFocusManager(){
-
+		
+	// Uses the Android Audio Manager
 	audioMan = (AudioManager) ContextProvider.getContext().getSystemService(Context.AUDIO_SERVICE);
 		
 	}
@@ -61,7 +62,7 @@ public class AudioFocusManager{
 	/** Once Focus is no longer needed, it is abandoned, and the Music Player is stopped */
 	public void abandonFocus() {
 		
-		AudioManager audioMan = (AudioManager)  ContextProvider.getContext().getSystemService(Context.AUDIO_SERVICE);
+		audioMan = (AudioManager)  ContextProvider.getContext().getSystemService(Context.AUDIO_SERVICE);
 		audioMan.abandonAudioFocus(focusChangeListener);
 		MusicController.pressStop();	
 	}
@@ -118,11 +119,10 @@ public class AudioFocusManager{
 					}
 					Log.d("Audio Focus Manager", "Focus lost indefinitely");
 								
-					// Won't automatically start play-back at present due to difficulties of music restarting 
-					// when re-entering activities
+					
 				case (AudioManager.AUDIOFOCUS_GAIN) :
 							
-					Log.d("Audio Focus Manager", "Focus regained indefinitely");
+					Log.d("Audio Focus Manager", "Focus regained while needed.");
 
 				}
 			}
