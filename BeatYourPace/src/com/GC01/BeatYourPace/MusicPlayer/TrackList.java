@@ -9,6 +9,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.GC01.BeatYourPace.Database.DatabaseAdapter1;
+import com.GC01.BeatYourPace.Database.DatabaseMusicPlayer;
 import com.GC01.BeatYourPace.Main.ContextProvider;
 import com.GC01.BeatYourPace.PaceCalculator.TargetPace;
 
@@ -157,7 +158,7 @@ public class TrackList {
 			DatabaseAdapter1 db = new DatabaseAdapter1(ContextProvider.getContext());
 
 			currentTrackList = db.getAppropriateSongs(tarPace);
-			
+				
 			Collections.shuffle(currentTrackList);
 			
 			Log.d("TrackList", "TrackList updated");
