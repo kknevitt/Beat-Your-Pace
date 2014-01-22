@@ -16,7 +16,7 @@ import com.google.analytics.tracking.android.MapBuilder;
 
 /** 
  * @author Laura Barbosa &  Kristian Knevitt
- * @version 1.0, Updated 12/12/2013
+ * @version 1.0, Updated 22/01/2014
  */
 
 /** Receives views and handles where the requests should be sent, e.g the play/pause button is pressed then a request
