@@ -29,9 +29,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class TrainingModeActivity extends Activity implements OnClickListener {
-<<<<<<< HEAD
- 
-=======
 
 	private HeadsetStatusReceiver headsetReceiver;
 	private AudioFocusManager aFM;
@@ -39,24 +36,19 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 	
 	
 	// Target Pace 
->>>>>>> e671020e1fe1b12a764f1af01f066d46651c8eb3
 	public static float targetPace;
 	private static String displayTargetPace; 
     public static TextView targetPaceText;
     public static String displayGPSinfo;
     private static TextView currentPaceText;
 	public static boolean onScreen;
-<<<<<<< HEAD
-	public static String displayTrackInfo;
-	private static TextView trackInfo, targetUnit, currentPaceUnit;
-=======
+
 	// Current Track Info
 	public static String displayTrackInfo;
 	private static TextView trackInfo, targetUnit, currentPaceUnit;
 	
 		
 	// Buttons    
->>>>>>> e671020e1fe1b12a764f1af01f066d46651c8eb3
     ImageButton playOrPauseImageButton, skipSongImageButton, previousSongImageButton, pauseImageButton, stopImageButton;
     Button songTooSlowButton, songTooFastButton, decreaseTargetPaceButton, increaseTargetPaceButton;
     Button bTargetPaceTitle, bCurrentPaceTitle, bCurrentPaceValue, bCurrentPacePreference, bTargetPacePreference, bTargetPaceValue;
@@ -230,7 +222,6 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 	private BroadcastReceiver bReceiver = new BroadcastReceiver() {
 		  @Override
 		  public void onReceive(Context context, Intent intent) {
-<<<<<<< HEAD
 
 			  
 			    if (intent.getStringExtra("Track Info Action") != null){
@@ -246,14 +237,12 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 		    	  Log.d("onReceive on TrainingMode is being called", "GPS is working");
 		      	} 
 		      
-=======
 		    // Get extra data included in the Intent
 			
 		      displayTrackInfo = intent.getStringExtra("Track Info Action");
 		      Log.i("Track Info Recieved", " - " + displayTrackInfo);
 		      trackInfo.setText(displayTrackInfo);
   
->>>>>>> e671020e1fe1b12a764f1af01f066d46651c8eb3
 		  }
 		};
 		
