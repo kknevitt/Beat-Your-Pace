@@ -2,12 +2,17 @@ package com.GC01.BeatYourPace.MusicPlayer;
 
 import java.io.IOException;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.media.MediaPlayer.OnErrorListener;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.GC01.BeatYourPace.Main.ContextProvider;
 import com.google.analytics.tracking.android.Tracker;
@@ -32,13 +37,14 @@ public class MusicPlayer implements OnCompletionListener, OnErrorListener {
 	/** Singleton Instance of the MusicPlayer. */
 	private static MusicPlayer _instance = null;
 	
+	private IntentFilter intentFilter = new IntentFilter(AudioManager.ACTION_AUDIO_BECOMING_NOISY);
 	
 	protected TrackList trackList = TrackList.getInstance();
 	
-	private CurrentSong song = CurrentSong.getInstance();
-	
 	private boolean playing;
 	private int position;
+	
+	private HeadsetStatusReceiver noisyReceiver = new HeadsetStatusReceiver();
 	
 	Tracker myTracker; 
 
@@ -69,7 +75,7 @@ public class MusicPlayer implements OnCompletionListener, OnErrorListener {
 	
 	/** Play the current song without manipulating the position within the TrackList */
 
-	public void play(){
+	protected void play(){
 		
 		try {
 			playCurrentSong();
@@ -95,7 +101,7 @@ public class MusicPlayer implements OnCompletionListener, OnErrorListener {
 	
 	/** Skips to the next song in the Tracklist ArrayList and plays that song */
 	
-	public void skip() throws IllegalArgumentException, SecurityException, IllegalStateException, IOException {
+	protected void skip() throws IllegalArgumentException, SecurityException, IllegalStateException, IOException {
 		
 		trackList.setTrackIndex("skip");
 		playCurrentSong();
@@ -104,7 +110,7 @@ public class MusicPlayer implements OnCompletionListener, OnErrorListener {
  	
 	
 	/** Reverts to the previous song in the TrackList ArrayList and plays that song	 */
-	public void previous() throws IllegalArgumentException, SecurityException, IllegalStateException, IOException {
+	protected void previous() throws IllegalArgumentException, SecurityException, IllegalStateException, IOException {
 		
 		trackList.setTrackIndex("previous");
 		playCurrentSong();	
@@ -132,7 +138,7 @@ public class MusicPlayer implements OnCompletionListener, OnErrorListener {
 		
 		try {
 		mediaPlayer.reset();
-		mediaPlayer.setDataSource(song.getSongPath());
+		mediaPlayer.setDataSource(trackList.getCurrentSong());
 		mediaPlayer.prepare();
 		mediaPlayer.start();
 		}
@@ -142,9 +148,10 @@ public class MusicPlayer implements OnCompletionListener, OnErrorListener {
 		
 		// Sends the current Track Information to be broadcast to the Activities to be displayed for the user.
 		
-		song.setTrackInfo(song.getSongPath());
+		trackList.setCurrentTrackInfo(trackList.getCurrentSong());
 			
-		sendTrackInfo(song.getTrackInfo());
+		sendTrackInfo(trackList.getCurrentSongInfo());
+	
 	
 		}
 	
@@ -153,7 +160,7 @@ public class MusicPlayer implements OnCompletionListener, OnErrorListener {
 	 * track information including the artist and song name.
 	 * @param trackInfo 
 	 */
-	public void sendTrackInfo(String trackInfo) {
+	protected void sendTrackInfo(String trackInfo) {
 		
 	// Creating a new Intent to send the broadcast to the Activity
 	  Intent intent = new Intent("Track Info Event");
@@ -164,8 +171,7 @@ public class MusicPlayer implements OnCompletionListener, OnErrorListener {
 	  Log.d("Music Player", "Track Sent of" + trackInfo);
 		}
 
-	
-	
+
 	/** Automatically plays the next song when the last one has finished. */
 	@Override
 	public void onCompletion(MediaPlayer mp) {
@@ -184,13 +190,13 @@ public class MusicPlayer implements OnCompletionListener, OnErrorListener {
 	}
 	
 	/** Resumes the track if one has already been started */
-	public void resumeTrack(){
+	protected void resumeTrack(){
 		
 		mediaPlayer.start();
 	}
 	
 	/** Pauses the current track */
-	public void pausePosition(){
+	protected void pausePosition(){
 		
 		mediaPlayer.pause();
 	}
@@ -199,9 +205,24 @@ public class MusicPlayer implements OnCompletionListener, OnErrorListener {
 	@Override
 	public boolean onError(MediaPlayer mp, int what, int extra) {
 
-		// TODO Auto-generated method stub
-		return false;
-	}
+		// extra is the specific error, -1010 is the constant value of MEDIA_ERROR_UNSUPPORTED
+		if (extra == -1010) {
+				try {
+					skip();
+					Toast.makeText(ContextProvider.getContext(), "Format of " + trackList.getCurrentSongInfo() + "is not supported, skipping.", Toast.LENGTH_SHORT).show();
+					return true;
+					
+				} catch (IOException e) {
+					e.printStackTrace();
+					return false;
+				}
+				
+				
+			}
+		return false;	
+		}
+		
+		
 	
 	
 	
@@ -223,20 +244,21 @@ public class MusicPlayer implements OnCompletionListener, OnErrorListener {
 
 	}
 	
-	public void stopPlayback(){
+	protected void stopPlayback(){
 		
 		mediaPlayer.stop();
 	}
 	
-	public int getPosition(){
+	protected int getPosition(){
 		
 		position = mediaPlayer.getCurrentPosition();
 		return position;
 	}
 	
-	public void pausePlayback(){
+	protected void pausePlayback(){
 		
 		mediaPlayer.pause();
 	}
+		
 	
 }

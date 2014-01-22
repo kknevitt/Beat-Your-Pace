@@ -1,27 +1,24 @@
 package com.GC01.BeatYourPace.MusicPlayer;
 
-import com.GC01.BeatYourPace.Database.DatabaseAdapter1;
-import com.GC01.BeatYourPace.Main.ContextProvider;
-
 /** 
  * @author Kristian Knevitt
  * @version 1.0, Updated 12/12/2013
  */
 
 /** Blueprint for a song containing base variables */
-public class Song {
+public abstract class Song {
 	
 	
 	/** A string of the filepath to be played by the MusicPlayer */
 	protected String songPath;
 	
 	/** The Artist and Title of the Current Song */
-	protected String trackInfo;
+	protected String songInfo;
 	
 	public Song(){
 		
-		songPath = "No path set";
-		trackInfo = "No track info set";
+		songPath = "No path set"; 
+		songInfo = "No track info set";
 		
 	}
 	
@@ -29,11 +26,9 @@ public class Song {
 	 * 
 	 * @param path (String) - Directory path for that song
 	 */
-	public void setTrackInfo(String path){
-
-		DatabaseAdapter1 db = new DatabaseAdapter1(ContextProvider.getContext());
-		trackInfo = db.getTrackInfo(path);
-	}
+	public abstract void setSongInfo(String info);
+	
+	public abstract void setSongPath(String path);
 	
 	
 	/** Returns the track information on a song
@@ -41,9 +36,9 @@ public class Song {
 	 * @return trackInfo (String) - A concatenation of the Song's artist and title
 	 */
 	
-	public String getTrackInfo(){
+	public String getSongInfo(){
 		
-		return trackInfo;
+		return songInfo;
 	}
 	
 }

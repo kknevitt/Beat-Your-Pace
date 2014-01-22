@@ -8,7 +8,8 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical" 
-    android:padding="20dip">
+    android:padding="20dip"
+        >
 
 	<!-- PageTitle  -->
 
@@ -18,7 +19,9 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:text="@string/helpPageTitle"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:ellipsize="marquee"
+         />
 
         <!-- Blank spacer -->
        <View
@@ -32,7 +35,8 @@
     <TextView 
     	android:layout_width="fill_parent"
 		android:layout_height="1dip"
-		android:background="#757575" />
+		android:background="#757575"
+		 />
     
     <!-- Blank spacer -->
        <View
@@ -41,14 +45,16 @@
            android:layout_height="5dp"
             />
     
-    <!-- TrainingMode  -->
+    <!-- TrainingMode Block -->
     <TextView
         android:id="@+id/TrainingTitle"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:orientation="vertical"
         android:text="@string/helpPageTrainingTitle"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:ellipsize="marquee"
+        android:fadingEdge="horizontal" />
 
             <!-- Blank spacer -->
        <View
@@ -81,7 +87,7 @@
     
     
     
-    <!-- LetsRun  -->
+    <!-- LetsRun Block -->
     
     <!-- Blank spacer -->
        <View
@@ -97,7 +103,9 @@
         android:layout_height="fill_parent"
         android:orientation="vertical"
         android:text="@string/helpPageLetsRunTitle"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:ellipsize="marquee"
+        android:fadingEdge="horizontal" />
 
             <!-- Blank spacer -->
        <View
@@ -135,14 +143,16 @@
            android:layout_height="5dp"/>
     
        
-    <!-- Settings  -->
+    <!-- Settings Block  -->
       <TextView
         android:id="@+id/SettingsTitle"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:orientation="vertical"
         android:text="@string/helpPageSettingsTitle"
-        android:textAppearance="?android:attr/textAppearanceMedium"/>
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:ellipsize="marquee"
+        android:fadingEdge="horizontal"/>
 
               <!-- Blank spacer -->
        <View
@@ -158,7 +168,11 @@
         android:orientation="vertical"
         android:text="@string/helpSettingsText" />
 
-    
+      <View
+           android:id="@+id/Spacer8"
+           android:layout_width="match_parent"
+           android:layout_height="10dp"/>
+     
     
 	</LinearLayout>
  </ScrollView>

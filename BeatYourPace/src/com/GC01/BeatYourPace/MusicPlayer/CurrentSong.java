@@ -1,17 +1,17 @@
 package com.GC01.BeatYourPace.MusicPlayer;
 
+import com.GC01.BeatYourPace.Database.DatabaseAdapter1;
+import com.GC01.BeatYourPace.Main.ContextProvider;
+
 /** 
  * @author Kristian Knevitt
  * @version 1.0, Updated 12/12/2013
  */
 
-public class CurrentSong extends Song {
-	
-	private static TrackList trackList = TrackList.getInstance();
+	public class CurrentSong extends Song {
 	
 	private static CurrentSong _instance = null;
 
-	
 	private CurrentSong() {
 		
 		super();
@@ -26,7 +26,14 @@ public class CurrentSong extends Song {
 		}
 		return _instance;
 	}
+	
+	public void setSongInfo(String info){
 
+	DatabaseAdapter1 db = new DatabaseAdapter1(ContextProvider.getContext());
+	this.songInfo = db.getTrackInfo(info);
+	
+	}
+	
 	
 	/** Sends the file path  of the current song by using the track index from the TrackList.
 	 *
@@ -34,9 +41,15 @@ public class CurrentSong extends Song {
 	 */
 	public String getSongPath() {
 				
-		songPath = trackList.getTrackIndex(trackList.getTrackIndex());
-		return songPath;
+		return this.songPath;
 				
-		}	
+		}
+
+	@Override
+	public void setSongPath(String path) {
+		
+	this.songPath = path;
+		
+	}	
 
 }
