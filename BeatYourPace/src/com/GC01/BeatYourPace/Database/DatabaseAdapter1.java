@@ -176,10 +176,10 @@ public class DatabaseAdapter1 {
 		String query2;
 		if (unitType == 1) {
 			//String that builds the query for miles
-			query2 = "SELECT * FROM " + DataEntry.TABLE_NAME + " WHERE (" + DataEntry.COL_PREF_PACE_M + " IS NULL OR " + DataEntry.COL_PREF_PACE_M + " = " + targetPace + " OR " + "(" + DataEntry.COL_PREF_PACE_M + " * 2)" +  " = " + targetPace + ")";
+			query2 = "SELECT * FROM " + DataEntry.TABLE_NAME + " WHERE (" + DataEntry.COL_PREF_PACE_M + " IS NULL OR " + DataEntry.COL_PREF_PACE_M + " = " + targetPace + " OR " + "(" + DataEntry.COL_PREF_PACE_M + " * 2)" +  " = " + targetPace + " OR " + "(" + DataEntry.COL_PREF_PACE_M + " / 2)" +  " = " + targetPace + ")";
 		} else {
 			//String that builds the query for km
-			query2 = "SELECT * FROM " + DataEntry.TABLE_NAME + " WHERE (" + DataEntry.COL_PREF_PACE_M + " IS NULL OR " + DataEntry.COL_PREF_PACE_KM + " = " + targetPace + "  OR " + "(" + DataEntry.COL_PREF_PACE_KM + " * 2)" +  " = " + targetPace + ")";
+			query2 = "SELECT * FROM " + DataEntry.TABLE_NAME + " WHERE (" + DataEntry.COL_PREF_PACE_M + " IS NULL OR " + DataEntry.COL_PREF_PACE_KM + " = " + targetPace + "  OR " + "(" + DataEntry.COL_PREF_PACE_KM + " * 2)" +  " = " + targetPace + "  OR " + "(" + DataEntry.COL_PREF_PACE_KM + " / 2)" +  " = " + targetPace+ ")";
 		}
 		
 		//Open the database, read to a cursor, go over each row, build track and add it to list

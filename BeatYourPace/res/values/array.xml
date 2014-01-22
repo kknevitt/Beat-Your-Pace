@@ -9,44 +9,48 @@
     <item>"2"</item>
 </string-array>
 <string-array name="targetPaceArray">
-	<item>4 minutes</item>
-	<item>4.5 minutes</item>
-	<item>5 minutes</item>
-	<item>5.5 minutes</item>
-	<item>6 minutes</item>
-	<item>6.5 minutes</item>
-	<item>7 minutes</item>
-	<item>7.5 minutes</item>
-	<item>8 minutes</item>
-	<item>8.5 minutes</item>
-	<item>9 minutes</item>
-	<item>9.5 minutes</item>
-	<item>10 minutes</item>
-	<item>10.5 minutes</item>
-	<item>11 minutes</item>
-	<item>11.5 minutes</item>
-	<item>12 minutes</item>
-	<item>12.5 minutes</item>
-	<item>13 minutes</item>
-	<item>13.5 minutes</item>
-	<item>14 minutes</item>
-	<item>14.5 minutes</item>
-	<item>15 minutes</item>
-	<item>15.5 minutes</item>
-	<item>16 minutes</item>
-	<item>16.5 minutes</item>
-	<item>17 minutes</item>
-	<item>17.5 minutes</item>
-	<item>18 minutes</item>
-	<item>18.5 minutes</item>
-	<item>19 minutes</item>
-	<item>19.5 minutes</item>
-	<item>20 minutes</item>
-	<item>20.5 minutes</item>
-	<item>21 minutes</item>
-	<item>21.5 minutes</item>	
+    <item>3:00</item>
+	<item>3:30</item>
+	<item>4:00</item>
+	<item>4:30</item>
+	<item>5:00</item>
+	<item>5:30</item>
+	<item>6:00</item>
+	<item>6:30</item>
+	<item>7:00</item>
+	<item>7:30</item>
+	<item>8:00</item>
+	<item>8:30</item>
+	<item>9:00</item>
+	<item>9:30</item>
+	<item>10:00</item>
+	<item>10:30</item>
+	<item>11:00</item>
+	<item>11:30</item>
+	<item>12:00</item>
+	<item>12:30</item>
+	<item>13:00</item>
+	<item>13:30</item>
+	<item>14:00</item>
+	<item>14:30</item>
+	<item>15:00</item>
+	<item>15:30</item>
+	<item>16:00</item>
+	<item>16:30</item>
+	<item>17:00</item>
+	<item>17:30</item>
+	<item>18:00</item>
+	<item>18:30</item>
+	<item>19:00</item>
+	<item>19:30</item>
+	<item>20:00</item>
+	<item>20:30</item>
+	<item>21:00</item>
+	<item>21:30</item>	
 </string-array>
 <string-array name="targetPaceValues">
+    <item>3.0</item>
+	<item>3.5</item>	
    	<item>4.0</item>
 	<item>4.5</item>
 	<item>5.0</item>
@@ -81,8 +85,6 @@
 	<item>19.5</item>
 	<item>20.0</item>
 	<item>20.5</item>
-	<item>21.0</item>
-	<item>21.5</item>	
 </string-array>
 
 <string-array name="customTargetPaces">

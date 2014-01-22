@@ -30,7 +30,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	private static final String LOG_TAG = "DatabaseHelper";
 	
 	/** Field which sets the Database version */
-	public static final int DATABASE_VERSION = 1;
+	public static final int DATABASE_VERSION = 2;
 	
 	// SQL statement to create Tracks table
 	private static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS " 

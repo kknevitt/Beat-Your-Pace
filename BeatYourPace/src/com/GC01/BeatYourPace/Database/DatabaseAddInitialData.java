@@ -8,11 +8,10 @@ package com.GC01.BeatYourPace.Database;
 
 import com.GC01.BeatYourPace.BPM.RetrieveBpmService;
 import com.GC01.BeatYourPace.Database.DatabaseContract.DataEntry;
-import com.GC01.BeatYourPace.PaceCalculator.InitialPrefPace;
-import com.GC01.BeatYourPace.PaceCalculator.InitialPrefPace.InitPrefPaceVals;
+import com.GC01.BeatYourPace.PaceCalculator.InitialPrefPaceNavMap;
+import com.GC01.BeatYourPace.PaceCalculator.InitialPrefPaceNavMap.InitPrefPaceVals;
 import com.echonest.api.v4.EchoNestException;
 import com.GC01.BeatYourPace.Main.ContextProvider;
-
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
@@ -208,8 +207,8 @@ public class DatabaseAddInitialData extends DatabaseAdapter {
 				if (initialPrefPace > 0) {
 					//do nothing
 				} else {
-					InitialPrefPace gipp = new InitialPrefPace();
-					InitPrefPaceVals ippv = gipp.calcInitPrefPace(bpm);
+					InitialPrefPaceNavMap ipp = new InitialPrefPaceNavMap();
+					InitPrefPaceVals ippv = ipp.calcInitPrefPace(bpm);
 					float initialPrefPaceM = ippv.getIPPM();
 					float initialPrefPaceKm = ippv.getIPPKM();
 
