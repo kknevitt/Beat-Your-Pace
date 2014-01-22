@@ -120,8 +120,4 @@ public class MainActivity extends Activity implements OnClickListener{
 		            return super.onOptionsItemSelected(item);
 		    }
 		}
-<<<<<<< HEAD
-
-=======
->>>>>>> 76f16d1458c108f6cfc5109e643606a294520cbf
 }

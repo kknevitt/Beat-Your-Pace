@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" 
-    xmlns:picker="http://schemas.android.com/apk/res/example.android.numberpickersample">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
 	<PreferenceCategory
         android:title="Settings"
         android:fragment="@string/action_settings">
@@ -19,13 +18,5 @@
             android:inputType="numberDecimal" 
             android:entries="@array/targetPaceArray"
             android:entryValues="@array/targetPaceValues" />
-		<ListPreference 
-		    android:title="Custom Target Pace"
-          	android:summary="Custom saved target pace from the user"
-            android:key="saved_target_pace"
-            android:defaultValue="6.0"
-            android:inputType="numberDecimal" 
-            android:entries="@array/customTargetPaces"
-            android:entryValues="@array/customTargetValues" />
 	</PreferenceCategory>
 </PreferenceScreen>

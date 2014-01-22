@@ -39,7 +39,8 @@ public class SettingsActivity extends PreferenceActivity {
 		PreferenceManager.setDefaultValues(this, R.xml.preferences, false);    
 		// Displays the settings fragment as the main content
 		getFragmentManager().beginTransaction().replace(android.R.id.content, new SettingsFragment()).commit();
-	
+		//Removes the custom target pace preference as this is used internally by the app and should not be visible to the user
+		
 		/**Google Analytics tracking code  - starts tracking user's session**/
 		EasyTracker.getInstance(this).activityStart(this);
 	
