@@ -125,12 +125,21 @@ SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(ContextProv
         }
         
         
-        public void onDestroy(){
+        public void onPause(){
+        	
         	if (LM != null){
         		Toast.makeText(getBaseContext(), "location is not null", Toast.LENGTH_SHORT).show();
         		LM.removeUpdates(this);
         	}
         	
+        	super.onDestroy();
+        }
+        
+        public void onDestroy(){
+        	if (LM != null){
+        		Toast.makeText(getBaseContext(), "location is not null", Toast.LENGTH_SHORT).show();
+        		LM.removeUpdates(this);
+        	}
         	
         	super.onDestroy();
         }
