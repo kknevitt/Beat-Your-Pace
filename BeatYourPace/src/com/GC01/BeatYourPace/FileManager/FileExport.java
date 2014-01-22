@@ -31,7 +31,6 @@ import android.os.Environment;
 import android.util.Log;
 
 import com.GC01.BeatYourPace.Database.DatabaseAdapter;
-import com.GC01.BeatYourPace.Database.DatabaseJSON;
 import com.GC01.BeatYourPace.Main.ContextProvider;
 
 
@@ -102,7 +101,7 @@ public class FileExport {
 
 		if (isExternalStorageWritable() == true) {
 
-			DatabaseJSON dj = new DatabaseJSON(context);
+			DatabaseToJSON dj = new DatabaseToJSON(context);
 			JSONArray ja = dj.getJsonArray();
 
 			JSONObject jo1 = ja.getJSONObject(0);

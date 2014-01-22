@@ -1,4 +1,4 @@
-package com.GC01.BeatYourPace.Database;
+package com.GC01.BeatYourPace.FileManager;
 
 /**
  * Extracts contents of the database in JSON format
@@ -9,15 +9,18 @@ package com.GC01.BeatYourPace.Database;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import com.GC01.BeatYourPace.Database.DatabaseAdapter;
+
 import android.content.Context;
 import android.database.Cursor;
 import android.util.Log;
 
-public class DatabaseJSON extends DatabaseAdapter {
+public class DatabaseToJSON extends DatabaseAdapter {
 
 	final static String LOG_TAG = "DbToJSON";
 	
-	public DatabaseJSON(Context ctx) {
+	public DatabaseToJSON(Context ctx) {
 		super(ctx);
 	}
 
