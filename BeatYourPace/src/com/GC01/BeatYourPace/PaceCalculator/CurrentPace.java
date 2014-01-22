@@ -17,72 +17,66 @@ import android.widget.Toast;
 
 /** 
  * @author Laura Barbosa & Kristian Knevitt
- * @version 1.0, Updated 18/11/2013
+ * @version 1.0, Updated 22/01/2014
  */
 
 
 /** 
  * <p> This class is used to create the pace object </p>
- * <p> The CurrentPace object uses GPS functions to determine the speed of the user, and a get method to enable the screen
- * to display it. </p>
+ * <p> The CurrentPace object uses GPS onLocationChanged() and getSpeed() method to determine the speed of the user, and a uses method to 
+ * <p> broadcast the String value to the Training Mode class.
+ * 
+ * </p>
  */
 
 
-public class CurrentPace extends Service implements LocationListener { 
-
-static double speedDouble = 0;
-static String speedString = "";
-LocationManager LM;
-LocationListener locationListener;
-Intent intent;
+public class CurrentPace extends Service { 
+	
+public LocationManager locationManager;
+public LocationListener locationListener;
 private final double MPS_TO_MINS_PER_MILE = 0.0372822715;
 private final double MPS_TO_PER_KILOMETRES = 0.06;
-static String point = ".";
-static String index = "";
-static String two = "2";
-static String one = "1";
+static private String index = "";
+static private String one = "1";
+static private String point = ".";
+static private String speedString = "";
+static private double speedDouble = 0;
+static private String two = "2";
+
 
 SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(ContextProvider.getContext());
 
 		public void onCreate() { 
 		super.onCreate();
-
 		
-	    LocationManager LM = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);    
-	    LM.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
-    }
-
-    public void onLocationChanged(Location location) {
+		locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);    
+		locationListener = new MyLocationListener();
+		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+		
+  }
+  
+  class MyLocationListener implements LocationListener{
+	public void onLocationChanged(Location location) {
         speedDouble = location.getSpeed();
 
-        if (speedDouble == 0){
-                speedString = "0.00";
-        }
-
         if (Integer.parseInt(sp.getString("unitType", "1")) == 1) {
-                speedDouble = speedDouble / MPS_TO_MINS_PER_MILE; 
-        } else {
-                                speedDouble = speedDouble / MPS_TO_PER_KILOMETRES;
-        }
+            speedDouble = speedDouble / MPS_TO_MINS_PER_MILE;}
+		else {speedDouble = speedDouble / MPS_TO_PER_KILOMETRES;}
+        
+        speedString = Double.toString(speedDouble);
+        
+        Log.i("Speed string is " + speedString, "weird");
         
         sendGPSInfo(speedString);
-                     
-        
-        //Toast.makeText(getBaseContext(), "current speed string " + speedString + "and speed double is" + speedDouble, Toast.LENGTH_SHORT).show();
-        Log.i("current speed ", speedString);
-               
+                       
     }
     
         public void onProviderDisabled(String provider) {
-                Toast.makeText(getBaseContext(), "GPS disabled", Toast.LENGTH_SHORT).show(); 
-                
-        }
+                Toast.makeText(getBaseContext(), "GPS disabled", Toast.LENGTH_SHORT).show(); }
 
         public void onProviderEnabled(String provider) {
-                Toast.makeText(getBaseContext(), "GPS enabled", Toast.LENGTH_SHORT).show();
-                
-        }
-
+                Toast.makeText(getBaseContext(), "GPS enabled", Toast.LENGTH_SHORT).show(); }      
+   
         public void onStatusChanged(String provider, int status, Bundle extras) {
                 String statusString = "";
                 switch(status) {
@@ -95,53 +89,38 @@ SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(ContextProv
                         
                 Toast.makeText(getBaseContext(), provider + " " + statusString, Toast.LENGTH_SHORT).show();
                 }
-                
-        }
-        
-             
-        public void sendGPSInfo(String string) {  
-        	speedString = Double.toString(speedDouble);
-            index = Integer.toString(speedString.indexOf(point));
-           
-                    
-            if (index.equals(one)) {
-                speedString = speedString.substring(0, 3);
-                Log.i("speed string is", speedString);        
-                Log.i("index 1 is called","");
-                } else if (index.equals(two)){
-                  speedString = speedString.substring(0, 4);
-                  Log.i("index 2 is called","");
-                  Log.i("speed string is", speedString);
-                         }  else {
-                            speedString = "0.0";
-                         }
-           	
-        	
-        	
+        	}
+       }
+    	
+  /** 
+   * <p> Method retrieves the String value of the user speed in km/min or m/min, formats the String and sends a broadcast to the Training mode so the text can
+   * be displayed.
+   */		
+      private void sendGPSInfo(String string) {  
+  	            index = Integer.toString(speedString.indexOf(point));
+  	                 
+  	            if (index.equals(one)) {
+  	                speedString = speedString.substring(0, 3);
+  	                } else if (index.equals(two)){
+  	                  speedString = speedString.substring(0, 4);
+  	                } else { speedString = "0.0"; }
         	
            Intent intent = new Intent("Track Info Event");
            intent.putExtra("GPS", speedString);
            LocalBroadcastManager.getInstance(ContextProvider.getContext()).sendBroadcast(intent);
         }
         
+
         
-        public void onPause(){
-        	
-        	if (LM != null){
-        		Toast.makeText(getBaseContext(), "location is not null", Toast.LENGTH_SHORT).show();
-        		LM.removeUpdates(this);
-        	}
-        	
+       public void onDestroy(){
+
+        	if (locationManager != null){
+        		locationManager.removeUpdates(locationListener);
+        	} else locationManager.removeUpdates(locationListener);
+   
+        	stopSelf();
         	super.onDestroy();
-        }
-        
-        public void onDestroy(){
-        	if (LM != null){
-        		Toast.makeText(getBaseContext(), "location is not null", Toast.LENGTH_SHORT).show();
-        		LM.removeUpdates(this);
-        	}
         	
-        	super.onDestroy();
         }
      
 

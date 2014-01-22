@@ -6,10 +6,8 @@ import java.util.Collections;
 import android.content.Intent;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.GC01.BeatYourPace.Database.DatabaseAdapter1;
-import com.GC01.BeatYourPace.Database.DatabaseMusicPlayer;
 import com.GC01.BeatYourPace.Main.ContextProvider;
 import com.GC01.BeatYourPace.PaceCalculator.TargetPace;
 
@@ -29,35 +27,23 @@ import com.GC01.BeatYourPace.PaceCalculator.TargetPace;
 
 public class TrackList {
 	
-	/** The index of the current song within the ArrayList */
-	private int trackIndex;
-	
-	/** An ArrayList which will contain the information of the appropriate songs for the MusicPlayer to play*/
-	private ArrayList<String> currentTrackList = new ArrayList<String>(); // ArrayList containing song details and the path file for the song.	
-	
-	/** Static object of the Tracklist used in order to create a Singleton */	
-	private static TrackList  _trackList = null;
-	
-	/** Amount of the current songs in the TrackList*/
-	private int trackListSize;
-	
-	private static boolean empty;
-	
-	private static CurrentSong _currentSong = CurrentSong.getInstance();
-	
 
+	private int trackIndex;
+	private ArrayList<String> currentTrackList = new ArrayList<String>();		
+	private static TrackList  _trackList = null;
+	private int trackListSize;
+	private static boolean empty;
+	private static CurrentSong currentSong = CurrentSong.getInstance();
 	
-	
-	
-	
-	/** Singleton constructor for the TrackList */
+	// Private constructor in order to make singleton instance.
 	private TrackList(){
+		
 		
 		// The TrackList is populated with songs of an appropriate tempo based on the current Target Running Pace 
 		updateTrackList((float) TargetPace.getTargetPace());
 			 	
 		// Initially pointing to the first song in the array.
-		trackIndex = 0;
+		trackListSize = 0;
 		}
 	
 	
@@ -69,7 +55,7 @@ public class TrackList {
 		if (_trackList == null) {
 
 			_trackList = new TrackList();
-			
+		
 		}
 		
 		return _trackList;	
@@ -122,23 +108,17 @@ public class TrackList {
 			
 			}
 		
-		_currentSong.setSongPath(currentTrackList.get(getTrackIndex()));
+		
+		// Updates the current song to be the modified value
+		currentSong.setSongPath(currentTrackList.get(getTrackIndex()));
 
 		}
 		
-		
-		
-		protected String getTrackIndex(int index){
+		// Additional method to query the TrackList value for a given index
+		protected String getTrackListValue(int index){
 			
 			return currentTrackList.get(index);
 		}
-		
-	 	
- 	
-		/** Sends the index value for the chosen song from the ArrayList
-		 * 
-		 * @return songIndex (int) The current song from within the TrackList object.
-		 */
 		
 		
 		protected int getTrackIndex(){
@@ -189,7 +169,7 @@ public class TrackList {
 		
 		
 		
-		/** Checks whether the current TrackList contains any song paths
+		/** Checks whether the current TrackList contains any song paths - Sends a broadcast to update UI if it is.
 		 * @return empty (boolean) - If true, the TrackList contains no elements.
 		 */
 		public boolean isEmpty() {
@@ -197,16 +177,15 @@ public class TrackList {
 			if (currentTrackList.isEmpty()) {
 						
 						Log.d("TrackList", "TrackList was empty");
-						empty = true;
+							empty = true;
+							
 						  Intent intent = new Intent("Track Info Event");
 						  
 						  // Puts an extra data on the intent which carries the Track Info for the activity to display.
 						  intent.putExtra("Track Info Action", "Try another Target Pace!");
 						  LocalBroadcastManager.getInstance(ContextProvider.getContext()).sendBroadcast(intent);
 							}
-							
-					
-					
+						
 					else {
 						
 						empty = false;
@@ -217,28 +196,33 @@ public class TrackList {
 				}
 		
 		
+		/** @return (String) Returns the file-path of the CurrentSong  */
+
 		public String getCurrentSong() {
 			
-			return _currentSong.getSongPath();
+			return currentSong.getSongPath();
 			
 		}
 		
-
+		
+		/** Set file-path of CurrentSong
+		 * 
+		 * @param songpath (String) filepath
+		 */
 		public void setCurrentTrackInfo(String songpath) {
 			
-			_currentSong.setSongInfo(songpath);
+			currentSong.setSongInfo(songpath);
 			
 		}
 		
+		/** Returns Artist and Title of CurrentSong
+		 * 
+		 * @return (String) Artist and Title
+		 */
 		protected String getCurrentSongInfo(){
 			
-			return _currentSong.getSongInfo();
+			return currentSong.getSongInfo();
 		}
-		
-
-		
-		
-		
 		
 }
 

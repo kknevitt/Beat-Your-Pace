@@ -74,6 +74,13 @@
             android:name="com.GC01.BeatYourPace.HelpPage.AboutPageActivity"
             android:label="@string/title_activity_about_page" >
         </activity>
+        
+	        <receiver android:name="com.GC01.BeatYourPace.MusicPlayer.NoisyAudioReceiver">
+	 		  <intent-filter>
+	   		   <action android:name="android.media.AUDIO_BECOMING_NOISY" />
+	  		 </intent-filter>
+			</receiver>
+        
     </application>
 
 </manifest>

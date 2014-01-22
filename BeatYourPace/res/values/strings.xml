@@ -52,7 +52,7 @@
     <string name="helpPageLetsRunTitle">Let\'s Run\! </string>
     <string name="helpPageSettingsTitle">Settings</string>
     <string name="helpTrainingText">The Training mode allows you "train" your music to the pace you want to run at. \nWhere possible the app will automatically work out the beats per minute for your music and assign an initial pace to this. If you think a track is too fast for the pace it is being played for, press the \'Too fast\' button, if it is too slow press the \'Too slow\' button. \nIn this mode the screen will keep the phone unlocked.</string>
-    <string name="helpLetsRunText">This mode allows you to run with songs which already have been associated with your preferred pace. If you didn\'t change any values by pressing \'Too fast\' or \'Too slow\' in the training mode then you will run with the pre-defined values.</string>
+    <string name="helpLetsRunText">This mode allows you to run with songs which already have been associated with your preferred pace. If you didn\'t change any values by pressing \'Too fast\' or \'Too slow\' in the training mode then you will run with the pre-defined values. \nIn this mode the screen will keep the phone unlocked.</string>
     <string name="helpSettingsText">Use Settings to set the pace you want to run at. \nMiles(M)/Kilometres(Km) sets whether the app will show and calculate pace in minutes per M or minutes per Km. \nIf you change the M/Km setting then you also need to change the target pace which is the number of minutes it takes you to run one M/Km. If you don\'t know your pace, try the adult default of 10 M or 6 Km, or run one M/Km and time yourself.</string>
     
     <string name="aboutPageTitle">About</string>

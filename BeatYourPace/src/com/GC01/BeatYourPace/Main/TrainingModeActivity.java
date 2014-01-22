@@ -10,8 +10,9 @@ import android.content.SharedPreferences;
 import com.GC01.BeatYourPace.HelpPage.AboutPageActivity;
 import com.GC01.BeatYourPace.HelpPage.HelpPageActivity;
 import com.GC01.BeatYourPace.MusicPlayer.AudioFocusManager;
+import com.GC01.BeatYourPace.MusicPlayer.MusicController;
 import com.GC01.BeatYourPace.MusicPlayer.MusicPlayer;
-import com.GC01.BeatYourPace.MusicPlayer.HeadsetStatusReceiver;
+import com.GC01.BeatYourPace.MusicPlayer.NoisyAudioReceiver;
 import com.GC01.BeatYourPace.MusicPlayer.TrackList;
 import com.GC01.BeatYourPace.PaceCalculator.CurrentPace;
 import com.GC01.BeatYourPace.Settings.SettingsActivity;
@@ -32,27 +33,31 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/** 
+ * @author Laura Barbosa,  Kristian Knevitt & Sarah Nicholson
+ * @version 1.0, Updated 22/01/2014
+ */
+
+/**
+ * Handles the functionalities of the Training Mode page. 
+ */
+
+
+
 public class TrainingModeActivity extends Activity implements OnClickListener {
 
-	private HeadsetStatusReceiver headsetReceiver;
+
 	private AudioFocusManager aFM;
 	private SharedPreferences sp;
-	
-	
-	// Target Pace 
 	public static float targetPace;
 	private static String displayTargetPace; 
     public static TextView targetPaceText;
     public static String displayGPSinfo;
     private static TextView currentPaceText;
 	public static boolean onScreen;
-
-	// Current Track Info
 	public static String displayTrackInfo;
 	private static TextView trackInfo, targetUnit, currentPaceUnit;
 	
-		
-	// Buttons    
     ImageButton playOrPauseImageButton, skipSongImageButton, previousSongImageButton, pauseImageButton, stopImageButton;
     Button songTooSlowButton, songTooFastButton, decreaseTargetPaceButton, increaseTargetPaceButton;
     Button bTargetPaceTitle, bCurrentPaceTitle, bCurrentPaceValue, bCurrentPacePreference, bTargetPacePreference, bTargetPaceValue;
@@ -62,28 +67,21 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_training_mode);  
 		
-		sp = PreferenceManager.getDefaultSharedPreferences(ContextProvider.getContext());
-
-		//Keep the screen on so the user can access the buttons used to associate new BPM to tracks
-		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-		
-		//Google Analytics tracking code 
 		EasyTracker.getInstance(this).activityStart(this);
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+				
+		sp = PreferenceManager.getDefaultSharedPreferences(ContextProvider.getContext());
 		
 		onScreen = true;
 		
 		aFM = AudioFocusManager.getInstance();
 		
+		startCurrentPaceService(this);
+		
 		if (aFM.focusTest() != true) {
 		System.out.print("Didn't have focus, requesting it");
 		aFM.requestFocus();
-		
-		startCurrentPaceService(this);
-		
-		Log.d("gps message from oncreate", "help");
 		}
-		
-		
 		
 		
         playOrPauseImageButton = (ImageButton) findViewById(R.id.bPlayAndPause); 				
@@ -127,9 +125,7 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
         
         
         targetPaceText.setText(displayTargetPace);
-    
-
-        //setting an event listener for each button
+            
         playOrPauseImageButton.setOnClickListener(this);
         skipSongImageButton.setOnClickListener(this);
         previousSongImageButton.setOnClickListener(this);
@@ -143,12 +139,6 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
         LocalBroadcastManager.getInstance(this).registerReceiver(bReceiver,
         	      new IntentFilter("Track Info Event"));
         
-        /*
-        headsetReceiver = new HeadsetStatusReceiver();
-        IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction("android.intent.action.HEADSET_PLUG");
-        registerReceiver(headsetReceiver, intentFilter);
-        */
         
    }
 	
@@ -158,12 +148,8 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 	
 	}
 	
-	/** Method used to start the GPS service **/
 	public void startCurrentPaceService(Context context) {
 		startService(new Intent(this, CurrentPace.class));
-		
-		Log.d("startCurrentPaceService is being called", "help");
-		
 	}
 	
 
@@ -196,7 +182,7 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 			ButtonController.buttonFunction(v);	
 		}
 		
-	      if(MusicPlayer.getInstance().currentlyPlaying() == true) {
+	      if (MusicController.isMusicPlaying()) {
 	    	  playOrPauseImageButton.setBackgroundResource(R.drawable.pause);
 	      }
 	      else {
@@ -217,7 +203,6 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 		
 		onScreen = false;	
 		
-	//	unregisterReceiver(headsetReceiver);
 		super.onPause();
 		
 	}
@@ -258,15 +243,8 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 		    	  Log.d("onReceive on TrainingMode is being called", "GPS is working");
 		      	} 
 
-		    // Get extra data included in the Intent
-			
-		      displayTrackInfo = intent.getStringExtra("Track Info Action");
-		      Log.i("Track Info Recieved", " - " + displayTrackInfo);
-		      trackInfo.setText(displayTrackInfo);
-
 		  }
 		};
 		
 	
 	}
-
