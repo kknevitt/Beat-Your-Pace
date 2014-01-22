@@ -143,9 +143,6 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
         LocalBroadcastManager.getInstance(this).registerReceiver(bReceiver,
         	      new IntentFilter("Track Info Event"));
         
-        // GPS Broadcast Receiver
-        LocalBroadcastManager.getInstance(this).registerReceiver(GPSReceiver, new IntentFilter("GPS Current Pace Info"));
-        
         /*
         headsetReceiver = new HeadsetStatusReceiver();
         IntentFilter intentFilter = new IntentFilter();
@@ -209,7 +206,10 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 	}
 	
 	public void onPause(){
-		super.onPause();
+		
+		
+		this.stopService(new Intent(this, CurrentPace.class));
+		
 		displayTargetPace = String.valueOf(targetPace);
 		SharedPreferences.Editor editor = sp.edit();
 		editor.putFloat("saved_target_pace", 1);
@@ -218,13 +218,17 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 		onScreen = false;	
 		
 	//	unregisterReceiver(headsetReceiver);
+		super.onPause();
 		
 	}
 
 	
 	
 	public void onDestroy(){
-		super.onDestroy();
+		
+		this.stopService(new Intent(this, CurrentPace.class));
+		
+		
 		displayTargetPace = String.valueOf(targetPace);
 		SharedPreferences.Editor editor = sp.edit();
 		editor.putString("saved_target_pace", displayTargetPace);
@@ -232,7 +236,7 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 		
 		onScreen = false;
 	//	unregisterReceiver(headsetReceiver);
-		
+		super.onDestroy();
 		
 	}
 	
@@ -264,30 +268,5 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 		};
 		
 	
-
-	private BroadcastReceiver GPSReceiver = new BroadcastReceiver() {
-			  @Override
-			  public void onReceive(Context context, Intent intent) {
-			    // Get extra data included in the Intent
-				  displayGPSinfo = intent.getStringExtra("GPS Current Pace Info");
-				  Toast.makeText(ContextProvider.getContext(), "GPS broadcast recognised", Toast.LENGTH_SHORT).show();
-				  
-			      if (displayGPSinfo == null)
-			      System.out.println("displayGPSinfo was null");
-			      else {
-			    	  
-			    	  System.out.println(displayGPSinfo + " wasnt null");
-			    	  Toast.makeText(ContextProvider.getContext(), "GPS Data was receieved but null", Toast.LENGTH_SHORT).show();
-					  
-			      }
-			      
-			      System.out.println("GPS Info Received");
-				  currentPaceText = (TextView) findViewById(R.id.currentPaceText);
-			      currentPaceText.setText(displayGPSinfo);
-			      Toast.makeText(ContextProvider.getContext(), "GPS Data was RECEIVED SUCCESSFULLY", Toast.LENGTH_SHORT).show();
-				  
-			  }
-			};
-
 	}
 
