@@ -53,8 +53,6 @@ public class LetsRunModeActivity extends Activity implements OnClickListener {
 	private static TextView trackInfo;
     ImageButton playOrPauseImageButton, imagebutton2, skipSongImageButton, previousSongImageButton, pauseImageButton, stopImageButton;
     Button songTooSlowButton, songTooFastButton, decreaseTargetPaceButton, increaseTargetPaceButton;
-    Button bTargetPaceTitle, bCurrentPaceTitle, bCurrentPaceValue, bCurrentPacePreference, bTargetPacePreference, bTargetPaceValue;
-    
      
     
 	@Override
@@ -106,17 +104,6 @@ public class LetsRunModeActivity extends Activity implements OnClickListener {
    }
 
 
-	/** Method used to call the music player **/
-	public void startNewService(View view) {
-		startService(new Intent(this, MusicPlayer.class));
-	
-	}
-	
-	
-	public void startCurrentPaceService(Context context) {
-		startService(new Intent(this, CurrentPace.class));		
-	}
-	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -158,7 +145,6 @@ public class LetsRunModeActivity extends Activity implements OnClickListener {
 	public void onDestroy(){
 		super.onDestroy();
 		onScreen = false;
-	//	MusicPlayer.getInstance().stopPlayback();
 		
 	}
 	
