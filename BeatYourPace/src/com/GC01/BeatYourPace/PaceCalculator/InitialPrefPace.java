@@ -1,7 +1,5 @@
 package com.GC01.BeatYourPace.PaceCalculator;
 
-import android.util.Log;
-
 /**
  * This class has methods to calculate and add the preferred pace meta data for a track
  * @author sarahnicholson
@@ -9,8 +7,7 @@ import android.util.Log;
  */
 
 public class InitialPrefPace {
-	
-	private static final String LOG_CAT = "InitialPrefPace";
+
 	
 	public InitialPrefPace() {
 	}
