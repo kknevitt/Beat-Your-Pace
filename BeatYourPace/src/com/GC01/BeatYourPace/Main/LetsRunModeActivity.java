@@ -28,6 +28,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 
@@ -114,6 +115,7 @@ public class LetsRunModeActivity extends Activity implements OnClickListener {
         LocalBroadcastManager.getInstance(this).registerReceiver(bReceiver,
         	      new IntentFilter("Track Info Event"));
         
+        Toast.makeText(getBaseContext(), "Your current Target Pace is: " + displayTargetPace, Toast.LENGTH_SHORT).show();
         
    }
 
