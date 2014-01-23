@@ -197,8 +197,9 @@ public class DatabaseAddInitialData extends DatabaseAdapter {
 				int id = cursor.getInt(cursor.getColumnIndex(DataEntry.COL_ID));
 				int bpm = cursor.getInt(cursor.getColumnIndex(DataEntry.COL_BPM));
 				float initialPrefPaceM = cursor.getFloat(cursor.getColumnIndex(DataEntry.COL_INITIAL_PREF_PACE_M));
-				float initialPrefPaceKm = cursor.getFloat(cursor.getColumnIndex(DataEntry.COL_INITIAL_PREF_PACE_KM));
-
+				// float initialPrefPaceKm = cursor.getFloat(cursor.getColumnIndex(DataEntry.COL_INITIAL_PREF_PACE_KM));
+				float initialPrefPaceKm;
+				
 				if (initialPrefPaceM > 0) {
 					
 				} else {
