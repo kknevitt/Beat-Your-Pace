@@ -39,12 +39,11 @@ public class TrackList {
 	private TrackList(){
 		
 		
-		// The TrackList is populated with songs of an appropriate tempo based on the current Target Running Pace 
-		updateTrackList((float) TargetPace.getTargetPace());
-			 	
-		// Initially pointing to the first song in the array.
 		trackListSize = 0;
-		currentSong.setSongPath(currentTrackList.get(0));
+		trackIndex = 0;
+		// The TrackList is populated with songs of an appropriate tempo based on the current Target Pace 
+		updateTrackList((float) TargetPace.getTargetPace());
+		
 		}
 	
 	
@@ -141,6 +140,8 @@ public class TrackList {
 			currentTrackList = db.getAppropriateSongs(tarPace);
 				
 			Collections.shuffle(currentTrackList);
+
+			currentSong.setSongPath(currentTrackList.get(0));
 			
 			Log.d("TrackList", "TrackList updated");
 			}
@@ -197,7 +198,6 @@ public class TrackList {
 				}
 		
 		
-		/** @return (String) Returns the file-path of the CurrentSong  */
 
 		public String getCurrentSong() {
 			
@@ -205,21 +205,13 @@ public class TrackList {
 			
 		}
 		
-		
-		/** Set file-path of CurrentSong
-		 * 
-		 * @param songpath (String) filepath
-		 */
-		public void setCurrentTrackInfo(String songpath) {
+	
+		protected void setCurrentTrackInfo(String songpath) {
 			
 			currentSong.setSongInfo(songpath);
 			
 		}
-		
-		/** Returns Artist and Title of CurrentSong
-		 * 
-		 * @return (String) Artist and Title
-		 */
+
 		protected String getCurrentSongInfo(){
 			
 			return currentSong.getSongInfo();
