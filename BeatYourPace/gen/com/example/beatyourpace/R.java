@@ -190,7 +190,7 @@ public final class R {
         public static final int splash_screen=0x7f0c0005;
     }
     public static final class string {
-        public static final int SplashIcon=0x7f05003d;
+        public static final int SplashIcon=0x7f05003c;
         public static final int aboutAboutText=0x7f05003a;
         public static final int aboutAboutTitle=0x7f050037;
         public static final int aboutAckText=0x7f050038;
@@ -200,9 +200,8 @@ public final class R {
         public static final int aboutPageTitle=0x7f050034;
         public static final int action_settings=0x7f050002;
         public static final int app_name=0x7f050001;
-        public static final int copyright=0x7f05003e;
+        public static final int copyright=0x7f05003d;
         public static final int ga_trackingId=0x7f050000;
-        public static final int hello_world=0x7f05003c;
         public static final int helpLetsRunText=0x7f050032;
         public static final int helpPageLetsRunTitle=0x7f05002f;
         public static final int helpPageSettingsTitle=0x7f050030;

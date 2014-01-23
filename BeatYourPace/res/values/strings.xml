@@ -59,8 +59,7 @@
     <string name="aboutAckText">Tempo analysis (or the beats per minute) of your music is provided using the API licensed by Echonest at http://www.www.echonest.com. \nCopyright of the BeatYourPace app is owned by D. Twisleton.</string>
     <string name="aboutLimitsText">BeatYourPace has been tested for Android 2.3.3 to 4.1.1. \nIt is desiged for runners using phones held in the hand or attached to an armband, it does not support tablet screen resolutions. \nThe screen is locked in portrait and is designed to work for resolutions from 2.7" (240 x 320) to 5.4" (480 x 854).</string>
     <string name="aboutAboutText">BeatYourPace is an app for runners that plays music from your phone matched to the pace you want to run at. It\'s aim is to use music at the right tempo to help motivate you to achieve and sustain your desired running pace. \nAs every runner is different, the app lets you override the pace set for each music track for the pace you think a track is suitable for. \nIn the app this is \'training\' the music to your running pace, so use the Training mode for this.\nRunners told us they don\'t like to stop to press buttons so the buttons are as large as possible to help you press them without looking at the screen in case you need to change your target pace, or change the tagged pace for a track while you are running.</string>
-    <string name="title_activity_splash_screen">SplashScreen</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_splash_screen">Beat Your Pace</string>
     <string name="SplashIcon">SplashIcon</string>
     <string name="copyright">&quot;@D. Twisleton - 2014&quot;</string>
     
