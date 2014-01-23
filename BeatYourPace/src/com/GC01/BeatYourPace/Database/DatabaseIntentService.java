@@ -6,6 +6,14 @@ import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
+/**
+ * Class to allow the database to be launched and run as a background service.
+ * 
+ * @version 2013/11/14
+ * @author sarah nicholson
+ *
+ */
+
 public class DatabaseIntentService extends IntentService {
 
 	private static final String LOG_TAG = "DatabaseIntentService";

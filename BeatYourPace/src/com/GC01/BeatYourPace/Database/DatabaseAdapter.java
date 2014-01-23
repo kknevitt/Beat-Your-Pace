@@ -4,6 +4,7 @@ package com.GC01.BeatYourPace.Database;
  * Provides common methods for the classes that query the database such as open, close, and query all data
  * 
  * @author sarahnicholson
+ * @version 22/01/2014
  */
 
 import android.content.Context;
