@@ -54,49 +54,51 @@ public final class R {
         public static final int button_color_gradualpurple=0x7f020003;
         public static final int button_shape_oval=0x7f020004;
         public static final int button_shape_rounded=0x7f020005;
-        public static final int ic_launcher=0x7f020006;
-        public static final int ic_launcher2=0x7f020007;
-        public static final int ic_launcher_3=0x7f020008;
-        public static final int ic_launcher_runtoit=0x7f020009;
-        public static final int pause=0x7f02000a;
-        public static final int pause_large=0x7f02000b;
-        public static final int pause_small=0x7f02000c;
-        public static final int play=0x7f02000d;
-        public static final int play_large=0x7f02000e;
-        public static final int play_small=0x7f02000f;
-        public static final int previous=0x7f020010;
-        public static final int previous_large=0x7f020011;
-        public static final int previous_small=0x7f020012;
-        public static final int skip=0x7f020013;
-        public static final int skip_large=0x7f020014;
-        public static final int skip_small=0x7f020015;
-        public static final int stop=0x7f020016;
-        public static final int stop_large=0x7f020017;
-        public static final int stop_small=0x7f020018;
-        public static final int text_color=0x7f020019;
+        public static final int byp_splash_logo=0x7f020006;
+        public static final int ic_launcher=0x7f020007;
+        public static final int ic_launcher2=0x7f020008;
+        public static final int ic_launcher_3=0x7f020009;
+        public static final int ic_launcher_runtoit=0x7f02000a;
+        public static final int ic_launcher_runtoit_new=0x7f02000b;
+        public static final int pause=0x7f02000c;
+        public static final int pause_large=0x7f02000d;
+        public static final int pause_small=0x7f02000e;
+        public static final int play=0x7f02000f;
+        public static final int play_large=0x7f020010;
+        public static final int play_small=0x7f020011;
+        public static final int previous=0x7f020012;
+        public static final int previous_large=0x7f020013;
+        public static final int previous_small=0x7f020014;
+        public static final int skip=0x7f020015;
+        public static final int skip_large=0x7f020016;
+        public static final int skip_small=0x7f020017;
+        public static final int stop=0x7f020018;
+        public static final int stop_large=0x7f020019;
+        public static final int stop_small=0x7f02001a;
+        public static final int text_color=0x7f02001b;
     }
     public static final class id {
         public static final int AboutText=0x7f0d0005;
         public static final int AboutTitle=0x7f0d0003;
         public static final int AcknowledgementText=0x7f0d000a;
         public static final int AcknowledgementsTitle=0x7f0d0008;
-        public static final int CurrentPaceUnit=0x7f0d004b;
-        public static final int CurrentTargetPace=0x7f0d004c;
+        public static final int CurrentPaceUnit=0x7f0d004d;
+        public static final int CurrentTargetPace=0x7f0d004e;
         public static final int LL1_TopSpace=0x7f0d0018;
         public static final int LL2_MenuButtons=0x7f0d0038;
-        public static final int LL2_SpacerTFSD=0x7f0d0054;
+        public static final int LL2_SpacerTFSD=0x7f0d0056;
         public static final int LL3_BottomSpace=0x7f0d0041;
         public static final int LL3_SpacerTPMusic=0x7f0d0020;
         public static final int LL3_TargetPaceButtons=0x7f0d0019;
-        public static final int LL4_1_TooButtonsSpaceing=0x7f0d0050;
+        public static final int LL4_1_TooButtonsSpaceing=0x7f0d0052;
         public static final int LL5_1TooButtonsSpacing=0x7f0d0031;
-        public static final int LL5_PaceDetails=0x7f0d0044;
+        public static final int LL5_PaceDetails=0x7f0d0046;
         public static final int LL5_Spacer_MButtonsSongDetails=0x7f0d002c;
-        public static final int LL5_TooFastTooSlowButtons=0x7f0d004f;
+        public static final int LL5_TooFastTooSlowButtons=0x7f0d0051;
         public static final int LL7_SongDetails=0x7f0d002d;
         public static final int LL7_Spacer_SDetailsTooFast=0x7f0d002f;
         public static final int LL8_MusicButtons=0x7f0d0021;
-        public static final int LL8_SpacerSDMusicB=0x7f0d0055;
+        public static final int LL8_SpacerSDMusicB=0x7f0d0057;
         public static final int LL8_TooFastTooSlowButtons=0x7f0d0030;
         public static final int LL9_Spacer_Bottom=0x7f0d0037;
         public static final int LetsRunText=0x7f0d0014;
@@ -105,13 +107,13 @@ public final class R {
         public static final int LimitsTitle=0x7f0d000d;
         public static final int MenuButtonSpacing=0x7f0d0039;
         public static final int MusicButtonSpacing=0x7f0d0022;
-        public static final int PaceTitles=0x7f0d0045;
-        public static final int PaceValues=0x7f0d0048;
+        public static final int PaceTitles=0x7f0d0047;
+        public static final int PaceValues=0x7f0d004a;
         public static final int SettingsText=0x7f0d0016;
         public static final int SettingsTitle=0x7f0d0015;
         public static final int SpSpacer5acer5=0x7f0d0009;
         public static final int Spacer=0x7f0d0001;
-        public static final int Spacer0=0x7f0d0043;
+        public static final int Spacer0=0x7f0d0045;
         public static final int Spacer1=0x7f0d0002;
         public static final int Spacer2=0x7f0d0004;
         public static final int Spacer3=0x7f0d0006;
@@ -119,13 +121,13 @@ public final class R {
         public static final int Spacer3_2=0x7f0d001d;
         public static final int Spacer3_3=0x7f0d001f;
         public static final int Spacer4=0x7f0d0007;
-        public static final int Spacer4_1=0x7f0d0051;
-        public static final int Spacer4_2=0x7f0d0052;
-        public static final int Spacer4_3=0x7f0d0053;
+        public static final int Spacer4_1=0x7f0d0053;
+        public static final int Spacer4_2=0x7f0d0054;
+        public static final int Spacer4_3=0x7f0d0055;
         public static final int Spacer5=0x7f0d0017;
         public static final int Spacer5_1=0x7f0d0032;
         public static final int Spacer5_2=0x7f0d0034;
-        public static final int Spacer5_3=0x7f0d0056;
+        public static final int Spacer5_3=0x7f0d0058;
         public static final int Spacer6=0x7f0d000b;
         public static final int Spacer7=0x7f0d000c;
         public static final int Spacer8=0x7f0d000e;
@@ -140,10 +142,10 @@ public final class R {
         public static final int Spacer_Menu3=0x7f0d003f;
         public static final int TrainingText=0x7f0d0012;
         public static final int TrainingTitle=0x7f0d0011;
-        public static final int View0a=0x7f0d0049;
-        public static final int View0b=0x7f0d004e;
+        public static final int View0a=0x7f0d004b;
+        public static final int View0b=0x7f0d0050;
         public static final int aboutPageTitle=0x7f0d0000;
-        public static final int action_settings=0x7f0d0057;
+        public static final int action_settings=0x7f0d0059;
         public static final int bDecTarget=0x7f0d001c;
         public static final int bHelpPage=0x7f0d0040;
         public static final int bIncTarget=0x7f0d001e;
@@ -156,14 +158,16 @@ public final class R {
         public static final int bSongTooSlow=0x7f0d0033;
         public static final int bStopSong=0x7f0d0028;
         public static final int bTrainingMode=0x7f0d003a;
-        public static final int currentPaceText=0x7f0d004a;
+        public static final int currentPaceText=0x7f0d004c;
         public static final int helpPageTitle=0x7f0d0010;
+        public static final int imageView1=0x7f0d0042;
         public static final int linearLayout3_1=0x7f0d001a;
-        public static final int sPaceTitle=0x7f0d0046;
-        public static final int sTargetTitle=0x7f0d0047;
+        public static final int sPaceTitle=0x7f0d0048;
+        public static final int sTargetTitle=0x7f0d0049;
         public static final int tSongName=0x7f0d002e;
-        public static final int tTargetPaceTitle=0x7f0d0042;
-        public static final int targetPaceUnit=0x7f0d004d;
+        public static final int tTargetPaceTitle=0x7f0d0044;
+        public static final int targetPaceUnit=0x7f0d004f;
+        public static final int textView1=0x7f0d0043;
     }
     public static final class integer {
         public static final int ga_dispatchPeriod=0x7f070000;
@@ -174,7 +178,8 @@ public final class R {
         public static final int activity_help=0x7f030001;
         public static final int activity_lets_run_mode=0x7f030002;
         public static final int activity_main=0x7f030003;
-        public static final int activity_training_mode=0x7f030004;
+        public static final int activity_splash_screen=0x7f030004;
+        public static final int activity_training_mode=0x7f030005;
     }
     public static final class menu {
         public static final int about_page=0x7f0c0000;
@@ -182,8 +187,10 @@ public final class R {
         public static final int lets_run_mode=0x7f0c0002;
         public static final int main=0x7f0c0003;
         public static final int settings=0x7f0c0004;
+        public static final int splash_screen=0x7f0c0005;
     }
     public static final class string {
+        public static final int SplashIcon=0x7f05003d;
         public static final int aboutAboutText=0x7f05003a;
         public static final int aboutAboutTitle=0x7f050037;
         public static final int aboutAckText=0x7f050038;
@@ -193,7 +200,9 @@ public final class R {
         public static final int aboutPageTitle=0x7f050034;
         public static final int action_settings=0x7f050002;
         public static final int app_name=0x7f050001;
+        public static final int copyright=0x7f05003e;
         public static final int ga_trackingId=0x7f050000;
+        public static final int hello_world=0x7f05003c;
         public static final int helpLetsRunText=0x7f050032;
         public static final int helpPageLetsRunTitle=0x7f05002f;
         public static final int helpPageSettingsTitle=0x7f050030;
@@ -242,6 +251,7 @@ public final class R {
         public static final int title_activity_lets_run_mode=0x7f050025;
         public static final int title_activity_main=0x7f050028;
         public static final int title_activity_settings=0x7f050022;
+        public static final int title_activity_splash_screen=0x7f05003b;
         public static final int title_helpPage=0x7f05002d;
     }
     public static final class style {
