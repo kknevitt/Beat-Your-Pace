@@ -8,6 +8,15 @@ import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
 
+
+/**
+ * Splash screen for the application
+ * 
+ * @author Laura Barbosa,  
+ * @version 2014/01/22
+ */
+
+
 public class SplashScreen extends Activity {
 
 	private static int SPLASH_TIME = 3000;

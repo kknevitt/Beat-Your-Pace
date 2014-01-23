@@ -62,5 +62,8 @@
     <string name="title_activity_splash_screen">SplashScreen</string>
     <string name="hello_world">Hello world!</string>
     <string name="SplashIcon">SplashIcon</string>
+    <string name="copyright">&quot;@D. Twiselton - 2014&quot;</string>
+    
+    
 
 </resources>
