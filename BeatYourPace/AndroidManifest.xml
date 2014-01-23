@@ -23,7 +23,7 @@
         android:theme="@style/AppTheme" 
         android:screenOrientation="portrait">
         <activity
-           android:name="com.example.beatyourpace.SplashScreen"
+           android:name="com.GC01.BeatYourPace.Main.SplashScreen"
             android:label="@string/title_activity_splash_screen"        
             android:screenOrientation="portrait" >
             

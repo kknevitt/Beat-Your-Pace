@@ -1,6 +1,8 @@
-package com.example.beatyourpace;
+package com.GC01.BeatYourPace.Main;
 
-import com.GC01.BeatYourPace.Main.MainActivity;
+import com.example.beatyourpace.R;
+import com.example.beatyourpace.R.layout;
+import com.example.beatyourpace.R.menu;
 
 import android.os.Bundle;
 import android.os.Handler;

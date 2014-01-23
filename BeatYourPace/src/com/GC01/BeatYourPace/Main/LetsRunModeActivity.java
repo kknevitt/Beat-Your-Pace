@@ -53,8 +53,6 @@ public class LetsRunModeActivity extends Activity implements OnClickListener {
 	private static TextView trackInfo;
     ImageButton playOrPauseImageButton, imagebutton2, skipSongImageButton, previousSongImageButton, pauseImageButton, stopImageButton;
     Button songTooSlowButton, songTooFastButton, decreaseTargetPaceButton, increaseTargetPaceButton;
-    Button bTargetPaceTitle, bCurrentPaceTitle, bCurrentPaceValue, bCurrentPacePreference, bTargetPacePreference, bTargetPaceValue;
-    
      
     
 	@Override
@@ -79,8 +77,21 @@ public class LetsRunModeActivity extends Activity implements OnClickListener {
 		AudioFocusManager.getInstance().requestFocus();
 		}
 		
-        displayTargetPace = sp.getString("set_target_pace", "6.0"); //comment these 3 lines out to run with runingmodetest
-        targetPace = Float.valueOf(displayTargetPace);
+        
+        if(displayTargetPace == null){
+        	
+            displayTargetPace = sp.getString("set_target_pace", "6.0");
+            targetPace = Float.valueOf(displayTargetPace);
+
+            }
+
+            else {
+            	
+            	displayTargetPace = sp.getString("saved_target_pace", "6.0");
+            	targetPace = Float.valueOf(displayTargetPace);
+            	
+            }
+
 		
         playOrPauseImageButton = (ImageButton) findViewById(R.id.bPlayAndPause); 				
         skipSongImageButton = (ImageButton) findViewById(R.id.bSkipTrack); 		
@@ -103,20 +114,10 @@ public class LetsRunModeActivity extends Activity implements OnClickListener {
         LocalBroadcastManager.getInstance(this).registerReceiver(bReceiver,
         	      new IntentFilter("Track Info Event"));
         
+        
    }
 
 
-	/** Method used to call the music player **/
-	public void startNewService(View view) {
-		startService(new Intent(this, MusicPlayer.class));
-	
-	}
-	
-	
-	public void startCurrentPaceService(Context context) {
-		startService(new Intent(this, CurrentPace.class));		
-	}
-	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -158,7 +159,6 @@ public class LetsRunModeActivity extends Activity implements OnClickListener {
 	public void onDestroy(){
 		super.onDestroy();
 		onScreen = false;
-	//	MusicPlayer.getInstance().stopPlayback();
 		
 	}
 	
