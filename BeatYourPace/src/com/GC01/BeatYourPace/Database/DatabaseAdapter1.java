@@ -180,28 +180,30 @@ public class DatabaseAdapter1 {
 		String query2;
 		
 		if (unitType == 1) {
-			//String that builds the query for miles
 			query2 = "SELECT * FROM " + DataEntry.TABLE_NAME + " WHERE (" + DataEntry.COL_PREF_PACE_M + " IS NULL OR " + DataEntry.COL_PREF_PACE_M + " = " + targetPace + " OR " + "(" + DataEntry.COL_PREF_PACE_M + " * 2)" +  " = " + targetPace + " OR " + "(" + DataEntry.COL_PREF_PACE_M + " / 2)" +  " = " + targetPace + ")";
 		} else {
-			//String that builds the query for km
-			query2 = "SELECT * FROM " + DataEntry.TABLE_NAME + " WHERE (" + DataEntry.COL_PREF_PACE_M + " IS NULL OR " + DataEntry.COL_PREF_PACE_KM + " = " + targetPace + "  OR " + "(" + DataEntry.COL_PREF_PACE_KM + " * 2)" +  " = " + targetPace + "  OR " + "(" + DataEntry.COL_PREF_PACE_KM + " / 2)" +  " = " + targetPace+ ")";
+			query2 = "SELECT * FROM " + DataEntry.TABLE_NAME + " WHERE (" + DataEntry.COL_PREF_PACE_KM + " IS NULL OR " + DataEntry.COL_PREF_PACE_KM + " = " + targetPace + "  OR " + "(" + DataEntry.COL_PREF_PACE_KM + " * 2)" +  " = " + targetPace + "  OR " + "(" + DataEntry.COL_PREF_PACE_KM + " / 2)" +  " = " + targetPace+ ")";
 		}
 		
-		//Open the database, read to a cursor, go over each row, build track and add it to list
 		openDbRead();
 		Cursor cursor = db.rawQuery(query2, null);
 		cursor.moveToFirst();
 		while (!cursor.isAfterLast()) {
-			float initPrefPace = cursor.getFloat(cursor.getColumnIndex(DataEntry.COL_INITIAL_PREF_PACE_M));
-			//get the preferred pace in miles or km
+			
+			float initPrefPace;
 			float preferredPace;
+			
 			if (unitType == 1) {
 				preferredPace = cursor.getFloat(cursor.getColumnIndex(DataEntry.COL_PREF_PACE_M));
+				initPrefPace = cursor.getFloat(cursor.getColumnIndex(DataEntry.COL_INITIAL_PREF_PACE_M));
 			} else {
 				preferredPace = cursor.getFloat(cursor.getColumnIndex(DataEntry.COL_PREF_PACE_KM));
+				initPrefPace = cursor.getFloat(cursor.getColumnIndex(DataEntry.COL_INITIAL_PREF_PACE_KM));
 			}
+			
 			String fileLoc = cursor.getString(cursor.getColumnIndex(DataEntry.COL_FILE_LOC));
-			//add the tracks file location to the array, check the default column if there is no 
+			
+
 			if (preferredPace == 0){
 				if (initPrefPace == targetPace) {
 					appropriateSongs.add(fileLoc);
@@ -209,13 +211,11 @@ public class DatabaseAdapter1 {
 			} else if (preferredPace >= targetPace - 0.5 && preferredPace <= targetPace + 0.5){
 				appropriateSongs.add(fileLoc);
 			} else {
-				//do nothing
 			}
 			cursor.moveToNext();
 		}
 		cursor.close();
 		closeDb();
-		// return the completed playlist
 		return appropriateSongs;
 		
 	}
@@ -230,7 +230,6 @@ public class DatabaseAdapter1 {
 
 		String[] cols = new String[] {DataEntry.COL_ARTIST, DataEntry.COL_TITLE};
 
-		//Open the database, read to a cursor, go over each row, build track and add it to list
 		openDbRead();
 		Cursor cursor = db.query(DataEntry.TABLE_NAME, cols, "fileLoc = " + "\"" + fileLoc + "\"" , null, null, null, null);
 		if (cursor == null) {
@@ -255,29 +254,29 @@ public class DatabaseAdapter1 {
 	 * @return appropriateSongs  Array list with the file location, artist and title of tracks matching the pace
 	 */
 	public ArrayList<String> getAppropriateSongsTrackData(float targetPace) {
-	//List that holds just the path name to the track
+	
 			ArrayList<String> appropriateSongs = new ArrayList<String>();
 			
-			//Get the user preference for miles(1) or kilometres(2)
+			
 			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ContextProvider.getContext());
 			int unitType = Integer.parseInt(preferences.getString("unitType", "1"));
 			
 			String query2;
 			if (unitType == 1) {
-				//String that builds the query for miles
+				
 				query2 = "SELECT * FROM " + DataEntry.TABLE_NAME + " WHERE (" + DataEntry.COL_PREF_PACE_M + " IS NULL OR " + DataEntry.COL_PREF_PACE_M + " = " + targetPace + " OR " + "(" + DataEntry.COL_PREF_PACE_M + " * 2)" +  " = " + targetPace + " OR " + "(" + DataEntry.COL_PREF_PACE_M + " / 2)" +  " = " + targetPace + ")";
 			} else {
-				//String that builds the query for km
+				
 				query2 = "SELECT * FROM " + DataEntry.TABLE_NAME + " WHERE (" + DataEntry.COL_PREF_PACE_M + " IS NULL OR " + DataEntry.COL_PREF_PACE_KM + " = " + targetPace + "  OR " + "(" + DataEntry.COL_PREF_PACE_KM + " * 2)" +  " = " + targetPace + "  OR " + "(" + DataEntry.COL_PREF_PACE_KM + " / 2)" +  " = " + targetPace+ ")";
 			}
 			
-			//Open the database, read to a cursor, go over each row, build track and add it to list
+			
 			openDbRead();
 			Cursor cursor = db.rawQuery(query2, null);
 			cursor.moveToFirst();
 			while (!cursor.isAfterLast()) {
 				float initPrefPace = cursor.getFloat(cursor.getColumnIndex(DataEntry.COL_INITIAL_PREF_PACE_M));
-				//get the preferred pace in miles or km
+			
 				float preferredPace;
 				if (unitType == 1) {
 					preferredPace = cursor.getFloat(cursor.getColumnIndex(DataEntry.COL_PREF_PACE_M));
@@ -287,7 +286,7 @@ public class DatabaseAdapter1 {
 				String fileLoc = cursor.getString(cursor.getColumnIndex(DataEntry.COL_FILE_LOC));
 				String artist = cursor.getString(cursor.getColumnIndex(DataEntry.COL_ARTIST));
 				String title = cursor.getString(cursor.getColumnIndex(DataEntry.COL_TITLE));
-				//add the tracks file location to the array, check the default column if there is no 
+				
 				if (preferredPace == 0){
 					if (initPrefPace == targetPace) {
 						appropriateSongs.add(fileLoc);
@@ -299,12 +298,12 @@ public class DatabaseAdapter1 {
 					appropriateSongs.add(artist);
 					appropriateSongs.add(title);
 				} else {
-					//do nothing
+					
 				}
 				cursor.moveToNext();
 			}
 			cursor.close();
-			// return the completed play list
+			
 			return appropriateSongs;
 	}
 }

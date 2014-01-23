@@ -104,7 +104,7 @@ public class DatabaseMusicPlayer extends DatabaseAdapter {
 		if (unitType == 1) {
 			query2 = "SELECT * FROM " + DataEntry.TABLE_NAME + " WHERE (" + DataEntry.COL_PREF_PACE_M + " IS NULL OR " + DataEntry.COL_PREF_PACE_M + " = " + targetPace + " OR " + "(" + DataEntry.COL_PREF_PACE_M + " * 2)" +  " = " + targetPace + " OR " + "(" + DataEntry.COL_PREF_PACE_M + " / 2)" +  " = " + targetPace + ")";
 		} else {
-			query2 = "SELECT * FROM " + DataEntry.TABLE_NAME + " WHERE (" + DataEntry.COL_PREF_PACE_M + " IS NULL OR " + DataEntry.COL_PREF_PACE_KM + " = " + targetPace + "  OR " + "(" + DataEntry.COL_PREF_PACE_KM + " * 2)" +  " = " + targetPace + "  OR " + "(" + DataEntry.COL_PREF_PACE_KM + " / 2)" +  " = " + targetPace+ ")";
+			query2 = "SELECT * FROM " + DataEntry.TABLE_NAME + " WHERE (" + DataEntry.COL_PREF_PACE_KM + " IS NULL OR " + DataEntry.COL_PREF_PACE_KM + " = " + targetPace + "  OR " + "(" + DataEntry.COL_PREF_PACE_KM + " * 2)" +  " = " + targetPace + "  OR " + "(" + DataEntry.COL_PREF_PACE_KM + " / 2)" +  " = " + targetPace+ ")";
 		}
 
 		openDbRead();
