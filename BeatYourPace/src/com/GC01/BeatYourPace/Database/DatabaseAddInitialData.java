@@ -32,6 +32,7 @@ public class DatabaseAddInitialData extends DatabaseAdapter {
 			DataEntry.COL_ARTIST, 
 			DataEntry.COL_TITLE,
 			DataEntry.COL_INITIAL_PREF_PACE_M,
+			DataEntry.COL_INITIAL_PREF_PACE_KM,
 	};
 	public String[] allCols = new String[] {
 			DataEntry.COL_ID, 
