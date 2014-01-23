@@ -3,6 +3,10 @@ package com.GC01.BeatYourPace.PaceCalculator;
 import com.GC01.BeatYourPace.Main.LetsRunModeActivity;
 import com.GC01.BeatYourPace.Main.TrainingModeActivity;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4d6909d6d94a639180c7de8cc1ad60dd3dce0a4e
 /**
  * Calculates the target pace that is changed when the user selects increase or decrease target pace from the run modes
  * 
@@ -44,11 +48,19 @@ public class TargetPace {
 		
 	}
 	
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4d6909d6d94a639180c7de8cc1ad60dd3dce0a4e
 
 /** 
  *Retrieves the TargetPace from the training mode class if previously set. 
  */
 	
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4d6909d6d94a639180c7de8cc1ad60dd3dce0a4e
 
 	/**
 	 * Sets the new target pace
