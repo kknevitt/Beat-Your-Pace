@@ -3,6 +3,18 @@ package com.GC01.BeatYourPace.PaceCalculator;
 import com.GC01.BeatYourPace.Main.LetsRunModeActivity;
 import com.GC01.BeatYourPace.Main.TrainingModeActivity;
 
+/** 
+ * @author Laura Barbosa,  Kristian Knevitt 
+ * @version 1.0, Updated 22/01/2014
+ */
+
+/**
+ * Handles the user's preferred target pace options. 
+ */
+
+
+
+
 public class TargetPace {
 
 
@@ -35,7 +47,12 @@ public class TargetPace {
 		
 	}
 	
-	// retrieving the targetPace
+
+
+/** 
+ *Retrieves the TargetPace from the training mode class if previously set. 
+ */
+	
 	public static float getTargetPace() {
 		if (TrainingModeActivity.onScreen == true) {
 		return TrainingModeActivity.targetPace;
