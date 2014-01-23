@@ -6,16 +6,10 @@ import android.app.Activity;
 import android.view.Menu;
 
 /**
- * <dl>
- * 	<dt> Purpose:
- * 	<dd> Displays information about the app.
- * 
- * 	<dt> Description:
- * 	<dd> Accessed via the main bar menu, this section provides information about the app, including copyright and constraints.
- * </dl>
+ * Accessed via the main bar menu, this section provides information about the app, including copyright and constraints.
  * 
  * @version $Date: 2014/01/19
- * @author sarahnicholson
+ * @author sarah nicholson
  *
  */
 

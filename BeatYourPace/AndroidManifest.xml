@@ -22,15 +22,20 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.GC01.BeatYourPace.Main.MainActivity"
-            android:label="@string/app_name"
+           android:name="com.example.beatyourpace.SplashScreen"
+            android:label="@string/title_activity_splash_screen"        
             android:screenOrientation="portrait" >
+            
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.GC01.BeatYourPace.Main.MainActivity"
+            android:label="@string/app_name">
+        </activity>
+        
         <activity
             android:name="com.GC01.BeatYourPace.Settings.SettingsActivity"
             android:label="@string/title_activity_settings"
@@ -74,12 +79,13 @@
             android:name="com.GC01.BeatYourPace.HelpPage.AboutPageActivity"
             android:label="@string/title_activity_about_page" >
         </activity>
-        
-	        <receiver android:name="com.GC01.BeatYourPace.MusicPlayer.NoisyAudioReceiver">
-	 		  <intent-filter>
-	   		   <action android:name="android.media.AUDIO_BECOMING_NOISY" />
-	  		 </intent-filter>
-			</receiver>
+
+        <receiver android:name="com.GC01.BeatYourPace.MusicPlayer.NoisyAudioReceiver" >
+            <intent-filter>
+                <action android:name="android.media.AUDIO_BECOMING_NOISY" />
+            </intent-filter>
+        </receiver>
+
         
     </application>
 

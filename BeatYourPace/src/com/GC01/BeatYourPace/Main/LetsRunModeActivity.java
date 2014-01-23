@@ -31,6 +31,17 @@ import android.widget.TextView;
 
 
 
+/** 
+ * @author Laura Barbosa,  Kristian Knevitt & Sarah Nicholson
+ * @version 1.0, Updated 22/01/2014
+ */
+
+/**
+ * Handles the functionalities of the Main page. 
+ */
+
+
+
 public class LetsRunModeActivity extends Activity implements OnClickListener {
 
 	
@@ -44,16 +55,7 @@ public class LetsRunModeActivity extends Activity implements OnClickListener {
     Button songTooSlowButton, songTooFastButton, decreaseTargetPaceButton, increaseTargetPaceButton;
     Button bTargetPaceTitle, bCurrentPaceTitle, bCurrentPaceValue, bCurrentPacePreference, bTargetPacePreference, bTargetPaceValue;
     
-    /** 
-     * @author Laura Barbosa,  Kristian Knevitt & Sarah Nicholson
-     * @version 1.0, Updated 22/01/2014
-     */
-
-    /**
-     * Handles the functionalities of the Main page. 
-     */
-
-    
+     
     
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

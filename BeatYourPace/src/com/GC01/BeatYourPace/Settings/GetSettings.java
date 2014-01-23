@@ -5,6 +5,13 @@ import android.preference.PreferenceManager;
 
 import com.GC01.BeatYourPace.Main.ContextProvider;
 
+/**
+ * Class to allow retrieval of the shared preferences for Unit Type (Miles or Kilometres) and the default target pace. 
+ * This class should only be used if the SharedPreferences class cannot be used.
+ * @author sarah nicholson 
+ * @version 2013/12/12
+ */
+
 public class GetSettings {
 
 		/**

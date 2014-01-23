@@ -1,36 +1,22 @@
 package com.GC01.BeatYourPace.FileManager;
 
 /**
- * <dl>
- * 	<dt> Purpose:
- * 	<dd> Sets the skeleton for the export file capability.
- *  <dd> It currently is used to export the database contents in JSON format to a txt file
- * 
- * 	<dt> Description:
- * 	<dd> Functionality to check for available media, create and write a file
- * </dl>
+ * Sets the skeleton for the export file capability.
+ * Contains functionality to check for available media, create and write a file
  * 
  * @version $Date: 2013/12/10
  * @author sarahnicholson
- *
  */
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.channels.FileChannel;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import android.content.Context;
 import android.os.Environment;
 import android.util.Log;
-
-import com.GC01.BeatYourPace.Database.DatabaseAdapter;
 import com.GC01.BeatYourPace.Main.ContextProvider;
 
 
@@ -40,8 +26,7 @@ public class FileExport {
 	String dirName;
 	private final static String LOG_TAG = "FileExport";
 	protected static Context context = ContextProvider.getContext();
-	//private File folder = new File(context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS) + fileName);
-
+	
 	/**
 	 * Constructor which takes in the file name
 	 * @param fileName  String that is the name of the file to be created
@@ -80,7 +65,7 @@ public class FileExport {
 	 * Returns the file that is to be created in the appropriate folder
 	 * @param context
 	 * @param fileName
-	 * @return
+	 * @return file
 	 * @throws IOException 
 	 */
 	public File getFile(Context context, String fileName) throws IOException {
@@ -120,43 +105,6 @@ public class FileExport {
 				Log.d(LOG_TAG, "IO exception");
 				e.printStackTrace();
 			}
-		}
-	}
-	
-	public void exportToCSV() throws IOException {
-		
-	}
-	
-	public void exportDb() throws IOException {
-		
-		String currentDBPath = "\\data\\com.example.beatyourpace\\databases\\byp.db";
-        String backupDBPath = fileName;
-        
-		if (isExternalStorageWritable() == true) {
-		
-			try 
-	        {
-	            File sd = Environment.getExternalStorageDirectory();
-	            File data = Environment.getDataDirectory();
-
-	            if (sd.canWrite()) 
-	            {
-	                File currentDB = new File(data, currentDBPath);
-	                File backupDB = new File(sd, backupDBPath);
-
-	                if (currentDB.exists()) {
-						FileChannel src = new FileInputStream(currentDB).getChannel();
-	                    FileChannel dst = new FileOutputStream(backupDB).getChannel();
-	                    dst.transferFrom(src, 0, src.size());
-	                    src.close();
-	                    dst.close();
-	                }
-	            }               
-	        } 
-	        catch (Exception e) {
-	            Log.w("Database copied", e);
-	        }
-			
 		}
 	}
 }

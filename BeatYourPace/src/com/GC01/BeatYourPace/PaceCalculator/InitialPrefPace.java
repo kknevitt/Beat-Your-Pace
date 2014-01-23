@@ -17,13 +17,14 @@ public class InitialPrefPace {
 	
 	/**
 	 * This method is used to add the value for the initial pace based on bpm
-	 * It calculates pace in miles
+	 * It calculates pace in miles or kilometres
 	 * @param bpm  Integer that is the auto-calculated BPM for a track
-	 * @return initialPrefPace	 Float that is the initial preferred pace that this track should be used for
+	 * @return initialPrefPaceVals	 Object containing floats values in Miles and Km that are the initial preferred pace that this track should be used for
 	 */
 	public InitPrefPaceVals calcInitPrefPace(int bpm){
 		float initialPrefPaceM;
 		float initialPrefPaceKm;
+		
 			if (bpm < 150) {
 				initialPrefPaceM = (float) 10.0;
 				initialPrefPaceKm = (float) 16.0;
@@ -49,6 +50,7 @@ public class InitialPrefPace {
 				initialPrefPaceM = (float) 7.0;
 				initialPrefPaceKm = (float) 10.0;
 			}		
+			
 			Log.d(LOG_CAT,"Pace preference added to db");
 		return new InitPrefPaceVals(initialPrefPaceM, initialPrefPaceKm);
 	}

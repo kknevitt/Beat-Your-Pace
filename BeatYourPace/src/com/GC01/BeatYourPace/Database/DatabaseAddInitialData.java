@@ -4,15 +4,15 @@ package com.GC01.BeatYourPace.Database;
  * Provides methods to populate or update the data in the database when the app starts
  * 
  * @author sarahnicholson
+ * @version 22/01/2014
  */
 
 import com.GC01.BeatYourPace.BPM.RetrieveBpmService;
 import com.GC01.BeatYourPace.Database.DatabaseContract.DataEntry;
-import com.GC01.BeatYourPace.PaceCalculator.InitialPrefPace;
-import com.GC01.BeatYourPace.PaceCalculator.InitialPrefPace.InitPrefPaceVals;
+import com.GC01.BeatYourPace.PaceCalculator.InitialPrefPaceNavMap;
+import com.GC01.BeatYourPace.PaceCalculator.InitialPrefPaceNavMap.InitPrefPaceVals;
 import com.echonest.api.v4.EchoNestException;
 import com.GC01.BeatYourPace.Main.ContextProvider;
-
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
@@ -60,10 +60,9 @@ public class DatabaseAddInitialData extends DatabaseAdapter {
 
 		openDbWrite();
 
-		//columns needed from the content provider media store
 		String[] projection = { MediaStore.Audio.Media._ID, MediaStore.Audio.Media.TITLE, MediaStore.Audio.Artists.ARTIST, MediaStore.Audio.Media.DATA};
 
-		//Some audio may be explicitly marked as not being music
+		//Some audio may be explicitly marked as not being music, the following excludes this
 		String selection = MediaStore.Audio.Media.IS_MUSIC + " != 0";
 
 		CursorLoader cLoad = new CursorLoader(ContextProvider.getContext(), MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, projection, selection, null, null);
@@ -92,9 +91,7 @@ public class DatabaseAddInitialData extends DatabaseAdapter {
 	}
 
 	/**
-	 * Method to add or delete tracks from the byp database to synchronise with media on the device
-	 * @return 
-	 * @return 
+	 * Method to add or delete tracks from the byp database to synchronise with media on the device 
 	 */
 	@SuppressLint("NewApi")
 	public void synchTracks() {
@@ -115,18 +112,15 @@ public class DatabaseAddInitialData extends DatabaseAdapter {
 			for (CursorJoiner.Result joinRes : cj) {
 				switch (joinRes) {
 				case LEFT:
-					// where a row in cursorA(byp) is unique delete tracks from byp
 					int rowid = cursorA.getInt(cursorA.getColumnIndex(DataEntry.COL_ID));
 					db.delete(DataEntry.TABLE_NAME, DataEntry.COL_ID + " = " + rowid, null);
 					break;
 				case RIGHT: 
-					// where a row in cursorB(mediastore) is unique add tracks to byp
 					int msid = cursorB.getInt(0);
 					String title = cursorB.getString(1); 
 					String artist = cursorB.getString(2);
 					String fileLoc = cursorB.getString(3);
 
-					// create ContentValues to add the content from the media store table to the equivalent column in our database
 					ContentValues cv = new ContentValues();
 					cv.put(DataEntry.COL_MEDIASTOREID, msid);
 					cv.put(DataEntry.COL_TITLE, title);
@@ -135,7 +129,6 @@ public class DatabaseAddInitialData extends DatabaseAdapter {
 					db.insert(DataEntry.TABLE_NAME, null, cv);
 					break;
 				case BOTH:
-					// where a row with the same key is in both cursors do nothing
 					break;
 				}
 			}
@@ -169,7 +162,7 @@ public class DatabaseAddInitialData extends DatabaseAdapter {
 				String title = cursor.getString(3); 
 
 				if (bpmCurrent > 1) {
-					//do nothing
+					
 				} else {
 					int bpmNew = bpmr.getTempo(artist, title);
 
@@ -206,10 +199,10 @@ public class DatabaseAddInitialData extends DatabaseAdapter {
 				float initialPrefPace = cursor.getFloat(cursor.getColumnIndex(DataEntry.COL_INITIAL_PREF_PACE_M));
 
 				if (initialPrefPace > 0) {
-					//do nothing
+					
 				} else {
-					InitialPrefPace gipp = new InitialPrefPace();
-					InitPrefPaceVals ippv = gipp.calcInitPrefPace(bpm);
+					InitialPrefPaceNavMap ipp = new InitialPrefPaceNavMap();
+					InitPrefPaceVals ippv = ipp.calcInitPrefPace(bpm);
 					float initialPrefPaceM = ippv.getIPPM();
 					float initialPrefPaceKm = ippv.getIPPKM();
 
