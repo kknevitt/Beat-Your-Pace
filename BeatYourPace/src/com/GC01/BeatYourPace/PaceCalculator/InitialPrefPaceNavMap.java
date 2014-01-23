@@ -7,7 +7,8 @@ import java.util.TreeMap;
 
 /**
  * This class has methods to calculate and add the preferred pace meta data for a track based on the bpm of the track
- * @author sarahnicholson
+ * @author Sarah Nicholson
+ * @version 22/01/2014
  *
  */
 
@@ -31,8 +32,8 @@ public class InitialPrefPaceNavMap {
 		float initialPrefPaceKm;
 
 		if (bpm == 0) {
-			initialPrefPaceM = 0;
-			initialPrefPaceKm = 0;
+			initialPrefPaceM = (float) 10.0;
+			initialPrefPaceKm = (float) 7.0;
 			return new InitPrefPaceVals(initialPrefPaceM, initialPrefPaceKm);
 		} else {
 		
@@ -109,7 +110,10 @@ public class InitialPrefPaceNavMap {
 		}
 	}
 
-
+	/**
+	 * Class to allow two values to be returned from calcInitialPrefPace
+	 * Functions in the inner class return the initialPrefPaceM and the initialPrefPaceKm
+	 */
 	public final class InitPrefPaceVals {
 		private float initialPrefPaceM;
 		private float initialPrefPaceKm;

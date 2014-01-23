@@ -1,8 +1,18 @@
 package com.GC01.BeatYourPace.Database;
 
-//To be ultimately replaced by the DatabaseAdapter class which is a more efficient structure
+//This class should be ultimately replaced by the DatabaseAdapter & DatabaseMusicPlayer classes which is a more efficient structure
+
+/**
+ * Provides common methods for the classes that query the database such as open, close, and query all data
+ * Additionally contains methods to search the database for the MusicPlayer.
+ * 
+ * @author sarahnicholson
+ * @version 22/01/2014
+ */
+
 
 import java.util.ArrayList;
+
 import com.GC01.BeatYourPace.Database.DatabaseContract.DataEntry;
 import com.GC01.BeatYourPace.Main.ContextProvider;
 import android.annotation.SuppressLint;
@@ -56,7 +66,6 @@ public class DatabaseAdapter1 {
 	 * @return cursor  New cursor to read the database and give the results
 	 */
 	public Cursor getAllTracks(){			
-		//Get a reference to readable DB
 		openDbRead();
 		String[] allCol = new String[] {
 				DataEntry.COL_ID, 
@@ -78,7 +87,6 @@ public class DatabaseAdapter1 {
 	 * @param cursor  New cursor to read the database
 	 */
 	public Cursor getCols(){			
-		//Get a reference to readable DB
 		openDbRead();
 		String[] echoCols = new String[] {
 				DataEntry.COL_ID,
@@ -151,7 +159,6 @@ public class DatabaseAdapter1 {
 		}
 		cursor.close();
 		db.close();
-		//closeDb();
 	}
 
 
@@ -165,15 +172,13 @@ public class DatabaseAdapter1 {
 
 	public ArrayList<String> getAppropriateSongs(float targetPace) {
 
-		//List that holds just the path name to the track
 		ArrayList<String> appropriateSongs = new ArrayList<String>();
 		
-		//Get the user preference for miles(1) or kilometres(2)
-		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ContextProvider.getContext());
-		int unitType = Integer.parseInt(preferences.getString("unitType", "1"));
-		
+		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(ContextProvider.getContext());
+		int unitType = Integer.parseInt(sp.getString("unitType", "1"));
 		
 		String query2;
+		
 		if (unitType == 1) {
 			//String that builds the query for miles
 			query2 = "SELECT * FROM " + DataEntry.TABLE_NAME + " WHERE (" + DataEntry.COL_PREF_PACE_M + " IS NULL OR " + DataEntry.COL_PREF_PACE_M + " = " + targetPace + " OR " + "(" + DataEntry.COL_PREF_PACE_M + " * 2)" +  " = " + targetPace + " OR " + "(" + DataEntry.COL_PREF_PACE_M + " / 2)" +  " = " + targetPace + ")";
@@ -260,10 +265,10 @@ public class DatabaseAdapter1 {
 			String query2;
 			if (unitType == 1) {
 				//String that builds the query for miles
-				query2 = "SELECT * FROM " + DataEntry.TABLE_NAME + " WHERE (" + DataEntry.COL_PREF_PACE_M + " IS NULL OR " + DataEntry.COL_PREF_PACE_M + " = " + targetPace + " )";
+				query2 = "SELECT * FROM " + DataEntry.TABLE_NAME + " WHERE (" + DataEntry.COL_PREF_PACE_M + " IS NULL OR " + DataEntry.COL_PREF_PACE_M + " = " + targetPace + " OR " + "(" + DataEntry.COL_PREF_PACE_M + " * 2)" +  " = " + targetPace + " OR " + "(" + DataEntry.COL_PREF_PACE_M + " / 2)" +  " = " + targetPace + ")";
 			} else {
 				//String that builds the query for km
-				query2 = "SELECT * FROM " + DataEntry.TABLE_NAME + " WHERE (" + DataEntry.COL_PREF_PACE_M + " IS NULL OR " + DataEntry.COL_PREF_PACE_KM + " = " + targetPace + " )";
+				query2 = "SELECT * FROM " + DataEntry.TABLE_NAME + " WHERE (" + DataEntry.COL_PREF_PACE_M + " IS NULL OR " + DataEntry.COL_PREF_PACE_KM + " = " + targetPace + "  OR " + "(" + DataEntry.COL_PREF_PACE_KM + " * 2)" +  " = " + targetPace + "  OR " + "(" + DataEntry.COL_PREF_PACE_KM + " / 2)" +  " = " + targetPace+ ")";
 			}
 			
 			//Open the database, read to a cursor, go over each row, build track and add it to list

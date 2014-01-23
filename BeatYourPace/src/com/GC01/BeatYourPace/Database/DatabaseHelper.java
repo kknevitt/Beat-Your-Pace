@@ -1,17 +1,10 @@
 package com.GC01.BeatYourPace.Database;
 
 /**
- * <dl>
- * 	<dt> Purpose:
- * 	<dd> A helper class to manage database creation and version management.
+ * A helper class to manage database creation and version management.
  * 
- * 	<dt> Description:
- * 	<dd> This version does not yet have an associated content provider. 
- *  <dd> 
- * </dl>
- * 
- * @version $Date: 2013/11/14
- * @author snichols
+ * @version 2013/11/14
+ * @author sarah nicholson
  *
  */
 
@@ -26,13 +19,10 @@ import android.util.Log;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-	//TAG for the class name
 	private static final String LOG_TAG = "DatabaseHelper";
 	
-	/** Field which sets the Database version */
 	public static final int DATABASE_VERSION = 2;
 	
-	// SQL statement to create Tracks table
 	private static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS " 
 			+ DataEntry.TABLE_NAME + " (" 
 			+ DataEntry.COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," 
@@ -56,8 +46,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	 */
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		Log.d(LOG_TAG,"DatabaseHelper : onCreate");
-		// create the table
 		db.execSQL(CREATE_TABLE);
 		Log.d(LOG_TAG, "Tracks table created");
 	}
@@ -70,13 +58,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	 */
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldoldDbVer, int newDbVer) {
-		// Log that the database is being upgraded
 		Log.w(LOG_TAG, "Upgrading database from version "+ oldoldDbVer + " to " + newDbVer + ", which will destroy all old data");
 
-		// Delete existing tables
 		db.execSQL("DROP TABLE IF EXISTS " + DataEntry.TABLE_NAME);
 
-		// Create new instance of schema
 		onCreate(db);
 		Log.d(LOG_TAG, "Database upgrade complete");
 	}

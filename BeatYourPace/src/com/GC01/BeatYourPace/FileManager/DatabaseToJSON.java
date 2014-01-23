@@ -3,7 +3,8 @@ package com.GC01.BeatYourPace.FileManager;
 /**
  * Extracts contents of the database in JSON format
  * 
- * @author sarahnicholson
+ * @author sarah nicholson 
+ * @version 2013/12/12
  */
 
 import org.json.JSONArray;
@@ -24,6 +25,11 @@ public class DatabaseToJSON extends DatabaseAdapter {
 		super(ctx);
 	}
 
+	/**
+	 * Method to create an array to hold the data from the database in JSON format
+	 * @return  allTracksJson  Returns a JSONArray with all the data for each track from the database
+	 * @throws JSONException
+	 */
 	public JSONArray getJsonArray() throws JSONException {
 		Cursor cursor = getAllTracks();
 		 

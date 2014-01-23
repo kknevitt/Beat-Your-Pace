@@ -1,12 +1,13 @@
 package com.GC01.BeatYourPace.Database;
 
-//Not yet in use as Music Player currently hangs with this code.
+// Please note that this method is not yet in use as Music Player will not work with the class
 
 /**
  * Provides methods to allow the music player to get data from and write to the database
  * Allows the music player to identify appropriate tracks to play, add preferred pace and get details 
  * about the artist and song title.
  * @author sarahnicholson
+ * @version 12/12/2013
  */
 
 import java.util.ArrayList;
@@ -93,7 +94,6 @@ public class DatabaseMusicPlayer extends DatabaseAdapter {
 
 	public ArrayList<String> getAppropriateSongs(float targetPace) {
 
-		//List that holds just the path name to the track as this is what the music player needs
 		ArrayList<String> appropriateSongs = new ArrayList<String>();
 
 		GetSettings gs = new GetSettings();
@@ -102,9 +102,9 @@ public class DatabaseMusicPlayer extends DatabaseAdapter {
 		String query2;
 		
 		if (unitType == 1) {
-			query2 = "SELECT * FROM " + DataEntry.TABLE_NAME + " WHERE (" + DataEntry.COL_PREF_PACE_M + " IS NULL OR " + DataEntry.COL_PREF_PACE_M + " = " + targetPace + " )";
+			query2 = "SELECT * FROM " + DataEntry.TABLE_NAME + " WHERE (" + DataEntry.COL_PREF_PACE_M + " IS NULL OR " + DataEntry.COL_PREF_PACE_M + " = " + targetPace + " OR " + "(" + DataEntry.COL_PREF_PACE_M + " * 2)" +  " = " + targetPace + " OR " + "(" + DataEntry.COL_PREF_PACE_M + " / 2)" +  " = " + targetPace + ")";
 		} else {
-			query2 = "SELECT * FROM " + DataEntry.TABLE_NAME + " WHERE (" + DataEntry.COL_PREF_PACE_M + " IS NULL OR " + DataEntry.COL_PREF_PACE_KM + " = " + targetPace + " )";
+			query2 = "SELECT * FROM " + DataEntry.TABLE_NAME + " WHERE (" + DataEntry.COL_PREF_PACE_M + " IS NULL OR " + DataEntry.COL_PREF_PACE_KM + " = " + targetPace + "  OR " + "(" + DataEntry.COL_PREF_PACE_KM + " * 2)" +  " = " + targetPace + "  OR " + "(" + DataEntry.COL_PREF_PACE_KM + " / 2)" +  " = " + targetPace+ ")";
 		}
 
 		openDbRead();

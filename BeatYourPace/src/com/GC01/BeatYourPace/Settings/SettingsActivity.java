@@ -11,7 +11,7 @@ package com.GC01.BeatYourPace.Settings;
  * </dl>
  * 
  * @version $Date: 2014/01/19
- * @author snichols
+ * @author Sarah Nicholson
  *
  */
 
@@ -37,9 +37,7 @@ public class SettingsActivity extends PreferenceActivity {
 		super.onCreate(savedInstanceState);
         //calls the preferences for the first time, 'false' indicates to only call if prefs not already set
 		PreferenceManager.setDefaultValues(this, R.xml.preferences, false);    
-		// Displays the settings fragment as the main content
 		getFragmentManager().beginTransaction().replace(android.R.id.content, new SettingsFragment()).commit();
-		//Removes the custom target pace preference as this is used internally by the app and should not be visible to the user
 		
 		/**Google Analytics tracking code  - starts tracking user's session**/
 		EasyTracker.getInstance(this).activityStart(this);
@@ -53,14 +51,12 @@ public class SettingsActivity extends PreferenceActivity {
 
 	 @Override
 	    public void onResume() {
-	        super.onResume();
-	        
+	        super.onResume(); 
 	    }
 
 	    @Override
 	    public void onPause() {
 	        super.onPause();
-	        
 	        /**Google Analytics tracking code - stop tracking user's session**/
 			EasyTracker.getInstance(this).activityStop(this);
 	       

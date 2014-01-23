@@ -15,12 +15,22 @@ import com.GC01.BeatYourPace.Main.TrainingModeActivity;
 
 
 
+=======
+/**
+ * Calculates the target pace that is changed when the user selects increase or decrease target pace from the run modes
+ * 
+ * @author Laura Barbosa, Kristian Knevitt 
+ * @version 2014/01/22
+ */
+
 public class TargetPace {
 
 
+	/**
+	 * Sets the new target pace
+	 * @param incremenet Boolean value that sets if the amount is to be incremented or decremented
+	 */
 	public static void setTargetPace(boolean increment){
-		
-		
 		
 		if (increment == true){
 			
@@ -47,12 +57,19 @@ public class TargetPace {
 		
 	}
 	
+<<<<<<< HEAD
 
 
 /** 
  *Retrieves the TargetPace from the training mode class if previously set. 
  */
 	
+=======
+	/**
+	 * Sets the new target pace
+	 * @return targetPace  Float value for the revised target pace
+	 */
+>>>>>>> 4bdb1a8c0adb6ab2bce6db3d04c7d6959821af48
 	public static float getTargetPace() {
 		if (TrainingModeActivity.onScreen == true) {
 		return TrainingModeActivity.targetPace;
