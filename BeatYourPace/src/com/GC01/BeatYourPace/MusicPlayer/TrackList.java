@@ -44,6 +44,7 @@ public class TrackList {
 			 	
 		// Initially pointing to the first song in the array.
 		trackListSize = 0;
+		currentSong.setSongPath(currentTrackList.get(0));
 		}
 	
 	

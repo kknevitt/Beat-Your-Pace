@@ -16,7 +16,7 @@ import com.GC01.BeatYourPace.Main.ContextProvider;
 	
 	private CurrentSong() {
 		super();
-		
+
 	}
 	
 	/** Method for creating a Singleton instance of the Current Song if one does not already exist */
