@@ -77,8 +77,21 @@ public class LetsRunModeActivity extends Activity implements OnClickListener {
 		AudioFocusManager.getInstance().requestFocus();
 		}
 		
-        displayTargetPace = sp.getString("set_target_pace", "6.0"); //comment these 3 lines out to run with runingmodetest
-        targetPace = Float.valueOf(displayTargetPace);
+        
+        if(displayTargetPace == null){
+        	
+            displayTargetPace = sp.getString("set_target_pace", "6.0");
+            targetPace = Float.valueOf(displayTargetPace);
+
+            }
+
+            else {
+            	
+            	displayTargetPace = sp.getString("saved_target_pace", "6.0");
+            	targetPace = Float.valueOf(displayTargetPace);
+            	
+            }
+
 		
         playOrPauseImageButton = (ImageButton) findViewById(R.id.bPlayAndPause); 				
         skipSongImageButton = (ImageButton) findViewById(R.id.bSkipTrack); 		
@@ -100,6 +113,7 @@ public class LetsRunModeActivity extends Activity implements OnClickListener {
         
         LocalBroadcastManager.getInstance(this).registerReceiver(bReceiver,
         	      new IntentFilter("Track Info Event"));
+        
         
    }
 
