@@ -21,6 +21,7 @@ import android.database.Cursor;
 import android.database.CursorJoiner;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.widget.Toast;
 
 public class DatabaseAddInitialData extends DatabaseAdapter {
 
@@ -96,6 +97,7 @@ public class DatabaseAddInitialData extends DatabaseAdapter {
 	 */
 	@SuppressLint("NewApi")
 	public void synchTracks() {
+		Log.d(LOG_TAG, "Starting processes to add and synch data");
 		openDbWrite();
 
 		Cursor cursorA = db.query(DataEntry.TABLE_NAME, allCols, null, null, null, null, orderBy);
@@ -180,6 +182,7 @@ public class DatabaseAddInitialData extends DatabaseAdapter {
 		cursor.close();
 		closeDb();
 		Log.d(LOG_TAG, "BPM data added");
+		addInitialPrefPace();
 	}
 
 
@@ -198,7 +201,6 @@ public class DatabaseAddInitialData extends DatabaseAdapter {
 				int id = cursor.getInt(cursor.getColumnIndex(DataEntry.COL_ID));
 				int bpm = cursor.getInt(cursor.getColumnIndex(DataEntry.COL_BPM));
 				float initialPrefPaceM = cursor.getFloat(cursor.getColumnIndex(DataEntry.COL_INITIAL_PREF_PACE_M));
-				// float initialPrefPaceKm = cursor.getFloat(cursor.getColumnIndex(DataEntry.COL_INITIAL_PREF_PACE_KM));
 				float initialPrefPaceKm;
 				
 				if (initialPrefPaceM > 0) {
@@ -222,5 +224,7 @@ public class DatabaseAddInitialData extends DatabaseAdapter {
 		}
 		cursor.close();
 		closeDb();
+		//Toast.makeText(ContextProvider.getContext(), "Music ready", Toast.LENGTH_SHORT).show();
+		Log.d(LOG_TAG, "Initial preferred pace added");
 	}
 }

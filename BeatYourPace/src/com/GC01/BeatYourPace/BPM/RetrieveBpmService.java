@@ -10,12 +10,15 @@ package com.GC01.BeatYourPace.BPM;
 
 import java.io.IOException;
 import java.util.List;
+
 import com.echonest.api.v4.EchoNestAPI;
 import com.echonest.api.v4.EchoNestException;
 import com.echonest.api.v4.Song;
 import com.echonest.api.v4.SongParams;
+
 import android.app.IntentService;
 import android.content.Intent;
+import android.util.Log;
 
 
 public class RetrieveBpmService extends IntentService {
@@ -52,8 +55,10 @@ public class RetrieveBpmService extends IntentService {
 		if (songs.size() > 0) {
 			double tempo = songs.get(0).getTempo();
 			int bpm = (int)Math.round(tempo);
+			Log.d(LOG_TAG,"Bpm for track added");
 			return Integer.valueOf(bpm);
 		} else {
+			Log.d(LOG_TAG,"0 bpm");
 			return 0;
 		}
 	}
