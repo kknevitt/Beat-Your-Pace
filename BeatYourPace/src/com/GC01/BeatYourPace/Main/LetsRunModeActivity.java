@@ -52,6 +52,8 @@ public class LetsRunModeActivity extends Activity implements OnClickListener {
     protected static TextView targetPaceText; 	
 	public static String displayTrackInfo;
 	private static TextView trackInfo;
+	private SharedPreferences sp;
+	private static AudioFocusManager aFM;
     ImageButton playOrPauseImageButton, imagebutton2, skipSongImageButton, previousSongImageButton, pauseImageButton, stopImageButton;
     Button songTooSlowButton, songTooFastButton, decreaseTargetPaceButton, increaseTargetPaceButton;
      
@@ -71,7 +73,8 @@ public class LetsRunModeActivity extends Activity implements OnClickListener {
 		
 		TrackList trackList = TrackList.getInstance();
 
-		AudioFocusManager.getInstance();
+		aFM = AudioFocusManager.getInstance();
+			
 		
 		if (AudioFocusManager.getInstance().focusTest() != true) {
 		System.out.print("Didn't have focus, requesting it");
@@ -152,16 +155,38 @@ public class LetsRunModeActivity extends Activity implements OnClickListener {
 		}
 	}
 		
+	public void onResume(){
+		sp = PreferenceManager.getDefaultSharedPreferences(ContextProvider.getContext());
+		
+		onScreen = true; 
+		
+		aFM = AudioFocusManager.getInstance();
+		
+	if (aFM.focusTest() != true) {
+			System.out.print("Didn't have focus, requesting it");
+			aFM.requestFocus();
+			}
+			
+
+	LocalBroadcastManager.getInstance(this).registerReceiver(bReceiver,
+	        	      new IntentFilter("Track Info Event"));
+
+	        super.onResume();
+		}
+
+		
+	
 	public void onPause(){
+		
+		onScreen = false;
 		super.onPause();
-		onScreen = false;	
 	}
 	
 	
 	public void onDestroy(){
-		super.onDestroy();
-		onScreen = false;
 		
+		onScreen = false;
+		super.onDestroy();
 	}
 	
 	

@@ -72,10 +72,10 @@ public class ButtonController extends Service {
 					String tarPaceDec = String.valueOf(TargetPace.getTargetPace());
 					if (TrainingModeActivity.onScreen == true) {
 					TrainingModeActivity.targetPaceText.setText(tarPaceDec);					
-					MusicController.changeTarPace();
+					
 			
 				tracker.send(MapBuilder.createEvent("UI_Action", "button_press", "decreasePace", null).build());
-				}
+				} MusicController.changeTarPace();
 					
 				break;
 	            
@@ -84,10 +84,10 @@ public class ButtonController extends Service {
             	String tarPaceInc = String.valueOf(TargetPace.getTargetPace());
             	if (TrainingModeActivity.onScreen == true) {
             		TrainingModeActivity.targetPaceText.setText(tarPaceInc);	
-            		MusicController.changeTarPace();
+            		
 
             	tracker.send(MapBuilder.createEvent("UI_Action", "button_press", "increasePace", null).build());               
-            	}
+            	} MusicController.changeTarPace();
             	
             	break;
 				

@@ -27,7 +27,8 @@ public class DatabaseIntentService extends IntentService {
 	@Override
 	protected void onHandleIntent(Intent intent) {
 		
-		Log.d(LOG_TAG,"DatabaseIntentService : onCreate");
+		Log.d(LOG_TAG,"DatabaseIntentService started");
+		
 		this.db = new DatabaseAddInitialData(getApplicationContext());
 		
 		this.db.synchTracks();
@@ -38,13 +39,14 @@ public class DatabaseIntentService extends IntentService {
 			e.printStackTrace();
 		}
 		
-		this.db.addInitialPrefPace();
+		//this.db.addInitialPrefPace();
+		Log.d(LOG_TAG, "Toast -Music ready- sent");
 	}
 	
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
-		Log.d(LOG_TAG,"DatabaseIntentService : onStartCommand");
-		Toast.makeText(this, "Analysing your music", Toast.LENGTH_SHORT).show();
+		Log.d(LOG_TAG,"DatabaseIntentService started");
+		Toast.makeText(this, "Music loading, may take several minutes", Toast.LENGTH_SHORT).show();
 	    return super.onStartCommand(intent,flags,startId);
 	}
 

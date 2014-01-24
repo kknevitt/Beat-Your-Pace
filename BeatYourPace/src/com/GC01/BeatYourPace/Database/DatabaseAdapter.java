@@ -53,7 +53,7 @@ public abstract class DatabaseAdapter {
 	
 	/**
 	 * Query all tracks and all data fields
-	 * @return cursor  New cursor to read the database and give the results
+	 * @return cursor  New cursor to read the database and give the results sorted in order of the mediastoreID
 	 */
 	public Cursor getAllTracks() {			
 		openDbRead();
