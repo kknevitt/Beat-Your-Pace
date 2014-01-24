@@ -46,7 +46,7 @@
                 android:background="@drawable/button_color_gradualpurple"
                 android:text="@string/sMinus"
                 android:textColor="@color/white"
-                android:textSize="35sp" />
+                android:textSize="80sp" />
 
             <View
                 android:id="@+id/Spacer3_2"
@@ -63,7 +63,7 @@
                 android:background="@drawable/button_color_gradualpurple"
                 android:text="@string/sPlus"
                 android:textColor="@color/white"
-                android:textSize="35sp" />
+                android:textSize="60sp" />
 
             <View
                 android:id="@+id/Spacer3_3"

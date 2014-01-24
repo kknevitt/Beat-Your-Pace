@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <ScrollView
+     xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" 
+    android:padding="20dip">
+    
+    <!-- PageTitle  -->
+
+    <TextView
+        android:id="@+id/aboutPageTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:textSize="35sp"
+        android:text="@string/aboutPageTitle"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <!-- Blank spacer -->
+       <View
+           android:id="@+id/Spacer"
+           android:layout_width="match_parent"
+           android:layout_height="10dp"
+            />
+       
+    
+    <!-- Dividing line  -->    
+    <TextView 
+    	android:layout_width="fill_parent"
+		android:layout_height="1dip"
+		android:background="#757575" />
+    
+    <!-- Blank spacer -->
+       <View
+           android:id="@+id/Spacer1"
+           android:layout_width="match_parent"
+           android:layout_height="5dp"
+            />
+    
+    <!-- About  -->
+    <TextView
+        android:id="@+id/AboutTitle"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:text="@string/aboutAboutTitle"
+        android:textSize="28sp"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <!-- Blank spacer -->
+       <View
+           android:id="@+id/Spacer2"
+           android:layout_width="match_parent"
+           android:layout_height="10dp"
+            />
+    
+    
+    <TextView
+        android:id="@+id/AboutText"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="left"
+        android:orientation="vertical"
+        android:textSize="18sp"
+        android:text="@string/aboutAboutText" />
+
+    <!-- Blank spacer -->
+       <View
+           android:id="@+id/Spacer3"
+           android:layout_width="match_parent"
+           android:layout_height="5dp"
+            />
+    
+	<!-- Dividing line  -->    
+    <TextView 
+    	android:layout_width="fill_parent"
+		android:layout_height="2dip"
+		android:background="#DDDDDD" />
+    
+    
+    
+    <!-- Acknowledgements  -->
+    
+    <!-- Blank spacer -->
+       <View
+           android:id="@+id/Spacer4"
+           android:layout_width="match_parent"
+           android:layout_height="5dp"
+            />
+    
+    
+    <TextView
+        android:id="@+id/AcknowledgementsTitle"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:textSize="28sp"
+        android:text="@string/aboutAcknowledgeTitle"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <!-- Blank spacer -->
+       <View
+           android:id="@+id/SpSpacer5acer5"
+           android:layout_width="match_parent"
+           android:layout_height="10dp"
+            />
+    
+    
+    <TextView
+        android:id="@+id/AcknowledgementText"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="left"
+        android:textSize="18sp"
+        android:orientation="vertical"
+        android:text="@string/aboutAckText" />
+    
+<!-- Blank spacer -->
+       <View
+           android:id="@+id/Spacer6"
+           android:layout_width="match_parent"
+           android:layout_height="5dp"
+            />    
+    
+	<!-- Dividing line  -->    
+    <TextView 
+    	android:layout_width="fill_parent"
+		android:layout_height="2dip"
+		android:background="#DDDDDD" />
+    
+            <!-- Blank spacer -->
+       <View
+           android:id="@+id/Spacer7"
+           android:layout_width="match_parent"
+           android:layout_height="5dp"/>
+    
+       
+    <!-- Limitations  -->
+      <TextView
+        android:id="@+id/LimitsTitle"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:textSize="28sp"
+        android:text="@string/aboutLimitsTitle"
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+              <!-- Blank spacer -->
+       <View
+           android:id="@+id/Spacer8"
+           android:layout_width="match_parent"
+           android:layout_height="10dp"/>
+      
+    <TextView
+        android:id="@+id/LimitsText"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="left|fill"
+        android:textSize="18sp"
+        android:orientation="vertical"
+        android:text="@string/aboutLimitsText" />
+
+	</LinearLayout>
+ </ScrollView>
