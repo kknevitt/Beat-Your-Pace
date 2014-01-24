@@ -43,7 +43,6 @@ public class TargetPace {
 		}
 		
 	}
-	
 
 	/**
 	 * Sets the new target pace
