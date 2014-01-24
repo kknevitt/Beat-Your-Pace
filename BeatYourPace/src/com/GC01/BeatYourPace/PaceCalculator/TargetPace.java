@@ -45,12 +45,6 @@ public class TargetPace {
 	}
 	
 
-
-/** 
- *Retrieves the TargetPace from the training mode class if previously set. 
- */
-
-
 	/**
 	 * Sets the new target pace
 	 * @return targetPace  Float value for the revised target pace
