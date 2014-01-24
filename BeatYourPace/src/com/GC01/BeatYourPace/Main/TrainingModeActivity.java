@@ -254,7 +254,7 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 		editor.commit();
 		
 		onScreen = false;
-	//	unregisterReceiver(headsetReceiver);
+		
 		super.onDestroy();
 		
 	}
