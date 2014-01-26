@@ -12,8 +12,6 @@ import com.GC01.BeatYourPace.HelpPage.HelpPageActivity;
 import com.GC01.BeatYourPace.MusicPlayer.AudioFocusManager;
 import com.GC01.BeatYourPace.MusicPlayer.MusicController;
 import com.GC01.BeatYourPace.MusicPlayer.MusicPlayer;
-import com.GC01.BeatYourPace.MusicPlayer.NoisyAudioReceiver;
-import com.GC01.BeatYourPace.MusicPlayer.TrackList;
 import com.GC01.BeatYourPace.PaceCalculator.CurrentPace;
 import com.GC01.BeatYourPace.Settings.SettingsActivity;
 import com.example.beatyourpace.R;
@@ -31,7 +29,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 /** 
  * @author Laura Barbosa,  Kristian Knevitt & Sarah Nicholson
@@ -60,7 +58,6 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 	
     ImageButton playOrPauseImageButton, skipSongImageButton, previousSongImageButton, pauseImageButton, stopImageButton;
     Button songTooSlowButton, songTooFastButton, decreaseTargetPaceButton, increaseTargetPaceButton;
-    Button bTargetPaceTitle, bCurrentPaceTitle, bCurrentPaceValue, bCurrentPacePreference, bTargetPacePreference, bTargetPaceValue;
     
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +75,7 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 		
 		startCurrentPaceService(this);
 		
+		// Request audio focus if not already held.
 		if (aFM.focusTest() != true) {
 		System.out.print("Didn't have focus, requesting it");
 		aFM.requestFocus();
@@ -104,7 +102,7 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
         	currentPaceUnit.setText(minPerMile);
         }
         
-        
+        // Loading the default target pace if it has not been modified, in which case use the saved TP.
         if(displayTargetPace == null){
         	
         displayTargetPace = sp.getString("set_target_pace", "6.0");
@@ -116,11 +114,6 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
         	targetPace = Float.valueOf(displayTargetPace);
         	
         }
-        
-
-        
-
-        
         
         targetPaceText.setText(displayTargetPace);
             
@@ -139,12 +132,6 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
         
         
    }
-	
-	/** Method used to call the music player **/
-	public void startNewService(View view) {
-		startService(new Intent(this, MusicPlayer.class));
-	
-	}
 	
 	public void startCurrentPaceService(Context context) {
 		startService(new Intent(this, CurrentPace.class));
@@ -191,7 +178,6 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 	
 	public void onPause(){
 		
-		
 		this.stopService(new Intent(this, CurrentPace.class));
 		
 		displayTargetPace = String.valueOf(targetPace);
@@ -209,9 +195,9 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 
 		sp = PreferenceManager.getDefaultSharedPreferences(ContextProvider.getContext());
 		
-	onScreen = true; 
+		onScreen = true; 
 	
-	aFM = AudioFocusManager.getInstance();
+		aFM = AudioFocusManager.getInstance();
 		
 		startCurrentPaceService(this);
 		
@@ -261,6 +247,7 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 	
 
 
+	// Displaying the current song, and updating GPS info.
 	private BroadcastReceiver bReceiver = new BroadcastReceiver() {
 		  @Override
 		  public void onReceive(Context context, Intent intent) {

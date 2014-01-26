@@ -108,13 +108,10 @@ public class TrackList {
 			
 			}
 		
-		
-		// Updates the current song to be the modified value
 		currentSong.setSongPath(currentTrackList.get(getTrackIndex()));
 
 		}
 		
-		// Additional method to query the TrackList value for a given index
 		protected String getTrackListValue(int index){
 			
 			return currentTrackList.get(index);

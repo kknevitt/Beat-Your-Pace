@@ -10,9 +10,7 @@ import android.content.SharedPreferences;
 import com.GC01.BeatYourPace.HelpPage.AboutPageActivity;
 import com.GC01.BeatYourPace.HelpPage.HelpPageActivity;
 import com.GC01.BeatYourPace.MusicPlayer.AudioFocusManager;
-import com.GC01.BeatYourPace.MusicPlayer.MusicPlayer;
 import com.GC01.BeatYourPace.MusicPlayer.TrackList;
-import com.GC01.BeatYourPace.PaceCalculator.CurrentPace;
 import com.GC01.BeatYourPace.Settings.SettingsActivity;
 import com.example.beatyourpace.R;
 import com.google.analytics.tracking.android.EasyTracker;
@@ -30,18 +28,14 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-
 /** 
  * @author Laura Barbosa,  Kristian Knevitt & Sarah Nicholson
  * @version 1.0, Updated 22/01/2014
  */
 
 /**
- * Handles the functionalities of the Main page. 
+ * Handles the functionalities of the Lets Run Mode page. 
  */
-
-
 
 public class LetsRunModeActivity extends Activity implements OnClickListener {
 
@@ -54,6 +48,7 @@ public class LetsRunModeActivity extends Activity implements OnClickListener {
 	private static TextView trackInfo;
 	private SharedPreferences sp;
 	private static AudioFocusManager aFM;
+	
     ImageButton playOrPauseImageButton, imagebutton2, skipSongImageButton, previousSongImageButton, pauseImageButton, stopImageButton;
     Button songTooSlowButton, songTooFastButton, decreaseTargetPaceButton, increaseTargetPaceButton;
      
@@ -118,6 +113,7 @@ public class LetsRunModeActivity extends Activity implements OnClickListener {
         LocalBroadcastManager.getInstance(this).registerReceiver(bReceiver,
         	      new IntentFilter("Track Info Event"));
         
+        // Displaying a short toast due to TP not always being shown on screen.
         Toast.makeText(getBaseContext(), "Your current Target Pace is: " + displayTargetPace, Toast.LENGTH_SHORT).show();
         
    }
@@ -194,7 +190,6 @@ public class LetsRunModeActivity extends Activity implements OnClickListener {
 	private BroadcastReceiver bReceiver = new BroadcastReceiver() {
 		  @Override
 		  public void onReceive(Context context, Intent intent) {
-		    // Get extra data included in the Intent
 			
 			  trackInfo = (TextView) findViewById(R.id.tSongName);
 			  System.out.println("Intent Received");

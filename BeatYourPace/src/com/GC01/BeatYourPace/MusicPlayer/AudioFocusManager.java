@@ -32,8 +32,7 @@ public class AudioFocusManager{
 	
 	
 	private AudioFocusManager(){
-		
-	// Uses the Android Audio Manager
+
 	audioMan = (AudioManager) ContextProvider.getContext().getSystemService(Context.AUDIO_SERVICE);
 		
 	}

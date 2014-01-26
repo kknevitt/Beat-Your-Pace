@@ -28,7 +28,6 @@ import com.GC01.BeatYourPace.Main.ContextProvider;
 		return _instance;
 	}
 	
-	// implementing the method from abstract to specific app purposes
 	/** Set the song info using the file path
 	 * @param info (String) - Artist and Title of the song.
 	 */
