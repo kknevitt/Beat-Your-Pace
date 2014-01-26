@@ -22,8 +22,8 @@ import com.GC01.BeatYourPace.Main.ContextProvider;
 
 public class FileExport {
 
-	String fileName;
-	String dirName;
+	private String fileName;
+	private String dirName;
 	private final static String LOG_TAG = "FileExport";
 	protected static Context context = ContextProvider.getContext();
 	

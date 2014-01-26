@@ -27,7 +27,7 @@ public class DatabaseAddInitialData extends DatabaseAdapter {
 
 	private static final String LOG_TAG = "DatabaseCreation";
 
-	public String[] echoCols = new String[] {
+	private String[] echoCols = new String[] {
 			DataEntry.COL_ID,
 			DataEntry.COL_BPM, 
 			DataEntry.COL_ARTIST, 
@@ -35,7 +35,7 @@ public class DatabaseAddInitialData extends DatabaseAdapter {
 			DataEntry.COL_INITIAL_PREF_PACE_M,
 			DataEntry.COL_INITIAL_PREF_PACE_KM,
 	};
-	public String[] allCols = new String[] {
+	private String[] allCols = new String[] {
 			DataEntry.COL_ID, 
 			DataEntry.COL_MEDIASTOREID, 
 			DataEntry.COL_ARTIST, 
@@ -46,7 +46,7 @@ public class DatabaseAddInitialData extends DatabaseAdapter {
 			DataEntry.COL_PREF_PACE_KM,
 			DataEntry.COL_FILE_LOC,
 	};
-	public String orderBy = DataEntry.COL_MEDIASTOREID + " ASC";
+	private String orderBy = DataEntry.COL_MEDIASTOREID + " ASC";
 
 	public DatabaseAddInitialData(Context ctx) {
 		super(ContextProvider.getContext());

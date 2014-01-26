@@ -10,12 +10,10 @@ package com.GC01.BeatYourPace.BPM;
 
 import java.io.IOException;
 import java.util.List;
-
 import com.echonest.api.v4.EchoNestAPI;
 import com.echonest.api.v4.EchoNestException;
 import com.echonest.api.v4.Song;
 import com.echonest.api.v4.SongParams;
-
 import android.app.IntentService;
 import android.content.Intent;
 import android.util.Log;
@@ -23,7 +21,7 @@ import android.util.Log;
 
 public class RetrieveBpmService extends IntentService {
 
-	public static final String LOG_TAG = "RetrieveBpmService";
+	private static final String LOG_TAG = "RetrieveBpmService";
 
 	public RetrieveBpmService() {
 		super("RetrieveBpmService");

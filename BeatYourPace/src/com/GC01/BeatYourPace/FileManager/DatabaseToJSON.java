@@ -19,7 +19,7 @@ import android.util.Log;
 
 public class DatabaseToJSON extends DatabaseAdapter {
 
-	final static String LOG_TAG = "DbToJSON";
+	private final static String LOG_TAG = "DbToJSON";
 	
 	public DatabaseToJSON(Context ctx) {
 		super(ctx);

@@ -12,7 +12,7 @@
     <string name="sSetDefaultDistanceUnits">Select miles or kilometres</string>
     <string name="sDefaultTargetTitle">Select default target pace</string>
     <string name="sDefaultTargetPace">8 mph</string>
-    <string name="sSetTargetPace">Select target pace</string>
+    <string name="sSetTargetPace">Select target pace (mm:ss)</string>
     <string name="sMinus">-</string>
     <string name="sPlus">+</string>
     <string name="sFindMusicTitle">Find Music</string>
@@ -56,7 +56,7 @@
     <string name="aboutAcknowledgeTitle">Acknowledgements</string>
     <string name="aboutLimitsTitle">Supported versions</string>
     <string name="aboutAboutTitle">About the BeatYourPace app</string>
-    <string name="aboutAckText">Echonest provide the music tempo analysis as licensed at http://www.www.echonest.com. \nBeatYourPace \u00a9 D. Twisleton, 2014. \nDeveloped by L. Barbosa, K. Knevitt, S. Nicholson.</string>
+    <string name="aboutAckText">Echonest provide the music tempo analysis as licensed at http://www.echonest.com. \nBeatYourPace \u00a9 D. Twisleton, 2014. \nDeveloped by L. Barbosa, K. Knevitt, S. Nicholson.</string>
     <string name="aboutLimitsText">BeatYourPace has been tested for Android 2.3.3 to 4.1.1. \nIt is desiged for runners using phones held in the hand or attached to an armband, it does not support tablet screen resolutions. \nThe screen is locked in portrait and is designed to work for resolutions from 2.7" (240 x 320) to 5.4" (480 x 854).</string>
     <string name="aboutAboutText">BeatYourPace is an app for runners that plays music from your phone matched to the pace you want to run at. Running to music at the right tempo can help motivate you to achieve and sustain your desired running pace. \nAs every runner is different, the app lets you change the pace set for each music track for the pace you think it is suitable for. \nIn the app this is \'training\' the music to your running pace, so use the Training mode for this.\nRunners told us they don\'t like to stop to press buttons so the buttons are as large as possible to help you press them without looking at the screen in case you need to change your target pace, or change the tagged pace for a track while you are running.</string>
     <string name="title_activity_splash_screen">Beat Your Pace</string>

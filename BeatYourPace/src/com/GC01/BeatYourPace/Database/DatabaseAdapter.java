@@ -18,12 +18,12 @@ import com.GC01.BeatYourPace.Main.ContextProvider;
 public abstract class DatabaseAdapter {
 
 	private final Context context;
-	protected DatabaseHelper DbHelper;
+	protected DatabaseHelper dbHelper;
 	protected SQLiteDatabase db;
 
 	public DatabaseAdapter (Context ctx){
 		this.context = ctx;
-		DbHelper = new DatabaseHelper(ContextProvider.getContext(), DataEntry.DATABASE_NAME, null, DatabaseHelper.DATABASE_VERSION);
+		dbHelper = new DatabaseHelper(ContextProvider.getContext(), DataEntry.DATABASE_NAME, null, DatabaseHelper.DATABASE_VERSION);
 	}
 
 	/**
@@ -31,7 +31,7 @@ public abstract class DatabaseAdapter {
 	 * @return  db  Returns the database in writable format
 	 */
 	public DatabaseAdapter openDbWrite() throws SQLException {
-		db = DbHelper.getWritableDatabase();
+		db = dbHelper.getWritableDatabase();
 		return this;
 	}
 
@@ -40,7 +40,7 @@ public abstract class DatabaseAdapter {
 	 * @return  db  Returns the database in writable format
 	 */
 	public DatabaseAdapter openDbRead() throws SQLException {
-		db = DbHelper.getReadableDatabase();
+		db = dbHelper.getReadableDatabase();
 		return this;
 	}
 
@@ -48,7 +48,7 @@ public abstract class DatabaseAdapter {
 	 * Method to close the database
 	 */
 	public void closeDb(){
-		DbHelper.close();
+		dbHelper.close();
 	}
 	
 	/**
