@@ -109,10 +109,8 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
         	
         displayTargetPace = sp.getString("set_target_pace", "6.0");
         targetPace = Float.valueOf(displayTargetPace);
-
-        }
-
-        else {
+        
+        }else {
         	
         	displayTargetPace = sp.getString("saved_target_pace", "6.0");
         	targetPace = Float.valueOf(displayTargetPace);
@@ -207,7 +205,43 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 		
 	}
 
+	public void onResume(){
+
+		sp = PreferenceManager.getDefaultSharedPreferences(ContextProvider.getContext());
+		
+	onScreen = true; 
 	
+	aFM = AudioFocusManager.getInstance();
+		
+		startCurrentPaceService(this);
+		
+		if (aFM.focusTest() != true) {
+		System.out.print("Didn't have focus, requesting it");
+		aFM.requestFocus();
+		}
+		
+		
+		if (Integer.parseInt(sp.getString("unitType", "1")) == 1) {
+        	String minPerMile = "min/Miles";
+        	targetUnit.setText(minPerMile);
+        	currentPaceUnit.setText(minPerMile);
+        } else {
+        	String minPerMile = "min/KM";
+        	targetUnit.setText(minPerMile);
+        	currentPaceUnit.setText(minPerMile);
+        }
+
+        
+		displayTargetPace = String.valueOf(targetPace);
+        
+		targetPaceText.setText(displayTargetPace);
+            
+
+        LocalBroadcastManager.getInstance(this).registerReceiver(bReceiver,
+        	      new IntentFilter("Track Info Event"));
+
+        super.onResume();
+	}
 	
 	public void onDestroy(){
 		
@@ -220,7 +254,7 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 		editor.commit();
 		
 		onScreen = false;
-	//	unregisterReceiver(headsetReceiver);
+		
 		super.onDestroy();
 		
 	}
