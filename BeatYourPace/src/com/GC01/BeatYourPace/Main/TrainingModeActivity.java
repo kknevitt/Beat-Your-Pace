@@ -247,7 +247,7 @@ public class TrainingModeActivity extends Activity implements OnClickListener {
 	
 
 
-	// Displaying the current song, and updating GPS info.
+	// Updates the current song, and updating GPS info.
 	private BroadcastReceiver bReceiver = new BroadcastReceiver() {
 		  @Override
 		  public void onReceive(Context context, Intent intent) {
